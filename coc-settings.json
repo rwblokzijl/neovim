@@ -1,0 +1,4 @@
+{
+    "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+    "python.linting.ignorePatterns": "test_.*?py"
+}
