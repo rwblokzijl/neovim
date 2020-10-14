@@ -123,6 +123,8 @@ Plug 'lervag/vimtex'
 " files"
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
 
 " Git "
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -390,7 +392,7 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
     " Look and feel
     syntax on
-    set encoding=utf-8
+    set encoding=UTF-8
     set number
     set relativenumber
     set ruler
@@ -437,6 +439,9 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 " close only window on :q
     let bclose_multiple = 0
     cnoreabbrev bc Bclose
+
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+
 
 set completeopt-=preview
 
