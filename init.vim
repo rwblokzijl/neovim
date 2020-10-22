@@ -1,11 +1,24 @@
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
+let g:coc_global_extensions = [
+\ 'coc-ultisnips',
+\ 'coc-snippets',
+\ 'coc-highlight',
+\ 'coc-zi',
+\ 'coc-json',
+\ 'coc-git',
+\ 'coc-yaml',
+\ 'coc-tsserver',
+\ 'coc-python',
+\ 'coc-html',
+\ 'coc-css',
+\ 'coc-vetur',
+\ ]
+
+
+
+
 call plug#begin('~/.config/vim/plugged')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 "      ____   __               _               "
@@ -50,7 +63,7 @@ Plug 'unblevable/quick-scope'           " Highlight unique characters for word i
 Plug 'easymotion/vim-easymotion'        " Figure out later
 
 " Programming "
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
 
@@ -263,6 +276,8 @@ endfunc
 " imap <C-l> <Plug>(coc-snippets-expand) " Use <C-l> for trigger snippet expand.
 " Except expands all folds first, if you find a better solution of not having
 " the snippet fold after insert, replace it.
+
+
 imap <C-l> <C-o>:set foldlevel=20<cr><Plug>(coc-snippets-expand)
 
 " Use <C-j> for select text for visual placeholder of snippet.
