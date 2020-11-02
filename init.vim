@@ -636,17 +636,6 @@ set nowritebackup
 
 " Controlls
 
-    " surround selection with django translate
-    vmap t S"<esc>:set paste<cr>lysa"}ysi}%a<space>trans<space><esc>:set nopaste<cr>ll
-    nmap t  miiC<esc>lv1et`ix
-    nmap T  miiC<esc>lv1Et`ix
-    nmap 2t miiC<esc>lv2et`ix
-    nmap 2T miiC<esc>lv2Et`ix
-    nmap 3t miiC<esc>lv3et`ix
-    nmap 3T miiC<esc>lv3Et`ix
-    nmap 4t miiC<esc>lv4et`ix
-    nmap 4T miiC<esc>lv4Et`ix
-
     " Copy and cut
     vnoremap <C-c> "+y
     vnoremap <C-d> "+d
@@ -885,6 +874,16 @@ set nowritebackup
     " autocmd FileType python compiler pyunit
     " autocmd FileType python setlocal makeprg=pipenv\ run\ python\ -m\ unittest
 
+" HTML django
+    autocmd FileType htmldjango vmap t S"<esc>:set paste<cr>lysa"}ysi}%a<space>trans<space><esc>:set nopaste<cr>ll
+    autocmd FileType htmldjango nmap t  miiC<esc>lv1et`ix
+    autocmd FileType htmldjango nmap T  miiC<esc>lv1Et`ix
+    autocmd FileType htmldjango nmap 2t miiC<esc>lv2et`ix
+    autocmd FileType htmldjango nmap 2T miiC<esc>lv2Et`ix
+    autocmd FileType htmldjango nmap 3t miiC<esc>lv3et`ix
+    autocmd FileType htmldjango nmap 3T miiC<esc>lv3Et`ix
+    autocmd FileType htmldjango nmap 4t miiC<esc>lv4et`ix
+    autocmd FileType htmldjango nmap 4T miiC<esc>lv4Et`ix
 
 " Java "
     let g:syntastic_java_javac_config_file_enabled = 1
@@ -996,23 +995,6 @@ set nowritebackup
     " Toggle Make! on write
     autocmd FileType markdown.pandoc nnoremap <F4> :call ToggleMakeOnSave()<CR>
 
-    " Open corresponding.pdf
-    " autocmd FileType markdown.pandoc map <F6> :!(evince <c-r>%<backspace><backspace>pdf & nohup) >/dev/null 2>&1<CR><CR>
-    " autocmd FileType markdown.beamer map <F6> :!(evince <c-r>%<backspace><backspace><backspace>pdf & nohup) >/dev/null 2>&1<CR><CR>
-
-    "compile
-    "autocmd Filetype markdown inoremap <F5> <Esc>:w<CR>:!pandoc<space>--table-of-contents<space><C-r>%<space>-o<space><C-r>%<backspace><backspace>pdf<Enter>a
-    "autocmd Filetype markdown nnoremap <F5> :w<CR>:!pandoc<space>--table-of-contents<space><C-r>%<space>-o<space><C-r>%<backspace><backspace>pdf<Enter><Enter>
-    "autocmd Filetype markdown inoremap <F5> <Esc>:w<CR>:!pandoc<space>--table-of-contents<space><C-r>%<space>-o<space><C-r>%<backspace><backspace>pdf<Enter>a
-    "autocmd Filetype markdown nnoremap <F5> :w<CR>:!pandoc<space>--table-of-contents<space><C-r>%<space>-o<space><C-r>%<backspace><backspace>pdf<Enter><Enter>
-
-    " autocmd FileType markdown.pandoc inoremap <F5> <Esc>:w<CR>:Make<Enter><Enter>i
-    " autocmd FileType markdown.pandoc nnoremap <F5> :w<CR>:Make<Enter><Enter>
-
-    " autocmd Filetype markdown.pandoc inoremap <F5> <Esc>:w<CR>:!pandoc<space><C-r>%<space>-o<space><C-r>%<backspace><backspace>pdf<Enter>a
-    " autocmd Filetype markdown.pandoc nnoremap <F5> :w<CR>:!pandoc<space><C-r>%<space>-o<space><C-r>%<backspace><backspace>pdf<Enter><Enter>
-
-
 " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 
@@ -1025,45 +1007,6 @@ set nowritebackup
 " /_/   /_/   \____/_/ /\___/\___/\__/  /____/ .___/\___/\___/_/_/ /_/\___/    "
 "                 /___/                     /_/                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Graphics lab5
-
-    " Whitespace rules
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* setlocal ts=4 sts=4 sw=4 expandtab
-    "compile
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* inoremap <F5> <Esc>:w<CR>:!make<space>-C<space>~/school/tu_block4/ti1806/lab5/Code<Enter>i
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* nnoremap <F5> :w<CR>:!make<space>-C<space>~/school/tu_block4/ti1806/lab5/Code<Enter>
-
-    "run
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* inoremap <F6> <Esc>:!(~/school/tu_block4/ti1806/lab5/Code/Assignment_5_Project<space>&)<space>><space>/dev/null<Enter>a
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* nnoremap <F6> :!(~/school/tu_block4/ti1806/lab5/Code/Assignment_5_Project<space>&)<space>><space>/dev/null<Enter><Enter>
-
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* inoremap <F7> <Esc>:w<CR>:!(make<space>-C<space>~/school/tu_block4/ti1806/lab5/Code)<space>&&<space>(killall<space>Assignment_5_Project<space>\|\|<space>true)<space>&&<space>((~/school/tu_block4/ti1806/lab5/Code/Assignment_5_Project<space>&)<space>><space>/dev/null)<Enter><Enter>a
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* nnoremap <F7> :w<CR>:!(make<space>-C<space>~/school/tu_block4/ti1806/lab5/Code)<space>&&<space>(killall<space>Assignment_5_Project<space>\|\|<space>true)<space>&&<space>((~/school/tu_block4/ti1806/lab5/Code/Assignment_5_Project<space>&)<space>><space>/dev/null)<Enter><Enter>
-
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* inoremap <F8> <Esc>:!killall<space>Assignment_5_Project<Enter><Enter>a
-    autocmd BufNewFile,BufRead */ti1806/lab5/Code/* nnoremap <F8> :!killall<space>Assignment_5_Project<Enter><Enter>
-
-" Graphics project
-
-    " Whitespace rules
-    autocmd BufNewFile,BufRead */cg-47/* setlocal ts=4 sts=4 sw=4 noexpandtab
-    "compile
-    autocmd BufNewFile,BufRead */cg-47/* inoremap <F5> <Esc>:w<CR>:!make<space>-C<space>~/school/tu_block4/cg-47<Enter>i
-    autocmd BufNewFile,BufRead */cg-47/* nnoremap <F5> :w<CR>:!make<space>-C<space>~/school/tu_block4/cg-47<Enter>
-
-    "run
-    autocmd BufNewFile,BufRead */cg-47/* inoremap <F6> <Esc>:!(~/school/tu_block4/cg-47/Assignment_5_Project<space>&)<space>><space>/dev/null<Enter>a
-    autocmd BufNewFile,BufRead */cg-47/* nnoremap <F6> :!(~/school/tu_block4/cg-47/Assignment_5_Project<space>&)<space>><space>/dev/null<Enter><Enter>
-
-    autocmd BufNewFile,BufRead */cg-47/* inoremap <F7> <Esc>:w<CR>:!(make<space>-C<space>~/school/tu_block4/cg-47)<space>&&<space>(killall<space>Assignment_5_Project<space>\|\|<space>true)<space>&&<space>((~/school/tu_block4/cg-47/Assignment_5_Project<space>&)<space>><space>/dev/null)<Enter><Enter>a
-    autocmd BufNewFile,BufRead */cg-47/* nnoremap <F7> :w<CR>:!(make<space>-C<space>~/school/tu_block4/cg-47)<space>&&<space>(killall<space>Assignment_5_Project<space>\|\|<space>true)<space>&&<space>((~/school/tu_block4/cg-47/Assignment_5_Project<space>&)<space>><space>/dev/null)<Enter><Enter>
-
-    autocmd BufNewFile,BufRead */cg-47/* inoremap <F8> <Esc>:!killall<space>Assignment_5_Project<Enter><Enter>a
-    autocmd BufNewFile,BufRead */cg-47/* nnoremap <F8> :!killall<space>Assignment_5_Project<Enter><Enter>
-
-    autocmd BufNewFile,BufRead */cg-47/* inoremap <F9> <Esc>:!(killall<space>eog<space>\|\|<space>true)<space>&&<space>((eog ~/school/tu_block4/cg-47/resulp.bmp<space>&)<space>><space>/dev/null)<Enter><Enter>a
-    autocmd BufNewFile,BufRead */cg-47/* nnoremap <F9> :!(killall<space>eog<space>\|\|<space>true)<space>&&<space>((eog ~/school/tu_block4/cg-47/result.bmp<space>&)<space>><space>/dev/null)<Enter><Enter>
 
 """""""" Work project """""""
 
