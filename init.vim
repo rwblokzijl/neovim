@@ -835,6 +835,9 @@ set nowritebackup
 " VUE "
     autocmd FileType vue,javascript setlocal ts=2 sts=2 sw=2 expandtab
 
+" json "
+    autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+
 " HTML "
     autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -906,8 +909,8 @@ set nowritebackup
     "compile
     " autocmd FileType tex inoremap <F5> <Esc>:w<CR>:!xelatex<space><c-r>%<Enter>i
     " autocmd FileType tex nnoremap <F5> :w<CR>:!xelatex<space><c-r>%<Enter>
-    autocmd FileType tex inoremap <F5> <Esc>:w<CR>:Make<Enter><Enter>i
-    autocmd FileType tex nnoremap <F5> :w<CR>:Make<Enter><Enter>
+    " autocmd FileType tex inoremap <F5> <Esc>:w<CR>:Make<Enter><Enter>i
+    " autocmd FileType tex nnoremap <F5> :w<CR>:Make<Enter><Enter>
     " autocmd FileType tex inoremap <F6> <Esc>:w<CR>:Make<Enter><Enter>i
     " autocmd FileType tex nnoremap <F6> :w<CR>:Make<space>run<Enter><Enter>
     autocmd FileType yaml inoremap <F5> <Esc>:w<CR>:Make<space>run<Enter>i
