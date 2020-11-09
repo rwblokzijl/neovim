@@ -603,7 +603,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!node_modules/*" --glob "!.git/*"'
+" let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!node_modules/*" --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!*/node_modules/*" --glob "!.git/*"'
 nnoremap <c-p> :Files<cr>
 nnoremap gp :Tags<cr>
 o
