@@ -1,26 +1,26 @@
 {
-    "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
-    "python.linting.ignorePatterns": "test_.*?py",
-    "python.jediEnabled": true,
-    "python.setLinter": "jedi",
-    "zi.patterns": {
-        "": [],
-        "javascript": [
-            "^\\s*\\/\\/",
-            "^\\s*\\/\\*",
-            "^\\s*\\*"
-        ],
-        "typescript": [
-            "^\\s*\\/\\/",
-            "^\\s*\\/\\*",
-            "^\\s*\\*"
-        ],
-        "markdown": [],
-        "markdown.pandoc": [],
-        "vim": [
-            "^\\s*\\\""
-        ],
-        "gitcommit": []
-    }
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "python.linting.ignorePatterns": ["test_.*?py"],
+  "python.jediEnabled": true,
+  "python.setLinter": "jedi",
+  "zi.patterns": {
+    "": [],
+    "javascript": [
+      "^\\s*\\/\\/",
+      "^\\s*\\/\\*",
+      "^\\s*\\*"
+    ],
+    "typescript": [
+      "^\\s*\\/\\/",
+      "^\\s*\\/\\*",
+      "^\\s*\\*"
+    ],
+    "markdown": [],
+    "markdown.pandoc": [],
+    "vim": [
+      "^\\s*\\\""
+    ],
+    "gitcommit": []
+  }
 
 }
