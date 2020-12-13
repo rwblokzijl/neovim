@@ -13,10 +13,8 @@ let g:coc_global_extensions = [
 \ 'coc-html',
 \ 'coc-css',
 \ 'coc-vetur',
+\ 'coc-flutter',
 \ ]
-
-
-
 
 call plug#begin('~/.config/vim/plugged')
 
@@ -84,6 +82,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mechatroner/minimal_gdb'
+
+Plug 'thosakwe/vim-flutter'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
 
 " OpenHAB
 Plug 'cyberkov/openhab-vim'
@@ -202,6 +205,10 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " let g:fzf_preview_window = 'right:60%'
+
+
+let g:lsc_auto_map = v:true
+
 
 " emmet settings
 let g:user_emmet_leader_key=','
@@ -824,6 +831,9 @@ set nowritebackup
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VUE "
     autocmd FileType vue,javascript setlocal ts=2 sts=2 sw=2 expandtab
+
+" dart "
+    autocmd FileType dart setlocal ts=2 sts=2 sw=2 expandtab
 
 " json "
     autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
