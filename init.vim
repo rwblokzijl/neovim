@@ -834,6 +834,17 @@ set nowritebackup
 
 " dart "
     autocmd FileType dart setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType dart inoremap <F4> <esc>:FlutterSplit<Enter>a
+    autocmd FileType dart nnoremap <F4> :FlutterSplit<Enter>
+
+    autocmd FileType dart inoremap <F5> <esc>:FlutterHotRestart<Enter>a
+    autocmd FileType dart nnoremap <F5> :FlutterHotRestart<Enter>
+
+    autocmd FileType dart inoremap <F6> <esc>:FlutterEmulatorsLaunch Pixel_2_API_29<Enter>a
+    autocmd FileType dart nnoremap <F6> :FlutterEmulatorsLaunch Pixel_2_API_29<Enter>
+
+    autocmd FileType dart inoremap <F7> <esc>:FlutterRun<Enter>a
+    autocmd FileType dart nnoremap <F7> :FlutterRun<Enter>
 
 " json "
     autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
