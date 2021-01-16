@@ -614,28 +614,27 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!*/node_modules/*" --glob "!.git/*"'
 nnoremap <c-p> :Files<cr>
 nnoremap gp :Tags<cr>
-o
 
 " nnoremap <leader>' :CtrlPTag<cr>
 " let g:ctrlp_show_hidden = 1
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-    set splitbelow
-    set splitright
+set splitbelow
+set splitright
 
 " Automatically deletes all tralling whitespace on save.
-    function RemoveTrailingWhiteSpace()
-        norm!m`
-        %s/\s\+$//e
-        norm!``
-    endfunction
+function RemoveTrailingWhiteSpace()
+    norm!m`
+    %s/\s\+$//e
+    norm!``
+endfunction
 
-    autocmd BufWritePre * call RemoveTrailingWhiteSpace()
+" autocmd BufWritePre * call RemoveTrailingWhiteSpace()
 
 " Add all subfolders to search path
-    set path+=**
+set path+=**
 
 " Might not need
-    set shell=sh
+set shell=sh
 
 set hidden
 set confirm
