@@ -2,7 +2,6 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "python.linting.ignorePatterns": ["test_.*?py"],
   "python.jediEnabled": true,
-  "python.setLinter": "jedi",
   "zi.patterns": {
     "": [],
     "javascript": [
