@@ -152,7 +152,7 @@ Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-unimpaired'
 
 " Formatting"
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-commentary'
  Plug 'suy/vim-context-commentstring'
@@ -628,7 +628,7 @@ function RemoveTrailingWhiteSpace()
     norm!``
 endfunction
 
-" autocmd BufWritePre * call RemoveTrailingWhiteSpace()
+autocmd BufWritePre * call RemoveTrailingWhiteSpace()
 
 " Add all subfolders to search path
 set path+=**
@@ -917,8 +917,8 @@ set nowritebackup
     autocmd FileType java setlocal foldlevel=1
 
     " Compile "
-    autocmd FileType java inoremap <F5> <Esc>:w<CR>:Make<Enter>i
-    autocmd FileType java nnoremap <F5> :w<CR>:Make<Enter>
+    " autocmd FileType java inoremap <F5> <Esc>:w<CR>:Make<Enter>i
+    " autocmd FileType java nnoremap <F5> :w<CR>:Make<Enter>
 
     " autocmd FileType java inoremap <F6> <Esc>:w<CR>:Make<space>run<Enter>i
     " autocmd FileType java nnoremap <F6> :w<CR>:Make<space>run<Enter>
@@ -936,8 +936,8 @@ set nowritebackup
     " autocmd FileType tex nnoremap <F5> :w<CR>:Make<Enter><Enter>
     " autocmd FileType tex inoremap <F6> <Esc>:w<CR>:Make<Enter><Enter>i
     " autocmd FileType tex nnoremap <F6> :w<CR>:Make<space>run<Enter><Enter>
-    autocmd FileType yaml inoremap <F5> <Esc>:w<CR>:Make<space>run<Enter>i
-    autocmd FileType yaml nnoremap <F5> :w<CR>:Make<Enter>
+    " autocmd FileType yaml inoremap <F5> <Esc>:w<CR>:Make<space>run<Enter>i
+    " autocmd FileType yaml nnoremap <F5> :w<CR>:Make<Enter>
 
 " Markdown "
     function! s:isAtStartOfLine(mapping)
