@@ -1,5 +1,6 @@
 {
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "coc.preferences.formatOnSaveFiletypes": [],
   "python.linting.ignorePatterns": ["test_.*?py"],
   "python.linting.enabled": false,
   "python.jediEnabled": true,
