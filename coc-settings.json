@@ -1,10 +1,11 @@
 {
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "coc.preferences.formatOnSaveFiletypes": [],
-  "python.linting.ignorePatterns": ["test_.*?py"],
-  "python.linting.enabled": false,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
   "python.jediEnabled": true,
-  "python.linting.lintOnSave": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.lintOnSave": true,
   "zi.patterns": {
     "": [],
     "javascript": [

@@ -80,7 +80,7 @@ Plug 'vim-test/vim-test'
 Plug 'xolox/vim-misc'
 Plug 'Raimondi/delimitMate'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mechatroner/minimal_gdb'
 
 Plug 'thosakwe/vim-flutter'
@@ -304,22 +304,22 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_cpp_include_dirs = [ 'inc' ]
-" let g:syntastic_cpp_remove_include_errors=1
-"let g:syntastic_cpp_checkers = [ "g++" ]
-let g:ycm_register_as_syntastic_checker = 0
+" let g:syntastic_cpp_include_dirs = [ 'inc' ]
+" " let g:syntastic_cpp_remove_include_errors=1
+" "let g:syntastic_cpp_checkers = [ "g++" ]
+" let g:ycm_register_as_syntastic_checker = 0
 
 "let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
 
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
+" let g:syntastic_error_symbol = '✘'
+" let g:syntastic_warning_symbol = "▲"
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args='--ignore=E501'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_python_checkers = ['pylint', 'mypy']
+" " let g:syntastic_python_flake8_post_args='--ignore=E501'
 
 augroup mySyntastic
     au!
@@ -463,7 +463,6 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
     cnoreabbrev bc Bclose
 
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-
 
 set completeopt-=preview
 
@@ -695,6 +694,9 @@ set nowritebackup
     noremap <Left> <NOP>
     noremap <Right> <NOP>
 
+    " make W not Wall
+    :command -nargs=* W :w "<args>"
+
     " Shortcutting split navigation, saving a keypress:
     map <C-h> :wincmd h<CR>
     map <C-j> :wincmd j<CR>
@@ -767,16 +769,28 @@ set nowritebackup
         execute "Make from_vim_with_love %"
     endfunction
 
+    function! MakeCommandAndShow()
+        execute "w"
+        execute "Make! from_vim_with_love %"
+        execute "Copen"
+        execute "normal! "
+    endfunction
+
     function! RunCommand()
         execute "w"
         execute "Make from_vim_with_love % run"
-        " SetMakeOnSave()
+    endfunction
+
+    function! RunCommandAndShow()
+        execute "w"
+        execute "Make from_vim_with_love % run"
+        execute "Copen"
+        execute "normal! "
     endfunction
 
     function! TestCommand()
         execute "w"
         execute "Make from_vim_with_love % test"
-        " SetMakeOnSave()
     endfunction
 
     " Global Make command
@@ -787,9 +801,13 @@ set nowritebackup
     inoremap <F6> <Esc>:call RunCommand()<CR>a
     nnoremap <F6> :call RunCommand()<CR>
 
-    " " Global test command
-    " inoremap <F7> <Esc>:call TestCommand()<CR>a
-    " nnoremap <F7> :call TestCommand()<CR>
+    " Global make and show output command
+    inoremap <F7> <Esc>:call MakeCommandAndShow()<CR>a
+    nnoremap <F7> :call MakeCommandAndShow()<CR>
+
+    " Global run and show output command
+    inoremap <F8> <Esc>:call RunCommandAndShow()<CR>a
+    nnoremap <F8> :call RunCommandAndShow()<CR>
 
     inoremap <F9> <Esc>:TestLast<CR>a
     nnoremap <F9> :TestLast<CR>
@@ -804,8 +822,8 @@ set nowritebackup
     nnoremap <F12> :TestSuite<CR>
 
     function PipenvTransformation(cmd) abort
-        if !empty(glob("Pipfile"))
-            return 'pipenv run ' . a:cmd
+        if !empty(findfile("Pipfile", getcwd().';'))
+            return 'pipenv run ' . a:cmd " . ' --ignore=pyipv8'
         else
             return a:cmd
         endif
@@ -816,7 +834,7 @@ set nowritebackup
     let g:test#transformation = 'pipenv'
 
     let test#strategy = 'dispatch'
-    " let test#python#runner = 'pytest'
+    let test#python#runner = 'pytest'
 
     " nnoremap <F4> :call ToggleMakeOnSave()<CR>
 
@@ -1046,8 +1064,8 @@ set nowritebackup
     autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F6> :!(gnome-terminal<space>-e<space>~/devel/kveditr/kveditr)<space>><space>/dev/null<Enter><Enter>
 
     " Make, kill and run
-    autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F7> <Esc>:w<CR>:Make<space>-C<space>~/devel/kveditr<space>&&<space>(killall<space>kveditr<space>\|\|<space>true)<space>&&<space>((gnome-terminal<space>-e<space>~/devel/kveditr/kveditr<space>&)<space>><space>/dev/null)<Enter><Enter>a
-    autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F7> :w<CR>:Make<space>-C<space>~/devel/kveditr<space>&&<space>(killall<space>kveditr<space>\|\|<space>true)<space>&&<space>((gnome-terminal<space>-e<space>~/devel/kveditr/kveditr<space>&)<space>><space>/dev/null)<Enter><Enter>
+    " autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F7> <Esc>:w<CR>:Make<space>-C<space>~/devel/kveditr<space>&&<space>(killall<space>kveditr<space>\|\|<space>true)<space>&&<space>((gnome-terminal<space>-e<space>~/devel/kveditr/kveditr<space>&)<space>><space>/dev/null)<Enter><Enter>a
+    " autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F7> :w<CR>:Make<space>-C<space>~/devel/kveditr<space>&&<space>(killall<space>kveditr<space>\|\|<space>true)<space>&&<space>((gnome-terminal<space>-e<space>~/devel/kveditr/kveditr<space>&)<space>><space>/dev/null)<Enter><Enter>
 
     " kill the program
     autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F8> <Esc>:!killall<space>kveditr<Enter><Enter>a
