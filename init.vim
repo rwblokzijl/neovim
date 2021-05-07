@@ -36,6 +36,8 @@ Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 " Make plugin commands repeatable "
 Plug 'tpope/vim-repeat'
 
+Plug 'mhinz/vim-grepper'
+
 " More actions "
 Plug 'tpope/vim-surround'              " (s)       To surround
 Plug 'christoomey/vim-sort-motion'     " (gs)      To sort
@@ -138,7 +140,7 @@ Plug 'lervag/vimtex'
 
 " files"
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 
@@ -221,7 +223,8 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 
 " NERDTree
-nnoremap gn :NERDTreeTabsToggle<CR>
+" nnoremap gn :NERDTreeTabsToggle<CR>
+nnoremap gn :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "left"
 let NERDTreeWinSize = 39
 "autocmd vimenter * NERDTree
@@ -284,6 +287,17 @@ endfunc
 " Except expands all folds first, if you find a better solution of not having
 " the snippet fold after insert, replace it.
 
+nnoremap <Leader>R
+            \ :let @s='\<'.expand('<cword>').'\>'<CR>
+            \ :Grepper -cword -noprompt -nohighlight<CR>
+            \ :cfdo %s/<C-r>s//g \| update
+            \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+nnoremap <Leader>F
+            \ :let @s='\<'.expand('<cword>').'\>'<CR>
+            \ :Grepper -cword -noprompt -nohighlight<CR>
+
+set switchbuf+=usetab,newtab
 
 imap <C-l> <C-o>:set foldlevel=20<cr><Plug>(coc-snippets-expand)
 
@@ -610,7 +624,13 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " FZF
 " let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!node_modules/*" --glob "!.git/*"'
-let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!*/node_modules/*" --glob "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
+            \ --hidden
+            \ --glob "!*node_modules/*"
+            \ --glob "!*.pytest_cache/*"
+            \ --glob "!*.mypy_cache/*"
+            \ --glob "!.git/*"
+            \ '
 nnoremap <c-p> :Files<cr>
 nnoremap gp :Tags<cr>
 
@@ -686,7 +706,7 @@ set nowritebackup
     "nnoremap <C-S-TAB> :+tabmove<cr>
 
     nnoremap gt :tabnew<cr>
-    nnoremap gT :tabclose<cr>
+    cnoreabbrev qq tabclose
 
     "Turn off arrow keys
     noremap <Up> <NOP>
@@ -823,7 +843,7 @@ set nowritebackup
 
     function PipenvTransformation(cmd) abort
         if !empty(findfile("Pipfile", getcwd().';'))
-            return 'pipenv run ' . a:cmd " . ' --ignore=pyipv8'
+            return 'pipenv run ' . a:cmd . ' -W ignore::DeprecationWarning:invoke.loader'
         else
             return a:cmd
         endif
