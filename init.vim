@@ -90,6 +90,8 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 
+Plug 'hashivim/vim-terraform'
+
 " OpenHAB
 Plug 'cyberkov/openhab-vim'
 
@@ -704,6 +706,7 @@ set nowritebackup
     " and tab together impossible since tab=ctrl+i
     "nnoremap <C-TAB> :-tabmove<cr>
     "nnoremap <C-S-TAB> :+tabmove<cr>
+    "
 
     nnoremap gt :tabnew<cr>
     cnoreabbrev qq tabclose
