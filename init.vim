@@ -90,6 +90,8 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'natebosch/vim-lsc'
 Plug 'natebosch/vim-lsc-dart'
 
+Plug 'hashivim/vim-terraform'
+
 " OpenHAB
 Plug 'cyberkov/openhab-vim'
 
@@ -290,6 +292,17 @@ endfunc
 nnoremap <Leader>R
             \ :let @s='\<'.expand('<cword>').'\>'<CR>
             \ :Grepper -cword -noprompt -nohighlight<CR>
+            \ :cfdo %s/<C-r>s//g \| update
+            \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+vnoremap <Leader>F
+            \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
+            " \ :let @q=substitute(@s, "'", "\\\\'", "")<CR>
+            \ :Grepper -noprompt -nohighlight -query '<C-r>q'
+
+vnoremap <Leader>R
+            \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
+            \ :Grepper -noprompt -nohighlight -query '<C-r>q'
             \ :cfdo %s/<C-r>s//g \| update
             \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
@@ -704,6 +717,7 @@ set nowritebackup
     " and tab together impossible since tab=ctrl+i
     "nnoremap <C-TAB> :-tabmove<cr>
     "nnoremap <C-S-TAB> :+tabmove<cr>
+    "
 
     nnoremap gt :tabnew<cr>
     cnoreabbrev qq tabclose

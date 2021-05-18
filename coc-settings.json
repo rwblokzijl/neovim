@@ -30,6 +30,13 @@
       "^\\s*\\\""
     ],
     "gitcommit": []
+  },
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "initializationOptions": {}
+    }
   }
 
 }
