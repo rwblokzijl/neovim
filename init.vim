@@ -295,6 +295,17 @@ nnoremap <Leader>R
             \ :cfdo %s/<C-r>s//g \| update
             \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
+vnoremap <Leader>F
+            \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
+            " \ :let @q=substitute(@s, "'", "\\\\'", "")<CR>
+            \ :Grepper -noprompt -nohighlight -query '<C-r>q'
+
+vnoremap <Leader>R
+            \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
+            \ :Grepper -noprompt -nohighlight -query '<C-r>q'
+            \ :cfdo %s/<C-r>s//g \| update
+            \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
 nnoremap <Leader>F
             \ :let @s='\<'.expand('<cword>').'\>'<CR>
             \ :Grepper -cword -noprompt -nohighlight<CR>
