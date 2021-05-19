@@ -422,6 +422,23 @@ augroup END
 
 au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
+" turn the current line into ascii art with wrapping
+nnoremap <Leader>aa :normal 0"bD<CR>
+            \:call append(line("."), "")<CR>
+            \:let @c='#'<CR>
+            \:normal 80"cP<CR>
+            \:r !figlet -c -f slant -w 78 <C-r>b \| sed 's/^/\# /'<CR>
+            \:normal j80"cP<CR>
+" " turn the current line into ascii art without wrapping
+nnoremap <Leader>ai :normal 0"bD<CR>
+            \:call append(line("."), "")<CR>
+            \:let @c='#'<CR>
+            \:normal 80"cP<CR>
+            \:r !figlet -f slant -w 1000 <C-r>b \| sed 's/^/\# /'<CR>
+            \:normal j80"cP<CR>
+
+"#sh: command substitution: line 1: `getline('.')'
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 "     ______                                 __  "
