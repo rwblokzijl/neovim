@@ -424,6 +424,7 @@ au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 " turn the current line into ascii art with wrapping
 nnoremap <Leader>aa :normal 0"bD<CR>
+            \:let @b=shellescape(@b, 1)<CR>
             \:call append(line("."), "")<CR>
             \:let @c='#'<CR>
             \:normal 80"cP<CR>
@@ -431,6 +432,7 @@ nnoremap <Leader>aa :normal 0"bD<CR>
             \:normal j80"cP<CR>
 " " turn the current line into ascii art without wrapping
 nnoremap <Leader>ai :normal 0"bD<CR>
+            \:let @b=shellescape(@b, 1)<CR>
             \:call append(line("."), "")<CR>
             \:let @c='#'<CR>
             \:normal 80"cP<CR>
@@ -439,15 +441,14 @@ nnoremap <Leader>ai :normal 0"bD<CR>
 
 "#sh: command substitution: line 1: `getline('.')'
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-"     ______                                 __  "
-"    / ____/___   ____   ___   _____ ____ _ / /  "
-"   / / __ / _ \ / __ \ / _ \ / ___// __ `// /   "
-"  / /_/ //  __// / / //  __// /   / /_/ // /    "
-"  \____/ \___//_/ /_/ \___//_/    \__,_//_/     "
-"                                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                        ______                           __
+"                       / ____/__  ____  ___  _________ _/ /
+"                      / / __/ _ \/ __ \/ _ \/ ___/ __ `/ /
+"                     / /_/ /  __/ / / /  __/ /  / /_/ / /
+"                     \____/\___/_/ /_/\___/_/   \__,_/_/
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Some basics:
     " Spaces by default
