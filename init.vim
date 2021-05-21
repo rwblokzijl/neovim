@@ -812,36 +812,36 @@ set nowritebackup
     map - $
 
     function! MakeSilentCommand()
-        execute "Make! from_vim_with_love %"
+        execute "Make! from_vim_with_love \"%\""
     endfunction
 
     function! MakeCommand()
         execute "w"
-        execute "Make from_vim_with_love %"
+        execute "Make from_vim_with_love \"%\""
     endfunction
 
     function! MakeCommandAndShow()
         execute "w"
-        execute "Make! from_vim_with_love %"
+        execute "Make! from_vim_with_love \"%\""
         execute "Copen"
         execute "normal! "
     endfunction
 
     function! RunCommand()
         execute "w"
-        execute "Make from_vim_with_love % run"
+        execute "Make from_vim_with_love \"%\" run"
     endfunction
 
     function! RunCommandAndShow()
         execute "w"
-        execute "Make from_vim_with_love % run"
+        execute "Make from_vim_with_love \"%\" run"
         execute "Copen"
         execute "normal! "
     endfunction
 
     function! TestCommand()
         execute "w"
-        execute "Make from_vim_with_love % test"
+        execute "Make from_vim_with_love \"%\" test"
     endfunction
 
     " Global Make command
