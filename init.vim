@@ -475,7 +475,7 @@ nnoremap <Leader>ai :normal 0"bD<CR>
     " Vislualising code
     set incsearch
     set hlsearch
-    nnoremap <ESC><ESC> :nohlsearch<CR>
+    nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>
     set cursorline
     set list
     set showbreak=↪\
