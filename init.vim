@@ -935,6 +935,9 @@ set nowritebackup
 " Go "
     autocmd FileType go setlocal foldnestmax=1
 
+" Terraform "
+    autocmd FileType terraform setlocal foldnestmax=1
+
 " Makefiles "
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
