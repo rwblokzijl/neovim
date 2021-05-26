@@ -1057,11 +1057,13 @@ set nowritebackup
     autocmd FileType markdown setlocal textwidth=80
     autocmd FileType markdown setlocal spell
     autocmd FileType markdown setlocal spelllang=en
+    autocmd FileType markdown setlocal nowrap
 
     autocmd FileType markdown.pandoc setlocal ts=4 sts=4 sw=4 expandtab
     autocmd FileType markdown.pandoc setlocal textwidth=80
     autocmd FileType markdown.pandoc setlocal spell
     autocmd FileType markdown.pandoc setlocal spelllang=en
+    autocmd FileType markdown.pandoc setlocal nowrap
 
     " Markdown only binds
     autocmd FileType markdown nmap g$ lbysiw$e2l
