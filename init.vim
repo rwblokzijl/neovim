@@ -221,7 +221,7 @@ let mapleader=","
 
 hi clear SignColumn
 
-hi clear SpellBad
+" hi clear SpellBad
 hi SpellBad cterm=underline
 
 " NERDTree
@@ -1067,6 +1067,7 @@ set nowritebackup
     autocmd FileType markdown.pandoc setlocal spell
     autocmd FileType markdown.pandoc setlocal spelllang=en
     autocmd FileType markdown.pandoc setlocal nowrap
+    autocmd FileType markdown.pandoc nnoremap <buffer> <ESC><ESC> :nohlsearch<CR>
 
     " Markdown only binds
     autocmd FileType markdown nmap g$ lbysiw$e2l
