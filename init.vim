@@ -696,6 +696,7 @@ set nowritebackup
     " Copy and cut
     vnoremap <C-c> "+y
     vnoremap <C-d> "+d
+    vnoremap <C-x> "+d
 
     " paste with and without formatting
     inoremap <c-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
@@ -1019,6 +1020,13 @@ set nowritebackup
         let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
         return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
     endfunction
+
+    autocmd FileType markdown.pandoc inoreabbrev <expr> <bar><bar>
+                \ <SID>isAtStartOfLine('\|\|') ?
+                \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+    autocmd FileType markdown.pandoc inoreabbrev <expr> __
+                \ <SID>isAtStartOfLine('__') ?
+                \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
     autocmd FileType markdown inoreabbrev <expr> <bar><bar>
                 \ <SID>isAtStartOfLine('\|\|') ?
