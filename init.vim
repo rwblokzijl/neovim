@@ -72,6 +72,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 
 Plug 'posva/vim-vue'
+Plug 'leafOfTree/vim-vue-plugin'
 
 Plug 'vim-scripts/a.vim'
 Plug 'tpope/vim-sensible'
@@ -890,6 +891,8 @@ set nowritebackup
     let test#python#runner = 'pytest'
 
     " nnoremap <F4> :call ToggleMakeOnSave()<CR>
+
+let javaScript_fold=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "      ______ _  __         ______                    "
