@@ -137,6 +137,7 @@ Plug 'godlygeek/tabular'
 " Plugin 'plasticboy/vim-markdown'
 " Plugin 'drmingdrmer/vim-syntax-markdown'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'rhysd/vim-grammarous'
 
 " Latex "
 Plug 'lervag/vimtex'
@@ -891,6 +892,8 @@ set nowritebackup
     let test#python#runner = 'pytest'
 
     " nnoremap <F4> :call ToggleMakeOnSave()<CR>
+    "
+    "let g:languagetool_jar = '/usr/share/java/languagetool/languagetool-commandline.jar'
 
 " This breaks other folding: ...
 " let javaScript_fold=1
@@ -1081,6 +1084,12 @@ set nowritebackup
     autocmd FileType markdown.pandoc setlocal spelllang=en
     autocmd FileType markdown.pandoc setlocal nowrap
     autocmd FileType markdown.pandoc nnoremap <buffer> <ESC><ESC> :nohlsearch<CR>
+    autocmd FileType markdown.pandoc nmap <F7> :GrammarousCheck<CR>
+    autocmd FileType markdown.pandoc nmap <F8> <Plug>(grammarous-open-info-window)
+    autocmd FileType markdown.pandoc nmap <F9> <Plug>(grammarous-move-to-previous-error)
+    autocmd FileType markdown.pandoc nmap <F10> <Plug>(grammarous-fixit)
+    autocmd FileType markdown.pandoc nmap <F11> <Plug>(grammarous-move-to-next-error)
+    autocmd FileType markdown.pandoc nmap <F12> <Plug>(grammarous-disable-rule)
 
     " Markdown only binds
     autocmd FileType markdown nmap g$ lbysiw$e2l
