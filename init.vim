@@ -892,7 +892,8 @@ set nowritebackup
 
     " nnoremap <F4> :call ToggleMakeOnSave()<CR>
 
-let javaScript_fold=1
+" This breaks other folding: ...
+" let javaScript_fold=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "      ______ _  __         ______                    "
