@@ -894,6 +894,7 @@ set nowritebackup
 
 " This breaks other folding: ...
 " let javaScript_fold=1
+" This might hold a solution: https://stackoverflow.com/questions/4789605/how-do-i-enable-automatic-folds-in-vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 "      ______ _  __         ______                    "
