@@ -931,6 +931,7 @@ set nowritebackup
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " HTML "
+    au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
     autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 
 " Scala "
