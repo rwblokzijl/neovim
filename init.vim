@@ -484,8 +484,9 @@ nnoremap <Leader>ai :normal 0"bD<CR>
     set listchars=nbsp:☠,tab:▸\ ,trail:•,precedes:←,extends:→
     highlight SpecialKey ctermfg=240
 
-    set textwidth=80 "default TW"
-    set colorcolumn=+1 "TW+1"
+    " set textwidth=80 "default TW"
+    " set colorcolumn=+1 "TW+1"
+    set colorcolumn=80 "TW+1"
     "function! s:SetColorColumn()
     "    if &textwidth == 0
     "        setlocal colorcolumn=81
@@ -976,7 +977,8 @@ set nowritebackup
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldnestmax=2
     autocmd FileType python setlocal foldlevel=1
-    autocmd FileType python setlocal textwidth=120
+    " autocmd FileType python setlocal textwidth=120
+    autocmd FileType python setlocal colorcolumn=120
     autocmd FileType python setlocal nowrap
     " autocmd FileType python compiler pyunit
     " autocmd FileType python setlocal makeprg=pipenv\ run\ python\ -m\ unittest
