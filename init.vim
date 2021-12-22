@@ -1,20 +1,20 @@
 filetype off                  " required
 
 let g:coc_global_extensions = [
-\ 'coc-ultisnips',
-\ 'coc-snippets',
-\ 'coc-highlight',
-\ 'coc-zi',
-\ 'coc-json',
-\ 'coc-git',
-\ 'coc-yaml',
-\ 'coc-tsserver',
-\ 'coc-python',
-\ 'coc-html',
-\ 'coc-css',
-\ 'coc-vetur',
-\ 'coc-flutter',
-\ ]
+            \ 'coc-ultisnips',
+            \ 'coc-snippets',
+            \ 'coc-highlight',
+            \ 'coc-zi',
+            \ 'coc-json',
+            \ 'coc-git',
+            \ 'coc-yaml',
+            \ 'coc-tsserver',
+            \ 'coc-python',
+            \ 'coc-html',
+            \ 'coc-css',
+            \ 'coc-vetur',
+            \ 'coc-flutter',
+            \ ]
 
 call plug#begin('~/.config/vim/plugged')
 
@@ -66,6 +66,7 @@ Plug 'easymotion/vim-easymotion'        " Figure out later
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'neovim/nvim-lspconfig'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -167,6 +168,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/loremipsum'
 "Plugin 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'juliosueiras/vim-terraform-completion'
 " Plug 'xolox/vim-easytags'
 
 " To do list "
@@ -198,6 +200,8 @@ Plug 'cakebaker/scss-syntax.vim'
 " call vundle#end()            " required
 call plug#end()
 filetype plugin indent on    " required
+
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -742,6 +746,7 @@ set nowritebackup
     "
 
     nnoremap gt :tabnew<cr>
+    nnoremap gT :-1tabnew<cr>
     cnoreabbrev qq tabclose
 
     "Turn off arrow keys
