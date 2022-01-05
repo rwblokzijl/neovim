@@ -672,6 +672,46 @@ let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
 nnoremap <c-p> :Files<cr>
 nnoremap gp :Tags<cr>
 
+nnoremap Y y$
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
+nnoremap J mzJ`z
+" nnoremap <C-j> :cnext<CR>zzzv
+
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==a
+inoremap <C-k> <esc>:m .-2<CR>==a
+nnoremap <C-j> <esc>:m .+1<CR>==
+nnoremap <C-k> <esc>:m .-2<CR>==
+
+" " edit command
+" cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+" map <leader>ew :e %%
+" map <leader>es :sp %%
+" map <leader>ev :vsp %%
+" map <leader>et :tabe %%
+
+"" Whitespaces and indentation
+function! Preserve(command)
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	execute a:command
+	" Clean up: restore previous search history, and cursor position
+	let @/=_s
+	call cursor(l, c)
+endfunction
+" nnoremap <silent>_$ :call Preserve("%s/\\s\\+$//e")<CR>
+" nnoremap <silent>_= :call Preserve("normal gg=G")<CR>
+
 " nnoremap <leader>' :CtrlPTag<cr>
 " let g:ctrlp_show_hidden = 1
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
@@ -681,8 +721,8 @@ set splitright
 " Automatically deletes all tralling whitespace on save.
 function RemoveTrailingWhiteSpace()
     norm!m`
-    %s/\s\+$//e
     norm!``
+    %s/\s\+$//e
 endfunction
 
 autocmd BufWritePre * call RemoveTrailingWhiteSpace()
@@ -759,10 +799,10 @@ set nowritebackup
     :command -nargs=* W :w "<args>"
 
     " Shortcutting split navigation, saving a keypress:
-    map <C-h> :wincmd h<CR>
-    map <C-j> :wincmd j<CR>
-    map <C-k> :wincmd k<CR>
-    map <C-l> :wincmd l<CR>
+    map gh :wincmd h<CR>
+    map gj :wincmd j<CR>
+    map gk :wincmd k<CR>
+    map gl :wincmd l<CR>
 
     " Folding
     " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
