@@ -673,8 +673,10 @@ nnoremap <c-p> :Files<cr>
 nnoremap gp :Tags<cr>
 
 nnoremap Y y$
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap * *zzzv
+nnoremap # #zzzv
 nnoremap J mzJ`z
 " nnoremap <C-j> :cnext<CR>zzzv
 
