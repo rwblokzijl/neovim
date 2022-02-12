@@ -1,20 +1,20 @@
 filetype off                  " required
 
 let g:coc_global_extensions = [
-\ 'coc-ultisnips',
-\ 'coc-snippets',
-\ 'coc-highlight',
-\ 'coc-zi',
-\ 'coc-json',
-\ 'coc-git',
-\ 'coc-yaml',
-\ 'coc-tsserver',
-\ 'coc-python',
-\ 'coc-html',
-\ 'coc-css',
-\ 'coc-vetur',
-\ 'coc-flutter',
-\ ]
+            \ 'coc-ultisnips',
+            \ 'coc-snippets',
+            \ 'coc-highlight',
+            \ 'coc-zi',
+            \ 'coc-json',
+            \ 'coc-git',
+            \ 'coc-yaml',
+            \ 'coc-tsserver',
+            \ 'coc-python',
+            \ 'coc-html',
+            \ 'coc-css',
+            \ 'coc-vetur',
+            \ 'coc-flutter',
+            \ ]
 
 call plug#begin('~/.config/vim/plugged')
 
@@ -66,6 +66,7 @@ Plug 'easymotion/vim-easymotion'        " Figure out later
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'neovim/nvim-lspconfig'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -167,6 +168,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/loremipsum'
 "Plugin 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'juliosueiras/vim-terraform-completion'
 " Plug 'xolox/vim-easytags'
 
 " To do list "
@@ -198,6 +200,8 @@ Plug 'cakebaker/scss-syntax.vim'
 " call vundle#end()            " required
 call plug#end()
 filetype plugin indent on    " required
+
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -484,8 +488,9 @@ nnoremap <Leader>ai :normal 0"bD<CR>
     set listchars=nbsp:☠,tab:▸\ ,trail:•,precedes:←,extends:→
     highlight SpecialKey ctermfg=240
 
-    set textwidth=80 "default TW"
-    set colorcolumn=+1 "TW+1"
+    " set textwidth=80 "default TW"
+    " set colorcolumn=+1 "TW+1"
+    set colorcolumn=80 "TW+1"
     "function! s:SetColorColumn()
     "    if &textwidth == 0
     "        setlocal colorcolumn=81
@@ -656,16 +661,58 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 
 " FZF
-" let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files --hidden --glob "!node_modules/*" --glob "!.git/*"'
 let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
             \ --hidden
-            \ --glob "!*node_modules/*"
-            \ --glob "!*.pytest_cache/*"
-            \ --glob "!*.mypy_cache/*"
-            \ --glob "!.git/*"
+            \ --glob "!**/node_modules/*"
+            \ --glob "!**/.terraform/*"
+            \ --glob "!**/.pytest_cache/*"
+            \ --glob "!**/.mypy_cache/*"
+            \ --glob "!**/.git/*"
             \ '
 nnoremap <c-p> :Files<cr>
 nnoremap gp :Tags<cr>
+
+nnoremap Y y$
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap J mzJ`z
+" nnoremap <C-j> :cnext<CR>zzzv
+
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==a
+inoremap <C-k> <esc>:m .-2<CR>==a
+nnoremap <C-j> <esc>:m .+1<CR>==
+nnoremap <C-k> <esc>:m .-2<CR>==
+
+" " edit command
+" cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+" map <leader>ew :e %%
+" map <leader>es :sp %%
+" map <leader>ev :vsp %%
+" map <leader>et :tabe %%
+
+"" Whitespaces and indentation
+function! Preserve(command)
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	execute a:command
+	" Clean up: restore previous search history, and cursor position
+	let @/=_s
+	call cursor(l, c)
+endfunction
+" nnoremap <silent>_$ :call Preserve("%s/\\s\\+$//e")<CR>
+" nnoremap <silent>_= :call Preserve("normal gg=G")<CR>
 
 " nnoremap <leader>' :CtrlPTag<cr>
 " let g:ctrlp_show_hidden = 1
@@ -676,8 +723,8 @@ set splitright
 " Automatically deletes all tralling whitespace on save.
 function RemoveTrailingWhiteSpace()
     norm!m`
-    %s/\s\+$//e
     norm!``
+    %s/\s\+$//e
 endfunction
 
 autocmd BufWritePre * call RemoveTrailingWhiteSpace()
@@ -741,6 +788,7 @@ set nowritebackup
     "
 
     nnoremap gt :tabnew<cr>
+    nnoremap gT :-1tabnew<cr>
     cnoreabbrev qq tabclose
 
     "Turn off arrow keys
@@ -753,10 +801,10 @@ set nowritebackup
     :command -nargs=* W :w "<args>"
 
     " Shortcutting split navigation, saving a keypress:
-    map <C-h> :wincmd h<CR>
-    map <C-j> :wincmd j<CR>
-    map <C-k> :wincmd k<CR>
-    map <C-l> :wincmd l<CR>
+    map gh :wincmd h<CR>
+    map gj :wincmd j<CR>
+    map gk :wincmd k<CR>
+    map gl :wincmd l<CR>
 
     " Folding
     " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
@@ -931,6 +979,7 @@ set nowritebackup
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " HTML "
+    au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
     autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 
 " Scala "
@@ -975,7 +1024,8 @@ set nowritebackup
     autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldnestmax=2
     autocmd FileType python setlocal foldlevel=1
-    autocmd FileType python setlocal textwidth=120
+    " autocmd FileType python setlocal textwidth=120
+    autocmd FileType python setlocal colorcolumn=120
     autocmd FileType python setlocal nowrap
     " autocmd FileType python compiler pyunit
     " autocmd FileType python setlocal makeprg=pipenv\ run\ python\ -m\ unittest

@@ -1,17 +1,21 @@
 {
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "coc.preferences.formatOnSaveFiletypes": [],
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": [
-      "--disable=R,C",
-      "--disable=unused-wildcard-import",
-      "--disable=wildcard-import",
-      "--disable=arguments-differ"
-  ],
-  "python.jediEnabled": true,
-  "python.linting.mypyEnabled": true,
-  "python.linting.lintOnSave": true,
+  "python": {
+    "jediEnabled": false,
+    "linting": {
+      "enabled": true,
+      "pylintEnabled": true,
+      "pylintArgs": [
+        "--disable=R,C",
+        "--disable=unused-wildcard-import",
+        "--disable=wildcard-import",
+        "--disable=arguments-differ"
+      ],
+      "mypyEnabled": true,
+      "lintOnSave": true
+    }
+  },
   "zi.patterns": {
     "": [],
     "javascript": [
@@ -34,8 +38,9 @@
   "languageserver": {
     "terraform": {
       "command": "terraform-lsp",
-      "filetypes": ["terraform"],
-      "initializationOptions": {}
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
     }
   }
 
