@@ -677,7 +677,7 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap * *zzzv
 nnoremap # #zzzv
-nnoremap J mzJ`z
+" nnoremap J mzJ`z //more annoying than useful
 " nnoremap <C-j> :cnext<CR>zzzv
 
 inoremap , ,<c-g>u
