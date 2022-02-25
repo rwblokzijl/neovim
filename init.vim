@@ -980,7 +980,9 @@ set nowritebackup
 
 " HTML "
     au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
-    autocmd FileType html,htmldjango setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 
 " Scala "
     au! BufNewFile,BufFilePre,BufRead *.scala set filetype=scala
