@@ -743,6 +743,13 @@ set nowritebackup
 " Controlls
 
     " Copy and cut
+    nnoremap <C-y><C-y> "+yy
+    nnoremap <C-Y> "+Y
+    nnoremap <C-y> "+y
+    nnoremap <C-c><C-c> "+yy
+    nnoremap <C-v> "+p
+    nnoremap <C-c> "+y
+    nnoremap <C-d> "+d
     vnoremap <C-c> "+y
     vnoremap <C-d> "+d
     vnoremap <C-x> "+d
