@@ -669,8 +669,12 @@ let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
             \ --glob "!**/.mypy_cache/*"
             \ --glob "!**/.git/*"
             \ '
-nnoremap <c-p> :Files<cr>
-nnoremap gp :Tags<cr>
+nnoremap <c-]> :Files<cr>
+nnoremap <c-'> :Files<cr>
+nnoremap <c-;> :Files<cr>
+nnoremap <c-o> :Files<cr>
+nnoremap <c-f> :Files<cr>
+" nnoremap <c-i> :Files<cr>
 
 nnoremap Y y$
 nnoremap n nzzzv
@@ -742,21 +746,38 @@ set nowritebackup
 
 " Controlls
 
-    " Copy and cut
-    nnoremap <C-y><C-y> "+yy
-    nnoremap <C-Y> "+Y
+    " Copy and cut to system clipboard
     nnoremap <C-y> "+y
-    nnoremap <C-c><C-c> "+yy
-    nnoremap <C-v> "+p
-    nnoremap <C-c> "+y
-    nnoremap <C-d> "+d
-    vnoremap <C-c> "+y
-    vnoremap <C-d> "+d
-    vnoremap <C-x> "+d
+    nnoremap <C-S-y> "+y$
+    nnoremap <C-y><C-y> "+yy
+    vnoremap <C-y> "+y
 
+    nnoremap <C-p> "+p
+    nnoremap <C-S-p> "+P
+    vnoremap <C-p> "+p
+    vnoremap <C-S-p> "+P
+
+    nnoremap <C-c> "+c
+    nnoremap <C-S-c> "+C
+    nnoremap <C-c><C-c> "+cc
+    vnoremap <C-c> "+c
+
+    nnoremap <C-d> "+d
+    nnoremap <C-S-d> "+D
+    nnoremap <C-d><C-d> "+dd
+    vnoremap <C-d> "+d
+
+    vnoremap <C-v> "+p
+    vnoremap <C-S-v> "+P
     " paste with and without formatting
-    inoremap <c-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
-    inoremap <c-b> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+    inoremap <C-v>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
+    inoremap <C-S-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+    " inoremap <C-b>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+
+    " nnoremap <C-x> "+d
+    " nnoremap <C-S-x> "+D
+    " nnoremap <C-x><C-x> "+dd
+
 
     "
     " imap <c-.> <C-t>
