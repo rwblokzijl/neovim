@@ -63,7 +63,8 @@ Plug 'unblevable/quick-scope'           " Highlight unique characters for word i
 Plug 'easymotion/vim-easymotion'        " Figure out later
 
 " Programming "
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neovim/nvim-lspconfig'
