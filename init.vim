@@ -1202,36 +1202,3 @@ set nowritebackup
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"     ____               _           __    _____                 _ _____       "
-"    / __ \_________    (_)__  _____/ /_  / ___/____  ___  _____(_) __(_)____  "
-"   / /_/ / ___/ __ \  / / _ \/ ___/ __/  \__ \/ __ \/ _ \/ ___/ / /_/ / ___/  "
-"  / ____/ /  / /_/ / / /  __/ /__/ /_   ___/ / /_/ /  __/ /__/ / __/ / /__    "
-" /_/   /_/   \____/_/ /\___/\___/\__/  /____/ .___/\___/\___/_/_/ /_/\___/    "
-"                 /___/                     /_/                                "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""" Work project """""""
-
-    " Whitespace rules
-    autocmd BufNewFile,BufRead */devel/kveditr/* setlocal ts=4 sts=4 sw=4 expandtab
-
-    "make
-    autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F5> <Esc>:w<CR>:Make<space>-C<space>~/devel/kveditr<Enter>i
-    autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F5> :w<CR>:Make<space>-C<space>~/devel/kveditr<Enter>
-
-    "run
-    autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F6> <Esc>:!(gnome-terminal<space>-e<space>~/devel/kveditr/kveditr)<space>><space>/dev/null<Enter>a
-    autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F6> :!(gnome-terminal<space>-e<space>~/devel/kveditr/kveditr)<space>><space>/dev/null<Enter><Enter>
-
-    " Make, kill and run
-    " autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F7> <Esc>:w<CR>:Make<space>-C<space>~/devel/kveditr<space>&&<space>(killall<space>kveditr<space>\|\|<space>true)<space>&&<space>((gnome-terminal<space>-e<space>~/devel/kveditr/kveditr<space>&)<space>><space>/dev/null)<Enter><Enter>a
-    " autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F7> :w<CR>:Make<space>-C<space>~/devel/kveditr<space>&&<space>(killall<space>kveditr<space>\|\|<space>true)<space>&&<space>((gnome-terminal<space>-e<space>~/devel/kveditr/kveditr<space>&)<space>><space>/dev/null)<Enter><Enter>
-
-    " kill the program
-    autocmd BufNewFile,BufRead */devel/kveditr/* inoremap <F8> <Esc>:!killall<space>kveditr<Enter><Enter>a
-    autocmd BufNewFile,BufRead */devel/kveditr/* nnoremap <F8> :!killall<space>kveditr<Enter><Enter>
-
-
-"    autocmd BufNewFile,BufRead */devel/kveditr/* let b:syntastic_cpp_cflags = ' -I inc'
-
