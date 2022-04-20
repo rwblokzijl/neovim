@@ -14,6 +14,7 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-vetur',
             \ 'coc-flutter',
+            \ '@yaegassy/coc-ansible',
             \ ]
 
 call plug#begin('~/.config/vim/plugged')
@@ -68,6 +69,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-loc
 Plug 'majutsushi/tagbar'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'neovim/nvim-lspconfig'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -1006,6 +1008,10 @@ set nowritebackup
 
 " yaml "
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" yaml.ansible "
+    au BufRead,BufNewFile */gcp-ansible/**/*.yml set filetype=yaml.ansible
+    au BufRead,BufNewFile */gcp-ansible/**/*.yaml set filetype=yaml.ansible
 
 " HTML "
     au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
