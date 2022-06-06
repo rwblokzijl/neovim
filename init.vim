@@ -1,377 +1,355 @@
 filetype off                  " required
 
-let g:coc_global_extensions = [
-            \ 'coc-ultisnips',
-            \ 'coc-snippets',
-            \ 'coc-highlight',
-            \ 'coc-zi',
-            \ 'coc-json',
-            \ 'coc-git',
-            \ 'coc-yaml',
-            \ 'coc-tsserver',
-            \ 'coc-python',
-            \ 'coc-html',
-            \ 'coc-css',
-            \ 'coc-vetur',
-            \ 'coc-flutter',
-            \ '@yaegassy/coc-ansible',
-            \ ]
-
-call plug#begin('~/.config/vim/plugged')
-
-""""""""""""""""""""""""""""""""""""""""""""""""
-"      ____   __               _               "
-"     / __ \ / /__  __ ____ _ (_)____   _____  "
-"    / /_/ // // / / // __ `// // __ \ / ___/  "
-"   / ____// // /_/ // /_/ // // / / /(__  )   "
-"  /_/    /_/ \__,_/ \__, //_//_/ /_//____/    "
-"                   /____/                     "
-""""""""""""""""""""""""""""""""""""""""""""""""
-
-" let Vundle manage Vundle, required "
-" Plugin 'VundleVim/Vundle.vim'
-
-" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-
-" Make plugin commands repeatable "
-Plug 'tpope/vim-repeat'
-
-Plug 'mhinz/vim-grepper'
-
-" More actions "
-Plug 'tpope/vim-surround'              " (s)       To surround
-Plug 'christoomey/vim-sort-motion'     " (gs)      To sort
-Plug 'vim-scripts/ReplaceWithRegister' " (gr)      Replace with buffer
-Plug 'tommcdo/vim-ninja-feet'          " (gr)      Replace with buffer
-Plug 'junegunn/vim-easy-align'         " (ga)      To align
-
-
-" More text objects "
-Plug 'vim-scripts/argtextobj.vim'         " (a)       Argument
-Plug 'bkad/CamelCaseMotion'               " (,w)      CamelCaseWords
-Plug 'michaeljsmith/vim-indent-object'    " (i)       Indent blocks
-
-Plug 'kana/vim-textobj-user'              " Enables the ones below
-Plug 'glts/vim-textobj-comment'           " (c)       Comments
-Plug 'akiyan/vim-textobj-php'             " (P)       PHP tag
-Plug 'beloglazov/vim-textobj-quotes'      " (q)       Any type of quote (even from outside the quotes
-Plug 'kana/vim-textobj-line'              " (l)       Line
-Plug 'kana/vim-textobj-entire'            " (e)       Entire file
-
-" Movement aids "
-Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
-Plug 'easymotion/vim-easymotion'        " Figure out later
-
-" Programming "
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
-Plug 'majutsushi/tagbar'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'neovim/nvim-lspconfig'
-Plug 'sheerun/vim-polyglot'
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'terryma/vim-multiple-cursors'
-
-Plug 'posva/vim-vue'
-Plug 'leafOfTree/vim-vue-plugin'
-
-Plug 'vim-scripts/a.vim'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-projectionist'
-Plug 'vim-test/vim-test'
-Plug 'xolox/vim-misc'
-Plug 'Raimondi/delimitMate'
-Plug 'kien/rainbow_parentheses.vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'mechatroner/minimal_gdb'
-
-Plug 'thosakwe/vim-flutter'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'natebosch/vim-lsc'
-Plug 'natebosch/vim-lsc-dart'
-
-Plug 'hashivim/vim-terraform'
-
-" OpenHAB
-Plug 'cyberkov/openhab-vim'
-
-" Android "
-Plug 'hsanson/vim-android'
-
-" ----- Syntax plugins ------------------------------------------------"
-Plug 'jez/vim-c0'
-Plug 'jez/vim-ispc'
-Plug 'kchmck/vim-coffee-script'
-
-"Python
-
-" lists
-Plug 'dkarter/bullets.vim'
-
-" folding
-Plug 'Konfekt/FastFold'
-Plug 'tmhedberg/SimpylFold'
-
-" Airline "
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" HTML "
-Plug 'mattn/emmet-vim'
-
-" Java "
-"Plugin 'dansomething/vim-eclim'
-Plug 'Shougo/unite.vim'
-
-" Scala "
-Plug 'derekwyatt/vim-scala'
-Plug 'jceb/vim-hier'
-
-" Markdown "
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-" Align CSV files at commas, align Markdown tables, and more "
-Plug 'godlygeek/tabular'
-" Plugin 'nelstrom/vim-markdown-folding'
-" Plugin 'plasticboy/vim-markdown'
-" Plugin 'drmingdrmer/vim-syntax-markdown'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'rhysd/vim-grammarous'
-
-" Latex "
-Plug 'lervag/vimtex'
-
-" files"
-Plug 'scrooloose/nerdtree'
-" Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
-
-" Git "
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
-
-"
-Plug 'tpope/vim-unimpaired'
-
-" Formatting"
-" Plug 'vim-syntastic/syntastic'
-Plug 'Chiel92/vim-autoformat'
-Plug 'tpope/vim-commentary'
- Plug 'suy/vim-context-commentstring'
-
-" autocompletion"
-Plug 'vim-scripts/loremipsum'
-"Plugin 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'juliosueiras/vim-terraform-completion'
-" Plug 'xolox/vim-easytags'
-
-" To do list "
-Plug 'vitalk/vim-simple-todo'
-
-" Ricing "
-Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
-" Plugin 'Valloric/YouCompleteMe'
-"
-"My own stuff (remember to port)"
-Plug 'tmhedberg/matchit'
-Plug 'sickill/vim-pasta'
-" Plug 'ervandew/supertab'
-Plug 'vim-scripts/ZoomWin'
-
-" ---- Extras/Advanced plugins ---------------------------------------- "
-" Highlight and strip trailing whitespace "
-Plug 'ntpeters/vim-better-whitespace'
-" Automaticall insert the closing HTML tag "
-"Plugin 'HTML-AutoCloseTag'
-" All the other syntax plugins I use "
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'digitaltoad/vim-jade'
-Plug 'tpope/vim-liquid'
-Plug 'cakebaker/scss-syntax.vim'
-" All of your Plugins must be added before the following line "
-
-" call vundle#end()            " required
-call plug#end()
-filetype plugin indent on    " required
-
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" let g:fzf_preview_window = 'right:60%'
-
-
-let g:lsc_auto_map = v:true
-
-
-" emmet settings
-let g:user_emmet_leader_key=','
-
-let mapleader=","
-
-hi clear SignColumn
-
-" hi clear SpellBad
-hi SpellBad cterm=underline
-
-" NERDTree
-" nnoremap gn :NERDTreeTabsToggle<CR>
-nnoremap gn :NERDTreeToggle<CR>
-let g:NERDTreeWinPos = "left"
-let NERDTreeWinSize = 39
-"autocmd vimenter * NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let NERDTreeShowHidden=1
-let NERDTreeShowBookmarks=1
-let NERDTreeMinimalUI=1
-let NERDTreeShowLineNumbers=1
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-    exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-    exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-"let g:NERDTreeShowIgnoredStatus = 1
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "●",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
-call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" Snippets
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" let g:UltiSnipsSnippetDirectories=["~/.vim/bundle/vim-snippets/UltiSnips"]
-
-
-" Same command as:
-" imap <C-l> <Plug>(coc-snippets-expand) " Use <C-l> for trigger snippet expand.
-" Except expands all folds first, if you find a better solution of not having
-" the snippet fold after insert, replace it.
-
-nnoremap <Leader>R
-            \ :let @s='\<'.expand('<cword>').'\>'<CR>
-            \ :Grepper -cword -noprompt -nohighlight<CR>
-            \ :cfdo %s/<C-r>s//g \| update
-            \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-vnoremap <Leader>F
-            \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
-            " \ :let @q=substitute(@s, "'", "\\\\'", "")<CR>
-            \ :Grepper -noprompt -nohighlight -query '<C-r>q'
-
-vnoremap <Leader>R
-            \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
-            \ :Grepper -noprompt -nohighlight -query '<C-r>q'
-            \ :cfdo %s/<C-r>s//g \| update
-            \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-nnoremap <Leader>F
-            \ :let @s='\<'.expand('<cword>').'\>'<CR>
-            \ :Grepper -cword -noprompt -nohighlight<CR>
-
-set switchbuf+=usetab,newtab
-
-imap <C-l> <C-o>:set foldlevel=20<cr><Plug>(coc-snippets-expand)
-
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" let g:syntastic_cpp_include_dirs = [ 'inc' ]
-" " let g:syntastic_cpp_remove_include_errors=1
-" "let g:syntastic_cpp_checkers = [ "g++" ]
-" let g:ycm_register_as_syntastic_checker = 0
-
-"let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
-
-" let g:syntastic_error_symbol = '✘'
-" let g:syntastic_warning_symbol = "▲"
-
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_python_checkers = ['pylint', 'mypy']
-" " let g:syntastic_python_flake8_post_args='--ignore=E501'
-
-augroup mySyntastic
-    au!
-    au FileType tex let b:syntastic_mode = "passive"
-augroup END
-
-"vim-airline"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_symbols.space = "\ua0"
-
+" Plugins
+    call plug#begin('~/.config/vim/plugged')
+
+
+    """"""""""""""""""""""""""""""""""""""""""""""""
+    "      ____   __               _               "
+    "     / __ \ / /__  __ ____ _ (_)____   _____  "
+    "    / /_/ // // / / // __ `// // __ \ / ___/  "
+    "   / ____// // /_/ // /_/ // // / / /(__  )   "
+    "  /_/    /_/ \__,_/ \__, //_//_/ /_//____/    "
+    "                   /____/                     "
+    """"""""""""""""""""""""""""""""""""""""""""""""
+
+    " let Vundle manage Vundle, required "
+    " Plugin 'VundleVim/Vundle.vim'
+
+    " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    " Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+
+    " Make plugin commands repeatable "
+    Plug 'tpope/vim-repeat'
+
+    " More actions "
+    Plug 'tpope/vim-surround'              " (s)       To surround
+    Plug 'christoomey/vim-sort-motion'     " (gs)      To sort
+    Plug 'vim-scripts/ReplaceWithRegister' " (gr)      Replace with buffer
+    Plug 'tommcdo/vim-ninja-feet'          " (gr)      Replace with buffer
+    Plug 'junegunn/vim-easy-align'         " (ga)      To align
+
+    " More text objects "
+    Plug 'vim-scripts/argtextobj.vim'         " (a)       Argument
+    Plug 'bkad/CamelCaseMotion'               " (,w)      CamelCaseWords
+    Plug 'michaeljsmith/vim-indent-object'    " (i)       Indent blocks
+
+    Plug 'kana/vim-textobj-user'              " Enables the ones below
+    Plug 'glts/vim-textobj-comment'           " (c)       Comments
+    Plug 'akiyan/vim-textobj-php'             " (P)       PHP tag
+    Plug 'beloglazov/vim-textobj-quotes'      " (q)       Any type of quote (even from outside the quotes
+    Plug 'kana/vim-textobj-line'              " (l)       Line
+    Plug 'kana/vim-textobj-entire'            " (e)       Entire file
+
+    " Movement aids "
+    Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
+    Plug 'easymotion/vim-easymotion'        " Figure out later
+
+    " Language Server Stuff "
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+    Plug 'sheerun/vim-polyglot'
+
+    " Specific programmin language plugins
+    Plug 'posva/vim-vue'
+    Plug 'leafOfTree/vim-vue-plugin'
+
+    " Programming tools "
+    Plug 'vim-test/vim-test'
+
+    " UI Extentions "
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'terryma/vim-multiple-cursors'
+    " Plug 'majutsushi/tagbar'
+    Plug 'mhinz/vim-grepper'
+    Plug 'vim-scripts/a.vim'
+    Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-eunuch'
+    Plug 'tpope/vim-dispatch'
+    Plug 'tpope/vim-projectionist'
+
+    Plug 'xolox/vim-misc'
+    Plug 'Raimondi/delimitMate'
+    Plug 'kien/rainbow_parentheses.vim'
+    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    Plug 'thosakwe/vim-flutter'
+    Plug 'dart-lang/dart-vim-plugin'
+    Plug 'natebosch/vim-lsc'
+    Plug 'natebosch/vim-lsc-dart'
+
+    Plug 'hashivim/vim-terraform'
+
+    Plug 'szw/vim-maximizer'
+    Plug 'sbdchd/neoformat'
+    Plug 'kassio/neoterm'
+
+    " OpenHAB
+    Plug 'cyberkov/openhab-vim'
+
+    " Android "
+    Plug 'hsanson/vim-android'
+
+    " ----- Syntax plugins ------------------------------------------------"
+    Plug 'jez/vim-c0'
+    Plug 'jez/vim-ispc'
+    Plug 'kchmck/vim-coffee-script'
+
+    "Python
+
+    " lists
+    Plug 'dkarter/bullets.vim'
+
+    " folding
+    Plug 'Konfekt/FastFold'
+    Plug 'tmhedberg/SimpylFold'
+
+    " Airline "
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    " HTML "
+    Plug 'mattn/emmet-vim'
+
+    " Java "
+    "Plugin 'dansomething/vim-eclim'
+    Plug 'Shougo/unite.vim'
+
+    " Scala "
+    Plug 'derekwyatt/vim-scala'
+    Plug 'jceb/vim-hier'
+
+    " Markdown "
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+    " Align CSV files at commas, align Markdown tables, and more "
+    Plug 'godlygeek/tabular'
+    " Plugin 'nelstrom/vim-markdown-folding'
+    " Plugin 'plasticboy/vim-markdown'
+    " Plugin 'drmingdrmer/vim-syntax-markdown'
+    Plug 'dhruvasagar/vim-table-mode'
+    Plug 'rhysd/vim-grammarous'
+
+    " Latex "
+    Plug 'lervag/vimtex'
+
+    " files"
+    Plug 'scrooloose/nerdtree'
+    " Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'
+
+    " Git "
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/gv.vim'
+
+    "
+    Plug 'tpope/vim-unimpaired'
+
+    " Formatting"
+    Plug 'vim-syntastic/syntastic'
+    Plug 'Chiel92/vim-autoformat'
+    Plug 'tpope/vim-commentary'
+     Plug 'suy/vim-context-commentstring'
+
+    " autocompletion"
+    Plug 'vim-scripts/loremipsum'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'rafamadriz/friendly-snippets'
+    Plug 'juliosueiras/vim-terraform-completion'
+    " Plug 'xolox/vim-easytags'
+
+    " To do list "
+    Plug 'vitalk/vim-simple-todo'
+
+    " Ricing "
+    Plug 'flazz/vim-colorschemes'
+    Plug 'morhetz/gruvbox'
+    " Plugin 'Valloric/YouCompleteMe'
+    "
+    "My own stuff (remember to port)"
+    Plug 'tmhedberg/matchit'
+    Plug 'sickill/vim-pasta'
+    " Plug 'ervandew/supertab'
+    Plug 'vim-scripts/ZoomWin'
+
+    " ---- Extras/Advanced plugins ---------------------------------------- "
+    " Highlight and strip trailing whitespace "
+    Plug 'ntpeters/vim-better-whitespace'
+    " Automaticall insert the closing HTML tag "
+    "Plugin 'HTML-AutoCloseTag'
+    " All the other syntax plugins I use "
+    Plug 'ekalinin/Dockerfile.vim'
+    Plug 'digitaltoad/vim-jade'
+    Plug 'tpope/vim-liquid'
+    Plug 'cakebaker/scss-syntax.vim'
+    " All of your Plugins must be added before the following line "
+
+    " call vundle#end()            " required
+    call plug#end()
+    filetype plugin indent on    " required
+
+""""
+" Language server config"
+""""
+    " lsc "
+        let g:lsc_auto_map = v:true
+    " Coc Plugins"
+        let g:coc_global_extensions = [
+                    \ 'coc-ultisnips',
+                    \ 'coc-snippets',
+                    \ 'coc-highlight',
+                    \ 'coc-zi',
+                    \ 'coc-json',
+                    \ 'coc-git',
+                    \ 'coc-yaml',
+                    \ 'coc-tsserver',
+                    \ 'coc-python',
+                    \ 'coc-html',
+                    \ 'coc-css',
+                    \ 'coc-vetur',
+                    \ 'coc-flutter',
+                    \ '@yaegassy/coc-ansible',
+                    \ ]
+        " let g:coc_snippet_next = '<tab>'
+        let g:UltiSnipsExpandTrigger = v:null
+    " Syntastic
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+        " let g:syntastic_cpp_include_dirs = [ 'inc' ]
+        " " let g:syntastic_cpp_remove_include_errors=1
+        " "let g:syntastic_cpp_checkers = [ "g++" ]
+        " let g:ycm_register_as_syntastic_checker = 0
+        "let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
+        " let g:syntastic_error_symbol = '✘'
+        " let g:syntastic_warning_symbol = "▲"
+        " let g:syntastic_always_populate_loc_list = 1
+        " let g:syntastic_auto_loc_list = 1
+        " let g:syntastic_check_on_open = 1
+        " let g:syntastic_check_on_wq = 0
+        " let g:syntastic_python_checkers = ['pylint', 'mypy']
+        " " let g:syntastic_python_flake8_post_args='--ignore=E501'
+        augroup mySyntastic
+            au!
+            au FileType tex let b:syntastic_mode = "passive"
+        augroup END
+
+""""
+" UI config "
+""""
+    " fzf "
+        inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
+                    \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
+                    \ fzf#wrap({'dir': expand('%:p:h')}))
+    " rainbow_parentheses "
+        au VimEnter * RainbowParenthesesToggle
+        au Syntax * RainbowParenthesesLoadRound
+        au Syntax * RainbowParenthesesLoadSquare
+        au Syntax * RainbowParenthesesLoadBraces
+    " NERDTree
+        " nnoremap gn :NERDTreeTabsToggle<CR>
+        nnoremap gn :NERDTreeToggle<CR>
+        let g:NERDTreeWinPos = "left"
+        let NERDTreeWinSize = 39
+        "autocmd vimenter * NERDTree
+        "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+        let g:NERDTreeDirArrowExpandable = '▸'
+        let g:NERDTreeDirArrowCollapsible = '▾'
+        let NERDTreeShowHidden=1
+        let NERDTreeShowBookmarks=1
+        let NERDTreeMinimalUI=1
+        let NERDTreeShowLineNumbers=1
+        function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+            exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+            exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+        endfunction
+        "let g:NERDTreeShowIgnoredStatus = 1
+        let g:NERDTreeGitStatusIndicatorMapCustom = {
+            \ "Modified"  : "●",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : '☒',
+            \ "Unknown"   : "?"
+            \ }
+        call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
+        call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
+        call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+        call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+        call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+        call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+        call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+        call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+    "vim-airline"
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline_powerline_fonts = 1
+
+        if !exists('g:airline_symbols')
+            let g:airline_symbols = {}
+        endif
+
+        let g:airline_symbols.space = "\ua0"
+
+""""
+" Keybinds "
+""""
+    " Leader "
+        let mapleader=","
+        let g:user_emmet_leader_key=','
+    " Grepper / replace "
+        nnoremap <Leader>R
+                    \ :let @s='\<'.expand('<cword>').'\>'<CR>
+                    \ :Grepper -cword -noprompt -nohighlight<CR>
+                    \ :cfdo %s/<C-r>s//g \| update
+                    \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+        vnoremap <Leader>F
+                    \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
+                    " \ :let @q=substitute(@s, "'", "\\\\'", "")<CR>
+                    \ :Grepper -noprompt -nohighlight -query '<C-r>q'
+        vnoremap <Leader>R
+                    \ :<bs><bs><bs><bs><bs>let @s=getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1]<CR>
+                    \ :Grepper -noprompt -nohighlight -query '<C-r>q'
+                    \ :cfdo %s/<C-r>s//g \| update
+                    \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+        nnoremap <Leader>F
+                    \ :let @s='\<'.expand('<cword>').'\>'<CR>
+                    \ :Grepper -cword -noprompt -nohighlight<CR>
+    " Coc Keybinds
+        imap <C-l> <C-o>:set foldlevel=20<cr><Plug>(coc-snippets-expand)
+        " Use <C-j> for select text for visual placeholder of snippet.
+        vmap <C-j> <Plug>(coc-snippets-select)
+        " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+        let g:coc_snippet_next = '<c-j>'
+        " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+        let g:coc_snippet_prev = '<c-k>'
+        " Use <C-j> for both expand and jump (make expand higher priority.)
+        imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+""""
+" General vim settings
+""""
+    hi SpellBad cterm=underline
+    set switchbuf+=usetab,newtab " When selecting a buffer from the quickfix list use existing tab, otherwise create a new tab"
+
+" Uncatergorised "
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:tex_flavor = 'latex'
 
@@ -481,7 +459,11 @@ nnoremap <Leader>ai :normal 0"bD<CR>
     set laststatus=2
     "hi Normal guibg=NONE ctermbg=NONE
 
+    set diffopt+=vertical
+
     " Vislualising code
+    set ignorecase
+    set smartcase
     set incsearch
     set hlsearch
     nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>
@@ -519,8 +501,8 @@ nnoremap <Leader>ai :normal 0"bD<CR>
 
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
-set completeopt-=preview
-
+" set completeopt-=preview
+set completeopt=menuone,noinsert,noselect
 " COC settings
 "
 " Give more space for displaying messages.
@@ -532,6 +514,8 @@ set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+
+hi clear SignColumn
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -586,7 +570,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -708,15 +692,15 @@ nnoremap <C-k> <esc>:m .-2<CR>==
 
 "" Whitespaces and indentation
 function! Preserve(command)
-	" Preparation: save last search, and cursor position.
-	let _s=@/
-	let l = line(".")
-	let c = col(".")
-	" Do the business:
-	execute a:command
-	" Clean up: restore previous search history, and cursor position
-	let @/=_s
-	call cursor(l, c)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
 endfunction
 " nnoremap <silent>_$ :call Preserve("%s/\\s\\+$//e")<CR>
 " nnoremap <silent>_= :call Preserve("normal gg=G")<CR>
@@ -1207,4 +1191,7 @@ set nowritebackup
 " Treat .rss files as XML
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 
+" VIM "
+    autocmd FileType vim setlocal foldmethod=indent
+    autocmd FileType vim setlocal foldnestmax=2
 
