@@ -1,5 +1,6 @@
 {
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
+  "snippets.ultisnips.enable": false,
   "coc.preferences.formatOnSaveFiletypes": [],
   "python": {
     "jediEnabled": false,
@@ -42,6 +43,8 @@
       "initializationOptions": {},
       "settings": {}
     }
-  }
-
+  },
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly":true,
+  "diagnostic.checkCurrentLine": true
 }
