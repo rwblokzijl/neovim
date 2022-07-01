@@ -437,7 +437,7 @@ nnoremap <Leader>aa :normal 0"bD<CR>
             \:call append(line("."), "")<CR>
             \:let @c='#'<CR>
             \:normal 80"cP<CR>
-            \:r !figlet -c -f slant -w 78 <C-r>b \| sed 's/^/\# /'<CR>
+            \:r !figlet -c -f slant -w 77 <C-r>b \| sed 's/^/\# /'<CR>
             \:normal j80"cP<CR>
 " " turn the current line into ascii art without wrapping
 nnoremap <Leader>ai :normal 0"bD<CR>
@@ -673,11 +673,8 @@ let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
             \ --glob "!**/.git/*"
             \ '
 nnoremap <c-]> :Files<cr>
-nnoremap <c-'> :Files<cr>
 nnoremap <c-;> :Files<cr>
-nnoremap <c-o> :Files<cr>
 nnoremap <c-f> :Files<cr>
-" nnoremap <c-i> :Files<cr>
 
 nnoremap Y y$
 nnoremap n nzzzv
@@ -987,7 +984,12 @@ set nowritebackup
 "                              /____//_/              "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VUE "
-    autocmd FileType vue,javascript setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType vue setlocal foldnestmax=2
+
+" Java Script "
+    autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType javascript setlocal foldnestmax=1
 
 " dart "
     autocmd FileType dart setlocal ts=2 sts=2 sw=2 expandtab
@@ -1032,6 +1034,13 @@ set nowritebackup
 
 " Terraform "
     autocmd FileType terraform setlocal foldnestmax=1
+    autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
+    function TerraformFmtOnSave()
+        mkview
+        TerraformFmt
+        silent! loadview
+    endfunction
+
 
 " Makefiles "
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -1171,12 +1180,12 @@ set nowritebackup
     autocmd FileType markdown.pandoc setlocal spelllang=en
     autocmd FileType markdown.pandoc setlocal nowrap
     autocmd FileType markdown.pandoc nnoremap <buffer> <ESC><ESC> :nohlsearch<CR>
-    autocmd FileType markdown.pandoc nmap <F7> :GrammarousCheck<CR>
-    autocmd FileType markdown.pandoc nmap <F8> <Plug>(grammarous-open-info-window)
-    autocmd FileType markdown.pandoc nmap <F9> <Plug>(grammarous-move-to-previous-error)
-    autocmd FileType markdown.pandoc nmap <F10> <Plug>(grammarous-fixit)
-    autocmd FileType markdown.pandoc nmap <F11> <Plug>(grammarous-move-to-next-error)
-    autocmd FileType markdown.pandoc nmap <F12> <Plug>(grammarous-disable-rule)
+    " autocmd FileType markdown.pandoc nmap <F7> :GrammarousCheck<CR>
+    " autocmd FileType markdown.pandoc nmap <F8> <Plug>(grammarous-open-info-window)
+    " autocmd FileType markdown.pandoc nmap <F9> <Plug>(grammarous-move-to-previous-error)
+    " autocmd FileType markdown.pandoc nmap <F10> <Plug>(grammarous-fixit)
+    " autocmd FileType markdown.pandoc nmap <F11> <Plug>(grammarous-move-to-next-error)
+    " autocmd FileType markdown.pandoc nmap <F12> <Plug>(grammarous-disable-rule)
 
     " Markdown only binds
     autocmd FileType markdown nmap g$ lbysiw$e2l
