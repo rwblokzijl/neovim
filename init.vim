@@ -46,7 +46,7 @@ filetype off                  " required
     Plug 'easymotion/vim-easymotion'        " Figure out later
 
     " Language Server Stuff "
-    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'neovim/nvim-lspconfig'
     Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
     Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
@@ -154,7 +154,7 @@ filetype off                  " required
     Plug 'tpope/vim-unimpaired'
 
     " Formatting"
-    Plug 'vim-syntastic/syntastic'
+    " Plug 'vim-syntastic/syntastic'
     Plug 'Chiel92/vim-autoformat'
     Plug 'tpope/vim-commentary'
      Plug 'suy/vim-context-commentstring'
@@ -461,9 +461,14 @@ nnoremap <Leader>ai :normal 0"bD<CR>
 
     set diffopt+=vertical
 
-    " Vislualising code
+    " Searching in code case sensitive
     set ignorecase
     set smartcase
+    " With these mappings, if 'smartcase' is on and you press * while on the word "The", you will only find "The" (case sensitive), but if you press * while on the word "the", the search will not be case sensitive.
+    nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>zzzv
+    nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>zzzv
+
+    " Vislualising code
     set incsearch
     set hlsearch
     nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>
@@ -663,8 +668,8 @@ nnoremap <c-f> :Files<cr>
 nnoremap Y y$
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap * *zzzv
-nnoremap # #zzzv
+" nnoremap * *zzzv # already remapped higher up
+" nnoremap # #zzzv # already remapped higher up
 " nnoremap J mzJ`z //more annoying than useful
 " nnoremap <C-j> :cnext<CR>zzzv
 
