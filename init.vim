@@ -1,4 +1,3 @@
-filetype off                  " required
 
 " Plugins
     call plug#begin('~/.config/vim/plugged')
@@ -56,12 +55,27 @@ filetype off                  " required
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-nvim-lua'
     Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'onsails/lspkind-nvim'
     Plug 'hrsh7th/cmp-cmdline'
 
     Plug 'saadparwaiz1/cmp_luasnip'
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'L3MON4D3/LuaSnip'
+
+    Plug 'hashivim/vim-terraform'
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+    "
+    " autocompletion"
+    Plug 'vim-scripts/loremipsum'
+
+    " snippets
+    Plug 'SirVer/ultisnips'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
+    Plug 'honza/vim-snippets'
+    Plug 'rafamadriz/friendly-snippets'
+    Plug 'juliosueiras/vim-terraform-completion'
 
     " Specific programmin language plugins
     Plug 'posva/vim-vue'
@@ -91,8 +105,6 @@ filetype off                  " required
     Plug 'dart-lang/dart-vim-plugin'
     Plug 'natebosch/vim-lsc'
     Plug 'natebosch/vim-lsc-dart'
-
-    Plug 'hashivim/vim-terraform'
 
     Plug 'szw/vim-maximizer'
     Plug 'sbdchd/neoformat'
@@ -169,20 +181,13 @@ filetype off                  " required
     Plug 'tpope/vim-commentary'
      Plug 'suy/vim-context-commentstring'
 
-    " autocompletion"
-    Plug 'vim-scripts/loremipsum'
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'rafamadriz/friendly-snippets'
-    Plug 'juliosueiras/vim-terraform-completion'
-    " Plug 'xolox/vim-easytags'
-
     " To do list "
     Plug 'vitalk/vim-simple-todo'
 
     " Ricing "
     Plug 'flazz/vim-colorschemes'
     Plug 'morhetz/gruvbox'
+    Plug 'luisiacc/gruvbox-baby'
     " Plugin 'Valloric/YouCompleteMe'
     "
     "My own stuff (remember to port)"
@@ -323,6 +328,9 @@ lua require('rwb.complete') -- Autocompletion configuration
         endif
 
         let g:airline_symbols.space = "\ua0"
+        let g:airline#extensions#hunks#non_zero_only = 1
+        let g:airline_theme='gruvbox'
+
 
 """"
 " Keybinds "
@@ -406,10 +414,6 @@ nnoremap gi <C-o><C-o>
 "autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 
-" ----- airblade/vim-gitgutter settings -----
-" In vim-airline, only display "hunks" if the diff is non-zero
-let g:airline#extensions#hunks#non_zero_only = 1
-
 
 " ----- Raimondi/delimitMate settings -----
 let delimitMate_expand_cr = 1
@@ -453,6 +457,18 @@ nnoremap <Leader>ai :normal 0"bD<CR>
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+colorscheme gruvbox
+" Example config in VimScript
+let g:gruvbox_baby_function_style = "NONE"
+let g:gruvbox_baby_keyword_style = "italic"
+
+" " Enable telescope theme
+" let g:gruvbox_baby_telescope_theme = 1
+
+" Enable transparent mode
+" let g:gruvbox_baby_transparent_mode = 1
+
+
 " Some basics:
     " Spaces by default
     set tabstop=4
@@ -469,7 +485,7 @@ nnoremap <Leader>ai :normal 0"bD<CR>
     set showcmd
     set mouse=""
 
-    colorscheme gruvbox
+
     set background=dark
     set t_Co=256
     set laststatus=2
@@ -1039,12 +1055,13 @@ set nowritebackup
 
 " Terraform "
     autocmd FileType terraform setlocal foldnestmax=1
-    autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
-    function TerraformFmtOnSave()
-        mkview
-        TerraformFmt
-        silent! loadview
-    endfunction
+    autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
+    " autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
+    " function TerraformFmtOnSave()
+    "     mkview
+    "     TerraformFmt
+    "     silent! loadview
+    " endfunction
 
 
 " Makefiles "
