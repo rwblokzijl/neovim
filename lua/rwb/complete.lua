@@ -71,12 +71,11 @@ cmp.setup({
         ["<C-e>"] = cmp.mapping.abort(),
         ["<c-y>"] = cmp.mapping(
         cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = true,
         },
         { "i", "c" }
         ),
-
         ["<c-space>"] = cmp.mapping {
             i = cmp.mapping.complete(),
             c = function(
@@ -222,6 +221,5 @@ require('lspconfig')['pyright'].setup {
 }
 require'lspconfig'['terraformls'].setup {
     capabilities = capabilities,
-    cmd = { "terraform-lsp" }
-
+    -- cmd = { "terraform-lsp" }
 }

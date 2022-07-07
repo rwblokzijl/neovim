@@ -44,27 +44,24 @@
     Plug 'easymotion/vim-easymotion'        " Figure out later
 
     " Language Server Stuff "
-    " Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neovim/nvim-lspconfig'
-    " Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-    " Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-    " Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-    " Plug 'sheerun/vim-polyglot'
+    Plug 'onsails/lspkind-nvim'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-nvim-lua'
     Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'onsails/lspkind-nvim'
     Plug 'hrsh7th/cmp-cmdline'
-
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     Plug 'saadparwaiz1/cmp_luasnip'
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'L3MON4D3/LuaSnip'
 
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+
     Plug 'hashivim/vim-terraform'
-    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+
     "
     " autocompletion"
     Plug 'vim-scripts/loremipsum'
@@ -218,6 +215,11 @@
 
 lua require('rwb.complete') -- Autocompletion configuration
 
+lua require('rwb.treesitter') -- Treesitter config
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+
 """"
 " Language server config"
 """"
@@ -241,7 +243,7 @@ lua require('rwb.complete') -- Autocompletion configuration
     "                 \ '@yaegassy/coc-ansible',
     "                 \ ]
         " let g:coc_snippet_next = '<tab>'
-        let g:UltiSnipsExpandTrigger = v:null
+        " let g:UltiSnipsExpandTrigger = v:null
     " Syntastic
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
@@ -404,8 +406,8 @@ function! ReturnTagFileUnderCursor()
     endtry
 endfunction
 
-nnoremap gu :call ReturnTagFileUnderCursor()<CR>
-nnoremap gi <C-o><C-o>
+" nnoremap gu :call ReturnTagFileUnderCursor()<CR>
+" nnoremap gi <C-o><C-o>
 
 " ----- majutsushi/tagbar settings -----
 " Open/close tagbar with \b
@@ -1068,7 +1070,7 @@ set nowritebackup
     autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
 " Lua "
-    autocmd FileType make setlocal ts=2 sts=2 sw=2 noexpandtab
+    autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
 
 " Cuda "
     autocmd FileType cuda setlocal ts=8 sts=8 sw=8 noexpandtab
