@@ -860,7 +860,7 @@ set nowritebackup
     " Folding
     " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
     " syn sync fromstart
-    set foldmethod=syntax
+    " set foldmethod=syntax
     nnoremap <Space> za
     " inoremap <C-j> :set
 
@@ -1094,7 +1094,7 @@ set nowritebackup
 " Python "
     " au! BufNewFile,BufFilePre,BufRead *.py set filetype=python
     autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType python setlocal foldmethod=indent
+    " autocmd FileType python setlocal foldmethod=indent
     autocmd FileType python setlocal foldnestmax=2
     autocmd FileType python setlocal foldlevel=1
     " autocmd FileType python setlocal textwidth=120
@@ -1244,6 +1244,6 @@ set nowritebackup
     autocmd BufNewFile,BufRead *.rss setfiletype xml
 
 " VIM "
-    autocmd FileType vim setlocal foldmethod=indent
+    " autocmd FileType vim setlocal foldmethod=indent
     autocmd FileType vim setlocal foldnestmax=2
 

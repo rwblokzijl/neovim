@@ -219,7 +219,13 @@ require('lspconfig')['pyright'].setup {
     -- on_attach = on_attach,
     -- cmd = {"pipenv run pyright-langserver --stdio"}
 }
+
+-- require'lspconfig'['terraformls'].setup {
+--     capabilities = capabilities,
+--     -- cmd = { "terraform-lsp" }
+-- }
+
 require'lspconfig'['terraformls'].setup {
     capabilities = capabilities,
-    -- cmd = { "terraform-lsp" }
+    cmd = { "terraform-lsp" }
 }
