@@ -173,7 +173,7 @@
     Plug 'tpope/vim-unimpaired'
 
     " Formatting"
-    " Plug 'vim-syntastic/syntastic'
+    Plug 'vim-syntastic/syntastic'
     Plug 'Chiel92/vim-autoformat'
     Plug 'tpope/vim-commentary'
      Plug 'suy/vim-context-commentstring'
@@ -244,6 +244,7 @@ set foldexpr=nvim_treesitter#foldexpr()
     "                 \ ]
         " let g:coc_snippet_next = '<tab>'
         " let g:UltiSnipsExpandTrigger = v:null
+        let g:UltiSnipsExpandTrigger = "<NUL>"
     " Syntastic
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
@@ -541,8 +542,9 @@ let g:gruvbox_baby_keyword_style = "italic"
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
 " set completeopt-=preview
-set completeopt=menu,menuone,noselect
-" set completeopt=menuone,noinsert,noselect
+" set completeopt=menu,menuone,noselect
+" set completeopt-=preview
+set completeopt=menu,menuone,noinsert,noselect,preview
 "
 " Give more space for displaying messages.
 set cmdheight=2
