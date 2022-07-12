@@ -173,7 +173,7 @@
     Plug 'tpope/vim-unimpaired'
 
     " Formatting"
-    Plug 'vim-syntastic/syntastic'
+    " Plug 'vim-syntastic/syntastic'
     Plug 'Chiel92/vim-autoformat'
     Plug 'tpope/vim-commentary'
      Plug 'suy/vim-context-commentstring'
