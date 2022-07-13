@@ -1,5 +1,15 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  _
+"                           _   __(_)___ ___  __________
+"                          | | / / / __ `__ \/ ___/ ___/
+"                         _| |/ / / / / / / / /  / /__
+"                        (_)___/_/_/ /_/ /_/_/   \___/
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""
 " Plugins
+""""
     call plug#begin('~/.config/vim/plugged')
 
     """"""""""""""""""""""""""""""""""""""""""""""""
@@ -13,9 +23,6 @@
 
     " let Vundle manage Vundle, required "
     " Plugin 'VundleVim/Vundle.vim'
-
-    " Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-    " Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
     " Make plugin commands repeatable "
     Plug 'tpope/vim-repeat'
@@ -41,7 +48,7 @@
 
     " Movement aids "
     Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
-    Plug 'easymotion/vim-easymotion'        " Figure out later
+    Plug 'easymotion/vim-easymotion'        " TODO: Figure out later
 
     " Language Server Stuff "
     Plug 'onsails/lspkind-nvim'
@@ -60,9 +67,6 @@
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-
-
-    "
     " autocompletion"
     Plug 'vim-scripts/loremipsum'
 
@@ -70,8 +74,8 @@
     Plug 'SirVer/ultisnips'
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-    " Plug 'honza/vim-snippets'
-    " Plug 'rafamadriz/friendly-snippets'
+    Plug 'honza/vim-snippets'
+    Plug 'rafamadriz/friendly-snippets'
     Plug 'hashivim/vim-terraform'
     Plug 'juliosueiras/vim-terraform-completion'
 
@@ -86,7 +90,6 @@
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'terryma/vim-multiple-cursors'
-    " Plug 'majutsushi/tagbar'
     Plug 'mhinz/vim-grepper'
     Plug 'vim-scripts/a.vim'
     Plug 'tpope/vim-sensible'
@@ -211,77 +214,28 @@
     filetype plugin indent on    " required
 
 """"
-" Lua conifg
+" Lua config
 """"
+    lua require('rwb.complete') -- Autocompletion configuration
+    let g:UltiSnipsExpandTrigger = "<NUL>"
 
-lua require('rwb.complete') -- Autocompletion configuration
-
-lua require('rwb.treesitter') -- Treesitter config
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-
-
+    lua require('rwb.treesitter') -- Treesitter config
 
 """"
-" Language server config"
+" Vimscipt plugin configs
 """"
-    " lsc "
-        let g:lsc_auto_map = v:true
-    " " Coc Plugins"
-    "     let g:coc_global_extensions = [
-    "                 \ 'coc-ultisnips',
-    "                 \ 'coc-snippets',
-    "                 \ 'coc-highlight',
-    "                 \ 'coc-zi',
-    "                 \ 'coc-json',
-    "                 \ 'coc-git',
-    "                 \ 'coc-yaml',
-    "                 \ 'coc-tsserver',
-    "                 \ 'coc-python',
-    "                 \ 'coc-html',
-    "                 \ 'coc-css',
-    "                 \ 'coc-vetur',
-    "                 \ 'coc-flutter',
-    "                 \ '@yaegassy/coc-ansible',
-    "                 \ ]
-        " let g:coc_snippet_next = '<tab>'
-        " let g:UltiSnipsExpandTrigger = v:null
-        let g:UltiSnipsExpandTrigger = "<NUL>"
-    " Syntastic
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-        " let g:syntastic_cpp_include_dirs = [ 'inc' ]
-        " " let g:syntastic_cpp_remove_include_errors=1
-        " "let g:syntastic_cpp_checkers = [ "g++" ]
-        " let g:ycm_register_as_syntastic_checker = 0
-        "let g:syntastic_cpp_config_file = '.syntastic_cpp_config'
-        " let g:syntastic_error_symbol = '✘'
-        " let g:syntastic_warning_symbol = "▲"
-        " let g:syntastic_always_populate_loc_list = 1
-        " let g:syntastic_auto_loc_list = 1
-        " let g:syntastic_check_on_open = 1
-        " let g:syntastic_check_on_wq = 0
-        " let g:syntastic_python_checkers = ['pylint', 'mypy']
-        " " let g:syntastic_python_flake8_post_args='--ignore=E501'
-        augroup mySyntastic
-            au!
-            au FileType tex let b:syntastic_mode = "passive"
-        augroup END
-
-""""
-" UI config "
-""""
-    " fzf "
+    " junegunn/fzf.vim "
         inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
                     \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
                     \ fzf#wrap({'dir': expand('%:p:h')}))
-    " rainbow_parentheses "
+
+    " kien/rainbow_parentheses.vim "
         au VimEnter * RainbowParenthesesToggle
         au Syntax * RainbowParenthesesLoadRound
         au Syntax * RainbowParenthesesLoadSquare
         au Syntax * RainbowParenthesesLoadBraces
-    " NERDTree
+
+    " scrooloose/nerdtree "
         " nnoremap gn :NERDTreeTabsToggle<CR>
         nnoremap gn :NERDTreeToggle<CR>
         let g:NERDTreeWinPos = "left"
@@ -324,7 +278,8 @@ set foldexpr=nvim_treesitter#foldexpr()
         call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
         call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
         call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-    "vim-airline"
+
+    " vim-airline "
         let g:airline#extensions#tabline#enabled = 1
         let g:airline_powerline_fonts = 1
 
@@ -336,6 +291,16 @@ set foldexpr=nvim_treesitter#foldexpr()
         let g:airline#extensions#hunks#non_zero_only = 1
         let g:airline_theme='gruvbox'
 
+    " Raimondi/delimitMate "
+        let delimitMate_expand_cr = 1
+        augroup mydelimitMate
+            au!
+            au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+            au FileType tex let b:delimitMate_quotes = ""
+            au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+            au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+        augroup END
+        "---
 
 """"
 " Keybinds "
@@ -361,110 +326,65 @@ set foldexpr=nvim_treesitter#foldexpr()
         nnoremap <Leader>F
                     \ :let @s='\<'.expand('<cword>').'\>'<CR>
                     \ :Grepper -cword -noprompt -nohighlight<CR>
-    " Coc Keybinds
-        " imap <C-l> <C-o>:set foldlevel=20<cr><Plug>(coc-snippets-expand)
-        " " Use <C-j> for select text for visual placeholder of snippet.
-        " vmap <C-j> <Plug>(coc-snippets-select)
-        " " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-        " let g:coc_snippet_next = '<c-j>'
-        " " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-        " let g:coc_snippet_prev = '<c-k>'
-        " " Use <C-j> for both expand and jump (make expand higher priority.)
-        " imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 """"
 " General vim settings
 """"
-    hi SpellBad cterm=underline
-    set switchbuf+=usetab,newtab " When selecting a buffer from the quickfix list use existing tab, otherwise create a new tab"
+    " Folding
+        set foldmethod=expr
+        set foldexpr=nvim_treesitter#foldexpr()
+        " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
+        " syn sync fromstart
+        " set foldmethod=syntax
+        nnoremap <Space> za
+        " inoremap <C-j> :set
+        "
 
+        " set foldopen=all
+        " set foldopen-=block
+        " set foldopen-=hor
+        " set foldopen-=insert
+        " set foldopen-=jump
+        " set foldopen-=mark
+        " set foldopen-=percent
+        " set foldopen-=quickfix
+        " set foldopen-=search
+        " set foldopen-=tag
+        " set foldopen-=undo
+
+    "spell
+        hi SpellBad cterm=underline
+        set switchbuf+=usetab,newtab " When selecting a buffer from the quickfix list use existing tab, otherwise create a new tab"
+
+""""
 " Uncatergorised "
-let g:vimtex_compiler_latexmk = {'callback' : 0}
-let g:tex_flavor = 'latex'
+""""
+    let g:vimtex_compiler_latexmk = {'callback' : 0}
+    let g:tex_flavor = 'latex'
 
-" Where to look for tags files
-set tags=./tags;,~/.vimtags
-" Sensible defaults
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
+" Figlet expand
+    " turn the current line into ascii art with wrapping
+    nnoremap <Leader>aa :normal 0"bD<CR>
+                \:let @b=shellescape(@b, 1)<CR>
+                \:call append(line("."), "")<CR>
+                \:let @c=split(&commentstring, '%s')[0]<CR>
+                \:let @d=shellescape(@c, 1)<CR>
+                \:normal 80"cP<CR>
+                \:r !figlet -c -f slant -w 77 <C-r>b \| sed 's/^/<C-r>c /;s/\s\+$//'<CR>
+                \:normal j80"cP<CR>
+    " " turn the current line into ascii art without wrapping
+    nnoremap <Leader>ai :normal 0"bD<CR>
+                \:let @b=shellescape(@b, 1)<CR>
+                \:call append(line("."), "")<CR>
+                \:let @c=split(&commentstring, '%s')[0]<CR>
+                \:normal 80"cP<CR>
+                \:r !figlet -f slant -w 1000 <C-r>b \| sed 's/^/<C-r>c /;s/\s\+$//'<CR>
+                \:normal j80"cP<CR>
 
-" map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-
-function! ReturnTagFileUnderCursor()
-    try
-        let tag = expand('<cword>')
-        let tagString = split(execute("tselect ".tag), "\n")[1]
-        let tagString = matchstr(tagString, '[^/\\]*$')
-        execute "tab drop" tagString
-        execute "tag" tag
-        return tagString
-    catch /^Vim\%((\a\+)\)\=:E426/
-        echohl ERROR
-        echo "Tag not found!"
-        echohl NORMAL
-        return ""
-    endtry
-endfunction
-
-" nnoremap gu :call ReturnTagFileUnderCursor()<CR>
-" nnoremap gi <C-o><C-o>
-
-" ----- majutsushi/tagbar settings -----
-" Open/close tagbar with \b
-" nmap <silent> <leader>b :TagbarToggle<CR>
-" Uncomment to open tagbar automatically whenever possible
-"autocmd BufEnter * nested :call tagbar#autoopen(0)
-
-
-
-" ----- Raimondi/delimitMate settings -----
-let delimitMate_expand_cr = 1
-augroup mydelimitMate
-    au!
-    au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-    au FileType tex let b:delimitMate_quotes = ""
-    au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-    au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
-
-"---
-
-au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
-
-" turn the current line into ascii art with wrapping
-nnoremap <Leader>aa :normal 0"bD<CR>
-            \:let @b=shellescape(@b, 1)<CR>
-            \:call append(line("."), "")<CR>
-            \:let @c='#'<CR>
-            \:normal 80"cP<CR>
-            \:r !figlet -c -f slant -w 77 <C-r>b \| sed 's/^/\# /'<CR>
-            \:normal j80"cP<CR>
-" " turn the current line into ascii art without wrapping
-nnoremap <Leader>ai :normal 0"bD<CR>
-            \:let @b=shellescape(@b, 1)<CR>
-            \:call append(line("."), "")<CR>
-            \:let @c='#'<CR>
-            \:normal 80"cP<CR>
-            \:r !figlet -f slant -w 1000 <C-r>b \| sed 's/^/\# /'<CR>
-            \:normal j80"cP<CR>
-
-"#sh: command substitution: line 1: `getline('.')'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                        ______                           __
-"                       / ____/__  ____  ___  _________ _/ /
-"                      / / __/ _ \/ __ \/ _ \/ ___/ __ `/ /
-"                     / /_/ /  __/ / / /  __/ /  / /_/ / /
-"                     \____/\___/_/ /_/\___/_/   \__,_/_/
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set termguicolors
-set background=dark
-colorscheme gruvbox
+" colors
+    " set termguicolors " I dont like it, too offensive to the eyes
+    set background=dark
+    colorscheme gruvbox
 
 " Some basics:
     " Spaces by default
@@ -533,347 +453,187 @@ colorscheme gruvbox
     let bclose_multiple = 0
     cnoreabbrev bc Bclose
 
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-
-" set completeopt-=preview
-" set completeopt=menu,menuone,noselect
-" set completeopt-=preview
-set completeopt=menu,menuone,noinsert,noselect,preview
-"
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-hi clear SignColumn
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-" inoremap <silent><expr> <TAB>
-"             \ pumvisible() ? "\<C-n>" :
-"             \ <SID>check_back_space() ? "\<TAB>" :
-"             \ coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" inoremap <silent><expr> <c-space> coc#refresh()
-
-if exists('*complete_info')
-    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" " GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" " Symbol renaming.
-" nmap <leader>rn <Plug>(coc-rename)
-
-" " Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder.
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
-
-" " Applying codeAction to the selected region.
-" " Example: `<leader>aap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" " Remap keys for applying codeAction to the current buffer.
-" nmap <leader>ac  <Plug>(coc-codeaction)
-" " Apply AutoFix to problem on the current line.
-" nmap <leader>qf  <Plug>(coc-fix-current)
-
-" " Map function and class text objects
-" " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-" xmap io <Plug>(coc-classobj-i)
-" omap io <Plug>(coc-classobj-i)
-" xmap ac <Plug>(coc-classobj-a)
-" omap ac <Plug>(coc-classobj-a)
-
-" " Use CTRL-S for selections ranges.
-" " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-" nmap <silent> <C-s> <Plug>(coc-range-select)
-" xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" " Add `:Format` command to format current buffer.
-" command! -nargs=0 Format :call CocAction('format')
-
-" " Add `:Fold` command to fold current buffer.
-" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" " Add `:OR` command for organize imports of the current buffer.
-" command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings using CoCList:
-" Show all diagnostics.
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions.
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands.
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document.
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols.
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " Do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " Do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " Resume latest coc list.
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-
+" web-devicons
+    let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
-            \ --hidden
-            \ --glob "!**/node_modules/*"
-            \ --glob "!**/.terraform/*"
-            \ --glob "!**/.pytest_cache/*"
-            \ --glob "!**/.mypy_cache/*"
-            \ --glob "!**/.git/*"
-            \ '
-nnoremap <c-]> :Files<cr>
-nnoremap <c-;> :Files<cr>
-nnoremap <c-f> :Files<cr>
+    let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
+                \ --hidden
+                \ --glob "!**/node_modules/*"
+                \ --glob "!**/.terraform/*"
+                \ --glob "!**/.pytest_cache/*"
+                \ --glob "!**/.mypy_cache/*"
+                \ --glob "!**/.git/*"
+                \ '
+    nnoremap <c-]> :Files<cr>
+    nnoremap <c-;> :Files<cr>
+    nnoremap <c-f> :Files<cr>
 
-nnoremap Y y$
-nnoremap n nzzzv
-nnoremap N Nzzzv
-" nnoremap * *zzzv # already remapped higher up
-" nnoremap # #zzzv # already remapped higher up
-" nnoremap J mzJ`z //more annoying than useful
-" nnoremap <C-j> :cnext<CR>zzzv
+" center the cursor after some commands
+    nnoremap Y y$
+    nnoremap n nzzzv
+    nnoremap N Nzzzv
+    " nnoremap * *zzzv # already remapped higher up
+    " nnoremap # #zzzv # already remapped higher up
+    " nnoremap J mzJ`z //more annoying than useful
+    " nnoremap <C-j> :cnext<CR>zzzv
 
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
+" push to undo stack after every sentence
+    inoremap , ,<c-g>u
+    inoremap . .<c-g>u
+    inoremap ! !<c-g>u
+    inoremap ? ?<c-g>u
 
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>==a
-inoremap <C-k> <esc>:m .-2<CR>==a
-nnoremap <C-j> <esc>:m .+1<CR>==
-nnoremap <C-k> <esc>:m .-2<CR>==
+" Move selections around without losing said selection
+    vnoremap < <gv
+    vnoremap > >gv
 
-" " edit command
-" cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-" map <leader>ew :e %%
-" map <leader>es :sp %%
-" map <leader>ev :vsp %%
-" map <leader>et :tabe %%
+    vnoremap <C-j> :m '>+1<CR>gv=gv
+    vnoremap <C-k> :m '<-2<CR>gv=gv
+    vnoremap <C-s-j> :m '>+1<CR>gv
+    vnoremap <C-s-k> :m '<-2<CR>gv
+    vnoremap <C-h> <gv
+    vnoremap <C-l> >gv
+    vnoremap <C-s-h> <gv
+    vnoremap <C-s-l> >gv
+    " inoremap <C-j> <esc>:m .+1<CR>==a
+    " inoremap <C-k> <esc>:m .-2<CR>==a
+    " nnoremap <C-j> <esc>:m .+1<CR>==
+    " nnoremap <C-k> <esc>:m .-2<CR>==
 
-"" Whitespaces and indentation
-function! Preserve(command)
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    execute a:command
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-" nnoremap <silent>_$ :call Preserve("%s/\\s\\+$//e")<CR>
-" nnoremap <silent>_= :call Preserve("normal gg=G")<CR>
+" I dont know what this does, but it seems useful
+    "" Whitespaces and indentation
+    " function! Preserve(command)
+    "     " Preparation: save last search, and cursor position.
+    "     let _s=@/
+    "     let l = line(".")
+    "     let c = col(".")
+    "     " Do the business:
+    "     execute a:command
+    "     " Clean up: restore previous search history, and cursor position
+    "     let @/=_s
+    "     call cursor(l, c)
+    " endfunction
+    " nnoremap <silent>_$ :call Preserve("%s/\\s\\+$//e")<CR>
+    " nnoremap <silent>_= :call Preserve("normal gg=G")<CR>
 
-" nnoremap <leader>' :CtrlPTag<cr>
-" let g:ctrlp_show_hidden = 1
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-set splitbelow
-set splitright
+    set splitbelow
+    set splitright
 
 " Automatically deletes all tralling whitespace on save.
-function RemoveTrailingWhiteSpace()
-    norm!m`
-    norm!``
-    %s/\s\+$//e
-endfunction
+    function RemoveTrailingWhiteSpace()
+        norm!m`
+        norm!``
+        %s/\s\+$//e
+    endfunction
 
-autocmd BufWritePre * call RemoveTrailingWhiteSpace()
+    autocmd BufWritePre * call RemoveTrailingWhiteSpace()
 
-" Add all subfolders to search path
-set path+=**
+" General behavior configs
+    set path+=** " Add all subfolders to search path
+    set shell=sh " Might not need
+    set hidden
+    set confirm
+    set nobackup
+    set nowritebackup
 
-" Might not need
-set shell=sh
+    set completeopt=menu,menuone,noinsert,noselect,preview
+    set cmdheight=2 " Give more space for displaying messages.
+    set updatetime=300 " Longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
+    set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 
-set hidden
-set confirm
-set nobackup
-set nowritebackup
+    hi clear SignColumn
+    set signcolumn=yes
 
-" Controlls
+" Controls
+    " clipboard mappings and configuration
+        " Copy and cut to system clipboard
+        nnoremap <C-y> "+y
+        nnoremap <C-S-y> "+y$
+        nnoremap <C-y><C-y> "+yy
+        vnoremap <C-y> "+y
 
-    " Copy and cut to system clipboard
-    nnoremap <C-y> "+y
-    nnoremap <C-S-y> "+y$
-    nnoremap <C-y><C-y> "+yy
-    vnoremap <C-y> "+y
+        nnoremap <C-p> "+p
+        nnoremap <C-S-p> "+P
+        vnoremap <C-p> "+p
+        vnoremap <C-S-p> "+P
 
-    nnoremap <C-p> "+p
-    nnoremap <C-S-p> "+P
-    vnoremap <C-p> "+p
-    vnoremap <C-S-p> "+P
+        nnoremap <C-c> "+c
+        nnoremap <C-S-c> "+C
+        nnoremap <C-c><C-c> "+cc
+        vnoremap <C-c> "+c
 
-    nnoremap <C-c> "+c
-    nnoremap <C-S-c> "+C
-    nnoremap <C-c><C-c> "+cc
-    vnoremap <C-c> "+c
+        nnoremap <C-d> "+d
+        nnoremap <C-S-d> "+D
+        nnoremap <C-d><C-d> "+dd
+        vnoremap <C-d> "+d
 
-    nnoremap <C-d> "+d
-    nnoremap <C-S-d> "+D
-    nnoremap <C-d><C-d> "+dd
-    vnoremap <C-d> "+d
+        vnoremap <C-v> "+p
+        vnoremap <C-S-v> "+P
+        " paste with and without formatting
+        inoremap <C-v>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
+        inoremap <C-S-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+        " inoremap <C-b>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
 
-    vnoremap <C-v> "+p
-    vnoremap <C-S-v> "+P
-    " paste with and without formatting
-    inoremap <C-v>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
-    inoremap <C-S-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
-    " inoremap <C-b>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+        " nnoremap <C-x> "+d
+        " nnoremap <C-S-x> "+D
+        " nnoremap <C-x><C-x> "+dd
 
-    " nnoremap <C-x> "+d
-    " nnoremap <C-S-x> "+D
-    " nnoremap <C-x><C-x> "+dd
+    " idk "
+        nnoremap gmt <C-W>T
+        " close current buffer
+        " nnoremap <leader>q :bp<cr>:bd #<cr>
 
+    " tpope/vim-projectionist "
+        " switch between alternat files
+        nnoremap <silent> ~ :AV<cr>
+        " nnoremap gaa :A<cr>
+        " nnoremap gat :AT<cr>
+        " nnoremap gas :AS<cr>
+        " nnoremap gav :AV<cr>
 
-    "
-    " imap <c-.> <C-t>
-    " imap <c-,> <C-d>
+    " junegunn/vim-easy-align "
+        " Start interactive EasyAlign in visual mode (e.g. vipga)
+        xmap ga <Plug>(EasyAlign)
 
-    nnoremap gmt <C-W>T
-    " close current buffer
-    " nnoremap <leader>q :bp<cr>:bd #<cr>
+        " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+        nmap ga <Plug>(EasyAlign)
 
-"     " switch between .h and .cpp
-    nnoremap <silent> ~ :AV<cr>
-"     nnoremap gaa :A<cr>
-"     nnoremap gat :AT<cr>
-"     nnoremap gas :AS<cr>
-"     nnoremap gav :AV<cr>
+        au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
-    " Start interactive EasyAlign in visual mode (e.g. vipga)
-    xmap ga <Plug>(EasyAlign)
+    " Tabs control
+        nnoremap <TAB> :tabn<cr>
+        nnoremap <S-TAB> :tabp<cr>
+        nnoremap <C-S-TAB> :-tabmove<cr>
+        nnoremap <C-TAB> :+tabmove<cr>
 
-    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
-
-
-    " Tabs
-    nnoremap <TAB> :tabn<cr>
-    nnoremap <S-TAB> :tabp<cr>
-
-    nnoremap <F13>i <C-i>
-    nnoremap <F14>i g;
-    nnoremap <F14>o g,
-
-    " Ctrl sends a different character instead of just the ctrl, this makes crtl
-    " and tab together impossible since tab=ctrl+i
-    "nnoremap <C-TAB> :-tabmove<cr>
-    "nnoremap <C-S-TAB> :+tabmove<cr>
-    "
-
-    nnoremap gt :tabnew<cr>
-    nnoremap gT :-1tabnew<cr>
-    cnoreabbrev qq tabclose
+        nnoremap gt :tabnew<cr>
+        nnoremap gT :-1tabnew<cr>
+        cnoreabbrev qq tabclose
 
     "Turn off arrow keys
-    noremap <Up> <NOP>
-    noremap <Down> <NOP>
-    noremap <Left> <NOP>
-    noremap <Right> <NOP>
+        noremap <Up> <NOP>
+        noremap <Down> <NOP>
+        noremap <Left> <NOP>
+        noremap <Right> <NOP>
 
-    " make W not Wall
-    :command -nargs=* W :w "<args>"
+    " make W write one file, not everything (typo is too quick)
+        :command -nargs=* W :w "<args>"
+        :command -nargs=* Q :q "<args>"
 
-    " Shortcutting split navigation, saving a keypress:
-    map gh :wincmd h<CR>
-    map gj :wincmd j<CR>
-    map gk :wincmd k<CR>
-    map gl :wincmd l<CR>
+    " Shortcutting split navigation:
+        nnoremap gh :wincmd h<CR>
+        nnoremap gj :wincmd j<CR>
+        nnoremap gk :wincmd k<CR>
+        nnoremap gl :wincmd l<CR>
 
-    " Folding
-    " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
-    " syn sync fromstart
-    " set foldmethod=syntax
-    nnoremap <Space> za
-    " inoremap <C-j> :set
+        nnoremap <c-h> :wincmd h<CR>
+        nnoremap <c-j> :wincmd j<CR>
+        nnoremap <c-k> :wincmd k<CR>
+        nnoremap <c-l> :wincmd l<CR>
 
-    " set foldopen=all
-    " set foldopen-=block
-    " set foldopen-=hor
-    " set foldopen-=insert
-    " set foldopen-=jump
-    " set foldopen-=mark
-    " set foldopen-=percent
-    " set foldopen-=quickfix
-    " set foldopen-=search
-    " set foldopen-=tag
-    " set foldopen-=undo
-
-
-    set wildmode=longest:full,full
+    " set wildmode=longest:full,full
 
     augroup vimrc_todo
         au!
@@ -908,6 +668,7 @@ set nowritebackup
         set undofile
     endif
 
+    " TODO: actually use this
     map - $
 
     function! MakeSilentCommand()
@@ -990,298 +751,287 @@ set nowritebackup
     "
     "let g:languagetool_jar = '/usr/share/java/languagetool/languagetool-commandline.jar'
 
-" This breaks other folding: ...
-" let javaScript_fold=1
-" This might hold a solution: https://stackoverflow.com/questions/4789605/how-do-i-enable-automatic-folds-in-vim
+""""
+" File type
+""""
+    " VUE "
+        autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType vue setlocal foldnestmax=2
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"      ______ _  __         ______                    "
-"     / ____/(_)/ /___     /_  __/__  __ ____   ___   "
-"    / /_   / // // _ \     / /  / / / // __ \ / _ \  "
-"   / __/  / // //  __/    / /  / /_/ // /_/ //  __/  "
-"  /_/    /_//_/ \___/    /_/   \__, // .___/ \___/   "
-"                              /____//_/              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VUE "
-    autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType vue setlocal foldnestmax=2
+    " Java Script "
+        autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType javascript setlocal foldnestmax=1
 
-" Java Script "
-    autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType javascript setlocal foldnestmax=1
+    " dart "
+        autocmd FileType dart setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType dart inoremap <F4> <esc>:FlutterSplit<Enter>a
+        autocmd FileType dart nnoremap <F4> :FlutterSplit<Enter>
 
-" dart "
-    autocmd FileType dart setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType dart inoremap <F4> <esc>:FlutterSplit<Enter>a
-    autocmd FileType dart nnoremap <F4> :FlutterSplit<Enter>
+        autocmd FileType dart inoremap <F5> <esc>:FlutterHotRestart<Enter>a
+        autocmd FileType dart nnoremap <F5> :FlutterHotRestart<Enter>
 
-    autocmd FileType dart inoremap <F5> <esc>:FlutterHotRestart<Enter>a
-    autocmd FileType dart nnoremap <F5> :FlutterHotRestart<Enter>
+        autocmd FileType dart inoremap <F6> <esc>:FlutterEmulatorsLaunch Pixel_2_API_29<Enter>a
+        autocmd FileType dart nnoremap <F6> :FlutterEmulatorsLaunch Pixel_2_API_29<Enter>
 
-    autocmd FileType dart inoremap <F6> <esc>:FlutterEmulatorsLaunch Pixel_2_API_29<Enter>a
-    autocmd FileType dart nnoremap <F6> :FlutterEmulatorsLaunch Pixel_2_API_29<Enter>
+        autocmd FileType dart inoremap <F7> <esc>:FlutterRun<Enter>a
+        autocmd FileType dart nnoremap <F7> :FlutterRun<Enter>
 
-    autocmd FileType dart inoremap <F7> <esc>:FlutterRun<Enter>a
-    autocmd FileType dart nnoremap <F7> :FlutterRun<Enter>
+    " json "
+        autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 
-" json "
-    autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+    " yaml "
+        autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" yaml "
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    " yaml.ansible "
+        au BufRead,BufNewFile */gcp-ansible/**/*.yml set filetype=yaml.ansible
+        au BufRead,BufNewFile */gcp-ansible/**/*.yaml set filetype=yaml.ansible
 
-" yaml.ansible "
-    au BufRead,BufNewFile */gcp-ansible/**/*.yml set filetype=yaml.ansible
-    au BufRead,BufNewFile */gcp-ansible/**/*.yaml set filetype=yaml.ansible
+    " HTML "
+        au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
+        autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2 expandtab
 
-" HTML "
-    au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
-    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2 expandtab
+    " Scala "
+        au! BufNewFile,BufFilePre,BufRead *.scala set filetype=scala
+        autocmd FileType scala setlocal foldnestmax=1
+        autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType scala setlocal wildignore+=*/target/*
+        autocmd FileType sbt.scala let l:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
+        autocmd FileType sbt.scala let l:syntastic_scala_checkers = ['fsc']
 
-" Scala "
-    au! BufNewFile,BufFilePre,BufRead *.scala set filetype=scala
-    autocmd FileType scala setlocal foldnestmax=1
-    autocmd FileType scala setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd FileType scala setlocal wildignore+=*/target/*
-    autocmd FileType sbt.scala let l:syntastic_ignore_files = ['\m\c\.h$', '\m\.sbt$']
-    autocmd FileType sbt.scala let l:syntastic_scala_checkers = ['fsc']
+    " Go "
+        autocmd FileType go setlocal foldnestmax=1
 
-" Go "
-    autocmd FileType go setlocal foldnestmax=1
-
-" Terraform "
-    autocmd FileType terraform setlocal foldnestmax=1
-    autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
-    " autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
-    " function TerraformFmtOnSave()
-    "     mkview
-    "     TerraformFmt
-    "     silent! loadview
-    " endfunction
+    " Terraform "
+        autocmd FileType terraform setlocal foldnestmax=1
+        autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
+        " autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
+        " function TerraformFmtOnSave()
+        "     mkview
+        "     TerraformFmt
+        "     silent! loadview
+        " endfunction
 
 
-" Makefiles "
-    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    " Makefiles "
+        autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
-" Lua "
-    autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+    " Lua "
+        autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
 
-" Cuda "
-    autocmd FileType cuda setlocal ts=8 sts=8 sw=8 noexpandtab
+    " Cuda "
+        autocmd FileType cuda setlocal ts=8 sts=8 sw=8 noexpandtab
 
-    autocmd FileType cuda setlocal foldnestmax=1
+        autocmd FileType cuda setlocal foldnestmax=1
 
-" C "
-    autocmd FileType c,h setlocal ts=8 sts=8 sw=8 noexpandtab
-    autocmd FileType c,h setlocal foldnestmax=1
+    " C "
+        autocmd FileType c,h setlocal ts=8 sts=8 sw=8 noexpandtab
+        autocmd FileType c,h setlocal foldnestmax=1
 
-" CPP "
-    autocmd FileType cpp,h,hpp setlocal ts=4 sts=4 sw=4 noexpandtab
+    " CPP "
+        autocmd FileType cpp,h,hpp setlocal ts=4 sts=4 sw=4 noexpandtab
 
-    autocmd FileType cpp setlocal foldnestmax=1
-    autocmd FileType h,hpp setlocal foldnestmax=2
-    autocmd FileType h,hpp setlocal foldlevel=1
+        autocmd FileType cpp setlocal foldnestmax=1
+        autocmd FileType h,hpp setlocal foldnestmax=2
+        autocmd FileType h,hpp setlocal foldlevel=1
 
-" Hakell "
-    autocmd FileType haskell setlocal nowrap
+    " Hakell "
+        autocmd FileType haskell setlocal nowrap
 
-" Python "
-    " au! BufNewFile,BufFilePre,BufRead *.py set filetype=python
-    autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-    " autocmd FileType python setlocal foldmethod=indent
-    autocmd FileType python setlocal foldnestmax=2
-    autocmd FileType python setlocal foldlevel=1
-    " autocmd FileType python setlocal textwidth=120
-    autocmd FileType python setlocal colorcolumn=120
-    autocmd FileType python setlocal nowrap
-    " autocmd FileType python compiler pyunit
-    " autocmd FileType python setlocal makeprg=pipenv\ run\ python\ -m\ unittest
+    " Python "
+        " au! BufNewFile,BufFilePre,BufRead *.py set filetype=python
+        autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+        " autocmd FileType python setlocal foldmethod=indent
+        autocmd FileType python setlocal foldnestmax=2
+        autocmd FileType python setlocal foldlevel=1
+        " autocmd FileType python setlocal textwidth=120
+        autocmd FileType python setlocal colorcolumn=120
+        autocmd FileType python setlocal nowrap
+        " autocmd FileType python compiler pyunit
+        " autocmd FileType python setlocal makeprg=pipenv\ run\ python\ -m\ unittest
 
-" HTML django
-    autocmd FileType htmldjango vmap t S"<esc>:set paste<cr>lysa"}ysi}%a<space>trans<space><esc>:set nopaste<cr>ll
-    autocmd FileType htmldjango nmap t  miiC<esc>lv1et`ix
-    autocmd FileType htmldjango nmap T  miiC<esc>lv1Et`ix
-    autocmd FileType htmldjango nmap 2t miiC<esc>lv2et`ix
-    autocmd FileType htmldjango nmap 2T miiC<esc>lv2Et`ix
-    autocmd FileType htmldjango nmap 3t miiC<esc>lv3et`ix
-    autocmd FileType htmldjango nmap 3T miiC<esc>lv3Et`ix
-    autocmd FileType htmldjango nmap 4t miiC<esc>lv4et`ix
-    autocmd FileType htmldjango nmap 4T miiC<esc>lv4Et`ix
+    " HTML django
+        autocmd FileType htmldjango vmap t S"<esc>:set paste<cr>lysa"}ysi}%a<space>trans<space><esc>:set nopaste<cr>ll
+        autocmd FileType htmldjango nmap t  miiC<esc>lv1et`ix
+        autocmd FileType htmldjango nmap T  miiC<esc>lv1Et`ix
+        autocmd FileType htmldjango nmap 2t miiC<esc>lv2et`ix
+        autocmd FileType htmldjango nmap 2T miiC<esc>lv2Et`ix
+        autocmd FileType htmldjango nmap 3t miiC<esc>lv3et`ix
+        autocmd FileType htmldjango nmap 3T miiC<esc>lv3Et`ix
+        autocmd FileType htmldjango nmap 4t miiC<esc>lv4et`ix
+        autocmd FileType htmldjango nmap 4T miiC<esc>lv4Et`ix
 
-" Java "
-    let g:syntastic_java_javac_config_file_enabled = 1
+    " Java "
+        let g:syntastic_java_javac_config_file_enabled = 1
 
-    autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType java setlocal foldnestmax=2
-    autocmd FileType java setlocal foldlevel=1
+        autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
+        autocmd FileType java setlocal foldnestmax=2
+        autocmd FileType java setlocal foldlevel=1
 
-    " Compile "
-    " autocmd FileType java inoremap <F5> <Esc>:w<CR>:Make<Enter>i
-    " autocmd FileType java nnoremap <F5> :w<CR>:Make<Enter>
+        " Compile "
+        " autocmd FileType java inoremap <F5> <Esc>:w<CR>:Make<Enter>i
+        " autocmd FileType java nnoremap <F5> :w<CR>:Make<Enter>
 
-    " autocmd FileType java inoremap <F6> <Esc>:w<CR>:Make<space>run<Enter>i
-    " autocmd FileType java nnoremap <F6> :w<CR>:Make<space>run<Enter>
+        " autocmd FileType java inoremap <F6> <Esc>:w<CR>:Make<space>run<Enter>i
+        " autocmd FileType java nnoremap <F6> :w<CR>:Make<space>run<Enter>
 
-" LaTeX specific "
-    autocmd FileType tex setlocal ts=4 sts=4 sw=4 noexpandtab
+    " LaTeX specific "
+        autocmd FileType tex setlocal ts=4 sts=4 sw=4 noexpandtab
 
-    " Open corresponding.pdf
-    " autocmd FileType tex map <F6> :!(evince <c-r>%<backspace><backspace><backspace>pdf & nohup) >/dev/null 2>&1<CR><CR>
+        " Open corresponding.pdf
+        " autocmd FileType tex map <F6> :!(evince <c-r>%<backspace><backspace><backspace>pdf & nohup) >/dev/null 2>&1<CR><CR>
 
-    "compile
-    " autocmd FileType tex inoremap <F5> <Esc>:w<CR>:!xelatex<space><c-r>%<Enter>i
-    " autocmd FileType tex nnoremap <F5> :w<CR>:!xelatex<space><c-r>%<Enter>
-    " autocmd FileType tex inoremap <F5> <Esc>:w<CR>:Make<Enter><Enter>i
-    " autocmd FileType tex nnoremap <F5> :w<CR>:Make<Enter><Enter>
-    " autocmd FileType tex inoremap <F6> <Esc>:w<CR>:Make<Enter><Enter>i
-    " autocmd FileType tex nnoremap <F6> :w<CR>:Make<space>run<Enter><Enter>
-    " autocmd FileType yaml inoremap <F5> <Esc>:w<CR>:Make<space>run<Enter>i
-    " autocmd FileType yaml nnoremap <F5> :w<CR>:Make<Enter>
+        "compile
+        " autocmd FileType tex inoremap <F5> <Esc>:w<CR>:!xelatex<space><c-r>%<Enter>i
+        " autocmd FileType tex nnoremap <F5> :w<CR>:!xelatex<space><c-r>%<Enter>
+        " autocmd FileType tex inoremap <F5> <Esc>:w<CR>:Make<Enter><Enter>i
+        " autocmd FileType tex nnoremap <F5> :w<CR>:Make<Enter><Enter>
+        " autocmd FileType tex inoremap <F6> <Esc>:w<CR>:Make<Enter><Enter>i
+        " autocmd FileType tex nnoremap <F6> :w<CR>:Make<space>run<Enter><Enter>
+        " autocmd FileType yaml inoremap <F5> <Esc>:w<CR>:Make<space>run<Enter>i
+        " autocmd FileType yaml nnoremap <F5> :w<CR>:Make<Enter>
 
-" Markdown "
-    function! s:isAtStartOfLine(mapping)
-        let text_before_cursor = getline('.')[0 : col('.')-1]
-        let mapping_pattern = '\V' . escape(a:mapping, '\')
-        let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
-        return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
-    endfunction
+    " Markdown "
+        function! s:isAtStartOfLine(mapping)
+            let text_before_cursor = getline('.')[0 : col('.')-1]
+            let mapping_pattern = '\V' . escape(a:mapping, '\')
+            let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+            return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+        endfunction
 
-    autocmd FileType markdown.pandoc inoreabbrev <expr> <bar><bar>
-                \ <SID>isAtStartOfLine('\|\|') ?
-                \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
-    autocmd FileType markdown.pandoc inoreabbrev <expr> __
-                \ <SID>isAtStartOfLine('__') ?
-                \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+        autocmd FileType markdown.pandoc inoreabbrev <expr> <bar><bar>
+                    \ <SID>isAtStartOfLine('\|\|') ?
+                    \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+        autocmd FileType markdown.pandoc inoreabbrev <expr> __
+                    \ <SID>isAtStartOfLine('__') ?
+                    \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
-    autocmd FileType markdown inoreabbrev <expr> <bar><bar>
-                \ <SID>isAtStartOfLine('\|\|') ?
-                \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
-    autocmd FileType markdown inoreabbrev <expr> __
-                \ <SID>isAtStartOfLine('__') ?
-                \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+        autocmd FileType markdown inoreabbrev <expr> <bar><bar>
+                    \ <SID>isAtStartOfLine('\|\|') ?
+                    \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+        autocmd FileType markdown inoreabbrev <expr> __
+                    \ <SID>isAtStartOfLine('__') ?
+                    \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
-    augroup pandoc_syntax
-        au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-        au! BufNewFile,BufFilePre,BufRead *.pmd set filetype=markdown.beamer
-    augroup END
-
-    function! SetMakeOnSave()
-        augroup MakeOnSaveAutoGroup
-            autocmd!
-            autocmd BufWritePost * call MakeSilentCommand()
+        augroup pandoc_syntax
+            au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+            au! BufNewFile,BufFilePre,BufRead *.pmd set filetype=markdown.beamer
         augroup END
-    endfunction
 
-    function! UnsetMakeOnSave()
-        augroup MakeOnSaveAutoGroup
-            autocmd!
-        augroup END
-    endfunction
+        function! SetMakeOnSave()
+            augroup MakeOnSaveAutoGroup
+                autocmd!
+                autocmd BufWritePost * call MakeSilentCommand()
+            augroup END
+        endfunction
 
-    function! ToggleMakeOnSave()
-        if !exists('#MakeOnSaveAutoGroup#BufWritePost')
-            call SetMakeOnSave()
-        else
-            call UnsetMakeOnSave()
-        endif
-    endfunction
+        function! UnsetMakeOnSave()
+            augroup MakeOnSaveAutoGroup
+                autocmd!
+            augroup END
+        endfunction
 
-    autocmd CursorMoved,CursorMovedI <buffer> if getline('.')[0] ==# '|' | if &textwidth != 0 | setlocal textwidth=0 | endif | else | if &textwidth != 80 | setlocal textwidth=80 | endif | endif
+        function! ToggleMakeOnSave()
+            if !exists('#MakeOnSaveAutoGroup#BufWritePost')
+                call SetMakeOnSave()
+            else
+                call UnsetMakeOnSave()
+            endif
+        endfunction
 
-
-    autocmd FileType markdown setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType markdown setlocal textwidth=80
-    autocmd FileType markdown setlocal spell
-    autocmd FileType markdown setlocal spelllang=en
-    autocmd FileType markdown setlocal nowrap
-
-    autocmd FileType markdown.pandoc setlocal ts=4 sts=4 sw=4 expandtab
-    autocmd FileType markdown.pandoc setlocal textwidth=80
-    autocmd FileType markdown.pandoc setlocal spell
-    autocmd FileType markdown.pandoc setlocal spelllang=en
-    autocmd FileType markdown.pandoc setlocal nowrap
-    autocmd FileType markdown.pandoc nnoremap <buffer> <ESC><ESC> :nohlsearch<CR>
-    " autocmd FileType markdown.pandoc nmap <F7> :GrammarousCheck<CR>
-    " autocmd FileType markdown.pandoc nmap <F8> <Plug>(grammarous-open-info-window)
-    " autocmd FileType markdown.pandoc nmap <F9> <Plug>(grammarous-move-to-previous-error)
-    " autocmd FileType markdown.pandoc nmap <F10> <Plug>(grammarous-fixit)
-    " autocmd FileType markdown.pandoc nmap <F11> <Plug>(grammarous-move-to-next-error)
-    " autocmd FileType markdown.pandoc nmap <F12> <Plug>(grammarous-disable-rule)
-
-    " Markdown only binds
-    autocmd FileType markdown nmap g$ lbysiw$e2l
-    autocmd FileType markdown nmap gi$ lbysiw$e2l
-    " autocmd FileType markdown nmap ga$ lBysiW$El
-    autocmd FileType markdown nmap 2g$ ysil$ysil$$
-    autocmd FileType markdown nmap g2$ ysil$ysil$$
-
-    autocmd FileType markdown nmap g* ysiW*El
-    autocmd FileType markdown nmap 2g* lBysiW*lysiW*El
-    autocmd FileType markdown nmap g2* lBysiW*lysiW*El
-    autocmd FileType markdown nmap 3g* lBysiW*lysiW*lysiW*El
-    autocmd FileType markdown nmap g3* lBysiW*lysiW*lysiW*El
-
-    autocmd FileType markdown nmap gi* ysiw*e2l
-    autocmd FileType markdown nmap 2gi* lbysiw*lysiw*e3l
-    autocmd FileType markdown nmap g2i* lbysiw*lysiw*e3l
-    autocmd FileType markdown nmap 3gi* lbysiw*lysiw*lysiw*e4l
-    autocmd FileType markdown nmap g3i* lbysiw*lysiw*lysiw*e4l
-
-    " autocmd FileType markdown nmap ga* ysiW*El
-    " autocmd FileType markdown nmap 2ga* lBysiW*lysiW*El
-    " autocmd FileType markdown nmap 3ga* lBysiW*lysiW*lysiW*El
-
-    " Toggle Make! on write
-    autocmd FileType markdown.pandoc nnoremap <F4> :call ToggleMakeOnSave()<CR>
-
-" Treat .rss files as XML
-    autocmd BufNewFile,BufRead *.rss setfiletype xml
-
-" VIM "
-    " autocmd FileType vim setlocal foldmethod=indent
-    autocmd FileType vim setlocal foldnestmax=2
+        autocmd CursorMoved,CursorMovedI <buffer> if getline('.')[0] ==# '|' | if &textwidth != 0 | setlocal textwidth=0 | endif | else | if &textwidth != 80 | setlocal textwidth=80 | endif | endif
 
 
-highlight! link CmpItemAbbr GruvboxWhite "The completion text"
-highlight! link CmpItemAbbrDeprecated GruvboxGray "The completion text if the completion is depricated"
-highlight! link CmpItemAbbrMatch GruvboxBlue "The matching characters"
-highlight! link CmpItemAbbrMatchFuzzy GruvboxBlueBold
-highlight! link CmpItemMenu GruvboxGray
+        autocmd FileType markdown setlocal ts=4 sts=4 sw=4 expandtab
+        autocmd FileType markdown setlocal textwidth=80
+        autocmd FileType markdown setlocal spell
+        autocmd FileType markdown setlocal spelllang=en
+        autocmd FileType markdown setlocal nowrap
 
-"""
-" CMPItemKinds
-"""
-highlight! link CmpItemKind GruvboxOrange "Default is orange, so its obvious when something is not configured"
+        autocmd FileType markdown.pandoc setlocal ts=4 sts=4 sw=4 expandtab
+        autocmd FileType markdown.pandoc setlocal textwidth=80
+        autocmd FileType markdown.pandoc setlocal spell
+        autocmd FileType markdown.pandoc setlocal spelllang=en
+        autocmd FileType markdown.pandoc setlocal nowrap
+        autocmd FileType markdown.pandoc nnoremap <buffer> <ESC><ESC> :nohlsearch<CR>
+        " autocmd FileType markdown.pandoc nmap <F7> :GrammarousCheck<CR>
+        " autocmd FileType markdown.pandoc nmap <F8> <Plug>(grammarous-open-info-window)
+        " autocmd FileType markdown.pandoc nmap <F9> <Plug>(grammarous-move-to-previous-error)
+        " autocmd FileType markdown.pandoc nmap <F10> <Plug>(grammarous-fixit)
+        " autocmd FileType markdown.pandoc nmap <F11> <Plug>(grammarous-move-to-next-error)
+        " autocmd FileType markdown.pandoc nmap <F12> <Plug>(grammarous-disable-rule)
 
-" White
-highlight! link CmpItemKindVariable GruvboxWhite
+        " Markdown only binds
+        autocmd FileType markdown nmap g$ lbysiw$e2l
+        autocmd FileType markdown nmap gi$ lbysiw$e2l
+        " autocmd FileType markdown nmap ga$ lBysiW$El
+        autocmd FileType markdown nmap 2g$ ysil$ysil$$
+        autocmd FileType markdown nmap g2$ ysil$ysil$$
 
-" Gray
-highlight! link CmpItemKindText GruvboxGray
+        autocmd FileType markdown nmap g* ysiW*El
+        autocmd FileType markdown nmap 2g* lBysiW*lysiW*El
+        autocmd FileType markdown nmap g2* lBysiW*lysiW*El
+        autocmd FileType markdown nmap 3g* lBysiW*lysiW*lysiW*El
+        autocmd FileType markdown nmap g3* lBysiW*lysiW*lysiW*El
 
-" Blue
-highlight! link CmpItemKindProperty GruvboxBlue
+        autocmd FileType markdown nmap gi* ysiw*e2l
+        autocmd FileType markdown nmap 2gi* lbysiw*lysiw*e3l
+        autocmd FileType markdown nmap g2i* lbysiw*lysiw*e3l
+        autocmd FileType markdown nmap 3gi* lbysiw*lysiw*lysiw*e4l
+        autocmd FileType markdown nmap g3i* lbysiw*lysiw*lysiw*e4l
 
-" Green
-highlight! link CmpItemKindFunction GruvboxGreen
-highlight! link CmpItemKindMethod GruvboxGreen
-highlight! link CmpItemKindField GruvboxGreen
-highlight! link CmpItemKindFile GruvboxGreen
-highlight! link CmpItemKindFolder GruvboxGreen
+        " autocmd FileType markdown nmap ga* ysiW*El
+        " autocmd FileType markdown nmap 2ga* lBysiW*lysiW*El
+        " autocmd FileType markdown nmap 3ga* lBysiW*lysiW*lysiW*El
 
-" Red
-highlight! link CmpItemKindKeyword GruvboxRed
-highlight! link CmpItemKindOperator GruvboxRed
+        " Toggle Make! on write
+        autocmd FileType markdown.pandoc nnoremap <F4> :call ToggleMakeOnSave()<CR>
 
-" Yellow
-highlight! link CmpItemKindClass GruvboxYellow
-highlight! link CmpItemKindUnit GruvboxYellow
-" highlight! link CmpItemKindInterface GruvboxYellow
+    " XML
+        autocmd BufNewFile,BufRead *.rss setfiletype xml " Treat .rss files as XML
 
-" Purple
-highlight! link CmpItemKindConstant GruvboxPurple
-highlight! link CmpItemKindEnumMember GruvboxPurple
-highlight! link CmpItemKindSnippet GruvboxPurple
+    " VIM "
+        autocmd FileType vim setlocal foldmethod=indent
+        autocmd FileType vim setlocal foldnestmax=2
+
+" nvim-cmp colors "
+    highlight! link CmpItemAbbr GruvboxWhite "The completion text"
+    highlight! link CmpItemAbbrDeprecated GruvboxGray "The completion text if the completion is depricated"
+    highlight! link CmpItemAbbrMatch GruvboxBlue "The matching characters"
+    highlight! link CmpItemAbbrMatchFuzzy GruvboxBlueBold
+    highlight! link CmpItemMenu GruvboxGray
+
+    " CMPItemKinds
+    highlight! link CmpItemKind GruvboxOrange "Default is orange, so its obvious when something is not configured"
+
+    " White
+    highlight! link CmpItemKindVariable GruvboxWhite
+
+    " Gray
+    highlight! link CmpItemKindText GruvboxGray
+
+    " Blue
+    highlight! link CmpItemKindProperty GruvboxBlue
+
+    " Green
+    highlight! link CmpItemKindFunction GruvboxGreen
+    highlight! link CmpItemKindMethod GruvboxGreen
+    highlight! link CmpItemKindField GruvboxGreen
+    highlight! link CmpItemKindFile GruvboxGreen
+    highlight! link CmpItemKindFolder GruvboxGreen
+
+    " Red
+    highlight! link CmpItemKindKeyword GruvboxRed
+    highlight! link CmpItemKindOperator GruvboxRed
+
+    " Yellow
+    highlight! link CmpItemKindClass GruvboxYellow
+    highlight! link CmpItemKindUnit GruvboxYellow
+    " highlight! link CmpItemKindInterface GruvboxYellow
+
+    " Purple
+    highlight! link CmpItemKindConstant GruvboxPurple
+    highlight! link CmpItemKindEnumMember GruvboxPurple
+    highlight! link CmpItemKindSnippet GruvboxPurple
 
