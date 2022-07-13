@@ -55,12 +55,12 @@
     Plug 'saadparwaiz1/cmp_luasnip'
 
     Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
     Plug 'L3MON4D3/LuaSnip'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
-    Plug 'hashivim/vim-terraform'
 
     "
     " autocompletion"
@@ -70,8 +70,9 @@
     Plug 'SirVer/ultisnips'
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-    Plug 'honza/vim-snippets'
-    Plug 'rafamadriz/friendly-snippets'
+    " Plug 'honza/vim-snippets'
+    " Plug 'rafamadriz/friendly-snippets'
+    Plug 'hashivim/vim-terraform'
     Plug 'juliosueiras/vim-terraform-completion'
 
     " Specific programmin language plugins
@@ -96,7 +97,6 @@
     Plug 'xolox/vim-misc'
     Plug 'Raimondi/delimitMate'
     Plug 'kien/rainbow_parentheses.vim'
-    " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     Plug 'thosakwe/vim-flutter'
     Plug 'dart-lang/dart-vim-plugin'
@@ -182,10 +182,11 @@
     Plug 'vitalk/vim-simple-todo'
 
     " Ricing "
-    Plug 'flazz/vim-colorschemes'
+    " Plug 'flazz/vim-colorschemes'
     Plug 'morhetz/gruvbox'
-    Plug 'luisiacc/gruvbox-baby'
-    " Plugin 'Valloric/YouCompleteMe'
+    " Plug 'luisiacc/gruvbox-baby'
+    " Plug 'ellisonleao/gruvbox.nvim'
+
     "
     "My own stuff (remember to port)"
     Plug 'tmhedberg/matchit'
@@ -218,6 +219,7 @@ lua require('rwb.complete') -- Autocompletion configuration
 lua require('rwb.treesitter') -- Treesitter config
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
 
 
 """"
@@ -460,17 +462,9 @@ nnoremap <Leader>ai :normal 0"bD<CR>
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set termguicolors
+set background=dark
 colorscheme gruvbox
-" Example config in VimScript
-let g:gruvbox_baby_function_style = "NONE"
-let g:gruvbox_baby_keyword_style = "italic"
-
-" " Enable telescope theme
-" let g:gruvbox_baby_telescope_theme = 1
-
-" Enable transparent mode
-" let g:gruvbox_baby_transparent_mode = 1
-
 
 " Some basics:
     " Spaces by default
@@ -1248,4 +1242,46 @@ set nowritebackup
 " VIM "
     " autocmd FileType vim setlocal foldmethod=indent
     autocmd FileType vim setlocal foldnestmax=2
+
+
+highlight! link CmpItemAbbr GruvboxWhite "The completion text"
+highlight! link CmpItemAbbrDeprecated GruvboxGray "The completion text if the completion is depricated"
+highlight! link CmpItemAbbrMatch GruvboxBlue "The matching characters"
+highlight! link CmpItemAbbrMatchFuzzy GruvboxBlueBold
+highlight! link CmpItemMenu GruvboxGray
+
+"""
+" CMPItemKinds
+"""
+highlight! link CmpItemKind GruvboxOrange "Default is orange, so its obvious when something is not configured"
+
+" White
+highlight! link CmpItemKindVariable GruvboxWhite
+
+" Gray
+highlight! link CmpItemKindText GruvboxGray
+
+" Blue
+highlight! link CmpItemKindProperty GruvboxBlue
+
+" Green
+highlight! link CmpItemKindFunction GruvboxGreen
+highlight! link CmpItemKindMethod GruvboxGreen
+highlight! link CmpItemKindField GruvboxGreen
+highlight! link CmpItemKindFile GruvboxGreen
+highlight! link CmpItemKindFolder GruvboxGreen
+
+" Red
+highlight! link CmpItemKindKeyword GruvboxRed
+highlight! link CmpItemKindOperator GruvboxRed
+
+" Yellow
+highlight! link CmpItemKindClass GruvboxYellow
+highlight! link CmpItemKindUnit GruvboxYellow
+" highlight! link CmpItemKindInterface GruvboxYellow
+
+" Purple
+highlight! link CmpItemKindConstant GruvboxPurple
+highlight! link CmpItemKindEnumMember GruvboxPurple
+highlight! link CmpItemKindSnippet GruvboxPurple
 
