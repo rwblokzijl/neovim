@@ -30,8 +30,8 @@
     " More actions "
     Plug 'tpope/vim-surround'              " (s)       To surround
     Plug 'christoomey/vim-sort-motion'     " (gs)      To sort
-    Plug 'vim-scripts/ReplaceWithRegister' " (gr)      Replace with buffer
-    Plug 'tommcdo/vim-ninja-feet'          " (gr)      Replace with buffer
+    Plug 'vim-scripts/ReplaceWithRegister' " (gr)      Replace with register
+    Plug 'tommcdo/vim-ninja-feet'          " (gr)      Replace with register
     Plug 'junegunn/vim-easy-align'         " (ga)      To align
 
     " More text objects "
