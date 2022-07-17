@@ -71,8 +71,8 @@
     Plug 'vim-scripts/loremipsum'
 
     " snippets
-    Plug 'SirVer/ultisnips'
-    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+    " Plug 'SirVer/ultisnips'
+    " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     Plug 'honza/vim-snippets'
     Plug 'rafamadriz/friendly-snippets'
@@ -220,6 +220,7 @@
     let g:UltiSnipsExpandTrigger = "<NUL>"
 
     lua require('rwb.treesitter') -- Treesitter config
+    lua require('rwb.luasnips') -- Treesitter config
 
 """"
 " Vimscipt plugin configs
@@ -485,17 +486,32 @@
     inoremap ? ?<c-g>u
 
 " Move selections around without losing said selection
+    " Run help :help map-table
+    "                               *map-table*
+    "          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang | ~
+    " Command        +------+-----+-----+-----+-----+-----+------+------+ ~
+    " [nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
+    " n[nore]map     | yes  |  -  |  -  |  -  |  -  |  -  |  -   |  -   |
+    " [nore]map!     |  -   | yes | yes |  -  |  -  |  -  |  -   |  -   |
+    " i[nore]map     |  -   | yes |  -  |  -  |  -  |  -  |  -   |  -   |
+    " c[nore]map     |  -   |  -  | yes |  -  |  -  |  -  |  -   |  -   |
+    " v[nore]map     |  -   |  -  |  -  | yes | yes |  -  |  -   |  -   |
+    " x[nore]map     |  -   |  -  |  -  | yes |  -  |  -  |  -   |  -   |
+    " s[nore]map     |  -   |  -  |  -  |  -  | yes |  -  |  -   |  -   |
+    " o[nore]map     |  -   |  -  |  -  |  -  |  -  | yes |  -   |  -   |
+    " t[nore]map     |  -   |  -  |  -  |  -  |  -  |  -  | yes  |  -   |
+    " l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
     vnoremap < <gv
     vnoremap > >gv
 
-    vnoremap <C-j> :m '>+1<CR>gv=gv
-    vnoremap <C-k> :m '<-2<CR>gv=gv
-    vnoremap <C-s-j> :m '>+1<CR>gv
-    vnoremap <C-s-k> :m '<-2<CR>gv
-    vnoremap <C-h> <gv
-    vnoremap <C-l> >gv
-    vnoremap <C-s-h> <gv
-    vnoremap <C-s-l> >gv
+    xnoremap <C-j> :m '>+1<CR>gv=gv
+    xnoremap <C-k> :m '<-2<CR>gv=gv
+    xnoremap <C-s-j> :m '>+1<CR>gv
+    xnoremap <C-s-k> :m '<-2<CR>gv
+    xnoremap <C-h> <gv
+    xnoremap <C-l> >gv
+    xnoremap <C-s-h> <gv
+    xnoremap <C-s-l> >gv
     " inoremap <C-j> <esc>:m .+1<CR>==a
     " inoremap <C-k> <esc>:m .-2<CR>==a
     " nnoremap <C-j> <esc>:m .+1<CR>==
@@ -628,10 +644,10 @@
         nnoremap gk :wincmd k<CR>
         nnoremap gl :wincmd l<CR>
 
-        nnoremap <c-h> :wincmd h<CR>
-        nnoremap <c-j> :wincmd j<CR>
-        nnoremap <c-k> :wincmd k<CR>
-        nnoremap <c-l> :wincmd l<CR>
+        " nnoremap <c-h> :wincmd h<CR>
+        " nnoremap <c-j> :wincmd j<CR>
+        " nnoremap <c-k> :wincmd k<CR>
+        " nnoremap <c-l> :wincmd l<CR>
 
     " set wildmode=longest:full,full
 
