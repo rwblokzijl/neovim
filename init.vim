@@ -366,9 +366,11 @@
                 \:call append(line("."), "")<CR>
                 \:let @c=split(&commentstring, '%s')[0]<CR>
                 \:let @d=shellescape(@c, 1)<CR>
-                \:normal 80"cP<CR>
-                \:r !figlet -c -f slant -w 77 <C-r>b \| sed 's/^/<C-r>c /;s/\s\+$//'<CR>
-                \:normal j80"cP<CR>
+                \:let @e="#"<CR>
+                \:let @f=shellescape(@e, 1)<CR>
+                \:normal 80"eP<CR>
+                \:r !figlet -c -f slant -w 77 <C-r>b \| sed 's/^/<C-r>f /;s/\s\+$//'<CR>
+                \:normal j80"eP<CR>
     " " turn the current line into ascii art without wrapping
     nnoremap <Leader>ai :normal 0"bD<CR>
                 \:let @b=shellescape(@b, 1)<CR>
@@ -816,6 +818,7 @@
         autocmd FileType go setlocal foldnestmax=1
 
     " Terraform "
+        autocmd BufNewFile,BufRead *.tf setfiletype terraform
         autocmd FileType terraform setlocal foldnestmax=1
         autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
         " autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
