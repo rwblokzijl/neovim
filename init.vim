@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  _
 "                           _   __(_)___ ___  __________
 "                          | | / / / __ `__ \/ ___/ ___/
@@ -56,13 +56,14 @@
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-nvim-lua'
-    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+    Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'saadparwaiz1/cmp_luasnip'
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'
+
     Plug 'L3MON4D3/LuaSnip'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -70,13 +71,9 @@
     " autocompletion"
     Plug 'vim-scripts/loremipsum'
 
-    " snippets
-    " Plug 'SirVer/ultisnips'
-    " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-
     Plug 'honza/vim-snippets'
     Plug 'rafamadriz/friendly-snippets'
-    Plug 'hashivim/vim-terraform'
+    " Plug 'hashivim/vim-terraform' " Probably not necessary
     Plug 'juliosueiras/vim-terraform-completion'
 
     " Specific programmin language plugins
@@ -217,10 +214,9 @@
 " Lua config
 """"
     lua require('rwb.complete') -- Autocompletion configuration
-    let g:UltiSnipsExpandTrigger = "<NUL>"
 
     lua require('rwb.treesitter') -- Treesitter config
-    lua require('rwb.luasnips') -- Treesitter config
+    lua require('rwb.luasnip') -- Treesitter config
 
 """"
 " Vimscipt plugin configs
