@@ -80,7 +80,7 @@
 
     Plug 'honza/vim-snippets'
     Plug 'rafamadriz/friendly-snippets'
-    " Plug 'hashivim/vim-terraform' " Probably not necessary
+    Plug 'hashivim/vim-terraform'
     Plug 'juliosueiras/vim-terraform-completion'
 
     " Specific programmin language plugins
@@ -831,15 +831,10 @@
 
     " Terraform "
         autocmd BufNewFile,BufRead *.tf setfiletype terraform
-        autocmd FileType terraform setlocal foldnestmax=1
         autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
-        " autocmd FileType terraform autocmd BufWritePre <buffer> call TerraformFmtOnSave()
-        " function TerraformFmtOnSave()
-        "     mkview
-        "     TerraformFmt
-        "     silent! loadview
-        " endfunction
-
+        autocmd BufWritePre terraform lua vim.lsp.buf.formatting_sync()
+        autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType terraform setlocal foldnestmax=1
 
     " Makefiles "
         autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
