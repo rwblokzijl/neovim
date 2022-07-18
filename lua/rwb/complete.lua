@@ -103,9 +103,8 @@ cmp.setup({
     --        max_item_count
     --        get_bufnrs
     --        more?
-    { name = "luasnip" ,  priority=100, },
-    { name = "ultisnips" ,  priority=90, },
-    { name = "nvim_lsp",  priority=80, },
+    { name = "nvim_lsp",  priority=100, },
+    { name = "luasnip" ,  priority=90, },
     { name = "nvim_lua" ,  priority=70, },
     { name = "path" ,  priority=60, },
     { name = "buffer",
@@ -126,7 +125,6 @@ cmp.setup({
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[lsnip]",
-        ultisnips = "[usnip]",
         -- gh_issues = "[issues]",
         cmp_tabnine = "[TabNine]",
       },
