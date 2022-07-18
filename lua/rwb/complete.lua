@@ -206,6 +206,17 @@ local servers = {
   -- "tsserver",
 }
 
+local settings = {
+  sumneko_lua = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+}
+
+
 lsp_installer.setup({
   ensure_installed = servers,
 })
@@ -213,6 +224,7 @@ lsp_installer.setup({
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup({
     capabilities = capabilities,
+    settings = settings[lsp],
     flags = {
       debounce_text_changes = 150,
     }
