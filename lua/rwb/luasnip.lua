@@ -59,9 +59,13 @@ end)
 vim.keymap.set("i", "<c-u>", require "luasnip.extras.select_choice")
 
 -- shorcut to source my luasnips file again, which will reload my snippets
-vim.keymap.set("n", "<leader>s", "<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<CR>")
+vim.keymap.set("n", "<c-s>", "<cmd>source ~/.config/nvim/lua/rwb/luasnip.lua<CR>")
 
 -- Snippets loading
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("snippets/luasnip/*.lua", true)) do
+  loadfile(ft_path)()
+end
+
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()

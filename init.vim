@@ -419,7 +419,7 @@
     " Vislualising code
     set incsearch
     set hlsearch
-    nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>
+    nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>:LuaSnipUnlinkCurrent<CR>
     set cursorline
     set list
     set showbreak=↪\
@@ -860,7 +860,7 @@
         " autocmd FileType python setlocal foldmethod=indent
         autocmd FileType python setlocal foldnestmax=2
         autocmd FileType python setlocal foldlevel=1
-        " autocmd FileType python setlocal textwidth=120
+        autocmd FileType python setlocal textwidth=120
         autocmd FileType python setlocal colorcolumn=120
         autocmd FileType python setlocal nowrap
         " autocmd FileType python compiler pyunit
@@ -955,8 +955,7 @@
             endif
         endfunction
 
-        autocmd CursorMoved,CursorMovedI <buffer> if getline('.')[0] ==# '|' | if &textwidth != 0 | setlocal textwidth=0 | endif | else | if &textwidth != 80 | setlocal textwidth=80 | endif | endif
-
+        " autocmd CursorMoved,CursorMovedI <buffer> if getline('.')[0] ==# '|' | if &textwidth != 0 | setlocal textwidth=0 | endif | else | if &textwidth != 80 | setlocal textwidth=80 | endif | endif
 
         autocmd FileType markdown setlocal ts=4 sts=4 sw=4 expandtab
         autocmd FileType markdown setlocal textwidth=80
