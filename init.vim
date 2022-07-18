@@ -10,6 +10,13 @@
 """"
 " Plugins
 """"
+    " Install vimplug if not already installed
+    let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+    if empty(glob(data_dir . '/autoload/plug.vim'))
+        silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+
     call plug#begin('~/.config/vim/plugged')
 
     """"""""""""""""""""""""""""""""""""""""""""""""
@@ -234,7 +241,9 @@
 
     " scrooloose/nerdtree "
         " nnoremap gn :NERDTreeTabsToggle<CR>
-        nnoremap gn :NERDTreeToggle<CR>
+        " nnoremap gn :NERDTreeToggle<CR>
+        nnoremap <expr> gn g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
+
         let g:NERDTreeWinPos = "left"
         let NERDTreeWinSize = 39
         "autocmd vimenter * NERDTree
@@ -448,6 +457,25 @@
     set copyindent
     set preserveindent
 
+" General behavior configs
+    set path+=** " Add all subfolders to search path
+    set shell=sh " Might not need
+    set hidden
+    set confirm
+    set nobackup
+    set nowritebackup
+
+    set completeopt=menu,menuone,noinsert,noselect,preview
+    set cmdheight=2 " Give more space for displaying messages.
+    set updatetime=300 " Longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
+    set shortmess+=c " Don't pass messages to |ins-completion-menu|.
+
+    hi clear SignColumn
+    set signcolumn=yes
+    set scrolloff=8
+    set sidescrolloff=16
+
+
 " close only window on :q
     let bclose_multiple = 0
     cnoreabbrev bc Bclose
@@ -543,22 +571,6 @@
     endfunction
 
     autocmd BufWritePre * call RemoveTrailingWhiteSpace()
-
-" General behavior configs
-    set path+=** " Add all subfolders to search path
-    set shell=sh " Might not need
-    set hidden
-    set confirm
-    set nobackup
-    set nowritebackup
-
-    set completeopt=menu,menuone,noinsert,noselect,preview
-    set cmdheight=2 " Give more space for displaying messages.
-    set updatetime=300 " Longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
-    set shortmess+=c " Don't pass messages to |ins-completion-menu|.
-
-    hi clear SignColumn
-    set signcolumn=yes
 
 " Controls
     " clipboard mappings and configuration
