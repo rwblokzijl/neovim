@@ -8,7 +8,7 @@ local ins = ls.insert_node
 local fun = ls.function_node
 -- local cho = ls.choice_node
 local dyn = ls.dynamic_node
--- local rep = ls.restore_node
+-- local res = ls.restore_node
 -- local events = require("luasnip.util.events")
 -- local ai = require("luasnip.nodes.absolute_indexer")
 local fmt = require("luasnip.extras.fmt").fmt
@@ -79,21 +79,6 @@ local figlet = function(args)
 end
 
 ls.add_snippets("all", {
-  snippet("works", dyn(1, function ()
-    return sn(nil, fmt("{}", {fun(function () return {"a"} end)}))
-  end)),
-  snippet("alsoworks",
-    fmt("{}", {fun(function () return {"a", "b"} end)})
-  ),
-  snippet({
-    trig="fails",
-    docstring="This docstring replaces the preview.\nIt also handles newlines.",
-  }, dyn(1, function ()
-    return sn(nil, fmt("{}", {fun(function () return {"a", "b"} end)}))
-  end)),
-})
-
-ls.add_snippets("all", {
   snippet(
     {
       trig="banner",
@@ -113,17 +98,17 @@ ls.add_snippets("all", {
   snippet({
     trig="bannerc",
     dscr="Banner with custom text",
-    docstring = -- workaround for preview not working (https://github.com/L3MON4D3/LuaSnip/issues/491)
-      "#########################################\n"..
-      "#     ____\n"..
-      "#    / __ )____ _____  ____  ___  _____\n"..
-      "#   / __  / __ `/ __ \\/ __ \\/ _ \\/ ___/\n"..
-      "#  / /_/ / /_/ / / / / / / /  __/ /\n"..
-      "# /_____/\\__,_/_/ /_/_/ /_/\\___/_/\n"..
-      "#\n"..
-      "#########################################\n"..
-      "# filename.ext\n"..
-      "#########################################\n"
+    -- docstring = -- workaround for preview not working (https://github.com/L3MON4D3/LuaSnip/issues/491) -- got fixed very fast
+    --   "#########################################\n"..
+    --   "#     ____\n"..
+    --   "#    / __ )____ _____  ____  ___  _____\n"..
+    --   "#   / __  / __ `/ __ \\/ __ \\/ _ \\/ ___/\n"..
+    --   "#  / /_/ / /_/ / / / / / / /  __/ /\n"..
+    --   "# /_____/\\__,_/_/ /_/_/ /_/\\___/_/\n"..
+    --   "#\n"..
+    --   "#########################################\n"..
+    --   "# filename.ext\n"..
+    --   "#########################################\n"
   }, dyn(1, function ()
       return sn("", fmt(
         "{}\n" ..
