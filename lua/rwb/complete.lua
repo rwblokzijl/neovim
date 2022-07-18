@@ -200,7 +200,7 @@ local servers = {
   -- "eslint",
   -- "graphql",
   -- "html",
-  -- "sumneko_lua",
+  "sumneko_lua",
   -- "tailwindcss",
   -- "taplo",
   -- "tsserver",

@@ -37,46 +37,86 @@ function commentLine()
   return comment_line
 end
 
-function figlet(args)
-  local comment_string = "#%s"
-  -- local comment_string = vim.bo.commentstring:gsub(" ", "")
-  local text = args[1][1]
-  local text_len = vim.bo.textwidth ~= 0 and vim.bo.textwidth  or 80
-  local comment_len = string.len(comment_string)-2
-  -- -- local handle = io.popen("figlet -c -f slant -w " .. text_len-comment_len .. " " .. text .. " \| sed 's/^/<C-r>f /;s/\s\+$//'")
-  local handle = io.popen("figlet -c -f slant -w " .. text_len-comment_len .. " " .. text)
-  local result = handle:read("*a")
-  handle:close()
-  lines = {}
-  for line in result:gmatch("[^\r\n]+") do
-    if(line ~= nil)
-    then
-      table.insert(lines, string.format(comment_string, line):match(".*%S") or "")
-    end
-  end
-  return lines
+local figlet = function(args)
+  return {"asdf", "asdfa", "sdgbk"}
+  -- local comment_string = "#%s"
+  -- -- local comment_string = vim.bo.commentstring:gsub(" ", "")
+  -- local text = args[1][1]
+  -- local text_len = vim.bo.textwidth ~= 0 and vim.bo.textwidth  or 80
+  -- local comment_len = string.len(comment_string)-2
+  -- local handle = io.popen("figlet -c -f slant -w " .. text_len-comment_len .. " " .. text)
+  -- if handle == nil then return "..." end
+  -- local result = handle:read("*a")
+  -- handle:close()
+  -- local lines = {}
+  -- for line in result:gmatch("[^\r\n]+") do
+  --   if(line ~= nil)
+  --   then
+  --     table.insert(lines, string.format(comment_string, line):match(".*%S") or "")
+  --     -- lines:insert(string.format(comment_string, line):match(".*%S") or "")
+  --   end
+  -- end
+  -- return lines
+end
+
+local get_file_parent = function()
+  return (
+    vim.fn.expand('%:p')
+    :match(".*/([^/]+)/[^/]+$")
+    :gsub("_", " ")
+    :gsub("^%l", string.upper)
+  )
 end
 
 ls.add_snippets("all", {
-  snippet("banner", fmt(
-    -- "{}\n{}\n{}\n{}\n{}\ntext: {}",
-    "{}\n" ..
-    "{}\n" ..
-    "{}\n" ..
-    "{} {}\n" ..
-    "{}\n" ..
-    "{} Banner text: {}\n" ..
-    "\n"
-    ,
-    {
-      fun(commentLine), -- line
-      fun(figlet, {1}), -- banner
-      fun(commentLine), -- line
-      fun(comment), fun(function()
-        return vim.fn.expand('%'):match("([^/]+)$") or ""
-      end), -- filename
-      fun(commentLine), -- line
-      fun(comment), ins(1, "Banner"), -- input
-    }
-  ))
+  snippet("works", dyn(1, function ()
+    return sn(nil, fmt("{}", {fun(function () return {"a"} end)}))
+  end)),
+  snippet("alsoworks",
+    fmt("{}", {fun(function () return {"a", "b"} end)})
+  ),
+  snippet({
+    trig="fails",
+    docstring="This docstring replaces the preview.\nIt also handles newlines.",
+  }, dyn(1, function ()
+    return sn(nil, fmt("{}", {fun(function () return {"a", "b"} end)}))
+  end)),
+})
+
+ls.add_snippets("all", {
+  snippet({
+    trig="banner",
+    docstring = -- workaround for preview not working (https://github.com/L3MON4D3/LuaSnip/issues/491)
+    "#########################################\n"..
+    "#     ____\n"..
+    "#    / __ )____ _____  ____  ___  _____\n"..
+    "#   / __  / __ `/ __ \\/ __ \\/ _ \\/ ___/\n"..
+    "#  / /_/ / /_/ / / / / / / /  __/ /\n"..
+    "# /_____/\\__,_/_/ /_/_/ /_/\\___/_/\n"..
+    "#\n"..
+    "#########################################\n"..
+    "# filename.ext\n"..
+    "#########################################\n"
+  }, dyn(1, function ()
+    return sn("", fmt(
+      "{}\n" ..
+      "{}\n" ..
+      "{}\n" ..
+      "{} {}\n" ..
+      "{}\n" ..
+      "{} Banner text: {}\n" ..
+      "\n"
+      ,
+      {
+        fun(commentLine), -- line
+        fun(figlet, {1}), -- banner
+        fun(commentLine), -- line
+        fun(comment), fun(function()
+          return vim.fn.expand('%'):match("([^/]+)$") or ""
+        end), -- filename
+        fun(commentLine), -- line
+        fun(comment), ins(1, get_file_parent()), -- input
+      }
+    ))
+  end))
 })
