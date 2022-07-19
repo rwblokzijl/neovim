@@ -74,6 +74,7 @@
     Plug 'L3MON4D3/LuaSnip'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
 
     " autocompletion"
     Plug 'vim-scripts/loremipsum'
