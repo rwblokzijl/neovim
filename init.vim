@@ -74,6 +74,7 @@
     Plug 'L3MON4D3/LuaSnip'
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/playground'
 
     " autocompletion"
@@ -173,9 +174,9 @@
 
     " Git "
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
+    Plug 'lewis6991/gitsigns.nvim'
 
     "
     Plug 'tpope/vim-unimpaired'
@@ -183,8 +184,9 @@
     " Formatting"
     " Plug 'vim-syntastic/syntastic'
     Plug 'Chiel92/vim-autoformat'
-    Plug 'tpope/vim-commentary'
-     Plug 'suy/vim-context-commentstring'
+    " Plug 'tpope/vim-commentary'
+    Plug 'suy/vim-context-commentstring'
+    Plug 'numToStr/Comment.nvim'
 
     " To do list "
     Plug 'vitalk/vim-simple-todo'
@@ -225,6 +227,9 @@
 
     lua require('rwb.treesitter') -- Treesitter config
     lua require('rwb.luasnip') -- Treesitter config
+
+    lua require('Comment').setup()
+    lua require('rwb.gitsigns')
 
 """"
 " Vimscipt plugin configs
@@ -309,9 +314,17 @@
         augroup END
         "---
 
-""""
+"""
 " Keybinds "
 """"
+
+    nmap gcic gcac
+
+    vnoremap  aL <Plug>(textobj-line-a
+    vnoremap  iL <Plug>(textobj-line-i
+    onoremap  aL <Plug>(textobj-line-a
+    onoremap  iL <Plug>(textobj-line-i
+
     " Leader "
         let mapleader=","
         let g:user_emmet_leader_key=','
@@ -1017,7 +1030,7 @@
         autocmd FileType vim setlocal foldmethod=indent
         autocmd FileType vim setlocal foldnestmax=2
 
-" nvim-cmp colors "
+" colors "
     highlight! link CmpItemAbbr GruvboxWhite "The completion text"
     highlight! link CmpItemAbbrDeprecated GruvboxGray "The completion text if the completion is depricated"
     highlight! link CmpItemAbbrMatch GruvboxBlue "The matching characters"
@@ -1056,4 +1069,6 @@
     highlight! link CmpItemKindConstant GruvboxPurple
     highlight! link CmpItemKindEnumMember GruvboxPurple
     highlight! link CmpItemKindSnippet GruvboxPurple
+
+    highlight! link GitSignsCurrentLineBlame GruvboxBg4
 

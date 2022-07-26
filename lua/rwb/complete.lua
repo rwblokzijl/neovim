@@ -52,20 +52,20 @@ cmp.setup({
     path = 1,
   },
 
-  -- sorting = {
-  --   priority_weight = 2,
-  --   comparators = {
-  --     cmp.config.compare.offset,
-  --     cmp.config.compare.exact,
-  --     cmp.config.compare.score,
-  --     cmp.config.compare.recently_used,
-  --     cmp.config.compare.kind,
-  --     cmp.config.compare.sort_text,
-  --     cmp.config.compare.length,
-  --     cmp.config.compare.order,
-  --     require('cmp_tabnine.compare'),
-  --   },
-  -- },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+      require('cmp_tabnine.compare'),
+    },
+  },
 
   mapping = cmp.mapping.preset.insert({
     ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
@@ -103,16 +103,16 @@ cmp.setup({
     --        max_item_count
     --        get_bufnrs
     --        more?
-    { name = "nvim_lsp",  priority=100, },
-    { name = "luasnip" ,  priority=90, },
-    { name = "nvim_lua" ,  priority=70, },
-    { name = "path" ,  priority=60, },
+    { name = "nvim_lsp", --[[ priority=100 ]] },
+    { name = "luasnip",  --[[ priority=90 ]] },
+    { name = "nvim_lua", --[[ priority=70 ]] },
+    { name = "path",     --[[ priority=60 ]] },
     { name = "buffer",
+      --[[ priority=20, ]]
       option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, },
       max_item_count=4,
-      priority=20,
     },
-    { name = 'cmp_tabnine' ,  priority=10, },
+    { name = 'cmp_tabnine' ,  --[[ priority=10, ]] },
   }),
 
   formatting = {
@@ -132,7 +132,7 @@ cmp.setup({
   },
 
   experimental = {
-    -- native_menu = false,
+    native_menu = false,
     -- ghost_text = true,
   },
 
