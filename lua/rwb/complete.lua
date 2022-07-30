@@ -341,7 +341,7 @@ local servers = {
     root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
   },
   -- texlab = {},
-  -- tflint = {},
+  tflint = {},
   -- theme_check = {},
   -- tilt_ls = {},
   -- tsserver = {},
