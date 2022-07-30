@@ -70,6 +70,7 @@
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'
+    Plug 'ray-x/lsp_signature.nvim'
 
     Plug 'L3MON4D3/LuaSnip'
 
