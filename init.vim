@@ -19,7 +19,7 @@
 
     call plug#begin('~/.config/vim/plugged')
 
-    """"""""""""""""""""""""""""""""""""""""""""""""
+    """""""""""""""""""""""""""""""""""""""""""""
     "      ____   __               _               "
     "     / __ \ / /__  __ ____ _ (_)____   _____  "
     "    / /_/ // // / / // __ `// // __ \ / ___/  "
@@ -33,6 +33,9 @@
 
     " Make plugin commands repeatable "
     Plug 'tpope/vim-repeat'
+    " Dep
+    Plug 'nvim-lua/plenary.nvim'
+
 
     " More actions "
     Plug 'tpope/vim-surround'              " (s)       To surround
@@ -67,6 +70,14 @@
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'saadparwaiz1/cmp_luasnip'
+
+    Plug 'uga-rosa/cmp-dictionary'
+    Plug 'hrsh7th/cmp-calc'
+    Plug 'f3fora/cmp-spell'
+
+    Plug 'petertriho/cmp-git'
+    Plug 'davidsierradz/cmp-conventionalcommits'
+    Plug 'Dosx001/cmp-commit'
 
     Plug 'neovim/nvim-lspconfig'
     Plug 'williamboman/nvim-lsp-installer'

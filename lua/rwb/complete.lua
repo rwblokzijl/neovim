@@ -113,6 +113,10 @@ cmp.setup({
       max_item_count=4,
     },
     { name = 'cmp_tabnine' ,  --[[ priority=10, ]] },
+    { name = "git" },
+    { name = "dictionary", keyword_length = 2 },
+    { name = 'calc' },
+    { name = 'spell' },
   }),
 
   formatting = {
@@ -127,6 +131,10 @@ cmp.setup({
         luasnip = "[lsnip]",
         -- gh_issues = "[issues]",
         cmp_tabnine = "[TabNine]",
+        git = "[git]",
+        dictionary = "[dict]",
+        calc = "[calc]",
+        spell = "[spell]",
       },
     }),
   },
@@ -138,12 +146,45 @@ cmp.setup({
 
 })
 
+-- vim.opt.spell = true
+-- vim.opt.spelllang = { 'en_us' }
+--
+require("cmp_dictionary").setup({
+  dic = {
+    ["*"] = { "/usr/share/dict/words" },
+    ["lua"] = "path/to/lua.dic",
+    ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+    filename = {
+      ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+    },
+    filepath = {
+      ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+    },
+    spelllang = {
+      en = "path/to/english.dic",
+    },
+  },
+  -- The following are default values.
+  exact = 2,
+  first_case_insensitive = false,
+  document = false,
+  document_command = "wn %s -over",
+  async = false,
+  capacity = 5,
+  debug = false,
+})
+
+-- https://github.com/petertriho/cmp-git
+require("cmp_git").setup()
+
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-  }, {
-      { name = 'buffer' },
+    { name = 'cmp_git' }, -- ?? it should be one of these, not both
+    { name = 'git' },   -- ?? it should be one of these, not both
+    { name = 'conventionalcommits' },
+    { name = 'buffer' },
+    { name = 'commit' },
     })
 })
 
@@ -159,10 +200,20 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-      { name = 'cmdline' }
+    { name = 'path' },
+    { name = 'cmdline' },
     })
+})
+
+require('cmp_commit').setup({
+  -- set = true,
+  -- format = { "<<= ", " =>>" },
+  length = 9,
+  block = { "__pycache__", "CMakeFiles", "node_modules", "target" },
+  -- word_list = "~/cmpcommit.json",
+  repo_list =  {
+    -- { "Name of repo", "PATH/TO/FILE.json" }
+  }
 })
 
 local tabnine = require('cmp_tabnine.config')
