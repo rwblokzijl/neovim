@@ -54,6 +54,28 @@ function fileName()
   return vim.fn.expand('%'):match("([^/]+)$") or ""
 end
 
+local cowsay = function(args)
+  local comment_string = "#%s"
+  -- local comment_string = vim.bo.commentstring:gsub(" ", "")
+  local text = (args[1] or {})[1] or fileParent() or "Banner"
+  local text_len = vim.bo.textwidth ~= 0 and vim.bo.textwidth  or 80
+  local comment_len = string.len(comment_string)-2
+  local handle = io.popen("cowsay " .. text)
+  if handle == nil then return "..." end
+  local result = handle:read("*a")
+  handle:close()
+  local lines = {}
+  table.insert(lines, commentLine())
+  for line in result:gmatch("[^\r\n]+") do
+    if(line ~= nil)
+    then
+      table.insert(lines, string.format(comment_string, line):match(".*%S") or "")
+      -- lines:insert(string.format(comment_string, line):match(".*%S") or "")
+    end
+  end
+  table.insert(lines, commentLine())
+  return lines
+end
 
 local figlet = function(args)
   local comment_string = "#%s"
@@ -98,17 +120,6 @@ ls.add_snippets("all", {
   snippet({
     trig="bannerc",
     dscr="Banner with custom text",
-    -- docstring = -- workaround for preview not working (https://github.com/L3MON4D3/LuaSnip/issues/491) -- got fixed very fast
-    --   "#########################################\n"..
-    --   "#     ____\n"..
-    --   "#    / __ )____ _____  ____  ___  _____\n"..
-    --   "#   / __  / __ `/ __ \\/ __ \\/ _ \\/ ___/\n"..
-    --   "#  / /_/ / /_/ / / / / / / /  __/ /\n"..
-    --   "# /_____/\\__,_/_/ /_/_/ /_/\\___/_/\n"..
-    --   "#\n"..
-    --   "#########################################\n"..
-    --   "# filename.ext\n"..
-    --   "#########################################\n"
   }, dyn(1, function ()
       return sn("", fmt(
         "{}\n" ..
@@ -119,6 +130,25 @@ ls.add_snippets("all", {
         ,
         {
           fun(figlet, {1}), -- banner
+          fun(comment), fun(fileName), -- filename
+          fun(commentLine), -- line
+          fun(comment), ins(1, fileParent()or"Banner"), -- input
+        }
+      ))
+    end)),
+  snippet({
+    trig="cowsay",
+    dscr="It's cowsay...",
+  }, dyn(1, function ()
+      return sn("", fmt(
+        "{}\n" ..
+        "{} {}\n" ..
+        "{}\n" ..
+        "{} Banner text: {}\n" ..
+        "\n"
+        ,
+        {
+          fun(cowsay, {1}), -- banner
           fun(comment), fun(fileName), -- filename
           fun(commentLine), -- line
           fun(comment), ins(1, fileParent()or"Banner"), -- input

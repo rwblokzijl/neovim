@@ -129,7 +129,6 @@ cmp.setup({
         nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[lsnip]",
-        -- gh_issues = "[issues]",
         cmp_tabnine = "[TabNine]",
         git = "[git]",
         dictionary = "[dict]",
@@ -175,13 +174,14 @@ require("cmp_dictionary").setup({
 })
 
 -- https://github.com/petertriho/cmp-git
-require("cmp_git").setup()
+require("cmp_git").setup({
+  filetypes = { "*" },
+})
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {
   sources = cmp.config.sources({
-    { name = 'cmp_git' }, -- ?? it should be one of these, not both
-    { name = 'git' },   -- ?? it should be one of these, not both
+    { name = 'git' },
     { name = 'conventionalcommits' },
     { name = 'buffer' },
     { name = 'commit' },
@@ -384,13 +384,27 @@ local servers = {
   -- tailwindcss = {},
   -- taplo = {},
   -- teal_ls = {},
-  terraform_lsp = {
-    root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
-  },
+
+  -- terraform_lsp = {
+  --   -- Review:
+  --   --   - When using a module shows ALL input variables (not just the unfilled ones)
+  --   --   - Only when typing only 'local.' shows all local.* options (could be better)
+  --   --   - Autocompleted in modules also
+  --   -- root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
+  --   -- root_dir = lspconfig.util.root_pattern('backend.tf')
+  -- },
+
   terraformls = {
+    -- Review:
+    --   - When using a module shows just the unfilled variables (better)
+    --   - Seems to have a slight startup delay
+    --   - When typing only 'l' shows all local.* options (nice)
+    --   - Inside a module does work at all recognize 'var.'
     -- :h lspconfig-root-detection
-    root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
+    -- root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.')
+    -- root_dir = lspconfig.util.root_pattern('backend.tf')
   },
+
   -- texlab = {},
   tflint = {},
   -- theme_check = {},
