@@ -384,9 +384,9 @@ local servers = {
   -- tailwindcss = {},
   -- taplo = {},
   -- teal_ls = {},
-  -- terraform_lsp = {
-  --   root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
-  -- },
+  terraform_lsp = {
+    root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
+  },
   terraformls = {
     -- :h lspconfig-root-detection
     root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.git')
