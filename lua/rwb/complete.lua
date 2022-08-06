@@ -373,6 +373,9 @@ local servers = {
   -- stylelint_lsp = {},
   sumneko_lua = {
     Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
       diagnostics = {
         globals = { 'vim' }
       }
