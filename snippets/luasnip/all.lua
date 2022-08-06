@@ -203,6 +203,7 @@ ls.add_snippets("all", {
         "{} Eyes: {}\n" ..
         "{} Animal: {}\n" ..
         "{} Banner text: {}\n" ..
+        "\n" ..
         "{}\n" ..
         "{}\n" ..
         "\n"
