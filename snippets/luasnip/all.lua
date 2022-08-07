@@ -220,4 +220,5 @@ ls.add_snippets("all", {
     end))
 })
 
--- print(vim.inspect(cowsay_animals()))
+-- vim.keymap.set("n", "<c-space>", "<cmd>lua require('lua/rwb/utils').TestFunc()<CR>")
+-- vim.keymap.set("n", "<c-space>", "<cmd>lua print(require('lua/rwb/utils'))<CR>")

@@ -80,7 +80,8 @@
     Plug 'Dosx001/cmp-commit'
 
     Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'ray-x/lsp_signature.nvim'
 
     Plug 'L3MON4D3/LuaSnip'
@@ -867,6 +868,7 @@
 
     " Lua "
         autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType lua setlocal foldnestmax=1
 
     " Cuda "
         autocmd FileType cuda setlocal ts=8 sts=8 sw=8 noexpandtab

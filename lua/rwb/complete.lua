@@ -1,40 +1,7 @@
--- local cmp_status_ok, cmp = pcall(require, "cmp")
--- local snip_status_ok, luasnip = pcall(require, "luasnip")
--- if not (cmp_status_ok and snip_status_ok) then return end
 local cmp = require'cmp'
-local luasnip = require'luasnip'
-local lsp_installer = require'nvim-lsp-installer'
 
 local lspkind = require('lspkind')
 lspkind.init()
-
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = "",
-  Property = "ﰠ",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "",
-  Event = "",
-  Operator = "",
-  TypeParameter = ""
-}
 
 cmp.setup({
   preselect = cmp.PreselectMode.None,
@@ -124,24 +91,24 @@ cmp.setup({
       with_text = true,
       mode = 'symbol_text',
       menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        luasnip = "[lsnip]",
-        cmp_tabnine = "[TabNine]",
-        git = "[git]",
-        dictionary = "[dict]",
-        calc = "[calc]",
-        spell = "[spell]",
+        buffer      = "[buf]",
+        nvim_lsp    = "[LSP]",
+        nvim_lua    = "[api]",
+        path        = "[path]",
+        luasnip     = "[snip]",
+        cmp_tabnine = "[TN]",
+        git         = "[git]",
+        dictionary  = "[dict]",
+        calc        = "[calc]",
+        spell       = "[spell]",
       },
     }),
   },
 
-  experimental = {
-    native_menu = false,
-    -- ghost_text = true,
-  },
+  -- experimental = {
+  --   native_menu = false,
+  --   -- ghost_text = true,
+  -- },
 
 })
 
@@ -428,8 +395,30 @@ local servers = {
   -- zls = {},
 }
 
-lsp_installer.setup({
-  ensure_installed = servers,
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+require("mason-lspconfig").setup({
+  -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
+  -- This setting has no relation with the `automatic_installation` setting.
+
+  ensure_installed = { }, -- installation is done automagically
+
+  -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+  -- This setting has no relation with the `ensure_installed` setting.
+  -- Can either be:
+  --   - false: Servers are not automatically installed.
+  --   - true: All servers set up via lspconfig are automatically installed.
+  --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+  --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+  automatic_installation = true,
 })
 
 for lsp, settings in pairs(servers) do
