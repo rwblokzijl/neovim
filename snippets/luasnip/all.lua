@@ -210,7 +210,7 @@ ls.add_snippets("all", {
         ,
         {
           fun(comment), cho(1, {txt("cowsay"), txt("cowthink")}), -- input
-          fun(comment), cho(2, {txt(""), txt("-d"), txt("-b"), txt("-d"), txt("-g"), txt("-p"), txt("-s"), txt("-t"), txt("-w"), txt("-y")}), -- input
+          fun(comment), cho(2, {txt(""), txt("-d"), txt("-b"), txt("-g"), txt("-p"), txt("-s"), txt("-t"), txt("-w"), txt("-y")}), -- input
           fun(comment), cho(3, cowsay_animal_choice_nodes()), -- input
           fun(comment), ins(4, fileParent()or"Cowsay!!"), -- input
           fun(cowsay, {4, 3, 2, 1}), -- banner
