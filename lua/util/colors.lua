@@ -35,6 +35,18 @@ local colors = {
   WhiteBold  = "GruvboxFg1",
 }
 
+local custom_colors = {
+  GruvboxRed     = "#d75f5f",
+  -- GruvboxRedBold = "#CC5555",
+  -- GruvboxRedSign = "#CC5555",
+}
+
+for color_name, color_value in pairs(custom_colors) do
+  local color = vim.api.nvim_get_hl_by_name(color_name, true)
+  color.foreground = color_value
+  vim.api.nvim_set_hl(0, color_name, color)
+end
+
 local rev = {}
 for name, group in pairs(colors) do
   local color = vim.api.nvim_get_hl_by_name(group, true)
