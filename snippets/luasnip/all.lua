@@ -16,7 +16,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 -- local lambda = require("luasnip.extras").l
 -- local postfix = require("luasnip.extras.postfix").postfix
 --
-function map(tbl, f)
+local map = function(tbl, f)
   local t = {}
   for k,v in pairs(tbl) do
     t[k] = f(v)
@@ -24,22 +24,17 @@ function map(tbl, f)
   return t
 end
 
-string.lpad = function(str, len, char)
-  if char == nil then char = ' ' end
-  return str .. string.rep(char, len - #str)
-end
-
-function getLastCharFromString(str)
+local getLastCharFromString = function(str)
   return string.sub(str,string.len(str)) or false
 end
 
-function comment()
+local comment = function()
   local comment_string = "#%s"
   -- local comment_string = vim.bo.commentstring:gsub(" ", "")
   return string.format(comment_string, "")
 end
 
-function commentLine()
+local commentLine = function()
   local comment_string = "#%s"
   -- local comment_string = vim.bo.commentstring:gsub(" ", "")
   local text_len = vim.bo.textwidth ~= 0 and vim.bo.textwidth  or 80
@@ -50,7 +45,7 @@ function commentLine()
   return comment_line
 end
 
-function fileParent()
+local fileParent = function()
   local file_path = vim.fn.expand('%:p')
   if file_path == "" then
     return nil
@@ -63,29 +58,29 @@ function fileParent()
   )
 end
 
-function fileName()
+local fileName = function()
   return vim.fn.expand('%'):match("([^/]+)$") or ""
 end
 
-function center_text(lines)
+local center_text = function(lines)
   local comment_string = "#%s"
   -- local comment_string = vim.bo.commentstring:gsub(" ", "")
   local lines_len = math.max(unpack(map(lines, function(line) return line:len() end)))
   local text_len = vim.bo.textwidth ~= 0 and vim.bo.textwidth  or 80
   local comment_len = string.len(comment_string)-2
   local out = {}
-  for i, line in ipairs(lines) do
+  for _, line in ipairs(lines) do
     -- table.insert(out, line:lpad(5, " "))
     table.insert(out, string.rep(" ", (text_len-lines_len-comment_len)/2) .. line)
   end
   return out
 end
 
-function comment_lines(lines)
+local comment_lines = function(lines)
   local comment_string = "#%s"
   -- local comment_string = vim.bo.commentstring:gsub(" ", "")
   local out = {}
-  for i, line in ipairs(lines) do
+  for _, line in ipairs(lines) do
     table.insert(out, string.format(comment_string, line))
   end
   return out
@@ -150,8 +145,8 @@ end
 local cowsay_animal_choice_nodes = function ()
   local out = {}
   table.insert(out, txt("default"))
-  for i, animal in ipairs(cowsay_animals()) do
-    if(line ~= "default") then
+  for _, animal in ipairs(cowsay_animals()) do
+    if(animal ~= "default") then
       table.insert(out, txt(animal))
     end
   end
@@ -217,7 +212,8 @@ ls.add_snippets("all", {
           fun(commentLine), -- line
         }
       ))
-    end))
+    end)),
+  -- snippet( "now" , {fun(function () return "date" end)}),
 })
 
 -- vim.keymap.set("n", "<c-space>", "<cmd>lua require('lua/rwb/utils').TestFunc()<CR>")

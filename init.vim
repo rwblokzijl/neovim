@@ -56,10 +56,6 @@
     Plug 'kana/vim-textobj-line'              " (l)       Line
     Plug 'kana/vim-textobj-entire'            " (e)       Entire file
 
-    " Movement aids "
-    Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
-    Plug 'easymotion/vim-easymotion'        " TODO: Figure out later
-
     " Language Server Stuff "
     Plug 'onsails/lspkind-nvim'
     Plug 'hrsh7th/nvim-cmp'
@@ -84,25 +80,19 @@
     Plug 'williamboman/mason-lspconfig.nvim'
     Plug 'ray-x/lsp_signature.nvim'
 
+    " Snips
     Plug 'L3MON4D3/LuaSnip'
-
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'nvim-treesitter/playground'
-
-    " autocompletion"
-    Plug 'vim-scripts/loremipsum'
-
     Plug 'honza/vim-snippets'
     Plug 'rafamadriz/friendly-snippets'
     Plug 'hashivim/vim-terraform'
     Plug 'juliosueiras/vim-terraform-completion'
 
-    " Specific programmin language plugins
-    Plug 'posva/vim-vue'
-    Plug 'leafOfTree/vim-vue-plugin'
+    " treesitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'nvim-treesitter/playground'
 
-    " Programming tools "
+    " " Programming tools "
     Plug 'vim-test/vim-test'
 
     " UI Extentions "
@@ -116,81 +106,99 @@
     Plug 'tpope/vim-dispatch'
     Plug 'tpope/vim-projectionist'
 
-    Plug 'xolox/vim-misc'
+    " Plug 'xolox/vim-misc'
     Plug 'Raimondi/delimitMate'
     Plug 'kien/rainbow_parentheses.vim'
 
-    Plug 'thosakwe/vim-flutter'
-    Plug 'dart-lang/dart-vim-plugin'
-    Plug 'natebosch/vim-lsc'
-    Plug 'natebosch/vim-lsc-dart'
+    " Status line
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'tiagovla/scope.nvim'
+    Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
-    Plug 'szw/vim-maximizer'
-    Plug 'sbdchd/neoformat'
-    Plug 'kassio/neoterm'
+    Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'kyazdani42/nvim-web-devicons'
 
-    " OpenHAB
-    Plug 'cyberkov/openhab-vim'
+    " TODO: 2022-08-21 now Delete later if i didn't miss them
 
-    " Android "
-    Plug 'hsanson/vim-android'
+    " Movement aids "
+    " Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
+    " Plug 'easymotion/vim-easymotion'
 
-    " ----- Syntax plugins ------------------------------------------------"
-    Plug 'jez/vim-c0'
-    Plug 'jez/vim-ispc'
-    Plug 'kchmck/vim-coffee-script'
+    " autocompletion"
+    " Plug 'vim-scripts/loremipsum'
+
+    " " Specific programmin language plugins
+    " Plug 'posva/vim-vue'
+    " Plug 'leafOfTree/vim-vue-plugin'
+
+    " Plug 'thosakwe/vim-flutter'
+    " Plug 'dart-lang/dart-vim-plugin'
+    " Plug 'natebosch/vim-lsc'
+    " Plug 'natebosch/vim-lsc-dart'
+
+    " Plug 'szw/vim-maximizer'
+    " Plug 'sbdchd/neoformat'
+    " Plug 'kassio/neoterm'
+
+    " " OpenHAB
+    " Plug 'cyberkov/openhab-vim'
+
+    " " Android "
+    " Plug 'hsanson/vim-android'
+
+    " " ----- Syntax plugins ------------------------------------------------"
+    " Plug 'jez/vim-c0'
+    " Plug 'jez/vim-ispc'
+    " Plug 'kchmck/vim-coffee-script'
 
     "Python
 
     " lists
-    Plug 'dkarter/bullets.vim'
+    " Plug 'dkarter/bullets.vim'
 
     " folding
-    Plug 'Konfekt/FastFold'
-    Plug 'tmhedberg/SimpylFold'
+    " Plug 'Konfekt/FastFold'
+    " Plug 'tmhedberg/SimpylFold'
 
-    " Airline "
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " " HTML "
+    " Plug 'mattn/emmet-vim'
 
-    " HTML "
-    Plug 'mattn/emmet-vim'
+    " " Java "
+    " "Plugin 'dansomething/vim-eclim'
+    " Plug 'Shougo/unite.vim'
 
-    " Java "
-    "Plugin 'dansomething/vim-eclim'
-    Plug 'Shougo/unite.vim'
-
-    " Scala "
-    Plug 'derekwyatt/vim-scala'
-    Plug 'jceb/vim-hier'
+    " " Scala "
+    " Plug 'derekwyatt/vim-scala'
+    " Plug 'jceb/vim-hier'
 
     " Markdown "
-    Plug 'vim-pandoc/vim-pandoc'
-    Plug 'vim-pandoc/vim-pandoc-syntax'
+    " Plug 'vim-pandoc/vim-pandoc'
+    " Plug 'vim-pandoc/vim-pandoc-syntax'
     " Align CSV files at commas, align Markdown tables, and more "
-    Plug 'godlygeek/tabular'
     " Plugin 'nelstrom/vim-markdown-folding'
     " Plugin 'plasticboy/vim-markdown'
     " Plugin 'drmingdrmer/vim-syntax-markdown'
     Plug 'dhruvasagar/vim-table-mode'
-    Plug 'rhysd/vim-grammarous'
+    " Plug 'godlygeek/tabular'
+    " Plug 'rhysd/vim-grammarous'
 
     " Latex "
-    Plug 'lervag/vimtex'
+    " Plug 'lervag/vimtex'
 
     " files"
-    Plug 'scrooloose/nerdtree'
-    " Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'kyazdani42/nvim-web-devicons'
+
+    " Plug 'scrooloose/nerdtree'
+    " " Plug 'jistr/vim-nerdtree-tabs'
+    " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    " Plug 'Xuyuanp/nerdtree-git-plugin'
+
+    " Plug 'ryanoasis/vim-devicons'
+
 
     " Git "
-    Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/gv.vim'
     Plug 'lewis6991/gitsigns.nvim'
-
     "
     Plug 'tpope/vim-unimpaired'
 
@@ -206,9 +214,9 @@
 
     " Ricing "
     " Plug 'flazz/vim-colorschemes'
-    Plug 'morhetz/gruvbox'
+    " Plug 'morhetz/gruvbox'
     " Plug 'luisiacc/gruvbox-baby'
-    " Plug 'ellisonleao/gruvbox.nvim'
+    Plug 'ellisonleao/gruvbox.nvim'
 
     "
     "My own stuff (remember to port)"
@@ -236,13 +244,7 @@
 """"
 " Lua config
 """"
-    lua require('rwb.complete') -- Autocompletion configuration
-
-    lua require('rwb.treesitter') -- Treesitter config
-    lua require('rwb.luasnip') -- Treesitter config
-
-    lua require('Comment').setup()
-    lua require('rwb.gitsigns')
+    lua require('new_init') -- Call all the lua
 
 """"
 " Vimscipt plugin configs
@@ -257,64 +259,6 @@
         au Syntax * RainbowParenthesesLoadRound
         au Syntax * RainbowParenthesesLoadSquare
         au Syntax * RainbowParenthesesLoadBraces
-
-    " scrooloose/nerdtree "
-        " nnoremap gn :NERDTreeTabsToggle<CR>
-        " nnoremap gn :NERDTreeToggle<CR>
-        nnoremap <expr> gn g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
-
-        let g:NERDTreeWinPos = "left"
-        let NERDTreeWinSize = 39
-        "autocmd vimenter * NERDTree
-        "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-        let g:NERDTreeDirArrowExpandable = '▸'
-        let g:NERDTreeDirArrowCollapsible = '▾'
-        let NERDTreeShowHidden=1
-        let NERDTreeShowBookmarks=1
-        let NERDTreeMinimalUI=1
-        let NERDTreeShowLineNumbers=1
-        function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
-            exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
-            exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-        endfunction
-        "let g:NERDTreeShowIgnoredStatus = 1
-        let g:NERDTreeGitStatusIndicatorMapCustom = {
-            \ "Modified"  : "●",
-            \ "Staged"    : "✚",
-            \ "Untracked" : "✭",
-            \ "Renamed"   : "➜",
-            \ "Unmerged"  : "═",
-            \ "Deleted"   : "✖",
-            \ "Dirty"     : "✗",
-            \ "Clean"     : "✔︎",
-            \ 'Ignored'   : '☒',
-            \ "Unknown"   : "?"
-            \ }
-        call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#151515')
-        call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#151515')
-        call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-        call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-        call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-        call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-        call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-        call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-        call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-        call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-        call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-        call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-        call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
-
-    " vim-airline "
-        let g:airline#extensions#tabline#enabled = 1
-        let g:airline_powerline_fonts = 1
-
-        if !exists('g:airline_symbols')
-            let g:airline_symbols = {}
-        endif
-
-        let g:airline_symbols.space = "\ua0"
-        let g:airline#extensions#hunks#non_zero_only = 1
-        let g:airline_theme='gruvbox'
 
     " Raimondi/delimitMate "
         let delimitMate_expand_cr = 1
@@ -417,9 +361,7 @@
                 \:normal j80"cP<CR>
 
 " colors
-    " set termguicolors " I dont like it, too offensive to the eyes
-    set background=dark
-    colorscheme gruvbox
+    set termguicolors " I dont like it, too offensive to the eyes
 
 " Some basics:
     " Spaces by default
@@ -437,8 +379,6 @@
     set showcmd
     set mouse=""
 
-
-    set background=dark
     set t_Co=256
     set laststatus=2
     "hi Normal guibg=NONE ctermbg=NONE
@@ -656,13 +596,13 @@
         au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
     " Tabs control
-        nnoremap <TAB> :tabn<cr>
-        nnoremap <S-TAB> :tabp<cr>
-        nnoremap <C-S-TAB> :-tabmove<cr>
-        nnoremap <C-TAB> :+tabmove<cr>
+        nnoremap <TAB> :tabn<cr>:BufferLineSortByTabs<cr>
+        nnoremap <S-TAB> :tabp<cr>:BufferLineSortByTabs<cr>
+        nnoremap <C-S-TAB> :-tabmove<cr>:BufferLineSortByTabs<cr>
+        nnoremap <C-TAB> :+tabmove<cr>:BufferLineSortByTabs<cr>
 
-        nnoremap gt :tabnew<cr>
-        nnoremap gT :-1tabnew<cr>
+        nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
+        nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
         cnoreabbrev qq tabclose
 
     "Turn off arrow keys
@@ -1085,4 +1025,3 @@
     highlight! link CmpItemKindSnippet GruvboxPurple
 
     highlight! link GitSignsCurrentLineBlame GruvboxBg4
-

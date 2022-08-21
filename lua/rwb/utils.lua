@@ -1,12 +1,15 @@
-local ls = require"luasnip"
-
-TestFunc = function ()
-  ls.snip_expand(
-    ls.parser.parse_snippet("expand", "-- This is what was expanded.")
-  )
-end
-
 return {
-  TestFunc = TestFunc
+  fileParent = function(file_path)
+    if file_path == "" then
+      return nil
+    end
+    return (
+      file_path
+      :match(".*/([^/]+)/[^/]+$")
+      :gsub("_", " ")
+      :gsub("^%l", string.upper)
+    )
+  end
+
 }
 
