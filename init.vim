@@ -118,8 +118,26 @@
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'kyazdani42/nvim-web-devicons'
 
+    " Git "
+    Plug 'tpope/vim-fugitive'
+    Plug 'junegunn/gv.vim'
+    Plug 'lewis6991/gitsigns.nvim'
+    "
+    Plug 'tpope/vim-unimpaired'
+
+    " OPther
+    Plug 'tpope/vim-commentary'
+    " Plug 'suy/vim-context-commentstring'
+    " Plug 'numToStr/Comment.nvim'
+
+    Plug 'vitalk/vim-simple-todo'
+    Plug 'ellisonleao/gruvbox.nvim'
+
+    Plug 'dhruvasagar/vim-table-mode'
+
     " TODO: 2022-08-21 now Delete later if i didn't miss them
 
+    " Plug 'Chiel92/vim-autoformat'
     " Movement aids "
     " Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
     " Plug 'easymotion/vim-easymotion'
@@ -178,7 +196,6 @@
     " Plugin 'nelstrom/vim-markdown-folding'
     " Plugin 'plasticboy/vim-markdown'
     " Plugin 'drmingdrmer/vim-syntax-markdown'
-    Plug 'dhruvasagar/vim-table-mode'
     " Plug 'godlygeek/tabular'
     " Plug 'rhysd/vim-grammarous'
 
@@ -195,47 +212,32 @@
     " Plug 'ryanoasis/vim-devicons'
 
 
-    " Git "
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/gv.vim'
-    Plug 'lewis6991/gitsigns.nvim'
-    "
-    Plug 'tpope/vim-unimpaired'
-
-    " Formatting"
-    " Plug 'vim-syntastic/syntastic'
-    Plug 'Chiel92/vim-autoformat'
-    " Plug 'tpope/vim-commentary'
-    Plug 'suy/vim-context-commentstring'
-    Plug 'numToStr/Comment.nvim'
-
     " To do list "
-    Plug 'vitalk/vim-simple-todo'
 
     " Ricing "
     " Plug 'flazz/vim-colorschemes'
     " Plug 'morhetz/gruvbox'
     " Plug 'luisiacc/gruvbox-baby'
-    Plug 'ellisonleao/gruvbox.nvim'
 
     "
     "My own stuff (remember to port)"
-    Plug 'tmhedberg/matchit'
-    Plug 'sickill/vim-pasta'
+    " Plug 'tmhedberg/matchit'
+    " Plug 'sickill/vim-pasta'
     " Plug 'ervandew/supertab'
-    Plug 'vim-scripts/ZoomWin'
+    " Plug 'vim-scripts/ZoomWin'
 
     " ---- Extras/Advanced plugins ---------------------------------------- "
     " Highlight and strip trailing whitespace "
-    Plug 'ntpeters/vim-better-whitespace'
+    " Plug 'ntpeters/vim-better-whitespace'
     " Automaticall insert the closing HTML tag "
     "Plugin 'HTML-AutoCloseTag'
     " All the other syntax plugins I use "
-    Plug 'ekalinin/Dockerfile.vim'
-    Plug 'digitaltoad/vim-jade'
-    Plug 'tpope/vim-liquid'
-    Plug 'cakebaker/scss-syntax.vim'
-    " All of your Plugins must be added before the following line "
+    " Plug 'ekalinin/Dockerfile.vim'
+    " Plug 'digitaltoad/vim-jade'
+    " Plug 'tpope/vim-liquid'
+    " Plug 'cakebaker/scss-syntax.vim'
+
+    Plug 'dstein64/vim-startuptime'
 
     " call vundle#end()            " required
     call plug#end()
@@ -275,12 +277,12 @@
 " Keybinds "
 """"
 
-    nmap gcic gcac
+    nmap gcac gcic
 
-    vnoremap  aL <Plug>(textobj-line-a
-    vnoremap  iL <Plug>(textobj-line-i
-    onoremap  aL <Plug>(textobj-line-a
-    onoremap  iL <Plug>(textobj-line-i
+    vnoremap  aL <Plug>(textobj-line-a)
+    vnoremap  iL <Plug>(textobj-line-i)
+    onoremap  aL <Plug>(textobj-line-a)
+    onoremap  iL <Plug>(textobj-line-i)
 
     " Leader "
         let mapleader=","
