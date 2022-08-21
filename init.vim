@@ -431,6 +431,7 @@
     set confirm
     set nobackup
     set nowritebackup
+    set nowrap
 
     set completeopt=menu,menuone,noinsert,noselect,preview
     set cmdheight=2 " Give more space for displaying messages.
