@@ -36,9 +36,9 @@ local colors = {
 }
 
 local custom_colors = {
-  GruvboxRed     = "#d75f5f",
-  -- GruvboxRedBold = "#CC5555",
-  -- GruvboxRedSign = "#CC5555",
+  -- GruvboxRed     = "#d75f5f",
+  -- GruvboxRedBold = "#d75f5f",
+  -- GruvboxRedSign = "#d75f5f",
 }
 
 for color_name, color_value in pairs(custom_colors) do
