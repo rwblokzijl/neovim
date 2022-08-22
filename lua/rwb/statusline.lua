@@ -1,6 +1,4 @@
 local colors = require("util.colors")
-local utils = require("rwb.utils")
-
 
 require('lualine').setup {
   options = {
@@ -43,16 +41,14 @@ require('lualine').setup {
   extensions = {}
 }
 
-local print = function (x)
-  print(vim.inspect(x))
-end
+-- local inspect = function (x)
+--   print(vim.inspect(x))
+-- end
 
 local red = {
   fg = "#ff0000",
   bg = "#00ff00",
 }
-
--- vim.go.modified(1)
 
 require("scope").setup()
 require("bufferline").setup {
@@ -73,7 +69,10 @@ require("bufferline").setup {
     end,
     -- separator_style = {"right_of_active", "right_of_inactive"} --     
     separator_style = {"", ""},
-    indicator_icon = "", -- Effectively the left seperator for the active tab
+    indicator = {
+      style = icon,
+      icon = "", -- Effectively the left seperator for the active tab
+    },
     left_trunc_marker = '',
     right_trunc_marker = '',
 
@@ -86,9 +85,11 @@ require("bufferline").setup {
     close_icon = 'CLOSE',
     show_close_icon = false,
     -- show_buffer_close_icons = false,
-    tab_size = 25,
+    tab_size = 20,
     name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-      local windows = vim.fn.gettabinfo(buf.tabnr)[1].windows
+      local tabinfo = vim.fn.gettabinfo(buf.tabnr)
+      if next(tabinfo) == nil then return end
+      local windows = tabinfo[1].windows
       local bufs = {}
       for _, window in ipairs(windows) do
         local buf_nr = vim.fn.winbufnr(window)
@@ -103,17 +104,18 @@ require("bufferline").setup {
       end
       local name = buf.name
       for _, buf_info in ipairs(bufs) do
-        -- if buf_info.name:find("/NvimTree_%d*$") then
-        --   print(buf_info.name)
-        --   continue
-        -- end
-        if buf_info.name:startswith("term://") then
-          return
+        if buf_info.name:match(".*NvimTree_%d*$") then -- Dont change name for nvimtree
+          goto continue
+        end
+        if buf_info.name:startswith("term://") then -- Dont change name for fzf
+          goto continue
         end
         if buf_info.name:match('%.tf') then
           name = buf_info.name:path_parent()
           break
         end
+        name = buf_info.name:basename()
+        ::continue::
       end
       return name .. (modified and ' [+]' or '')
     end,
@@ -194,11 +196,3 @@ require("bufferline").setup {
     -- pick                        = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, }
   }
 }
-    -- print(vim.inspect(colors.getColorComponents("")))
-    -- print(vim.inspect( colors.getColorComponents("GruvboxPurpleSign")))
-
--- local h = {
-
-
--- }
-
