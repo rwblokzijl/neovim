@@ -70,7 +70,7 @@ require("bufferline").setup {
     -- separator_style = {"right_of_active", "right_of_inactive"} --     
     separator_style = {"", ""},
     indicator = {
-      style = icon,
+      -- style = "icon",
       icon = "", -- Effectively the left seperator for the active tab
     },
     left_trunc_marker = '',
@@ -157,42 +157,46 @@ require("bufferline").setup {
     buffer_visible        = red,
     buffer_selected       = colors.getColorComponents("lualine_a_normal"),
 
-    tab                   = red,
-    tab_selected          = red,
-    tab_close             = red,
-
     -- diagnostic                  =
     -- diagnostic_visible          = red,
     -- diagnostic_selected         =
-    hint                        = colors.getCombinedColors("DiagnosticHint", "lualine_b_normal"),
+
+    hint                        = colors.getColorComponents("lualine_b_normal"),
     hint_visible                = red,
     hint_selected               = colors.getColorComponents("lualine_a_normal"),
     hint_diagnostic             = colors.getCombinedColors("DiagnosticHint", "lualine_b_normal"),
     hint_diagnostic_visible     = red,
     hint_diagnostic_selected    = colors.getColorComponents("lualine_a_normal"),
-    info                        = colors.getCombinedColors("DiagnosticInfo", "lualine_b_normal"),
+    info                        = colors.getColorComponents("lualine_b_normal"),
     info_visible                = red,
     info_selected               = colors.getColorComponents("lualine_a_normal"),
     info_diagnostic             = colors.getCombinedColors("DiagnosticInfo", "lualine_b_normal"),
     info_diagnostic_visible     = red,
     info_diagnostic_selected    = colors.getColorComponents("lualine_a_normal"),
-    warning                     = colors.getCombinedColors("DiagnosticWarn", "lualine_b_normal"),
+    warning                     = colors.getColorComponents("lualine_b_normal"),
     warning_visible             = red,
     warning_selected            = colors.getColorComponents("lualine_a_normal"),
     warning_diagnostic          = colors.getCombinedColors("DiagnosticWarn", "lualine_b_normal"),
     warning_diagnostic_visible  = red,
     warning_diagnostic_selected = colors.getColorComponents("lualine_a_normal"),
-    error                       = colors.getCombinedColors("DiagnosticError", "lualine_b_normal"),
+    error                       = colors.getColorComponents("lualine_b_normal"),
     error_visible               = red,
     error_selected              = colors.getColorComponents("lualine_a_normal"),
     error_diagnostic            = colors.getCombinedColors("DiagnosticError", "lualine_b_normal"),
     error_diagnostic_visible    = red,
     error_diagnostic_selected   = colors.getColorComponents("lualine_a_normal"),
-    duplicate_selected          = red,
-    duplicate_visible           = red,
+
+    tab                   = red,
+    tab_selected          = red,
+    tab_close             = red,
+
     duplicate                   = red,
-    -- pick_selected               = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, },
-    -- pick_visible                = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, },
-    -- pick                        = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, }
+    duplicate_visible           = red,
+    duplicate_selected          = red,
+
+    pick                        = red,
+    pick_visible                = red,
+    pick_selected               = red,
+
   }
 }
