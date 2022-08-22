@@ -1,21 +1,22 @@
 local colors = {
-  Aqua       = "GruvboxAqua",
-  AquaBold   = "GruvboxAquaBold",
-  AquaSign   = "GruvboxAquaSign",
   Bg0        = "GruvboxBg0",
   Bg1        = "GruvboxBg1",
   Bg2        = "GruvboxBg2",
   Bg3        = "GruvboxBg3",
   Bg4        = "GruvboxBg4",
-  Blue       = "GruvboxBlue",
-  BlueBold   = "GruvboxBlueBold",
-  BlueSign   = "GruvboxBlueSign",
   Fg0        = "GruvboxFg0",
   Fg1        = "GruvboxFg1",
   Fg2        = "GruvboxFg2",
   Fg3        = "GruvboxFg3",
   Fg4        = "GruvboxFg4",
   Gray       = "GruvboxGray",
+
+  Aqua       = "GruvboxAqua",
+  AquaBold   = "GruvboxAquaBold",
+  AquaSign   = "GruvboxAquaSign",
+  Blue       = "GruvboxBlue",
+  BlueBold   = "GruvboxBlueBold",
+  BlueSign   = "GruvboxBlueSign",
   Green      = "GruvboxGreen",
   GreenBold  = "GruvboxGreenBold",
   GreenSign  = "GruvboxGreenSign",
@@ -36,15 +37,17 @@ local colors = {
 }
 
 local custom_colors = {
-  -- GruvboxRed     = "#d75f5f",
-  -- GruvboxRedBold = "#d75f5f",
-  -- GruvboxRedSign = "#d75f5f",
+  Red = "#d75f5f",
 }
 
-for color_name, color_value in pairs(custom_colors) do
-  local color = vim.api.nvim_get_hl_by_name(color_name, true)
-  color.foreground = color_value
-  vim.api.nvim_set_hl(0, color_name, color)
+local color_prefix = "Gruvbox"
+for color_infix, color_value in pairs(custom_colors) do
+  for _, color_suffix in ipairs({"", "Bold", "Sign"}) do
+    local color_name = color_prefix..color_infix..color_suffix
+    local color = vim.api.nvim_get_hl_by_name(color_name, true)
+    color.foreground = color_value
+    vim.api.nvim_set_hl(0, color_name, color)
+  end
 end
 
 local rev = {}
@@ -63,16 +66,48 @@ local get_color = function(color, opts)
   return colors[color_name] or error("Color " .. color_name .. " not found.")
 end
 
-local get_color_components = function(color, opts)
-  return vim.api.nvim_get_hl_by_name(
-    get_color(color, opts),
+local get_transision_colors = function(from, to)
+  local from_color =  vim.api.nvim_get_hl_by_name(
+    from,
     true
   )
+  local to_color =  vim.api.nvim_get_hl_by_name(
+    to,
+    true
+  )
+  return {fg=from_color.background, bg=to_color.background}
+
 end
 
+local get_combined_colors = function(fg, bg)
+  local fg_color =  vim.api.nvim_get_hl_by_name(
+    fg,
+    true
+  )
+  local bg_color =  vim.api.nvim_get_hl_by_name(
+    bg,
+    true
+  )
+  return {fg=fg_color.foreground, bg=bg_color.background}
+
+end
+
+local get_color_components = function(color)
+  local ans =  vim.api.nvim_get_hl_by_name(
+    color,
+    true
+  )
+  return {
+    fg = ans.foreground,
+    bg = ans.background,
+    bold = ans.bold,
+  }
+end
 
 return {
   colors = colors,
   getColor = get_color,
   getColorComponents = get_color_components,
+  getTransisionColors = get_transision_colors,
+  getCombinedColors = get_combined_colors,
 }

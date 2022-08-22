@@ -1,82 +1,6 @@
 local colors = require("util.colors")
 local utils = require("rwb.utils")
 
-require("scope").setup()
-require("bufferline").setup{
-  options = {
-    mode = "tabs",
-    numbers = "ordinal",
-    diagnostics = "nvim_lsp",
-    diagnostics_update_in_insert = true,
-    -- -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-    diagnostics_indicator = function(count, level)
-      local icon = level:match("error") and " " or level:match("warning") and " " or ""
-      return icon .. count
-    end,
-    -- separator_style = {"", ""},
-    -- separator_style =  { '', ''},
-    -- separator_style = {'', ''},
-    separator_style = "thick",
-    -- separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
-
-    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-      if buf.path:startswith("term://") then
-        return
-      end
-      if buf.name:match('%.tf') then
-        return utils.fileParent(buf.path)
-      end
-    end,
-    -- max_name_length = 18,
-    -- max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-    -- tab_size = 18,
-    -- -- NOTE: this will be called a lot so don't do any heavy processing here
-    -- custom_filter = function(buf_number, buf_numbers)
-    --     -- filter out filetypes you don't want to see
-    --     if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-    --         return true
-    --     end
-    --     -- filter out by buffer name
-    --     if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-    --         return true
-    --     end
-    --     -- filter out based on arbitrary rules
-    --     -- e.g. filter out vim wiki buffer from tabline in your work repo
-    --     if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-    --         return true
-    --     end
-    --     -- filter out by it's index number in list (don't show first buffer)
-    --     if buf_numbers[1] ~= buf_number then
-    --         return true
-    --     end
-    -- end,
-    offsets = {{filetype = "NvimTree", text = "File Explorer" , text_align = "center"}},
-    -- color_icons = true | false, -- whether or not to add the filetype icon highlights
-    -- show_buffer_icons = true | false, -- disable filetype icons for buffers
-    show_buffer_close_icons = false,
-    -- show_buffer_default_icon = true | false, -- whether or not an unrecognised filetype should show a default icon
-    show_close_icon = false,
-    -- show_tab_indicators = true,
-    -- persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    -- -- can also be a table containing 2 custom separators
-    -- -- [focused and unfocused]. eg: { '|', '|' }
-    -- enforce_regular_tabs = false | true,
-    -- always_show_bufferline = true | false,
-    -- sort_by = 'tabs',
-    -- sort_by = 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
-    --     -- add custom logic
-    --     return buffer_a.modified > buffer_b.modified
-    -- end
-  },
-
-
-  -- :h bufferline-styling
-  highlights = {
-    modified = colors.getColorComponents("Blue", {bold=true, rev=false}),
-    modified_visible = colors.getColorComponents("Blue", {bold=true, rev=false}),
-    modified_selected = colors.getColorComponents("Blue", {bold=true, rev=false}),
-  }
-}
 
 require('lualine').setup {
   options = {
@@ -118,3 +42,163 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+local print = function (x)
+  print(vim.inspect(x))
+end
+
+local red = {
+  fg = "#ff0000",
+  bg = "#00ff00",
+}
+
+-- vim.go.modified(1)
+
+require("scope").setup()
+require("bufferline").setup {
+  options = {
+    mode = "tabs",
+    numbers = "ordinal",
+    diagnostics = "nvim_lsp",
+    diagnostics_update_in_insert = true,
+    -- -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+    diagnostics_indicator = function(count, level)
+      local icons = {
+        error   = " ",
+        warning = " ",
+        info    = " ",
+        hint    = "",
+      }
+      return icons[level] .. count
+    end,
+    -- separator_style = {"right_of_active", "right_of_inactive"} --     
+    separator_style = {"", ""},
+    indicator_icon = "", -- Effectively the left seperator for the active tab
+    left_trunc_marker = '',
+    right_trunc_marker = '',
+
+    -- modified_icon = '█',  buffer_close_icon = '█',
+    -- modified_icon = '█',  buffer_close_icon = '█',
+    -- modified_icon = '█',  buffer_close_icon = '█',
+    -- modified_icon = '█ ', buffer_close_icon = '█ ',
+    modified_icon = '█ ', buffer_close_icon = '█ ',
+    -- modified_icon = '█ ', buffer_close_icon = '█ ',
+    close_icon = 'CLOSE',
+    show_close_icon = false,
+    -- show_buffer_close_icons = false,
+    tab_size = 25,
+    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+      local windows = vim.fn.gettabinfo(buf.tabnr)[1].windows
+      local bufs = {}
+      for _, window in ipairs(windows) do
+        local buf_nr = vim.fn.winbufnr(window)
+        local buf_info = vim.fn.getbufinfo(buf_nr)[1]
+        table.insert(bufs, buf_info)
+      end
+      local modified = false
+      for _, buf_info in ipairs(bufs) do
+        if buf_info.changed == 1 then
+          modified = true
+        end
+      end
+      local name = buf.name
+      for _, buf_info in ipairs(bufs) do
+        -- if buf_info.name:find("/NvimTree_%d*$") then
+        --   print(buf_info.name)
+        --   continue
+        -- end
+        if buf_info.name:startswith("term://") then
+          return
+        end
+        if buf_info.name:match('%.tf') then
+          name = buf_info.name:path_parent()
+          break
+        end
+      end
+      return name .. (modified and ' [+]' or '')
+    end,
+    offsets = {
+      {filetype = "NvimTree", text = "0. פּ File Explorer" , text_align = "left", highlight="lualine_b_normal"},
+    },
+    -- color_icons = true | false, -- whether or not to add the filetype icon highlights
+    -- show_buffer_icons = true | false, -- disable filetype icons for buffers
+    -- show_buffer_default_icon = true | false, -- whether or not an unrecognised filetype should show a default icon
+    -- show_tab_indicators = true,
+    -- persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+    enforce_regular_tabs = true,
+    always_show_bufferline = true,
+  },
+
+  -- :h bufferline-styling
+  highlights = {
+    modified              = colors.getTransisionColors("lualine_b_normal", "lualine_c_inactive"),
+    modified_visible      = red,
+    modified_selected     = colors.getTransisionColors("lualine_a_normal", "lualine_c_inactive"),
+
+    close_button          = colors.getTransisionColors("lualine_b_normal", "lualine_c_inactive"),
+    close_button_visible  = red,
+    close_button_selected = colors.getTransisionColors("lualine_a_normal", "lualine_c_inactive"),
+
+    separator             = colors.getTransisionColors("lualine_c_inactive", "lualine_b_normal"),
+    separator_visible     = red,
+    separator_selected    = colors.getTransisionColors("lualine_a_normal", "lualine_c_inactive"),
+    indicator_selected    = colors.getTransisionColors("lualine_b_normal", "lualine_a_normal"),
+
+    numbers               = colors.getColorComponents("lualine_b_normal"),
+    numbers_visible       = red,
+    numbers_selected      = colors.getColorComponents("lualine_a_normal"),
+
+    background            = colors.getColorComponents("lualine_b_normal"),
+    fill                  = colors.getColorComponents("lualine_c_inactive"),
+
+    buffer                = red,
+    buffer_visible        = red,
+    buffer_selected       = colors.getColorComponents("lualine_a_normal"),
+
+    tab                   = red,
+    tab_selected          = red,
+    tab_close             = red,
+
+    -- diagnostic                  =
+    -- diagnostic_visible          = red,
+    -- diagnostic_selected         =
+    hint                        = colors.getCombinedColors("DiagnosticHint", "lualine_b_normal"),
+    hint_visible                = red,
+    hint_selected               = colors.getColorComponents("lualine_a_normal"),
+    hint_diagnostic             = colors.getCombinedColors("DiagnosticHint", "lualine_b_normal"),
+    hint_diagnostic_visible     = red,
+    hint_diagnostic_selected    = colors.getColorComponents("lualine_a_normal"),
+    info                        = colors.getCombinedColors("DiagnosticInfo", "lualine_b_normal"),
+    info_visible                = red,
+    info_selected               = colors.getColorComponents("lualine_a_normal"),
+    info_diagnostic             = colors.getCombinedColors("DiagnosticInfo", "lualine_b_normal"),
+    info_diagnostic_visible     = red,
+    info_diagnostic_selected    = colors.getColorComponents("lualine_a_normal"),
+    warning                     = colors.getCombinedColors("DiagnosticWarn", "lualine_b_normal"),
+    warning_visible             = red,
+    warning_selected            = colors.getColorComponents("lualine_a_normal"),
+    warning_diagnostic          = colors.getCombinedColors("DiagnosticWarn", "lualine_b_normal"),
+    warning_diagnostic_visible  = red,
+    warning_diagnostic_selected = colors.getColorComponents("lualine_a_normal"),
+    error                       = colors.getCombinedColors("DiagnosticError", "lualine_b_normal"),
+    error_visible               = red,
+    error_selected              = colors.getColorComponents("lualine_a_normal"),
+    error_diagnostic            = colors.getCombinedColors("DiagnosticError", "lualine_b_normal"),
+    error_diagnostic_visible    = red,
+    error_diagnostic_selected   = colors.getColorComponents("lualine_a_normal"),
+    duplicate_selected          = red,
+    duplicate_visible           = red,
+    duplicate                   = red,
+    -- pick_selected               = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, },
+    -- pick_visible                = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, },
+    -- pick                        = { fg = '<color-value-here>', bg = '<color-value-here>', bold = true, italic = true, }
+  }
+}
+    -- print(vim.inspect(colors.getColorComponents("")))
+    -- print(vim.inspect( colors.getColorComponents("GruvboxPurpleSign")))
+
+-- local h = {
+
+
+-- }
+
