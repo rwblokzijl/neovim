@@ -19,17 +19,7 @@ require("bufferline").setup{
     separator_style = "thick",
     -- separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
 
-    -- indicator_icon = '',
-    buffer_close_icon = '',
-    close_icon = '',
-    -- modified_icon = '[+]',
-    -- left_trunc_marker = '',
-    -- right_trunc_marker = '',
     name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-      -- print(buf.name)
-      -- if buf.path == nil then
-      --   return
-      -- end
       if buf.path:startswith("term://") then
         return
       end
@@ -63,15 +53,16 @@ require("bufferline").setup{
     offsets = {{filetype = "NvimTree", text = "File Explorer" , text_align = "center"}},
     -- color_icons = true | false, -- whether or not to add the filetype icon highlights
     -- show_buffer_icons = true | false, -- disable filetype icons for buffers
-    -- show_buffer_close_icons = true | false,
+    show_buffer_close_icons = false,
     -- show_buffer_default_icon = true | false, -- whether or not an unrecognised filetype should show a default icon
-    -- show_close_icon = true | false,
-    -- show_tab_indicators = true | false,
+    show_close_icon = false,
+    -- show_tab_indicators = true,
     -- persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
     -- -- can also be a table containing 2 custom separators
     -- -- [focused and unfocused]. eg: { '|', '|' }
     -- enforce_regular_tabs = false | true,
     -- always_show_bufferline = true | false,
+    -- sort_by = 'tabs',
     -- sort_by = 'insert_after_current' |'insert_at_end' | 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
     --     -- add custom logic
     --     return buffer_a.modified > buffer_b.modified

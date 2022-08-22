@@ -599,6 +599,7 @@
         au FileType markdown vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
     " Tabs control
+
         nnoremap <TAB> :tabn<cr>:BufferLineSortByTabs<cr>
         nnoremap <S-TAB> :tabp<cr>:BufferLineSortByTabs<cr>
         nnoremap <C-S-TAB> :-tabmove<cr>:BufferLineSortByTabs<cr>
@@ -606,6 +607,7 @@
 
         nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
         nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
+
         cnoreabbrev qq tabclose
 
     "Turn off arrow keys
