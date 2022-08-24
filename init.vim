@@ -125,7 +125,7 @@
     "
     Plug 'tpope/vim-unimpaired'
 
-    " OPther
+    " Comments
     Plug 'tpope/vim-commentary'
     " Plug 'suy/vim-context-commentstring'
     " Plug 'numToStr/Comment.nvim'
@@ -607,6 +607,19 @@
 
         nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
         nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
+
+        nnoremap 1gt 1gt:BufferLineSortByTabs<cr>
+        nnoremap 2gt 2gt:BufferLineSortByTabs<cr>
+        nnoremap 3gt 3gt:BufferLineSortByTabs<cr>
+        nnoremap 4gt 4gt:BufferLineSortByTabs<cr>
+        nnoremap 5gt 5gt:BufferLineSortByTabs<cr>
+        nnoremap 6gt 6gt:BufferLineSortByTabs<cr>
+        nnoremap 7gt 7gt:BufferLineSortByTabs<cr>
+        nnoremap 8gt 8gt:BufferLineSortByTabs<cr>
+        nnoremap 9gt 9gt:BufferLineSortByTabs<cr>
+        nnoremap 10gt 10gt:BufferLineSortByTabs<cr>
+        nnoremap 11gt 11gt:BufferLineSortByTabs<cr>
+        nnoremap 0gt :tabfirst<cr>:BufferLineSortByTabs<cr>
 
         cnoreabbrev qq tabclose
 
