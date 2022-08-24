@@ -33,9 +33,9 @@
 
     " Make plugin commands repeatable "
     Plug 'tpope/vim-repeat'
-    " Dep
-    Plug 'nvim-lua/plenary.nvim'
 
+    " Deps
+    Plug 'nvim-lua/plenary.nvim'
 
     " More actions "
     Plug 'tpope/vim-surround'              " (s)       To surround
@@ -95,6 +95,9 @@
     " " Programming tools "
     Plug 'vim-test/vim-test'
 
+    " Telescope
+    Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+
     " UI Extentions "
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -112,7 +115,7 @@
 
     " Status line
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'tiagovla/scope.nvim'
+    " Plug 'tiagovla/scope.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
     Plug 'kyazdani42/nvim-tree.lua'

@@ -8,8 +8,10 @@ require('rwb.statusline') -- Autocompletion configuration
 require('rwb.nvimtree')
 
 require('rwb.complete') -- Autocompletion configuration
-require('rwb.luasnip') -- Treesitter config
-require('rwb.treesitter') -- Treesitter config
+require('rwb.luasnip')
+require('rwb.treesitter')
+
+require('rwb.telescope')
 
 -- require('Comment').setup()
 -- require("scope").setup()
