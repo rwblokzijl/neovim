@@ -6,6 +6,7 @@ configs.setup {
   },
   indent = {
     enable = true, -- default is disabled anyways
+    disable = {"python", },
   },
   incremental_selection = {
     enable = true,
