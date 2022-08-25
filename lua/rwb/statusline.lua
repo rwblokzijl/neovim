@@ -50,7 +50,7 @@ local red = {
   bg = "#00ff00",
 }
 
--- require("scope").setup()
+require("scope").setup()
 require("bufferline").setup {
   options = {
     mode = "tabs",
