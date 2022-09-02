@@ -116,7 +116,7 @@
 
     " Status line
     Plug 'nvim-lualine/lualine.nvim'
-    " Plug 'tiagovla/scope.nvim'
+    Plug 'tiagovla/scope.nvim'
     Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
     Plug 'kyazdani42/nvim-tree.lua'
