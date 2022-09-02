@@ -90,6 +90,7 @@
     " treesitter
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+    Plug 'nvim-treesitter/nvim-treesitter-context'
     Plug 'nvim-treesitter/playground'
 
     " " Programming tools "
