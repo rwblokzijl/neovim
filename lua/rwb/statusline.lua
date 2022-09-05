@@ -105,24 +105,18 @@ require("bufferline").setup {
       local name = ""
       for _, buf_info in ipairs(bufs) do
         if buf_info.name:match(".*NvimTree_%d*$") then -- Dont change name for nvimtree
-          print("NO TREE")
           goto continue
         elseif buf_info.name:startswith("term://") then -- Dont change name for fzf
-          print("NO TERM")
           goto continue
         elseif buf_info.name:match('%.tf') then
           name = buf_info.name:path_parent()
           break
         else
-          print("Other")
           name = buf_info.name:basename() or buf.name
-          print(name)
           break
         end
         ::continue::
       end
-      print(name)
-      print("---")
       return name .. (modified and ' [+]' or '')
     end,
     offsets = {

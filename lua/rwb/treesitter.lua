@@ -79,6 +79,9 @@ require'treesitter-context'.setup{
     --   },
     terraform = {
       'block'
+    },
+    lua = {
+      'field'
     }
   },
   exact_patterns = {

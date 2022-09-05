@@ -1047,3 +1047,4 @@
     highlight! link CmpItemKindSnippet GruvboxPurple
 
     highlight! link GitSignsCurrentLineBlame GruvboxBg4
+set title
