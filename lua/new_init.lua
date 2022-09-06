@@ -8,6 +8,7 @@ require('rwb.statusline') -- Autocompletion configuration
 require('rwb.nvimtree')
 
 require('rwb.complete') -- Autocompletion configuration
+require('rwb.dap') -- Autocompletion configuration
 require('rwb.luasnip')
 require('rwb.treesitter')
 

@@ -85,7 +85,7 @@ require("bufferline").setup {
     close_icon = 'CLOSE',
     show_close_icon = false,
     -- show_buffer_close_icons = false,
-    tab_size = 20,
+    tab_size = 28,
     name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
       local tabinfo = vim.fn.gettabinfo(buf.tabnr)
       if next(tabinfo) == nil then return end
