@@ -377,6 +377,7 @@
     set softtabstop=4
     set shiftwidth=4
     set expandtab
+    set foldnestmax=1
 
     " Look and feel
     syntax on
