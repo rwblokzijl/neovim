@@ -854,9 +854,9 @@
         autocmd FileType haskell setlocal nowrap
 
     " Python "
-        " au! BufNewFile,BufFilePre,BufRead *.py set filetype=python
+        " au! BufNewFile,BufFilePre,BufRead *.py set filetype=python "
         autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-        " autocmd FileType python setlocal foldmethod=indent
+        autocmd FileType python setlocal foldmethod=indent " Better than treesitter
         autocmd FileType python setlocal foldnestmax=2
         autocmd FileType python setlocal foldlevel=1
         autocmd FileType python setlocal textwidth=120
