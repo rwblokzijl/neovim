@@ -110,6 +110,8 @@
     Plug 'tpope/vim-dispatch'
     Plug 'tpope/vim-projectionist'
 
+    Plug 'machakann/vim-highlightedyank'
+
     " Plug 'xolox/vim-misc'
     Plug 'Raimondi/delimitMate'
     Plug 'kien/rainbow_parentheses.vim'
@@ -346,6 +348,11 @@
 """"
     let g:vimtex_compiler_latexmk = {'callback' : 0}
     let g:tex_flavor = 'latex'
+
+    let g:highlightedyank_highlight_duration = 500
+    " highlight link HighlightedyankRegion GruvboxBlue
+    highlight HighlightedyankRegion cterm=reverse gui=reverse
+
 
 " Figlet expand
     " turn the current line into ascii art with wrapping
