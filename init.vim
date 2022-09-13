@@ -349,7 +349,7 @@
     let g:vimtex_compiler_latexmk = {'callback' : 0}
     let g:tex_flavor = 'latex'
 
-    let g:highlightedyank_highlight_duration = 500
+    let g:highlightedyank_highlight_duration = 100
     " highlight link HighlightedyankRegion GruvboxBlue
     highlight HighlightedyankRegion cterm=reverse gui=reverse
 
