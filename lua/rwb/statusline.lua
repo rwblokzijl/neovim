@@ -41,16 +41,17 @@ require('lualine').setup {
   extensions = {}
 }
 
--- local inspect = function (x)
---   print(vim.inspect(x))
--- end
+local inspect = function (x)
+      inspect(tab.buffers)
+  print(vim.inspect(x))
+end
 
 local red = {
   fg = "#ff0000",
   bg = "#00ff00",
 }
 
-require("scope").setup()
+-- require("scope").setup()
 require("bufferline").setup {
   options = {
     mode = "tabs",
@@ -86,13 +87,9 @@ require("bufferline").setup {
     show_close_icon = false,
     -- show_buffer_close_icons = false,
     tab_size = 28,
-    name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-      local tabinfo = vim.fn.gettabinfo(buf.tabnr)
-      if next(tabinfo) == nil then return end
-      local windows = tabinfo[1].windows
+    name_formatter = function(tab)  -- tab contains a "name", "path" and "bufnr"
       local bufs = {}
-      for _, window in ipairs(windows) do
-        local buf_nr = vim.fn.winbufnr(window)
+      for _, buf_nr in ipairs(tab.buffers) do
         local buf_info = vim.fn.getbufinfo(buf_nr)[1]
         table.insert(bufs, buf_info)
       end
@@ -112,7 +109,7 @@ require("bufferline").setup {
           name = buf_info.name:path_parent()
           break
         else
-          name = buf_info.name:basename() or buf.name
+          name = buf_info.name:basename() or tab.name
           break
         end
         ::continue::
