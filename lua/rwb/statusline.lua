@@ -42,7 +42,6 @@ require('lualine').setup {
 }
 
 local inspect = function (x)
-      inspect(tab.buffers)
   print(vim.inspect(x))
 end
 
