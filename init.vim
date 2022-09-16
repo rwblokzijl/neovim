@@ -120,7 +120,7 @@
     Plug 'nvim-lualine/lualine.nvim'
     " Plug 'tiagovla/scope.nvim'
     " Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-    Plug 'rwblokzijl/bufferline.nvim'
+    Plug 'akinsho/bufferline.nvim'
 
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'kyazdani42/nvim-web-devicons'
