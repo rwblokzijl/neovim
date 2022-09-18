@@ -38,7 +38,8 @@
     Plug 'nvim-lua/plenary.nvim'
 
     " More actions "
-    Plug 'tpope/vim-surround'              " (s)       To surround
+    " Plug 'tpope/vim-surround'              " (s)       To surround
+    Plug 'kylechui/nvim-surround'          " (s)       To surround
     Plug 'christoomey/vim-sort-motion'     " (gs)      To sort
     Plug 'vim-scripts/ReplaceWithRegister' " (gr)      Replace with register
     Plug 'tommcdo/vim-ninja-feet'          " (gr)      Replace with register
@@ -109,10 +110,7 @@
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-dispatch'
     Plug 'tpope/vim-projectionist'
-
     Plug 'machakann/vim-highlightedyank'
-
-    " Plug 'xolox/vim-misc'
     Plug 'Raimondi/delimitMate'
     Plug 'kien/rainbow_parentheses.vim'
 
@@ -145,6 +143,7 @@
     " Other
 
     Plug 'dkarter/bullets.vim'
+    Plug 'zakharykaplan/nvim-retrail'
 
     " TODO: 2022-08-21 now Delete later if i didn't miss them
 
@@ -549,13 +548,13 @@
     set splitright
 
 " Automatically deletes all tralling whitespace on save.
-    function RemoveTrailingWhiteSpace()
-        norm!m`
-        norm!``
-        %s/\s\+$//e
-    endfunction
+    " function RemoveTrailingWhiteSpace()
+    "     norm!m`
+    "     norm!``
+    "     %s/\s\+$//e
+    " endfunction
 
-    autocmd BufWritePre * call RemoveTrailingWhiteSpace()
+    " autocmd BufWritePre * call RemoveTrailingWhiteSpace()
 
 " Controls
     " clipboard mappings and configuration
