@@ -622,18 +622,17 @@
         nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
         nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
 
-        nnoremap 1gt 1gt:BufferLineSortByTabs<cr>
-        nnoremap 2gt 2gt:BufferLineSortByTabs<cr>
-        nnoremap 3gt 3gt:BufferLineSortByTabs<cr>
-        nnoremap 4gt 4gt:BufferLineSortByTabs<cr>
-        nnoremap 5gt 5gt:BufferLineSortByTabs<cr>
-        nnoremap 6gt 6gt:BufferLineSortByTabs<cr>
-        nnoremap 7gt 7gt:BufferLineSortByTabs<cr>
-        nnoremap 8gt 8gt:BufferLineSortByTabs<cr>
-        nnoremap 9gt 9gt:BufferLineSortByTabs<cr>
-        nnoremap 10gt 10gt:BufferLineSortByTabs<cr>
-        nnoremap 11gt 11gt:BufferLineSortByTabs<cr>
-        nnoremap 0gt :tabfirst<cr>:BufferLineSortByTabs<cr>
+        nnoremap 1gt 1gt
+        nnoremap 2gt 2gt
+        nnoremap 3gt 3gt
+        nnoremap 4gt 4gt
+        nnoremap 5gt 5gt
+        nnoremap 6gt 6gt
+        nnoremap 7gt 7gt
+        nnoremap 8gt 8gt
+        nnoremap 9gt 9gt
+        nnoremap 10gt 10gt
+        nnoremap 11gt 11gt
 
         cnoreabbrev qq tabclose
 
