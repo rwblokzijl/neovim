@@ -373,6 +373,7 @@ local servers = {
     -- :h lspconfig-root-detection
     -- root_dir = lspconfig.util.root_pattern('backend.tf', 'terraform.tfstate', '.terraform', '.')
     -- root_dir = lspconfig.util.root_pattern('backend.tf')
+    -- root_dir = lspconfig.util.root_pattern('main.tf')
   },
 
   -- texlab = {},

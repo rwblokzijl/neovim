@@ -16,5 +16,6 @@ require('rwb.telescope')
 
 -- require('Comment').setup()
 require("nvim-surround").setup()
+require("retrail").setup()
 
 require('rwb.gitsigns')
