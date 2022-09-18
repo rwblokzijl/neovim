@@ -1,3 +1,26 @@
+local custom_fname = require('lualine.components.filename'):extend()
+local highlight = require'lualine.highlight'
+local default_status_colors = { saved = '#228B22', modified = '#C70039' }
+
+function custom_fname:init(options)
+  custom_fname.super.init(self, options)
+  self.status_colors = {
+    saved = highlight.create_component_highlight_group(
+      {bg = default_status_colors.saved}, 'filename_status_saved', self.options),
+    modified = highlight.create_component_highlight_group(
+      {bg = default_status_colors.modified}, 'filename_status_modified', self.options),
+  }
+  if self.options.color == nil then self.options.color = '' end
+end
+
+function custom_fname:update_status()
+  local data = custom_fname.super.update_status(self)
+  data = highlight.component_format_highlight(vim.bo.modified
+                                              and self.status_colors.modified
+                                              or self.status_colors.saved) .. data
+  return data
+end
+
 local colors = require("util.colors")
 
 require('lualine').setup {
@@ -21,15 +44,19 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    -- lualine_b = {'branch', 'diff', 'diagnostics'}, -- default
+    lualine_b = {'diff', 'diagnostics'},
+    -- lualine_c = {custom_fname},
     lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    -- lualine_x = {'encoding', 'fileformat', 'filetype'}, -- default
+    lualine_x = {'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
   inactive_sections = {
     lualine_a = {},
-    lualine_b = {},
+    -- lualine_b = {},
+    lualine_b = {'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'location'},
     lualine_y = {},
@@ -88,12 +115,10 @@ require("bufferline").setup {
     tab_size = 28,
     name_formatter = function(tab)  -- tab contains a "name", "path" and "bufnr"
       local bufs = {}
+      local modified = false
       for _, buf_nr in ipairs(tab.buffers) do
         local buf_info = vim.fn.getbufinfo(buf_nr)[1]
         table.insert(bufs, buf_info)
-      end
-      local modified = false
-      for _, buf_info in ipairs(bufs) do
         if buf_info.changed == 1 then
           modified = true
         end
