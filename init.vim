@@ -105,7 +105,7 @@
     Plug 'junegunn/fzf.vim'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'mhinz/vim-grepper'
-    Plug 'vim-scripts/a.vim'
+    " Plug 'vim-scripts/a.vim'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-dispatch'
@@ -135,7 +135,7 @@
     " Plug 'suy/vim-context-commentstring'
     " Plug 'numToStr/Comment.nvim'
 
-    Plug 'vitalk/vim-simple-todo'
+    " Plug 'vitalk/vim-simple-todo'
     Plug 'ellisonleao/gruvbox.nvim'
 
     Plug 'dhruvasagar/vim-table-mode'
@@ -293,7 +293,9 @@
     onoremap  iL <Plug>(textobj-line-i)
 
     " Leader "
-        let mapleader=","
+        nnoremap <SPACE> <Nop>
+        let mapleader=" "
+
         let g:user_emmet_leader_key=','
     " Grepper / replace "
         nnoremap <Leader>R
@@ -323,7 +325,7 @@
         " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
         " syn sync fromstart
         " set foldmethod=syntax
-        nnoremap <Space> za
+        nnoremap <Enter> za
         " inoremap <C-j> :set
         "
 
@@ -522,6 +524,8 @@
     xnoremap <C-l> >gv
     xnoremap <C-s-h> <gv
     xnoremap <C-s-l> >gv
+
+    xnoremap . :'<,'>norm .<CR>
     " inoremap <C-j> <esc>:m .+1<CR>==a
     " inoremap <C-k> <esc>:m .-2<CR>==a
     " nnoremap <C-j> <esc>:m .+1<CR>==
