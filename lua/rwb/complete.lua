@@ -414,7 +414,7 @@ require("mason-lspconfig").setup({
 })
 
 local function on_attach(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
+  -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -425,6 +425,13 @@ local function on_attach(client, bufnr)
   vim.keymap.set('n', 'K',     vim.lsp.buf.hover,          bufopts)
   vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
+  vim.keymap.set('n', 'gpd', require('goto-preview').goto_preview_definition,      bufopts)
+  vim.keymap.set('n', 'gpt', require('goto-preview').goto_preview_type_definition, bufopts)
+  vim.keymap.set('n', 'gpi', require('goto-preview').goto_preview_implementation,  bufopts)
+  vim.keymap.set('n', 'gP',  require('goto-preview').close_all_win,                bufopts)
+  vim.keymap.set('n', 'gpr', require('goto-preview').goto_preview_references,      bufopts)
+
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wl', function()
@@ -432,10 +439,7 @@ local function on_attach(client, bufnr)
   -- end, bufopts)
   -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  -- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-
+  -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts) vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts) vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
 for lsp, settings in pairs(servers) do
@@ -450,4 +454,20 @@ for lsp, settings in pairs(servers) do
 end
 
 require "lsp_signature".setup()
+
+-----
+-- LSP lines
+-----
+require("lsp_lines").setup(
+  { severity = { min = vim.diagnostic.severity.WARN} } -- TODO: doesn't work. No input accepted, might be worth exploring later in time (today is 20-09-2022)
+)
+-- vim.diagnostic.config({ virtual_text = false })
+-- Might want to do this only for higher severity warnings:
+vim.diagnostic.config({ virtual_text = {severity = { max = vim.diagnostic.severity.INFO} } })
+
+
+require('goto-preview').setup {
+  default_mappings = true; -- Bind default mappings
+}
+
 

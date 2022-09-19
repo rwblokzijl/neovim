@@ -80,6 +80,8 @@
     Plug 'Dosx001/cmp-commit'
 
     Plug 'onsails/lspkind-nvim'
+    Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+    Plug 'rmagatti/goto-preview'
 
     " Snips
     Plug 'L3MON4D3/LuaSnip'
@@ -113,6 +115,7 @@
     Plug 'machakann/vim-highlightedyank'
     Plug 'Raimondi/delimitMate'
     Plug 'kien/rainbow_parentheses.vim'
+    Plug 'NvChad/nvim-colorizer.lua'
 
     " Status line
     Plug 'nvim-lualine/lualine.nvim'
