@@ -2,7 +2,6 @@ local colors = require("util.colors")
 
 local custom_fname = require('lualine.components.filename'):extend()
 local highlight = require'lualine.highlight'
-local default_status_colors = { saved = '#228B22', modified = '#C70039' }
 
 require('lualine').setup {}
 function custom_fname:init(options)
@@ -64,9 +63,9 @@ require('lualine').setup {
   extensions = {}
 }
 
-local inspect = function (x)
-  print(vim.inspect(x))
-end
+-- local inspect = function (x)
+--   print(vim.inspect(x))
+-- end
 
 local red = {
   fg = "#ff0000",

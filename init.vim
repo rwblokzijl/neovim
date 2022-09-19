@@ -322,6 +322,10 @@
     " Folding
         set foldmethod=expr
         set foldexpr=nvim_treesitter#foldexpr()
+        " set foldmethod=expr
+        " set foldexpr=lsp#ui#vim#folding#foldexpr()
+        " set foldtext=lsp#ui#vim#folding#foldtext()
+
         " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
         " syn sync fromstart
         " set foldmethod=syntax
