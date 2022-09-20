@@ -333,7 +333,8 @@
         " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
         " syn sync fromstart
         " set foldmethod=syntax
-        nnoremap <Enter> za
+        " nnoremap <Enter> za
+        nnoremap <leader><space> za
         " inoremap <C-j> :set
         "
 

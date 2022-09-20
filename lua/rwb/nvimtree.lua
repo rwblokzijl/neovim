@@ -127,16 +127,32 @@ local tabAutoCMD = vim.api.nvim_create_augroup("NvimTreeTabEnter", { clear = tru
 vim.api.nvim_create_autocmd("TabEnter", {
   callback = function ()
     if vim.g.nvimtree_open then
-      vim.defer_fn(function ()
-        if not view.is_visible() then
+      if not view.is_visible() then
+        vim.schedule(function ()
           api.tree.toggle(nil, true)
-        end
-      end, 1)
+        end)
+      end
     else
       -- vim.defer_fn(function ()
         api.tree.close()
       -- end, 1)
     end
+  end,
+  group = tabAutoCMD,
+})
+
+-- Close last open nvim window
+vim.api.nvim_create_autocmd("BufWinLeave", {
+  callback = function ()
+    vim.schedule(function ()
+      local buffers = vim.fn.tabpagebuflist(vim.fn.tabpagenr())
+      if #buffers == 1 then
+        local buffer = vim.fn.getbufinfo(buffers[1])[1]
+        if buffer.name:match(".*NvimTree_%d*$") then -- Dont change name for nvimtree
+          vim.api.nvim_win_close(buffer.windows[1], true)
+        end
+      end
+    end)
   end,
   group = tabAutoCMD,
 })
