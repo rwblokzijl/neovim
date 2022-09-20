@@ -1,5 +1,6 @@
 local nvimtree = require("nvim-tree")
 local api = require("nvim-tree.api")
+local view = require "nvim-tree.view"
 local colors = require("util.colors")
 
 local nvim_tree_config = require("nvim-tree.config")
@@ -127,7 +128,9 @@ vim.api.nvim_create_autocmd("TabEnter", {
   callback = function ()
     if vim.g.nvimtree_open then
       vim.defer_fn(function ()
-        api.tree.open()
+        if not view.is_visible() then
+          api.tree.toggle(nil, true)
+        end
       end, 1)
     else
       -- vim.defer_fn(function ()
