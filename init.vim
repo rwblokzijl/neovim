@@ -8,254 +8,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"
-" Plugins
-""""
-    " Install vimplug if not already installed
-    let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-    if empty(glob(data_dir . '/autoload/plug.vim'))
-        silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
-
-    call plug#begin('~/.config/vim/plugged')
-
-    """""""""""""""""""""""""""""""""""""""""""""
-    "      ____   __               _               "
-    "     / __ \ / /__  __ ____ _ (_)____   _____  "
-    "    / /_/ // // / / // __ `// // __ \ / ___/  "
-    "   / ____// // /_/ // /_/ // // / / /(__  )   "
-    "  /_/    /_/ \__,_/ \__, //_//_/ /_//____/    "
-    "                   /____/                     "
-    """"""""""""""""""""""""""""""""""""""""""""""""
-
-    " let Vundle manage Vundle, required "
-    " Plugin 'VundleVim/Vundle.vim'
-
-    " Make plugin commands repeatable "
-    Plug 'tpope/vim-repeat'
-
-    " Deps
-    Plug 'nvim-lua/plenary.nvim'
-
-    " More actions "
-    " Plug 'tpope/vim-surround'              " (s)       To surround
-    Plug 'kylechui/nvim-surround'          " (s)       To surround
-    Plug 'christoomey/vim-sort-motion'     " (gs)      To sort
-    Plug 'vim-scripts/ReplaceWithRegister' " (gr)      Replace with register
-    Plug 'tommcdo/vim-ninja-feet'          " (gr)      Replace with register
-    Plug 'junegunn/vim-easy-align'         " (ga)      To align
-
-    " More text objects "
-    Plug 'vim-scripts/argtextobj.vim'         " (a)       Argument
-    Plug 'bkad/CamelCaseMotion'               " (,w)      CamelCaseWords
-    Plug 'michaeljsmith/vim-indent-object'    " (i)       Indent blocks
-
-    Plug 'kana/vim-textobj-user'              " Enables the ones below
-    Plug 'glts/vim-textobj-comment'           " (c)       Comments
-    Plug 'akiyan/vim-textobj-php'             " (P)       PHP tag
-    Plug 'beloglazov/vim-textobj-quotes'      " (q)       Any type of quote (even from outside the quotes
-    Plug 'kana/vim-textobj-line'              " (l)       Line
-    Plug 'kana/vim-textobj-entire'            " (e)       Entire file
-
-    " Language Server Stuff "
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'williamboman/mason.nvim'
-    Plug 'williamboman/mason-lspconfig.nvim'
-    Plug 'ray-x/lsp_signature.nvim'
-    Plug 'mfussenegger/nvim-dap'
-
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'hrsh7th/cmp-nvim-lua'
-    Plug 'hrsh7th/cmp-cmdline'
-    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'saadparwaiz1/cmp_luasnip'
-    Plug 'uga-rosa/cmp-dictionary'
-    Plug 'hrsh7th/cmp-calc'
-    Plug 'f3fora/cmp-spell'
-    Plug 'petertriho/cmp-git'
-    Plug 'davidsierradz/cmp-conventionalcommits'
-    Plug 'Dosx001/cmp-commit'
-
-    Plug 'onsails/lspkind-nvim'
-    Plug 'lewis6991/foldsigns.nvim'
-    Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-    Plug 'rmagatti/goto-preview'
-
-
-    " Snips
-    Plug 'L3MON4D3/LuaSnip'
-    Plug 'honza/vim-snippets'
-    Plug 'rafamadriz/friendly-snippets'
-    Plug 'hashivim/vim-terraform'
-    Plug 'juliosueiras/vim-terraform-completion'
-
-    " treesitter
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-    Plug 'nvim-treesitter/nvim-treesitter-context'
-    Plug 'nvim-treesitter/playground'
-
-    " " Programming tools "
-    Plug 'vim-test/vim-test'
-
-    " Telescope
-    Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
-
-    " UI Extentions "
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'mhinz/vim-grepper'
-    " Plug 'vim-scripts/a.vim'
-    Plug 'tpope/vim-sensible'
-    Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-dispatch'
-    Plug 'tpope/vim-projectionist'
-    Plug 'machakann/vim-highlightedyank'
-    Plug 'Raimondi/delimitMate'
-    Plug 'kien/rainbow_parentheses.vim'
-    Plug 'NvChad/nvim-colorizer.lua'
-
-    " Status line
-    Plug 'nvim-lualine/lualine.nvim'
-    " Plug 'tiagovla/scope.nvim'
-    " Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-    Plug 'akinsho/bufferline.nvim'
-
-    Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'kyazdani42/nvim-web-devicons'
-
-    " Git "
-    Plug 'tpope/vim-fugitive'
-    Plug 'junegunn/gv.vim'
-    Plug 'lewis6991/gitsigns.nvim'
-    "
-    Plug 'tpope/vim-unimpaired'
-
-    " Comments
-    Plug 'tpope/vim-commentary'
-    " Plug 'suy/vim-context-commentstring'
-    " Plug 'numToStr/Comment.nvim'
-
-    " Plug 'vitalk/vim-simple-todo'
-    Plug 'ellisonleao/gruvbox.nvim'
-
-    Plug 'dhruvasagar/vim-table-mode'
-
-    " Other
-
-    Plug 'dkarter/bullets.vim'
-    Plug 'zakharykaplan/nvim-retrail'
-
-    " TODO: 2022-08-21 now Delete later if i didn't miss them
-
-    " Plug 'Chiel92/vim-autoformat'
-    " Movement aids "
-    " Plug 'unblevable/quick-scope'           " Highlight unique characters for word in active line
-    " Plug 'easymotion/vim-easymotion'
-
-    " autocompletion"
-    " Plug 'vim-scripts/loremipsum'
-
-    " " Specific programmin language plugins
-    " Plug 'posva/vim-vue'
-    " Plug 'leafOfTree/vim-vue-plugin'
-
-    " Plug 'thosakwe/vim-flutter'
-    " Plug 'dart-lang/dart-vim-plugin'
-    " Plug 'natebosch/vim-lsc'
-    " Plug 'natebosch/vim-lsc-dart'
-
-    " Plug 'szw/vim-maximizer'
-    " Plug 'sbdchd/neoformat'
-    " Plug 'kassio/neoterm'
-
-    " " OpenHAB
-    " Plug 'cyberkov/openhab-vim'
-
-    " " Android "
-    " Plug 'hsanson/vim-android'
-
-    " " ----- Syntax plugins ------------------------------------------------"
-    " Plug 'jez/vim-c0'
-    " Plug 'jez/vim-ispc'
-    " Plug 'kchmck/vim-coffee-script'
-
-    "Python
-
-
-    " folding
-    " Plug 'Konfekt/FastFold'
-    " Plug 'tmhedberg/SimpylFold'
-
-    " " HTML "
-    " Plug 'mattn/emmet-vim'
-
-    " " Java "
-    " "Plugin 'dansomething/vim-eclim'
-    " Plug 'Shougo/unite.vim'
-
-    " " Scala "
-    " Plug 'derekwyatt/vim-scala'
-    " Plug 'jceb/vim-hier'
-
-    " Markdown "
-    " Plug 'vim-pandoc/vim-pandoc'
-    " Plug 'vim-pandoc/vim-pandoc-syntax'
-    " Align CSV files at commas, align Markdown tables, and more "
-    " Plugin 'nelstrom/vim-markdown-folding'
-    " Plugin 'plasticboy/vim-markdown'
-    " Plugin 'drmingdrmer/vim-syntax-markdown'
-    " Plug 'godlygeek/tabular'
-    " Plug 'rhysd/vim-grammarous'
-
-    " Latex "
-    " Plug 'lervag/vimtex'
-
-    " files"
-
-    " Plug 'scrooloose/nerdtree'
-    " " Plug 'jistr/vim-nerdtree-tabs'
-    " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    " Plug 'Xuyuanp/nerdtree-git-plugin'
-
-    " Plug 'ryanoasis/vim-devicons'
-
-
-    " To do list "
-
-    " Ricing "
-    " Plug 'flazz/vim-colorschemes'
-    " Plug 'morhetz/gruvbox'
-    " Plug 'luisiacc/gruvbox-baby'
-
-    "
-    "My own stuff (remember to port)"
-    " Plug 'tmhedberg/matchit'
-    " Plug 'sickill/vim-pasta'
-    " Plug 'ervandew/supertab'
-    " Plug 'vim-scripts/ZoomWin'
-
-    " ---- Extras/Advanced plugins ---------------------------------------- "
-    " Highlight and strip trailing whitespace "
-    " Plug 'ntpeters/vim-better-whitespace'
-    " Automaticall insert the closing HTML tag "
-    "Plugin 'HTML-AutoCloseTag'
-    " All the other syntax plugins I use "
-    " Plug 'ekalinin/Dockerfile.vim'
-    " Plug 'digitaltoad/vim-jade'
-    " Plug 'tpope/vim-liquid'
-    " Plug 'cakebaker/scss-syntax.vim'
-
-    Plug 'dstein64/vim-startuptime'
-
-    " call vundle#end()            " required
-    call plug#end()
-    filetype plugin indent on    " required
-""""
 " Lua config
 """"
     lua require('new_init') -- Call all the lua
@@ -263,10 +15,6 @@
 """"
 " Vimscipt plugin configs
 """"
-    " junegunn/fzf.vim "
-        inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
-                    \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
-                    \ fzf#wrap({'dir': expand('%:p:h')}))
 
     " kien/rainbow_parentheses.vim "
         au VimEnter * RainbowParenthesesToggle
@@ -335,6 +83,10 @@
         " set foldmethod=syntax
         " nnoremap <Enter> za
         nnoremap <leader><space> za
+        nnoremap zl zo
+        nnoremap zh zc
+        nnoremap zL zO
+        nnoremap zH zC
         " inoremap <C-j> :set
         "
 
@@ -487,9 +239,9 @@
                 \ --glob "!**/.mypy_cache/*"
                 \ --glob "!**/.git/*"
                 \ '
-    nnoremap <c-]> :Files<cr>
-    nnoremap <c-;> :Files<cr>
-    nnoremap <c-f> :Files<cr>
+    nnoremap <c-]> :Telescope find_files<cr>
+    nnoremap <c-;> :Telescope find_files<cr>
+    nnoremap <c-f> :Telescope find_files<cr>
 
 " center the cursor after some commands
     nnoremap Y y$

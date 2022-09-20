@@ -1,5 +1,8 @@
 require('util.string')
 
+-- Config
+
+require('rwb.packer')
 
 require('rwb.colorscheme') -- general vim settings
 require('rwb.general') -- general vim settings
