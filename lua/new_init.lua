@@ -20,3 +20,5 @@ require("retrail").setup()
 require('colorizer').setup()
 
 require('rwb.gitsigns')
+
+require('rwb.keymaps').set_general_keymaps() -- LAST

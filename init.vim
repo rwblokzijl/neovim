@@ -255,7 +255,6 @@
     " call vundle#end()            " required
     call plug#end()
     filetype plugin indent on    " required
-
 """"
 " Lua config
 """"
@@ -787,6 +786,7 @@
     " nnoremap <F4> :call ToggleMakeOnSave()<CR>
     "
     "let g:languagetool_jar = '/usr/share/java/languagetool/languagetool-commandline.jar'
+    "
 
 """"
 " File type

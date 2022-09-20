@@ -112,7 +112,32 @@ nvimtree.setup {
 
 }
 
-vim.keymap.set("n", "gn", api.tree.toggle)
+-- Keep nvim tree open/closed across tabs
+vim.g.nvimtree_open = false
+vim.keymap.set("n", "gn", function ()
+  if vim.g.nvimtree_open then
+    vim.g.nvimtree_open = false
+  else
+    vim.g.nvimtree_open = true
+  end
+  api.tree.toggle()
+end)
+local tabAutoCMD = vim.api.nvim_create_augroup("NvimTreeTabEnter", { clear = true })
+vim.api.nvim_create_autocmd("TabEnter", {
+  callback = function ()
+    if vim.g.nvimtree_open then
+      vim.defer_fn(function ()
+        api.tree.open()
+      end, 1)
+    else
+      -- vim.defer_fn(function ()
+        api.tree.close()
+      -- end, 1)
+    end
+  end,
+  group = tabAutoCMD,
+})
+
 
 function Color(hl_grp, color, bold)
   vim.api.nvim_set_hl(0, hl_grp, { link = colors.getColor(color, {bold=bold, rev=false}) })
