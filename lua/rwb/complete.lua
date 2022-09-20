@@ -455,15 +455,19 @@ end
 
 require "lsp_signature".setup()
 
------
--- LSP lines
------
-require("lsp_lines").setup(
-  { severity = { min = vim.diagnostic.severity.WARN} } -- TODO: doesn't work. No input accepted, might be worth exploring later in time (today is 20-09-2022)
-)
--- vim.diagnostic.config({ virtual_text = false })
--- Might want to do this only for higher severity warnings:
-vim.diagnostic.config({ virtual_text = {severity = { max = vim.diagnostic.severity.INFO} } })
+-------
+---- LSP lines
+-------
+--require("lsp_lines").setup(
+--  -- TODO: doesn't work. No input accepted, might be worth exploring later in time (today is 20-09-2022)
+--  { severity = { min = vim.diagnostic.severity.WARN} }
+--  -- Also messes up with using folds
+--)
+---- vim.diagnostic.config({ virtual_text = false })
+---- Might want to do this only for higher severity warnings:
+---- vim.diagnostic.config({ virtual_text = {severity = { max = vim.diagnostic.severity.INFO} } })
+
+require('foldsigns').setup()
 
 
 require('goto-preview').setup {
