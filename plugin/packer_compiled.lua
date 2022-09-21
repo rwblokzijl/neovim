@@ -74,10 +74,385 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  CamelCaseMotion = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/CamelCaseMotion",
+    url = "https://github.com/bkad/CamelCaseMotion"
+  },
+  LuaSnip = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
+  ReplaceWithRegister = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/ReplaceWithRegister",
+    url = "https://github.com/vim-scripts/ReplaceWithRegister"
+  },
+  ["argtextobj.vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/argtextobj.vim",
+    url = "https://github.com/vim-scripts/argtextobj.vim"
+  },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
+  ["bullets.vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/bullets.vim",
+    url = "https://github.com/dkarter/bullets.vim"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-calc"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-calc",
+    url = "https://github.com/hrsh7th/cmp-calc"
+  },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
+  },
+  ["cmp-commit"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-commit",
+    url = "https://github.com/Dosx001/cmp-commit"
+  },
+  ["cmp-conventionalcommits"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-conventionalcommits",
+    url = "https://github.com/davidsierradz/cmp-conventionalcommits"
+  },
+  ["cmp-dictionary"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-dictionary",
+    url = "https://github.com/uga-rosa/cmp-dictionary"
+  },
+  ["cmp-git"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-git",
+    url = "https://github.com/petertriho/cmp-git"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
+  ["cmp-spell"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-spell",
+    url = "https://github.com/f3fora/cmp-spell"
+  },
+  ["cmp-tabnine"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
+    url = "https://github.com/tzachar/cmp-tabnine"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  delimitMate = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/delimitMate",
+    url = "https://github.com/Raimondi/delimitMate"
+  },
+  ["diffview.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/diffview.nvim",
+    url = "https://github.com/sindrets/diffview.nvim"
+  },
+  ["foldsigns.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/foldsigns.nvim",
+    url = "https://github.com/lewis6991/foldsigns.nvim"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["goto-preview"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/goto-preview",
+    url = "https://github.com/rmagatti/goto-preview"
+  },
+  ["gruvbox.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
+    url = "https://github.com/ellisonleao/gruvbox.nvim"
+  },
+  ["gv.vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/gv.vim",
+    url = "https://github.com/junegunn/gv.vim"
+  },
+  ["lsp_lines.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lsp_lines.nvim",
+    url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
+  },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
+    url = "https://github.com/onsails/lspkind-nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["mason-lspconfig.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/NvChad/nvim-colorizer.lua"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-retrail"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-retrail",
+    url = "https://github.com/zakharykaplan/nvim-retrail"
+  },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  playground = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/playground",
+    url = "https://github.com/nvim-treesitter/playground"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["rainbow_parentheses.vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/rainbow_parentheses.vim",
+    url = "https://github.com/kien/rainbow_parentheses.vim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["vim-commentary"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-dispatch"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-dispatch",
+    url = "https://github.com/tpope/vim-dispatch"
+  },
+  ["vim-easy-align"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-easy-align",
+    url = "https://github.com/junegunn/vim-easy-align"
+  },
+  ["vim-eunuch"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-eunuch",
+    url = "https://github.com/tpope/vim-eunuch"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-grepper"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-grepper",
+    url = "https://github.com/mhinz/vim-grepper"
+  },
+  ["vim-highlightedyank"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
+    url = "https://github.com/machakann/vim-highlightedyank"
+  },
+  ["vim-indent-object"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-indent-object",
+    url = "https://github.com/michaeljsmith/vim-indent-object"
+  },
+  ["vim-multiple-cursors"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
+    url = "https://github.com/terryma/vim-multiple-cursors"
+  },
+  ["vim-ninja-feet"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-ninja-feet",
+    url = "https://github.com/tommcdo/vim-ninja-feet"
+  },
+  ["vim-projectionist"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-projectionist",
+    url = "https://github.com/tpope/vim-projectionist"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-sensible"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-sensible",
+    url = "https://github.com/tpope/vim-sensible"
+  },
+  ["vim-snippets"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-snippets",
+    url = "https://github.com/honza/vim-snippets"
+  },
+  ["vim-sort-motion"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-sort-motion",
+    url = "https://github.com/christoomey/vim-sort-motion"
+  },
+  ["vim-startuptime"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-startuptime",
+    url = "https://github.com/dstein64/vim-startuptime"
+  },
+  ["vim-table-mode"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-table-mode",
+    url = "https://github.com/dhruvasagar/vim-table-mode"
+  },
+  ["vim-terraform"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-terraform",
+    url = "https://github.com/hashivim/vim-terraform"
+  },
+  ["vim-terraform-completion"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-terraform-completion",
+    url = "https://github.com/juliosueiras/vim-terraform-completion"
+  },
+  ["vim-test"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-test",
+    url = "https://github.com/vim-test/vim-test"
+  },
+  ["vim-textobj-comment"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-comment",
+    url = "https://github.com/glts/vim-textobj-comment"
+  },
+  ["vim-textobj-entire"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-entire",
+    url = "https://github.com/kana/vim-textobj-entire"
+  },
+  ["vim-textobj-line"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-line",
+    url = "https://github.com/kana/vim-textobj-line"
+  },
+  ["vim-textobj-php"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-php",
+    url = "https://github.com/akiyan/vim-textobj-php"
+  },
+  ["vim-textobj-quotes"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-quotes",
+    url = "https://github.com/beloglazov/vim-textobj-quotes"
+  },
+  ["vim-textobj-user"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-user",
+    url = "https://github.com/kana/vim-textobj-user"
+  },
+  ["vim-unimpaired"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
+    url = "https://github.com/tpope/vim-unimpaired"
   }
 }
 
