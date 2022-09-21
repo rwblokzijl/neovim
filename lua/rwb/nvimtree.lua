@@ -3,6 +3,8 @@ local api = require("nvim-tree.api")
 local view = require "nvim-tree.view"
 local colors = require("util.colors")
 
+local M = {}
+
 local nvim_tree_config = require("nvim-tree.config")
 local tree_cb = nvim_tree_config.nvim_tree_callback
 nvimtree.setup {
@@ -125,14 +127,14 @@ end
 
 -- Keep nvim tree open/closed across tabs
 vim.g.nvimtree_open = false
-vim.keymap.set("n", "gn", function ()
+M.toggle = function ()
   if vim.g.nvimtree_open then
     vim.g.nvimtree_open = false
   else
     vim.g.nvimtree_open = true
   end
   api.tree.toggle()
-end)
+end
 local tabAutoCMD = vim.api.nvim_create_augroup("NvimTreeTabEnter", { clear = true })
 vim.api.nvim_create_autocmd("TabEnter", {
   callback = function ()
@@ -250,3 +252,5 @@ Color('NvimTreeGitIgnored',                'Gray',   false) --      (Comment)
 -- Color('NvimTreeLiveFilterValue',           'COLOR',  BOLD) --
 -- Color of the bookmark icon
 -- Color('NvimTreeBookmark',                  'COLOR',  BOLD) --
+
+return M

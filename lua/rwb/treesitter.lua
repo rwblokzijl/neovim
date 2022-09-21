@@ -99,3 +99,14 @@ require'treesitter-context'.setup{
   separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
 }
 
+-- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
+--   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+--   callback = function()
+--     vim.opt.foldmethod     = 'expr'
+--     vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+--   end
+-- })
+
+vim.opt.foldmethod     = 'indent'
+-- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+

@@ -12,6 +12,8 @@
 """"
     lua require('new_init') -- Call all the lua
 
+    " packloadall
+
 """"
 " Vimscipt plugin configs
 """"
@@ -45,9 +47,6 @@
     onoremap  iL <Plug>(textobj-line-i)
 
     " Leader "
-        nnoremap <SPACE> <Nop>
-        let mapleader=" "
-
         let g:user_emmet_leader_key=','
     " Grepper / replace "
         nnoremap <Leader>R
@@ -72,35 +71,12 @@
 " General vim settings
 """"
     " Folding
-        set foldmethod=expr
-        set foldexpr=nvim_treesitter#foldexpr()
-        " set foldmethod=expr
-        " set foldexpr=lsp#ui#vim#folding#foldexpr()
-        " set foldtext=lsp#ui#vim#folding#foldtext()
+        " function FoldConfig()
+	        " set foldmethod=expr
+	        " set foldexpr=nvim_treesitter#foldexpr()
+        " endfunction
 
-        " syn match MyEmptyLines "\(^}\s*\n\)\+" fold
-        " syn sync fromstart
-        " set foldmethod=syntax
-        " nnoremap <Enter> za
-        nnoremap <leader><space> za
-        nnoremap zl zo
-        nnoremap zh zc
-        nnoremap zL zO
-        nnoremap zH zC
-        " inoremap <C-j> :set
-        "
-
-        " set foldopen=all
-        " set foldopen-=block
-        " set foldopen-=hor
-        " set foldopen-=insert
-        " set foldopen-=jump
-        " set foldopen-=mark
-        " set foldopen-=percent
-        " set foldopen-=quickfix
-        " set foldopen-=search
-        " set foldopen-=tag
-        " set foldopen-=undo
+        " autocmd BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter * :call FoldConfig()
 
     "spell
         hi SpellBad cterm=underline
@@ -229,19 +205,6 @@
 
 " web-devicons
     let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
-
-" FZF
-    let $FZF_DEFAULT_COMMAND = 'rg --no-ignore-vcs --files
-                \ --hidden
-                \ --glob "!**/node_modules/*"
-                \ --glob "!**/.terraform/*"
-                \ --glob "!**/.pytest_cache/*"
-                \ --glob "!**/.mypy_cache/*"
-                \ --glob "!**/.git/*"
-                \ '
-    nnoremap <c-]> :Telescope find_files<cr>
-    nnoremap <c-;> :Telescope find_files<cr>
-    nnoremap <c-f> :Telescope find_files<cr>
 
 " center the cursor after some commands
     nnoremap Y y$
@@ -384,8 +347,8 @@
         nnoremap <C-S-TAB> :-tabmove<cr>:BufferLineSortByTabs<cr>
         nnoremap <C-TAB> :+tabmove<cr>:BufferLineSortByTabs<cr>
 
-        nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
-        nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
+        " nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
+        " nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
 
         nnoremap 1gt 1gt
         nnoremap 2gt 2gt
@@ -408,7 +371,7 @@
         noremap <Right> <NOP>
 
     " make W write one file, not everything (typo is too quick)
-        :command -nargs=* W :w "<args>"
+        :command! -nargs=* W :w "<args>"
         :command -nargs=* Q :q "<args>"
 
     " Shortcutting split navigation:
@@ -599,6 +562,8 @@
         autocmd BufWritePre terraform lua vim.lsp.buf.formatting_sync()
         autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType terraform setlocal foldnestmax=1
+        autocmd FileType terraform setlocal foldmethod=indent
+        " autocmd FileType terraform setlocal foldexpr=nvim_treesitter#foldexpr()
 
     " Makefiles "
         autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -606,6 +571,7 @@
     " Lua "
         autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType lua setlocal foldnestmax=1
+        autocmd FileType lua setlocal foldmethod=indent
 
     " Cuda "
         autocmd FileType cuda setlocal ts=8 sts=8 sw=8 noexpandtab
