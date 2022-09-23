@@ -79,6 +79,7 @@ require('packer').startup(function(use)
   use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
   use 'rmagatti/goto-preview'
 
+  use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
 
   -- Snips
   use 'L3MON4D3/LuaSnip'
@@ -116,6 +117,7 @@ require('packer').startup(function(use)
   use 'Raimondi/delimitMate'
   use 'kien/rainbow_parentheses.vim'
   use 'NvChad/nvim-colorizer.lua'
+  use 'RRethy/vim-illuminate'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
