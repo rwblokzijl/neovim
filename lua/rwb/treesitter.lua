@@ -77,11 +77,6 @@ require'treesitter-context'.setup{
     --   rust = {
     --       'impl_item',
     --   },
-    terraform = {
-      'block',
-      'object_elem',
-      'attribute',
-    },
     lua = {
       'field'
     }
