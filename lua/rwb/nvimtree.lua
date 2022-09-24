@@ -125,24 +125,22 @@ local tab_has_nvim_tree = function(tabnr)
 end
 
 -- Keep nvim tree open/closed across tabs
-vim.g.nvimtree_open = false
+vim.g.nvim_tree_tab_open = 0
 M.toggle = function ()
-  if vim.g.nvimtree_open then
-    vim.g.nvimtree_open = false
+  if vim.g.nvim_tree_tab_open == 1 then
+    vim.g.nvim_tree_tab_open = 0
   else
-    vim.g.nvimtree_open = true
+    vim.g.nvim_tree_tab_open = 1
   end
   api.tree.toggle()
 end
 local tabAutoCMD = vim.api.nvim_create_augroup("NvimTreeTabEnter", { clear = true })
 vim.api.nvim_create_autocmd("TabEnter", {
   callback = function ()
-    local tabnr = vim.fn.tabpagenr()
     vim.schedule(function ()
-      if vim.g.nvimtree_open then
+      if vim.g.nvim_tree_tab_open == 1 then
         if not tab_has_nvim_tree(vim.fn.tabpagenr()) then
-          api.tree.open()
-          vim.cmd "noautocmd wincmd p"
+          view.open { focus_tree = false }
         end
       else
         api.tree.close()
@@ -152,15 +150,6 @@ vim.api.nvim_create_autocmd("TabEnter", {
   group = tabAutoCMD,
 })
 
--- Close last open nvim window
--- vim.api.nvim_create_autocmd("WinNew", {
---   callback = function ()
---     local winnr = tonumber(vim.fn.expand("<amatch>"))
---     local tabnr = vim.api.nvim_win_get_tabpage(winnr)
---     print(tabnr)
---   end,
---   group = tabAutoCMD,
--- })
 vim.api.nvim_create_autocmd("WinClosed", {
   callback = function ()
     local winnr = tonumber(vim.fn.expand("<amatch>"))
@@ -171,7 +160,7 @@ vim.api.nvim_create_autocmd("WinClosed", {
     local tab_bufs = vim.tbl_map(vim.api.nvim_win_get_buf, tab_wins)
     if buf_info.name:match(".*NvimTree_%d*$") then -- was nvim tree
       if not vim.tbl_isempty(tab_bufs) then -- and was not the last window
-        vim.g.nvimtree_open = false -- NOTE: this also catches a lot of cases where nvim tree was already closed.
+        vim.g.nvim_tree_tab_open = 0 -- NOTE: this also catches a lot of cases where nvim tree was already closed.
       end
     else -- closed file is normal buffer
       if #tab_bufs == 1 then                                -- if there is only 1 buffer left

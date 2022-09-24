@@ -120,13 +120,15 @@
     set ignorecase
     set smartcase
     " With these mappings, if 'smartcase' is on and you press * while on the word "The", you will only find "The" (case sensitive), but if you press * while on the word "the", the search will not be case sensitive.
-    nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>zzzv
-    nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>zzzv
+    nnoremap * :NextModeReset<CR>/\<<C-R>=expand('<cword>')<CR>\><CR>
+    nnoremap # :NextModeReset<CR>?\<<C-R>=expand('<cword>')<CR>\><CR>
+    nnoremap / :NextModeReset<CR>/
+    nnoremap ? :NextModeReset<CR>?
 
     " Vislualising code
     set incsearch
     set hlsearch
-    nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>:LuaSnipUnlinkCurrent<CR>
+    nnoremap <ESC><ESC> :nohlsearch<CR>:hi clear SpellBad<CR>:LuaSnipUnlinkCurrent<CR>:NextModeReset<CR>
     set cursorline
     set list
     set showbreak=↪\
@@ -184,8 +186,8 @@
 
 " center the cursor after some commands
     nnoremap Y y$
-    nnoremap n nzzzv
-    nnoremap N Nzzzv
+    " nnoremap n nzzzv
+    " nnoremap N Nzzzv
     " nnoremap * *zzzv # already remapped higher up
     " nnoremap # #zzzv # already remapped higher up
     " nnoremap J mzJ`z //more annoying than useful
@@ -268,9 +270,9 @@
         nnoremap <C-y><C-y> "+yy
         vnoremap <C-y> "+y
 
-        nnoremap <C-p> "+p
+        " nnoremap <C-p> "+p
         nnoremap <C-S-p> "+P
-        vnoremap <C-p> "+p
+        " vnoremap <C-p> "+p
         vnoremap <C-S-p> "+P
 
         nnoremap <C-c> "+c

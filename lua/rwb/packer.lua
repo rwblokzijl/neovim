@@ -23,6 +23,8 @@ require('packer').startup(function(use)
   --                   /____/                     --
   --------------------------------------------------
 
+  use 'rwblokzijl/nvim-jump-mode'
+
   use 'kylechui/nvim-surround'          -- (s)       To surround
 -- let Vundle manage Vundle, required
   -- Plugin 'VundleVim/Vundle.vim'
@@ -106,7 +108,7 @@ require('packer').startup(function(use)
     -- UI Extentions
   -- use {'junegunn/fzf', ron= { -> fzf#install() } }
   -- use 'junegunn/fzf.vim'
-  use 'terryma/vim-multiple-cursors'
+  -- use 'terryma/vim-multiple-cursors'
   use 'mhinz/vim-grepper'
   -- use 'vim-scripts/a.vim'
   use 'tpope/vim-sensible'

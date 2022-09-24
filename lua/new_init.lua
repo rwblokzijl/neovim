@@ -12,7 +12,7 @@ require('rwb.nvimtree')
 
 require('rwb.complete') -- Autocompletion configuration
 require('rwb.dap') -- Autocompletion configuration
-require('rwb.luasnip')
+require('rwb.luasnip').setup()
 require('rwb.treesitter')
 
 require('rwb.telescope')
@@ -22,6 +22,6 @@ require("nvim-surround").setup()
 require("retrail").setup()
 require('colorizer').setup()
 
-require('rwb.gitsigns')
+require('rwb.gitsigns').setup()
 
 require('rwb.keymaps').set_general_keymaps() -- LAST

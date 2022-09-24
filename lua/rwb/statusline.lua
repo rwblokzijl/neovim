@@ -3,6 +3,10 @@ local colors = require("util.colors")
 local custom_fname = require('lualine.components.filename'):extend()
 local highlight = require'lualine.highlight'
 
+local function search_mode()
+  return vim.g.goto_next_mode
+end
+
 require('lualine').setup {}
 function custom_fname:init(options)
   custom_fname.super.init(self, options)
@@ -45,7 +49,7 @@ require('lualine').setup {
     lualine_a = {'mode'},
     lualine_b = {'diff', 'diagnostics'},
     lualine_c = {custom_fname, 'lsp_progress'},
-    lualine_x = {'filetype'},
+    lualine_x = {require('nvim-jump-mode').mode, 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },

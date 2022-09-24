@@ -1,13 +1,15 @@
 local cmp = require'cmp'
-
+local ls  = require('luasnip')
 local lspkind = require('lspkind')
+local tabnine = require('cmp_tabnine.compare')
+
 lspkind.init()
 
 cmp.setup({
   preselect = cmp.PreselectMode.None,
 
   view = { entries = { name = 'custom', }, }, -- can be "custom", "wildmenu" or "native"
-  snippet = { expand = function(args) require('luasnip').lsp_expand(args.body) end, },
+  snippet = { expand = function(args) ls.lsp_expand(args.body) end, },
   confirm_opts = { behavior = cmp.ConfirmBehavior.Replace, select = false, },
   window = { documentation = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }, }, },
 
@@ -30,18 +32,18 @@ cmp.setup({
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
       cmp.config.compare.order,
-      require('cmp_tabnine.compare'),
+      tabnine,
     },
   },
-
   mapping = cmp.mapping.preset.insert({
     ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
     ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
-    -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<C-y>"] = cmp.mapping(
+    -- ['<CR>'] = cmp.mapping(
+    ["<C-i>"] = cmp.mapping(
+    -- ["<C-y>"] = cmp.mapping(
     cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
@@ -80,7 +82,7 @@ cmp.setup({
       max_item_count=4,
     },
     { name = 'cmp_tabnine' ,  --[[ priority=10, ]] },
-    { name = "git" },
+    { name = "git", },
     { name = "dictionary", keyword_length = 2 },
     { name = 'calc' },
     { name = 'spell' },
