@@ -3,6 +3,7 @@ local goto_preview = require('goto-preview')
 local luasnip      = require('rwb.luasnip').bindings
 local nvimtree     = require('rwb.nvimtree')
 local telescope    = require('telescope.builtin')
+local ls           = require "luasnip"
 
 local M = {}
 
@@ -33,11 +34,11 @@ M.set_lsp_keymaps = function (_, bufnr)
   vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation,                  bufopts)
   -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,                  bufopts)
 
-  vim.keymap.set('n', 'gsd', goto_preview.goto_preview_definition,      bufopts)
-  vim.keymap.set('n', 'gst', goto_preview.goto_preview_type_definition, bufopts)
-  vim.keymap.set('n', 'gsi', goto_preview.goto_preview_implementation,  bufopts)
-  vim.keymap.set('n', 'gS',  goto_preview.close_all_win,                bufopts)
-  vim.keymap.set('n', 'gsr', goto_preview.goto_preview_references,      bufopts)
+  -- vim.keymap.set('n', 'gsd', goto_preview.goto_preview_definition,      bufopts)
+  -- vim.keymap.set('n', 'gst', goto_preview.goto_preview_type_definition, bufopts)
+  -- vim.keymap.set('n', 'gsi', goto_preview.goto_preview_implementation,  bufopts)
+  -- vim.keymap.set('n', 'gS',  goto_preview.close_all_win,                bufopts)
+  -- vim.keymap.set('n', 'gsr', goto_preview.goto_preview_references,      bufopts)
 
   -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -171,7 +172,6 @@ M.set_general_keymaps = function ()
   vim.keymap.set("i",                          "<c-u>", luasnip.select_choice)
   vim.keymap.set("n",                          "<c-s>", luasnip.reload_snippets)
 
-  local ls = require "luasnip"
   require('nvim-jump-mode').setup({
     jump_modes = {
       lsp_diagnostics = {
