@@ -172,12 +172,90 @@ M.set_general_keymaps = function ()
   vim.keymap.set("i",                          "<c-u>", luasnip.select_choice)
   vim.keymap.set("n",                          "<c-s>", luasnip.reload_snippets)
 
+  local function jump_to_index(hist)
+    local item = hist.matches[hist.index]
+    vim.api.nvim_win_set_cursor(0, {item.lnum, item.col-1})
+  end
+
+  local function mod_plus_1(x, y)
+    return math.fmod(x - 1, y) + 1
+  end
+
+  local function tbl_find(table, func)
+    for i, value in ipairs(table) do
+      if func(value) then
+        return i
+      end
+    end
+    return -1
+  end
+
+  local function lsp_references_jump(history, index_mutator)
+    local new_history = {}
+    if vim.tbl_isempty(history) then
+      local handle_references = function(err, result, context, c)
+        -- TODO: port the commented out function below into here
+      end
+
+      local params = vim.lsp.util.make_position_params()
+      if not params.context then
+        params.context = {
+          includeDeclaration = true,
+        }
+      end
+      local lsp_call = "textDocument/references"
+      local success, err = pcall(vim.lsp.buf_request, 0, lsp_call, params, handle_references)
+      if not success then
+        error("FAILED")
+        error(err)
+      end
+    else
+    end
+    return new_history
+  end
+
+  -- local function lsp_references_jump(history, index_mutator)
+  --   local new_history = {}
+  --   if vim.tbl_isempty(history) then
+  --     local function on_list(options)
+  --       new_history.matches = options.items
+  --       local current_pos = vim.api.nvim_win_get_cursor(0)
+  --       local current_index = tbl_find(new_history.matches, function (item)
+  --         local same_line = item.lnum == current_pos[1]
+  --         local same_col = item.col == current_pos[2]+1
+  --         local same_file = item.filename == vim.api.nvim_buf_get_name(0)
+  --         if same_file and same_line and same_col then
+  --           return true
+  --         else
+  --           return false
+  --         end
+  --       end)
+  --       local lsp_call = "textDocument/references"
+  --       local success, _ = pcall(vim.lsp.buf_request, 0, lsp_call, params, lib.get_handler(lsp_call, opts))
+
+  --       new_history.index = mod_plus_1(current_index+1, vim.tbl_count(new_history.matches))
+  --       jump_to_index(new_history)
+  --     end
+  --     vim.lsp.buf.references(nil, {on_list=on_list})
+  --   else
+  --     new_history.matches = history.matches
+  --     new_history.index = mod_plus_1(index_mutator(history.index), vim.tbl_count(history.matches))
+  --     jump_to_index(new_history)
+  --   end
+  --   return new_history
+  -- end
   require('nvim-jump-mode').setup({
     jump_modes = {
       lsp_diagnostics = {
         mode_leader = "d", -- gnd/gpd
         next_callback = vim.diagnostic.goto_next,
         prev_callback = vim.diagnostic.goto_prev,
+      },
+      lsp_references = {
+        mode_leader = "r", -- gnh/gph
+        pass_history = true,
+        next_callback = function(history) return lsp_references_jump(history, function (index) return index + 1 end) end,
+        prev_callback = function(history) return lsp_references_jump(history, function (index) return index - 1 end) end,
       },
       git_hunks = {
         mode_leader = "h", -- gnh/gph

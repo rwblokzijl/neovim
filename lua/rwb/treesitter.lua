@@ -11,10 +11,10 @@ configs.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<c-i>",
-      node_incremental = "<c-i>",
-      scope_incremental = "<c-u>",
-      node_decremental = "<c-o>",
+      -- init_selection = "<c-i>",
+      -- node_incremental = "<c-i>",
+      -- scope_incremental = "<c-u>",
+      -- node_decremental = "<c-o>",
     },
   },
   textobjects = {
