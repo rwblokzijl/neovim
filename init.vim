@@ -120,8 +120,8 @@
     set ignorecase
     set smartcase
     " With these mappings, if 'smartcase' is on and you press * while on the word "The", you will only find "The" (case sensitive), but if you press * while on the word "the", the search will not be case sensitive.
-    nnoremap * :NextModeReset<CR>/\<<C-R>=expand('<cword>')<CR>\><CR>
-    nnoremap # :NextModeReset<CR>?\<<C-R>=expand('<cword>')<CR>\><CR>
+    nnoremap * :NextModeReset<CR>/\<<C-R>=expand('<cword>')<CR>\><CR>zzzv
+    nnoremap # :NextModeReset<CR>?\<<C-R>=expand('<cword>')<CR>\><CR>zzzv
     nnoremap / :NextModeReset<CR>/
     nnoremap ? :NextModeReset<CR>?
 

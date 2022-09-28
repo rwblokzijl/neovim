@@ -172,9 +172,11 @@ M.set_general_keymaps = function ()
   vim.keymap.set("i",                          "<c-u>", luasnip.select_choice)
   vim.keymap.set("n",                          "<c-s>", luasnip.reload_snippets)
 
-  local function jump_to_index(hist)
+  local function jump_to_index(hist, offset_encoding)
     local item = hist.matches[hist.index]
-    vim.api.nvim_win_set_cursor(0, {item.lnum, item.col-1})
+    -- print(vim.inspect(hist))
+    -- print(hist.index)
+    vim.lsp.util.jump_to_location(item, offset_encoding, true)
   end
 
   local function mod_plus_1(x, y)
@@ -190,11 +192,34 @@ M.set_general_keymaps = function ()
     return -1
   end
 
+  local function position_in_range(position, range)
+    if range.start.line > position.line then
+      return false
+    end
+    if range.start.line == position.line and range.start.character > position.character then
+      return false
+    end
+    if range["end"].line < position.line then
+      return false
+    end
+    if range["end"].line == position.line and range["end"].character <= position.character then
+      return false
+    end
+    return true
+  end
+
   local function lsp_references_jump(history, index_mutator)
     local new_history = {}
     if vim.tbl_isempty(history) then
-      local handle_references = function(err, result, context, c)
-        -- TODO: port the commented out function below into here
+      local handle_references = function(_, result, context, _)
+        new_history.matches = result
+        local current_pos = context.params.position
+        local current_index = tbl_find(new_history.matches, function (item)
+          return position_in_range(current_pos, item.range)
+        end)
+        new_history.index = mod_plus_1(current_index+1, vim.tbl_count(new_history.matches))
+        new_history.client_id = context.client_id
+        jump_to_index(new_history, vim.lsp.get_client_by_id(new_history.client_id))
       end
 
       local params = vim.lsp.util.make_position_params()
@@ -210,6 +235,10 @@ M.set_general_keymaps = function ()
         error(err)
       end
     else
+      new_history.matches = history.matches
+      new_history.client_id = history.client_id
+      new_history.index = mod_plus_1(index_mutator(history.index), vim.tbl_count(history.matches))
+      jump_to_index(new_history, vim.lsp.get_client_by_id(new_history.client_id))
     end
     return new_history
   end
