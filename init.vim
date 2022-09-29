@@ -270,9 +270,9 @@
         nnoremap <C-y><C-y> "+yy
         vnoremap <C-y> "+y
 
-        " nnoremap <C-p> "+p
+        nnoremap <C-p> "+p
         nnoremap <C-S-p> "+P
-        " vnoremap <C-p> "+p
+        vnoremap <C-p> "+p
         vnoremap <C-S-p> "+P
 
         nnoremap <C-c> "+c
