@@ -70,6 +70,7 @@ require'treesitter-context'.setup{
       'if',
       'switch',
       'case',
+      -- 'template_literal'
       -- 'block',
     },
     -- Example for a specific filetype.
@@ -77,9 +78,12 @@ require'treesitter-context'.setup{
     --   rust = {
     --       'impl_item',
     --   },
-    lua = {
-      'field'
-    }
+    -- terraform = {
+    --   'template_literal'
+    -- },
+    -- lua = {
+    --   'field'
+    -- }
   },
   exact_patterns = {
     -- Example for a specific filetype with Lua patterns

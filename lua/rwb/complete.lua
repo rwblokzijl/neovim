@@ -85,7 +85,7 @@ cmp.setup({
     { name = "git", },
     { name = "dictionary", keyword_length = 2 },
     { name = 'calc' },
-    { name = 'spell' },
+    { name = 'spell', option = { keep_all_entries = true, }, max_item_count=2 },
   }),
 
   formatting = {
@@ -114,8 +114,8 @@ cmp.setup({
 
 })
 
--- vim.opt.spell = true
--- vim.opt.spelllang = { 'en_us' }
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 --
 require("cmp_dictionary").setup({
   dic = {
