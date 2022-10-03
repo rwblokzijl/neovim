@@ -767,3 +767,15 @@
 
     highlight! link GitSignsCurrentLineBlame GruvboxBg4
 set title
+
+function! GoStart(type) abort
+    normal! `[
+endfunction
+
+function! GoEnd(type) abort
+    normal! `]
+endfunction
+
+nnoremap <silent> gs :set opfunc=GoStart<CR>g@
+nnoremap <silent> ge :set opfunc=GoEnd<CR>g@
+

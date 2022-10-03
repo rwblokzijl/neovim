@@ -204,7 +204,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 local lspconfig = require'lspconfig'
 
 local servers = {
-
+  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   -- als = {},
   -- angularls = {},
   ansiblels = {},
@@ -373,7 +373,7 @@ local servers = {
   tflint = {},
   -- theme_check = {},
   -- tilt_ls = {},
-  -- tsserver = {},
+  tsserver = {},
   -- typeprof = {},
   -- vala_ls = {},
   -- vdmj = {},
