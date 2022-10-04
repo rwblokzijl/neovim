@@ -185,8 +185,8 @@ require('cmp_commit').setup({
   }
 })
 
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
+local tn_config = require('cmp_tabnine.config')
+tn_config:setup({
   max_lines = 1000;
   max_num_results = 20;
   sort = true;
