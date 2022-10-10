@@ -24,6 +24,7 @@ require('packer').startup(function(use)
   --------------------------------------------------
 
   use 'rwblokzijl/nvim-jump-mode'
+  use 'haya14busa/vim-asterisk' -- TODO: Setup
 
   use 'kylechui/nvim-surround'          -- (s)       To surround
 -- let Vundle manage Vundle, required
@@ -102,6 +103,15 @@ require('packer').startup(function(use)
   --
   use 'vim-test/vim-test'
 
+  use { -- TODO: Setup
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim"
+    }
+  }
+
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
 
@@ -150,6 +160,7 @@ require('packer').startup(function(use)
   -- Other
 
   use 'dkarter/bullets.vim'
+  -- use 'gaoDean/autolist.nvim' -- TODO: seems better than bullets.nvim IFF it works (didnt last time i tried)
   use 'zakharykaplan/nvim-retrail'
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -218,6 +229,7 @@ require('packer').startup(function(use)
 
   -- Latex
   -- use 'lervag/vimtex'
+  -- use 'jbyuki/nabla.nvim' -- TODO: setup
 
   -- files
 

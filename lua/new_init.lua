@@ -21,6 +21,7 @@ require('rwb.telescope')
 require("nvim-surround").setup()
 require("retrail").setup()
 require('colorizer').setup()
+-- require('autolist').setup()
 
 require('rwb.gitsigns').setup()
 
