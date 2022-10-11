@@ -26,8 +26,8 @@ configs.setup {
         -- ["a?"] = "@attribute.outer",
         ["ib"] = "@block.inner",
         ["ab"] = "@block.outer",
-        -- ["i?"] = "@call.inner",
-        -- ["a?"] = "@call.outer",
+        ["ir"] = "@call.inner",
+        ["ar"] = "@call.outer",
         ["iC"] = "@class.inner",
         ["aC"] = "@class.outer",
         -- ["i?"] = "@comment.inner", -- doesn't exist currently i implement using 'glts/vim-textobj-comment'. Later a custom treesitter query might be userful
@@ -48,6 +48,32 @@ configs.setup {
         -- Your custom capture.
         -- ["aF"] = "@custom-capture",
       },
+      selection_modes = {
+        -- default is charwise 'v'
+        -- ["@attribute.inner"]   = 'v',
+        -- ["@attribute.outer"]   = 'v',
+        -- ["@block.inner"]       = 'v',
+        ["@block.outer"]       = 'V',
+        -- ["@call.inner"]        = 'v',
+        -- ["@call.outer"]        = 'v',
+        -- ["@class.inner"]       = 'v',
+        ["@class.outer"]       = 'V',
+        ["@comment.outer"]     = 'V',
+        -- ["@conditional.inner"] = 'v',
+        -- ["@conditional.outer"] = 'v',
+        -- ["@frame.inner"]       = 'v',
+        -- ["@frame.outer"]       = 'V',
+        -- ["@function.inner"]    = 'v',
+        ["@function.outer"]    = 'V', -- disabled because of inline functions
+        -- ["@loop.inner"]        = 'v',
+        ["@loop.outer"]        = 'V',
+        -- ["@parameter.inner"]   = 'v',
+        -- ["@parameter.outer"]   = 'v',
+        -- ["@scopename.inner"]   = 'v',
+        ["@statement.outer"]   = 'V',
+        -- Your custom capture.
+        -- ["aF"] = "@custom-capture",
+      }
     },
   },
 }

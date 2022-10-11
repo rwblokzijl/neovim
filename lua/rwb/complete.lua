@@ -24,14 +24,15 @@ cmp.setup({
   sorting = {
     priority_weight = 2,
     comparators = {
+      cmp.config.compare.locality,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.score, -- final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight) (priority_weight = sources[n].priority
       cmp.config.compare.offset,
       cmp.config.compare.exact,
-      cmp.config.compare.score,
-      cmp.config.compare.recently_used,
-      cmp.config.compare.kind,
+      -- cmp.config.compare.kind,
       cmp.config.compare.sort_text,
-      cmp.config.compare.length,
-      cmp.config.compare.order,
+      -- cmp.config.compare.length,
+      -- cmp.config.compare.order,
       tabnine,
     },
   },
@@ -72,20 +73,20 @@ cmp.setup({
     --        max_item_count
     --        get_bufnrs
     --        more?
-    { name = "nvim_lsp", --[[ priority=100 ]] },
-    { name = "luasnip",  --[[ priority=90 ]] },
-    { name = "nvim_lua", --[[ priority=70 ]] },
-    { name = "path",     --[[ priority=60 ]] },
-    { name = "buffer",
-      --[[ priority=20, ]]
-      option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, },
-      max_item_count=4,
-    },
-    { name = 'cmp_tabnine' ,  --[[ priority=10, ]] },
-    { name = "git", },
-    { name = "dictionary", keyword_length = 2 },
-    { name = 'calc' },
-    { name = 'spell', option = { keep_all_entries = true, }, max_item_count=2 },
+
+    -- High quality / low volume
+    { name = "nvim_lsp",    priority=10, },
+    { name = "luasnip",     priority=10,  max_item_count=5, },
+    { name = "nvim_lua",    priority=10  },
+    { name = "path",        priority=10,  },
+    { name = "git",         priority=10,  },
+
+    -- Supplementary
+    { name = "buffer",      priority=1,  max_item_count=4, option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, }, },
+    { name = 'spell',       priority=1,  max_item_count=2, keyword_length = 2, option = { keep_all_entries = true, }, },
+    { name = "dictionary",  priority=1,  max_item_count=4, keyword_length = 2 },
+    { name = 'calc',        priority=1,  },
+    { name = 'cmp_tabnine', priority=1,  },
   }),
 
   formatting = {
