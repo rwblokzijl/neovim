@@ -39,7 +39,7 @@ local function replacor(char)
 end
 
 local function duplicate(args)
-  return args[1][1]
+  return args[1]
 end
 
 local function expand()
