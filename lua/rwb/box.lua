@@ -9,27 +9,27 @@ local dyn = ls.dynamic_node
 
 local fmt = require("luasnip.extras.fmt").fmt
 
-vim.keymap.set({'n', 'i'}, "<space><space>", function ()
-  vim.cmd ':stopinsert'
-  vim.cmd ':w'
-  vim.cmd ':luafile ~/.config/nvim/lua/rwb/box.lua'
-  vim.cmd ':norm gb'
-  ls.jump(1)
-  ls.jump(-1)
-end, {noremap = true})
+-- vim.keymap.set({'n', 'i'}, "<space><space>", function ()
+--   vim.cmd ':stopinsert'
+--   vim.cmd ':w'
+--   vim.cmd ':luafile ~/.config/nvim/lua/rwb/box.lua'
+--   vim.cmd ':norm gb'
+--   ls.jump(1)
+--   ls.jump(-1)
+-- end, {noremap = true})
 
 _G.callback = function(mode)
   print(mode)
 end
 
-vim.keymap.set({'n', 'i'}, "<space>f", function ()
-  vim.cmd ':stopinsert'
-  vim.cmd ':w'
-  vim.cmd ':luafile ~/.config/nvim/lua/rwb/box.lua'
-  vim.go.operatorfunc = "v:lua.callback"
+-- vim.keymap.set({'n', 'i'}, "<space>f", function ()
+--   vim.cmd ':stopinsert'
+--   vim.cmd ':w'
+--   vim.cmd ':luafile ~/.config/nvim/lua/rwb/box.lua'
 
-  vim.api.nvim_feedkeys('g@', 'n', false)
-end, {noremap = true})
+--   vim.go.operatorfunc = "v:lua.callback"
+--   vim.api.nvim_feedkeys('g@', 'n', false)
+-- end, {noremap = true})
 
 
 local function replacor(char)
