@@ -8,7 +8,6 @@ local cho = ls.choice_node
 local dyn = ls.dynamic_node
 
 local fmt = require("luasnip.extras.fmt").fmt
-local events = require("luasnip.util.events")
 
 vim.keymap.set({'n', 'i'}, "<space><space>", function ()
   vim.cmd ':stopinsert'
@@ -18,8 +17,6 @@ vim.keymap.set({'n', 'i'}, "<space><space>", function ()
   ls.jump(1)
   ls.jump(-1)
 end, {noremap = true})
-
-local my_count = 0
 
 _G.callback = function(mode)
   print(mode)
@@ -33,8 +30,6 @@ vim.keymap.set({'n', 'i'}, "<space>f", function ()
 
   vim.api.nvim_feedkeys('g@', 'n', false)
 end, {noremap = true})
-
-
 
 
 local function replacor(char)
@@ -72,6 +67,9 @@ local function expand()
   )
 end
 
+-- vim.keymap.set({'n', 'i'}, "<space><space>", function ()
+--   expand()
+-- end, {noremap = true})
 
 
 
@@ -89,9 +87,6 @@ end
 
 
 
-vim.keymap.set('n', "<space>b", function ()
-  expand()
-end, {noremap = true})
 vim.keymap.set('n', "gb", function ()
   expand()
 end, {noremap = true})
