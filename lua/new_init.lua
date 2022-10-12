@@ -14,6 +14,7 @@ require('rwb.complete') -- Autocompletion configuration
 require('rwb.dap') -- Autocompletion configuration
 require('rwb.luasnip').setup()
 require('rwb.treesitter')
+require('rwb.box')
 
 require('rwb.telescope')
 

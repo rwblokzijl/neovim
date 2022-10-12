@@ -169,7 +169,8 @@ ls.add_snippets("all", {
         fun(comment), fun(fileName), -- filename
         fun(commentLine), -- line
       }
-    )),
+    )
+  ),
   snippet({
     trig="bannerc",
     dscr="Banner with custom text",
