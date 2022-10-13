@@ -22,6 +22,8 @@ _G.callback = function(mode)
   print(mode)
 end
 
+
+
 -- vim.keymap.set({'n', 'i'}, "<space>f", function ()
 --   vim.cmd ':stopinsert'
 --   vim.cmd ':w'
@@ -38,8 +40,70 @@ local function replacor(char)
   end
 end
 
-local function duplicate(args)
-  return args[1]
+local function make_line(line, chars, desired_width)
+  -- local chars_len = chars[1]:len() + 1 + 1 chars[2]:len()
+  local pad = math.max(0, desired_width-line:len() )
+  return chars[1] .. " " .. line .. string.rep(" ", pad) .. " " .. chars[2]
+end
+
+local function top_bot_line(char, desired_width)
+  return " " .. string.rep(char, desired_width +2) .. " "
+end
+
+local function get_width(lines)
+  return math.max(unpack(vim.tbl_map(function (line) return line:len() end, lines)))
+end
+
+local function uncomment(text, comment_string)
+  local line = string.gmatch(text,
+    comment_string
+      :gsub("%%s", "(.*)")
+  )() or text
+  if line:match("^"..comment_string -- return nothing if empty comment (minus trailing spaces)
+    :gsub("%%s", "")
+    :gsub(" ", "").."$"
+  ) then
+    return ""
+  end
+  return line
+end
+
+local function box_func(args, _, comment_string)
+  local lines = args[1]
+  local ans = {}
+  local width = get_width(lines)
+  table.insert(ans, top_bot_line("_", width))
+  if #lines == 1 then
+    table.insert(ans, "< " .. lines[1] .. " >")
+  else
+    for i, line in ipairs(lines) do
+      line = uncomment(line, comment_string)
+      if i == 1 then
+        line = make_line(line, {"/", "\\"}, width)
+      elseif i == #lines then
+        line =  make_line(line, {"\\", "/"}, width)
+      else
+        line =  make_line(line, {"|", "|"}, width)
+      end
+      table.insert(ans, line)
+    end
+  end
+  table.insert(ans, top_bot_line("-", width))
+  return vim.tbl_map(function (line)
+    return comment_string:format(line):gsub(" *$", "")
+  end, ans)
+end
+
+-- llsldkfjsldkf
+-- lksdjflksdjf
+
+--  _________________
+-- / llsldkfjsldkf   \
+-- \ lksdjflksdjf    /
+--  -----------------
+
+local function get_comment_string()
+  return vim.bo.commentstring:gsub(" ?%%s ?", " %%s "):gsub(" *$", "")
 end
 
 local function expand()
@@ -47,18 +111,17 @@ local function expand()
     ls.snippet(
       "box",
       dyn(1, function ()
+        local comment_string =  get_comment_string()
+        print(comment_string)
         return sn("", fmt(
-          "# Placeholder: {}\n" ..
-          "#  _{}_\n" ..
-          "# < {} >\n" ..
-          "#  -{}-\n" ..
+          comment_string:format("{}") .. "\n" ..
+          "\n" ..
+          "{}\n" ..
           ""
           ,
           {
-            ins(1, "TEMP"),
-            fun(replacor("_"), {1}),
-            fun(duplicate, {1}),
-            fun(replacor("-"), {1}),
+            ins(1, "Box text"),
+            fun(box_func, {1}, {user_args = {comment_string}}),
           }
         ))
       end
@@ -67,9 +130,16 @@ local function expand()
   )
 end
 
--- vim.keymap.set({'n', 'i'}, "<space><space>", function ()
---   expand()
--- end, {noremap = true})
+
+
+
+
+
+
+
+
+
+
 
 
 
