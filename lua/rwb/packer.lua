@@ -161,7 +161,8 @@ require('packer').startup(function(use)
 
   use 'dkarter/bullets.vim'
   -- use 'gaoDean/autolist.nvim' -- TODO: seems better than bullets.nvim IFF it works (didnt last time i tried)
-  use 'zakharykaplan/nvim-retrail'
+  -- use 'zakharykaplan/nvim-retrail'
+  -- use 'ntpeters/vim-better-whitespace'
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 

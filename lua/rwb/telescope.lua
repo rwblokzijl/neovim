@@ -16,6 +16,9 @@ require('telescope').setup{
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
+    find_files = {
+      follow = true
+    }
     -- picker_name = {
     --   picker_config_key = value,
     --   ...

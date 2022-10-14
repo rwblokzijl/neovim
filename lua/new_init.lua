@@ -15,12 +15,13 @@ require('rwb.dap') -- Autocompletion configuration
 require('rwb.luasnip').setup()
 require('rwb.treesitter')
 require('rwb.box')
+require('rwb.vim-better-whitespace')
 
 require('rwb.telescope')
 
 -- require('Comment').setup()
 require("nvim-surround").setup()
-require("retrail").setup()
+-- require("retrail").setup()
 require('colorizer').setup()
 -- require('autolist').setup({})
 

@@ -96,7 +96,7 @@ require'treesitter-context'.setup{
       'if',
       'switch',
       'case',
-      -- 'template_literal'
+      'template_literal'
       -- 'block',
     },
     -- Example for a specific filetype.

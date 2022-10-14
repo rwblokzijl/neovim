@@ -133,6 +133,9 @@
     set list
     set showbreak=↪\
     set listchars=nbsp:☠,tab:▸\ ,trail:•,precedes:←,extends:→
+    highlight link ExtraWhitespace GruvboxRed
+    match ExtraWhitespace /\s\+$/
+
     highlight SpecialKey ctermfg=240
 
     " set textwidth=80 "default TW"
