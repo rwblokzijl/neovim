@@ -16,8 +16,7 @@ local function onoremap(binding, command)
 end
 
 local function vnoremap(binding, command)
-  vim.keymap.set('v', binding, command, {noremap = true})
-end
+  vim.keymap.set('v', binding, command, {noremap = true}) end
 
 local function nmap(binding, command)
   vim.keymap.set('n', binding, command)
@@ -50,7 +49,7 @@ M.set_lsp_keymaps = function (_, bufnr)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts) vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts) vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-local function set_keymaps_g_fold(leader)
+local function set_keymaps_s_fold(leader)
 
   nnoremap('za', '<Nop>')
   nnoremap('zo', '<Nop>')
@@ -74,8 +73,11 @@ local function set_keymaps_g_fold(leader)
 
   nnoremap(leader..'k', 'zk')
   nnoremap(leader..'j', 'zj')
+
   nnoremap(leader..'r', 'zr')
   nnoremap(leader..'m', 'zm')
+  nnoremap(leader..'i', 'zm')
+  nnoremap(leader..'o', 'zr')
 end
 
 
@@ -160,7 +162,7 @@ M.set_general_keymaps = function ()
 
   set_keymaps_g_text_objects()
   set_keymaps_leader("<leader>")
-  set_keymaps_g_fold("s")
+  set_keymaps_s_fold("s")
   set_keymaps_g_goto("g")
   set_keymaps_ctrl()
   set_keymaps_ft_quickfix()

@@ -82,10 +82,10 @@ cmp.setup({
     { name = "git",         priority=10,  },
 
     -- Supplementary
-    { name = "buffer",      priority=1,  max_item_count=4, option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, }, },
-    { name = 'spell',       priority=1,  max_item_count=2, keyword_length = 2, option = { keep_all_entries = true, }, },
-    { name = "dictionary",  priority=1,  max_item_count=4, keyword_length = 2 },
-    { name = 'calc',        priority=1,  },
+    { name = "buffer",      priority=5,  max_item_count=4, option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, }, },
+    { name = "dictionary",  priority=5,  max_item_count=4, keyword_length = 2 },
+    { name = 'spell',       priority=5,  max_item_count=2, keyword_length = 2, option = { keep_all_entries = true, }, },
+    { name = 'calc',        priority=5,  },
     { name = 'cmp_tabnine', priority=1,  },
   }),
 
