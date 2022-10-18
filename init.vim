@@ -323,13 +323,13 @@
 
     " Tabs control
 
-        nnoremap <TAB> :tabn<cr>:BufferLineSortByTabs<cr>
-        nnoremap <S-TAB> :tabp<cr>:BufferLineSortByTabs<cr>
-        nnoremap <C-S-TAB> :-tabmove<cr>:BufferLineSortByTabs<cr>
-        nnoremap <C-TAB> :+tabmove<cr>:BufferLineSortByTabs<cr>
+        nnoremap <TAB> :tabn<cr>
+        nnoremap <S-TAB> :tabp<cr>
+        nnoremap <C-S-TAB> :-tabmove<cr>
+        nnoremap <C-TAB> :+tabmove<cr>
 
-        " nnoremap gt :tabnew<cr>:BufferLineSortByTabs<cr>
-        " nnoremap gT :-1tabnew<cr>:BufferLineSortByTabs<cr>
+        nnoremap gt :tabnew<cr>
+        nnoremap gT :-1tabnew<cr>
 
         nnoremap 1gt 1gt
         nnoremap 2gt 2gt

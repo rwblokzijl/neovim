@@ -88,8 +88,8 @@ local function set_keymaps_g_goto(leader)
   -- tabs
   --
   nnoremap(leader.."f", function () print("FT: " .. vim.bo.filetype) end)
-  nnoremap(leader.."t", ":tabnew<cr>:BufferLineSortByTabs<cr>")
-  nnoremap(leader.."T", ":-1tabnew<cr>:BufferLineSortByTabs<cr>")
+  -- nnoremap(leader.."t", ":tabnew<cr>:BufferLineSortByTabs<cr>")
+  -- nnoremap(leader.."T", ":-1tabnew<cr>:BufferLineSortByTabs<cr>")
 end
 
 local function set_keymaps_ctrl()
