@@ -16,6 +16,7 @@ require('rwb.luasnip').setup()
 require('rwb.treesitter')
 require('rwb.box')
 require('rwb.vim-better-whitespace')
+require('rwb.dial-nvim')
 
 require('rwb.telescope')
 

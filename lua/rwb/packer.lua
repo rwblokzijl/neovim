@@ -36,12 +36,15 @@ require('packer').startup(function(use)
   -- Deps
   use 'nvim-lua/plenary.nvim'
 
+
   -- More actions
   -- use 'tpope/vim-surround'           -- (s)       To surround
   use 'christoomey/vim-sort-motion'     -- (gs)      To sort
   use 'vim-scripts/ReplaceWithRegister' -- (gr)      Replace with register
   use 'tommcdo/vim-ninja-feet'          -- (gr)      Replace with register
   use 'junegunn/vim-easy-align'         -- (ga)      To align
+  use 'monaqa/dial.nvim'
+
 
     -- More text objects
   use 'vim-scripts/argtextobj.vim'         -- (a)       Argument

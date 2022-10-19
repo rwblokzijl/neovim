@@ -103,6 +103,14 @@ local function set_keymaps_ctrl()
   nnoremap("<c-q>", telescope.quickfix)
   nnoremap("<c-]>", telescope.find_files)
   nnoremap("<c-;>", telescope.find_files)
+
+  nnoremap("<C-a>", require("dial.map").inc_normal())
+  nnoremap("<C-x>", require("dial.map").dec_normal())
+  vnoremap("<C-a>", require("dial.map").inc_visual())
+  vnoremap("<C-x>", require("dial.map").dec_visual())
+  vnoremap("g<C-a>", require("dial.map").inc_gvisual())
+  vnoremap("g<C-x>", require("dial.map").dec_gvisual())
+
 end
 
 local function set_keymaps_leader(leader)
