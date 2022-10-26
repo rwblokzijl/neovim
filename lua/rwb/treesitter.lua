@@ -58,7 +58,7 @@ configs.setup {
         -- ["@call.outer"]        = 'v',
         -- ["@class.inner"]       = 'v',
         ["@class.outer"]       = 'V',
-        ["@comment.outer"]     = 'V',
+        -- ["@comment.outer"]     = 'V',
         -- ["@conditional.inner"] = 'v',
         -- ["@conditional.outer"] = 'v',
         -- ["@frame.inner"]       = 'v',
