@@ -6,10 +6,29 @@ require("dial.config").augends:register_group{
     augend.integer.alias.hex,       -- nonnegative hex number  (0x01, 0x1a1f, etc.)
     augend.date.alias["%Y/%m/%d"],
     augend.date.alias["%Y-%m-%d"],
+    -- augend.date.alias["%d-%m-%Y"],
     augend.date.alias["%m/%d"],
     augend.date.alias["%H:%M"],
     augend.constant.alias.bool,
     augend.constant.new{ elements = {"True", "False"} },
+    augend.constant.new{ elements = {
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    }},
+    augend.constant.new{ elements = {
+      "Zondag",
+      "Maandag",
+      "Dinsdag",
+      "Woensdag",
+      "Donderdag",
+      "Vrijdag",
+      "Zaterdag"
+    }},
   },
 
 --   -- augends used when group with name `mygroup` is specified
