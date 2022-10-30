@@ -627,6 +627,33 @@
         " autocmd FileType yaml nnoremap <F5> :w<CR>:Make<Enter>
 
     " Markdown "
+
+        function! MarkdownLevel()
+            if getline(v:lnum) =~ '^# .*$'
+                return ">1"
+            endif
+            if getline(v:lnum) =~ '^## .*$'
+                return ">2"
+            endif
+            if getline(v:lnum) =~ '^### .*$'
+                return ">3"
+            endif
+            if getline(v:lnum) =~ '^#### .*$'
+                return ">4"
+            endif
+            if getline(v:lnum) =~ '^##### .*$'
+                return ">5"
+            endif
+            if getline(v:lnum) =~ '^###### .*$'
+                return ">6"
+            endif
+            return "="
+        endfunction
+        au FileType markdown.pandoc setlocal foldexpr=MarkdownLevel()
+        au FileType markdown.pandoc setlocal foldmethod=expr
+        au FileType markdown.pandoc setlocal foldnestmax=2
+
+
         function! s:isAtStartOfLine(mapping)
             let text_before_cursor = getline('.')[0 : col('.')-1]
             let mapping_pattern = '\V' . escape(a:mapping, '\')
