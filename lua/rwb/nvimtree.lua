@@ -11,8 +11,14 @@ nvimtree.setup {
   disable_netrw = true,
   hijack_netrw = true,
   -- auto_close = true,
+  -- actions = {
+  --   open_file = {
+  --     quit_on_open = true,
+  --   }
+  -- },
   open_on_tab = true,
   hijack_cursor = false,
+  -- hijack_unnamed_buffer_when_opening = true,
   update_cwd = true,
   -- update_to_buf_dir = {
   --   enable = true,
@@ -38,6 +44,10 @@ nvimtree.setup {
     timeout = 500,
   },
   view = {
+    -- float = {
+    --   enable = true,
+    --   quit_on_focus_loss = true
+    -- },
     width = 30,
     hide_root_folder = false,
     side = "left",
@@ -121,19 +131,21 @@ local function tab_win_closed(winnr)
   local buf_info = vim.fn.getbufinfo(bufnr)[1]
   local tab_wins = vim.tbl_filter(function(w) return w~=winnr end, vim.api.nvim_tabpage_list_wins(tabnr))
   local tab_bufs = vim.tbl_map(vim.api.nvim_win_get_buf, tab_wins)
-  if buf_info.name:match(".*NvimTree_%d*$") then -- close buffer was nvim tree
-    if not vim.tbl_isempty(tab_bufs) then -- and was not the last window (closed automatically)
+  if buf_info.name:match(".*NvimTree_%d*$") then            -- close buffer was nvim tree
+    -- Close all nvim tree onn :q
+    if not vim.tbl_isempty(tab_bufs) then                      -- and was not the last window (not closed automatically by code below)
       api.tree.close()
     end
-  else -- closed buffer was normal buffer
-    if #tab_bufs == 1 then                                    -- if there is only 1 buffer left
+  else                                                      -- else closed buffer was normal buffer
+    if #tab_bufs == 1 then                                    -- if there is only 1 buffer left in the tab
       local last_buf_info = vim.fn.getbufinfo(tab_bufs[1])[1]
-      if last_buf_info.name:match(".*NvimTree_%d*$") then     -- and that buffer is nvim tree
+      if last_buf_info.name:match(".*NvimTree_%d*$") then       -- and that buffer is nvim tree
         vim.schedule(function ()
-          if #vim.api.nvim_list_wins() == 1 then
-            vim.cmd "quit"
+          if #vim.api.nvim_list_wins() == 1 then                -- if its the last buffer in vim
+            vim.cmd "quit"                                        -- then close all of vim
+          else                                                  -- else there are more tabs open
+            vim.api.nvim_win_close(tab_wins[1], true)             -- then close only the tab
           end
-          vim.api.nvim_win_close(tab_wins[1], true)           -- then close that window
         end)
       end
     end
