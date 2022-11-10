@@ -544,6 +544,7 @@
         autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType terraform setlocal foldnestmax=1
         autocmd FileType terraform setlocal foldmethod=indent
+        " autocmd FileType terraform setlocal foldmethod=expr
         " autocmd FileType terraform setlocal foldexpr=nvim_treesitter#foldexpr()
 
     " Makefiles "
