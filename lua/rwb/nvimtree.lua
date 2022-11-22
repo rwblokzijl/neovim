@@ -1,6 +1,5 @@
 local nvimtree = require("nvim-tree")
 local api = require("nvim-tree.api")
-local view = require "nvim-tree.view"
 local colors = require("util.colors")
 
 local M = {}
@@ -16,14 +15,15 @@ nvimtree.setup {
   --     quit_on_open = true,
   --   }
   -- },
-  open_on_tab = true,
+  tab = {
+    sync = {
+      open = true,
+      close = true,
+      ignore = {},
+    }
+  },
   hijack_cursor = false,
-  -- hijack_unnamed_buffer_when_opening = true,
   update_cwd = true,
-  -- update_to_buf_dir = {
-  --   enable = true,
-  --   auto_open = true,
-  -- },
   diagnostics = {
     enable = true,
     icons = {
@@ -132,7 +132,7 @@ local function tab_win_closed(winnr)
   local tab_wins = vim.tbl_filter(function(w) return w~=winnr end, vim.api.nvim_tabpage_list_wins(tabnr))
   local tab_bufs = vim.tbl_map(vim.api.nvim_win_get_buf, tab_wins)
   if buf_info.name:match(".*NvimTree_%d*$") then            -- close buffer was nvim tree
-    -- Close all nvim tree onn :q
+    -- Close all nvim tree on :q
     if not vim.tbl_isempty(tab_bufs) then                      -- and was not the last window (not closed automatically by code below)
       api.tree.close()
     end
@@ -159,36 +159,6 @@ vim.api.nvim_create_autocmd("WinClosed", {
   end,
   nested = true
 })
-
--- vim.api.nvim_create_autocmd("WinClosed", {
---   callback = function ()
---     local winnr = tonumber(vim.fn.expand("<amatch>"))
---     local tabnr = vim.api.nvim_win_get_tabpage(winnr)
---     local bufnr = vim.api.nvim_win_get_buf(winnr)
---     local buf_info = vim.fn.getbufinfo(bufnr)[1]
---     local tab_wins = vim.tbl_filter(function(w) return w~=winnr end, vim.api.nvim_tabpage_list_wins(tabnr))
---     local tab_bufs = vim.tbl_map(vim.api.nvim_win_get_buf, tab_wins)
---     if buf_info.name:match(".*NvimTree_%d*$") then -- close buffer was nvim tree
---       if not vim.tbl_isempty(tab_bufs) then -- and was not the last window (closed automatically)
---         vim.g.nvim_tree_tab_open = 0 -- NOTE: this also catches a lot of cases where nvim tree was already closed.
---       end
---     else -- closed buffer was normal buffer
---       if #tab_bufs == 1 then                                    -- if there is only 1 buffer left
---         local last_buf_info = vim.fn.getbufinfo(tab_bufs[1])[1]
---         if last_buf_info.name:match(".*NvimTree_%d*$") then     -- and that buffer is nvim tree
---           vim.schedule(function ()
---             if #vim.api.nvim_list_wins() == 1 then
---               vim.cmd "quit"
---             end
---             vim.api.nvim_win_close(tab_wins[1], true)           -- then close that window
---           end)
---         end
---       end
---     end
---   end,
---   group = tabAutoCMD,
--- })
-
 
 function Color(hl_grp, color, bold)
   vim.api.nvim_set_hl(0, hl_grp, { link = colors.getColor(color, {bold=bold, rev=false}) })
