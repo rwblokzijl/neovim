@@ -59,7 +59,8 @@ M.setup = function ()
     loadfile(ft_path)()
   end
 
-  require("luasnip.loaders.from_vscode").lazy_load()
+  -- require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/vuetify-vscode" } })
   require("luasnip.loaders.from_snipmate").lazy_load()
   ls.filetype_extend("<ft1>", {"<ft2>"})
   ls.filetype_extend("all", { "_" }) -- for honza/vim-snippets

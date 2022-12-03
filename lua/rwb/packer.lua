@@ -92,6 +92,7 @@ require('packer').startup(function(use)
   use 'honza/vim-snippets'
   use 'rafamadriz/friendly-snippets'
   use 'hashivim/vim-terraform'
+  use 'albanm/vuetify-vim'
   use 'juliosueiras/vim-terraform-completion'
 
   -- treesitter

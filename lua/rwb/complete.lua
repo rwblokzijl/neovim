@@ -24,11 +24,11 @@ cmp.setup({
   sorting = {
     priority_weight = 2,
     comparators = {
+      cmp.config.compare.exact,
       cmp.config.compare.locality,
       cmp.config.compare.recently_used,
       cmp.config.compare.score, -- final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight) (priority_weight = sources[n].priority
       cmp.config.compare.offset,
-      cmp.config.compare.exact,
       -- cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       -- cmp.config.compare.length,
