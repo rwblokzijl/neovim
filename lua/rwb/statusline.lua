@@ -130,6 +130,9 @@ require("bufferline").setup {
           goto continue
         elseif buf_info.name:match('%.tf') then
           name = buf_info.name:path_parent()
+          if buf_info.name:find("/examples/") then
+            name = "ex/"..name
+          end
           break
         else
           name = buf_info.name:basename() or tab.name
