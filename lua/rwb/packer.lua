@@ -143,8 +143,8 @@ require('packer').startup(function(use)
   use 'NvChad/nvim-colorizer.lua'
   use 'RRethy/vim-illuminate'
 
-  use 'm4xshen/autoclose.nvim'
-  -- use 'Raimondi/delimitMate'
+  -- use 'm4xshen/autoclose.nvim' \n require("autoclose").setup({}) # breaks enter for some reason
+  use 'Raimondi/delimitMate'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'

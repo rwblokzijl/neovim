@@ -27,8 +27,6 @@ require("nvim-surround").setup()
 require('colorizer').setup()
 -- require('autolist').setup({})
 
-require("autoclose").setup({})
-
 
 require('rwb.gitsigns').setup()
 
