@@ -5,7 +5,7 @@ require('util.string')
 require('rwb.packer')
 
 require('rwb.colorscheme') -- general vim settings
-require('rwb.general') -- general vim settings
+-- require('rwb.general') -- general vim settings
 
 require('rwb.statusline')
 require('rwb.nvimtree')
@@ -26,6 +26,9 @@ require("nvim-surround").setup()
 -- require("retrail").setup()
 require('colorizer').setup()
 -- require('autolist').setup({})
+
+require("autoclose").setup({})
+
 
 require('rwb.gitsigns').setup()
 

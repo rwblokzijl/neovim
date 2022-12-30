@@ -27,8 +27,6 @@ require('packer').startup(function(use)
   use 'haya14busa/vim-asterisk' -- TODO: Setup
 
   use 'kylechui/nvim-surround'          -- (s)       To surround
--- let Vundle manage Vundle, required
-  -- Plugin 'VundleVim/Vundle.vim'
 
   -- Make plugin commands repeatable
   use 'tpope/vim-repeat'
@@ -113,7 +111,7 @@ require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
   use 'nvim-treesitter/playground'
 
-  --
+  -- Testing
   use 'vim-test/vim-test'
 
   use { -- TODO: Setup
@@ -130,8 +128,7 @@ require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-
-    -- UI Extentions
+  -- UI Extentions
   -- use {'junegunn/fzf', ron= { -> fzf#install() } }
   -- use 'junegunn/fzf.vim'
   -- use 'terryma/vim-multiple-cursors'
@@ -142,10 +139,12 @@ require('packer').startup(function(use)
   use 'tpope/vim-dispatch'
   use 'tpope/vim-projectionist'
   use 'machakann/vim-highlightedyank'
-  use 'Raimondi/delimitMate'
   use 'kien/rainbow_parentheses.vim'
   use 'NvChad/nvim-colorizer.lua'
   use 'RRethy/vim-illuminate'
+
+  use 'm4xshen/autoclose.nvim'
+  -- use 'Raimondi/delimitMate'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
@@ -160,6 +159,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'junegunn/gv.vim'
   use 'lewis6991/gitsigns.nvim'
+
   --
   use 'tpope/vim-unimpaired'
 
