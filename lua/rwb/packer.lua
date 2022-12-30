@@ -87,6 +87,15 @@ require('packer').startup(function(use)
 
   use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
 
+  -- AI stuff
+  use({
+    'dense-analysis/neural',
+    requires = {
+      'MunifTanjim/nui.nvim',
+      'ElPiloto/significant.nvim'
+    }
+  })
+
   -- Snips
   use 'L3MON4D3/LuaSnip'
   use 'honza/vim-snippets'

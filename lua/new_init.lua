@@ -11,6 +11,7 @@ require('rwb.statusline')
 require('rwb.nvimtree')
 
 require('rwb.complete') -- Autocompletion configuration
+require('rwb.ai') -- AI code assistant configuration
 require('rwb.dap') -- Autocompletion configuration
 require('rwb.luasnip').setup()
 require('rwb.treesitter')
