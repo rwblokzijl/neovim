@@ -550,6 +550,10 @@
     " Makefiles "
         autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
 
+    " Bash "
+        autocmd FileType sh setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType bash setlocal ts=2 sts=2 sw=2 expandtab
+
     " Lua "
         autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType lua setlocal foldnestmax=1
