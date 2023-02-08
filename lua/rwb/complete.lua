@@ -20,22 +20,6 @@ cmp.setup({
     buffer = 1,
     path = 1,
   },
-
-  sorting = {
-    priority_weight = 2,
-    comparators = {
-      cmp.config.compare.exact,
-      cmp.config.compare.locality,
-      cmp.config.compare.recently_used,
-      cmp.config.compare.score, -- final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight) (priority_weight = sources[n].priority
-      cmp.config.compare.offset,
-      -- cmp.config.compare.kind,
-      cmp.config.compare.sort_text,
-      -- cmp.config.compare.length,
-      -- cmp.config.compare.order,
-      tabnine,
-    },
-  },
   mapping = cmp.mapping.preset.insert({
     ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
     ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
@@ -75,19 +59,36 @@ cmp.setup({
     --        more?
 
     -- High quality / low volume
-    { name = "nvim_lsp",    priority=10, },
-    { name = "luasnip",     priority=10,  max_item_count=5, },
+    { name = "nvim_lsp",    priority=100, },
+    { name = "luasnip",     priority=50,  max_item_count=5, entry_filter=function () return true end},
+    { name = "buffer",      priority=50,  max_item_count=4, option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, }, },
     { name = "nvim_lua",    priority=10  },
     { name = "path",        priority=10,  },
     { name = "git",         priority=10,  },
 
     -- Supplementary
-    { name = "buffer",      priority=5,  max_item_count=4, option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, }, },
     { name = "dictionary",  priority=5,  max_item_count=4, keyword_length = 2 },
     { name = 'spell',       priority=5,  max_item_count=2, keyword_length = 2, option = { keep_all_entries = true, }, },
     { name = 'calc',        priority=5,  },
     { name = 'cmp_tabnine', priority=1,  },
   }),
+
+  sorting = {
+    -- priority_weight = 1,
+    comparators = {
+      -- NOTE: Not using score makes all priority irrelevant
+      cmp.config.compare.score, -- final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight) (priority_weight = sources[n].priority
+      -- cmp.config.compare.exact,
+      -- cmp.config.compare.locality,
+      -- cmp.config.compare.recently_used,
+      -- cmp.config.compare.offset,
+      -- -- cmp.config.compare.kind,
+      -- cmp.config.compare.sort_text,
+      -- -- cmp.config.compare.length,
+      -- -- cmp.config.compare.order,
+      -- tabnine,
+    },
+  },
 
   formatting = {
     format = lspkind.cmp_format ({
