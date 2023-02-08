@@ -58,6 +58,7 @@ cmp.setup({
     --        get_bufnrs
     --        more?
 
+    -- NOTE: If this sorting is not enough, look into source_groups.
     -- High quality / low volume
     { name = "nvim_lsp",    priority=100, },
     { name = "luasnip",     priority=50,  max_item_count=5, entry_filter=function () return true end},
