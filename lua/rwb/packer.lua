@@ -45,16 +45,37 @@ require('packer').startup(function(use)
 
 
     -- More text objects
-  use 'vim-scripts/argtextobj.vim'         -- (a)       Argument
-  use 'bkad/CamelCaseMotion'               -- (,w)      CamelCaseWords
-  use 'michaeljsmith/vim-indent-object'    -- (i)       Indent blocks
+  -- use 'nvim-treesitter/nvim-treesitter-textobjects' -- Set of treesitter based objects
+  -- use 'chrisgrieser/nvim-various-textobjs'  -- Set of objects
+  -- indentation          |  [ai][iI] | all         | surrounding lines with same or higher indentation                                 | see overview from vim-indent-object
+  -- restOfIndentation    |  R        | all         | lines down with same or higher indentation                                        | see overview from vim-indent-object
+  -- value                |  iv, av   | all         | value of key-value pair, or right side of a variable assignment (inside one line) | outer includes trailing commas or semicolons
+  -- key                  |  ik, ak   | all         | key of key-value pair, or left side of a variable assignment                      | outer includes the = or :
+  -- number               |  in, an   | all         | numbers, similar to <C-a>                                                         | inner: digits, outer: incl. minus and decimal
+  -- diagnostic           |  !        | all         | LSP diagnostic (requires built-in LSP)                                            | -
+  -- nearEoL              |  n        | all         | from cursor position to end of line, minus one character                          | -
+  -- mdlink               |  il, al   | md, toml    | markdown link like [title](url)                                                   | inner is only the link title (between the [])
+  -- mdFencedCodeBlock    |  iC, aC   | md          | markdown fenced code (enclosed by three backticks)                                | outer includes the enclosing backticks
+  -- cssSelector          |  ic, ac   | css, scss   | class in CSS, like .my-class                                                      | outer includes trailing comma and space
+  -- jsRegex              |  i/, a/   | js, ts      | JavaScript regex pattern                                                          | outer includes the slashes and any flags
+  -- doubleSquareBrackets |  iD, aD   | lua, sh, md | text enclosed by [[]]                                                             | outer includes the four square brackets
+  -- column               |  |        | all         | column down until indent or shorter line. Accepts {count} for multiple columns.   | -
+  -- restOfParagraph      |  r        | all         | like }, but linewise                                                              | -
+  -- subword              |  iS, aS   | all         | like iw, but treating -, _ or . as word delimiters and only part of camelcase.    | outer includes trailing _ or -
+  -- entireBuffer         |  gG       | all         | entire buffer as one text object                                                  | -
+  -- url                  |  L        | all         | link beginning with "http"                                                        | -
+  -- shellPipe            |  iP/aP    | *sh         | command stdout is piped to                                                        | outer includes the front pipe character
+  use 'wellle/targets.vim'                  -- A collection of text object with look ahead/behind
+  -- use 'vim-scripts/argtextobj.vim'          -- (a)       Argument -- Replaced by targets.vim
+  -- use 'bkad/CamelCaseMotion'                -- (,w)      CamelCaseWords
+  use 'michaeljsmith/vim-indent-object'     -- (i)       Indent blocks
 
-  use 'kana/vim-textobj-user'              -- Enables the ones below
-  use 'glts/vim-textobj-comment'           -- (c)       Comments
-  use 'akiyan/vim-textobj-php'             -- (P)       PHP tag
-  use 'beloglazov/vim-textobj-quotes'      -- (q)       Any type of quote (even from outside the quotes
-  use 'kana/vim-textobj-line'              -- (l)       Line
-  use 'kana/vim-textobj-entire'            -- (e)       Entire file
+  use 'kana/vim-textobj-user'               -- Enables the ones below
+  use 'glts/vim-textobj-comment'            -- (c)       Comments
+  use 'kana/vim-textobj-line'               -- (l)       Line
+  use 'kana/vim-textobj-entire'             -- (e)       Entire file
+  -- use 'akiyan/vim-textobj-php'              -- (P)       PHP tag
+  -- use 'beloglazov/vim-textobj-quotes'       -- (q)       Any type of quote (even from outside the quotes -- Replaced by targets.vim
 
     -- Language Server Stuff
   use 'neovim/nvim-lspconfig'
@@ -122,6 +143,20 @@ require('packer').startup(function(use)
       "antoinemadec/FixCursorHold.nvim"
     }
   }
+  use({
+    "roobert/node-type.nvim",
+    config = function()
+      require("node-type").setup()
+    end,
+  })
+  use({
+    'ckolkey/ts-node-action',
+    requires = { 'nvim-treesitter' },
+    config = function()
+      require("ts-node-action").setup({})
+    end
+  })
+
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',

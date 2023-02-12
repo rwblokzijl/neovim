@@ -19,6 +19,9 @@ require('rwb.box')
 require('rwb.vim-better-whitespace')
 require('rwb.dial-nvim')
 
+-- TO
+-- require("various-textobjs").setup({ useDefaultKeymaps = true })
+
 require('rwb.telescope')
 
 -- require('Comment').setup()

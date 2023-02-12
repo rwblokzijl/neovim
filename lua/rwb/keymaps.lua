@@ -7,8 +7,9 @@ local ls           = require "luasnip"
 
 local M = {}
 
-local function nnoremap(binding, command)
-  vim.keymap.set('n', binding, command, {noremap = true})
+local function nnoremap(binding, command, opts)
+  opts = opts or {}
+  vim.keymap.set('n', binding, command, vim.tbl_extend("force", {noremap = true}, opts))
 end
 
 local function onoremap(binding, command)
@@ -31,7 +32,7 @@ M.set_lsp_keymaps = function (_, bufnr)
   vim.keymap.set('n', 'gr',    telescope.lsp_references, bufopts)
   vim.keymap.set('n', 'K',     vim.lsp.buf.hover,                           bufopts)
   vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation,                  bufopts)
-  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,                  bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,                  bufopts)
 
   -- vim.keymap.set('n', 'gsd', goto_preview.goto_preview_definition,      bufopts)
   -- vim.keymap.set('n', 'gst', goto_preview.goto_preview_type_definition, bufopts)
@@ -111,10 +112,14 @@ local function set_keymaps_ctrl()
   vnoremap("g<C-a>", require("dial.map").inc_gvisual())
   vnoremap("g<C-x>", require("dial.map").dec_gvisual())
 
+  nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
+
 end
 
 local function set_keymaps_leader(leader)
   nnoremap(leader.."e", nvimtree.toggle)
+  -- nnoremap(leader.."a", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
+
 end
 
 local function set_keymaps_g_text_objects()
