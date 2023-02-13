@@ -341,13 +341,15 @@ local servers = {
   -- sqls = {},
   -- steep = {},
   -- stylelint_lsp = {},
-  sumneko_lua = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = { 'vim' }
+  lua_ls = {
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = { 'vim' }
+        }
       }
     }
   },
@@ -365,13 +367,17 @@ local servers = {
   --   --   - Autocompleted in modules also
   -- },
 
-  terraformls = {
-    -- Review:
-    --   - When using a module shows just the unfilled variables (better)
-    --   - Seems to have a slight startup delay
-    --   - When typing only 'l' shows all local.* options (nice)
-    --   - Inside a module does work at all recognize 'var.'
-  },
+  -- terraformls = {
+  --   -- root_dir = lspconfig.util.root_pattern(
+  --   --   ".terraform",
+  --   --   ".git"
+  --   -- )
+  --   -- Review:
+  --   --   - When using a module shows just the unfilled variables (better)
+  --   --   - Seems to have a slight startup delay
+  --   --   - When typing only 'l' shows all local.* options (nice)
+  --   --   - Inside a module does work at all recognize 'var.'
+  -- },
 
   -- texlab = {},
   tflint = {},
@@ -419,15 +425,14 @@ require("mason-lspconfig").setup({
   automatic_installation = true,
 })
 
-for lsp, settings in pairs(servers) do
-  lspconfig[lsp].setup({
+for lsp, config in pairs(servers) do
+  lspconfig[lsp].setup(vim.tbl_deep_extend("force", {
     on_attach = require("rwb.keymaps").set_lsp_keymaps,
     capabilities = capabilities,
-    settings = settings,
     flags = {
       debounce_text_changes = 150,
     }
-  })
+  }, config))
 end
 
 require "lsp_signature".setup()
