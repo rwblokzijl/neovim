@@ -367,17 +367,17 @@ local servers = {
   --   --   - Autocompleted in modules also
   -- },
 
-  -- terraformls = {
-  --   -- root_dir = lspconfig.util.root_pattern(
-  --   --   ".terraform",
-  --   --   ".git"
-  --   -- )
-  --   -- Review:
-  --   --   - When using a module shows just the unfilled variables (better)
-  --   --   - Seems to have a slight startup delay
-  --   --   - When typing only 'l' shows all local.* options (nice)
-  --   --   - Inside a module does work at all recognize 'var.'
-  -- },
+  terraformls = {
+    -- root_dir = lspconfig.util.root_pattern(
+    --   ".terraform",
+    --   ".git"
+    -- )
+    -- Review:
+    --   - When using a module shows just the unfilled variables (better)
+    --   - Seems to have a slight startup delay
+    --   - When typing only 'l' shows all local.* options (nice)
+    --   - Inside a module does work at all recognize 'var.'
+  },
 
   -- texlab = {},
   tflint = {},
