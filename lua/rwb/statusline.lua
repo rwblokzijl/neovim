@@ -48,8 +48,15 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'diff', 'diagnostics'},
-    lualine_c = {custom_fname, 'lsp_progress'},
-    lualine_x = {require('nvim-jump-mode').mode, require("node-type").statusline, 'filetype'},
+    lualine_c = {
+      custom_fname,
+      -- 'lsp_progress'
+    },
+    lualine_x = {
+      require('nvim-jump-mode').mode,
+      -- require("node-type").statusline,
+      'filetype'
+    },
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },

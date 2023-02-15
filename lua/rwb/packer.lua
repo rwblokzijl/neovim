@@ -104,7 +104,7 @@ require('packer').startup(function(use)
   use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
   use 'rmagatti/goto-preview'
 
-  use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
+  -- use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
 
   -- AI stuff
   use({
@@ -143,12 +143,12 @@ require('packer').startup(function(use)
       "antoinemadec/FixCursorHold.nvim"
     }
   }
-  use({
-    "roobert/node-type.nvim",
-    config = function()
-      require("node-type").setup()
-    end,
-  })
+  -- use({
+  --   "roobert/node-type.nvim",
+  --   config = function()
+  --     require("node-type").setup()
+  --   end,
+  -- })
   use({
     'ckolkey/ts-node-action',
     requires = { 'nvim-treesitter' },

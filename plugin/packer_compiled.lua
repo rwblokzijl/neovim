@@ -74,10 +74,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  CamelCaseMotion = {
+  ["FixCursorHold.nvim"] = {
     loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/CamelCaseMotion",
-    url = "https://github.com/bkad/CamelCaseMotion"
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/FixCursorHold.nvim",
+    url = "https://github.com/antoinemadec/FixCursorHold.nvim"
   },
   LuaSnip = {
     loaded = true,
@@ -88,11 +88,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/ReplaceWithRegister",
     url = "https://github.com/vim-scripts/ReplaceWithRegister"
-  },
-  ["argtextobj.vim"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/argtextobj.vim",
-    url = "https://github.com/vim-scripts/argtextobj.vim"
   },
   ["bufferline.nvim"] = {
     loaded = true,
@@ -174,6 +169,11 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/delimitMate",
     url = "https://github.com/Raimondi/delimitMate"
   },
+  ["dial.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/dial.nvim",
+    url = "https://github.com/monaqa/dial.nvim"
+  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/diffview.nvim",
@@ -224,6 +224,11 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  ["lualine-lsp-progress.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress.nvim",
+    url = "https://github.com/WhoIsSethDaniel/lualine-lsp-progress.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -238,6 +243,27 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
+  },
+  neotest = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/neotest",
+    url = "https://github.com/nvim-neotest/neotest"
+  },
+  neural = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/neural",
+    url = "https://github.com/dense-analysis/neural"
+  },
+  ["node-type.nvim"] = {
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14node-type\frequire\0" },
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/node-type.nvim",
+    url = "https://github.com/roobert/node-type.nvim"
+  },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -254,15 +280,15 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
+  ["nvim-jump-mode"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-jump-mode",
+    url = "https://github.com/rwblokzijl/nvim-jump-mode"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-retrail"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-retrail",
-    url = "https://github.com/zakharykaplan/nvim-retrail"
   },
   ["nvim-surround"] = {
     loaded = true,
@@ -314,10 +340,31 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/rainbow_parentheses.vim",
     url = "https://github.com/kien/rainbow_parentheses.vim"
   },
+  ["significant.nvim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/significant.nvim",
+    url = "https://github.com/ElPiloto/significant.nvim"
+  },
+  ["targets.vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/targets.vim",
+    url = "https://github.com/wellle/targets.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["ts-node-action"] = {
+    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19ts-node-action\frequire\0" },
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/ts-node-action",
+    url = "https://github.com/ckolkey/ts-node-action"
+  },
+  ["vim-asterisk"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-asterisk",
+    url = "https://github.com/haya14busa/vim-asterisk"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -354,15 +401,15 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
   },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
+  },
   ["vim-indent-object"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-indent-object",
     url = "https://github.com/michaeljsmith/vim-indent-object"
-  },
-  ["vim-multiple-cursors"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
-    url = "https://github.com/terryma/vim-multiple-cursors"
   },
   ["vim-ninja-feet"] = {
     loaded = true,
@@ -434,16 +481,6 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-line",
     url = "https://github.com/kana/vim-textobj-line"
   },
-  ["vim-textobj-php"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-php",
-    url = "https://github.com/akiyan/vim-textobj-php"
-  },
-  ["vim-textobj-quotes"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-quotes",
-    url = "https://github.com/beloglazov/vim-textobj-quotes"
-  },
   ["vim-textobj-user"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-textobj-user",
@@ -453,10 +490,23 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
     url = "https://github.com/tpope/vim-unimpaired"
+  },
+  ["vuetify-vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vuetify-vim",
+    url = "https://github.com/albanm/vuetify-vim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: ts-node-action
+time([[Config for ts-node-action]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19ts-node-action\frequire\0", "config", "ts-node-action")
+time([[Config for ts-node-action]], false)
+-- Config for: node-type.nvim
+time([[Config for node-type.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14node-type\frequire\0", "config", "node-type.nvim")
+time([[Config for node-type.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
