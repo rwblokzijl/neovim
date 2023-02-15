@@ -105,6 +105,7 @@ require('packer').startup(function(use)
   use 'rmagatti/goto-preview'
 
   -- use 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
+  use 'arkav/lualine-lsp-progress'
 
   -- AI stuff
   use({

@@ -224,10 +224,10 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
-  ["lualine-lsp-progress.nvim"] = {
+  ["lualine-lsp-progress"] = {
     loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress.nvim",
-    url = "https://github.com/WhoIsSethDaniel/lualine-lsp-progress.nvim"
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress",
+    url = "https://github.com/arkav/lualine-lsp-progress"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -253,12 +253,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/neural",
     url = "https://github.com/dense-analysis/neural"
-  },
-  ["node-type.nvim"] = {
-    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14node-type\frequire\0" },
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/node-type.nvim",
-    url = "https://github.com/roobert/node-type.nvim"
   },
   ["nui.nvim"] = {
     loaded = true,
@@ -503,10 +497,6 @@ time([[Defining packer_plugins]], false)
 time([[Config for ts-node-action]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19ts-node-action\frequire\0", "config", "ts-node-action")
 time([[Config for ts-node-action]], false)
--- Config for: node-type.nvim
-time([[Config for node-type.nvim]], true)
-try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14node-type\frequire\0", "config", "node-type.nvim")
-time([[Config for node-type.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

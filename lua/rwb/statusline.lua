@@ -50,7 +50,7 @@ require('lualine').setup {
     lualine_b = {'diff', 'diagnostics'},
     lualine_c = {
       custom_fname,
-      -- 'lsp_progress'
+      'lsp_progress'
     },
     lualine_x = {
       require('nvim-jump-mode').mode,
