@@ -144,12 +144,12 @@ require('packer').startup(function(use)
       "antoinemadec/FixCursorHold.nvim"
     }
   }
-  -- use({
+  -- use {
   --   "roobert/node-type.nvim",
   --   config = function()
   --     require("node-type").setup()
   --   end,
-  -- })
+  -- }
   use({
     'ckolkey/ts-node-action',
     requires = { 'nvim-treesitter' },
@@ -160,8 +160,10 @@ require('packer').startup(function(use)
 
 
   -- Telescope
-  use { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+  use {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    requires = { 'nvim-lua/plenary.nvim'}
   }
 
   -- UI Extentions
@@ -176,11 +178,29 @@ require('packer').startup(function(use)
   use 'tpope/vim-projectionist'
   use 'machakann/vim-highlightedyank'
   use 'kien/rainbow_parentheses.vim'
-  use 'NvChad/nvim-colorizer.lua'
-  use 'RRethy/vim-illuminate'
+  -- use 'NvChad/nvim-colorizer.lua'
 
-  -- use 'm4xshen/autoclose.nvim' \n require("autoclose").setup({}) # breaks enter for some reason
+  -- TODO: Compare these
+  -- use 'RRethy/vim-illuminate'
+  use   {
+    'tzachar/local-highlight.nvim',
+    config = function()
+      require('local-highlight').setup()
+    end
+  }
+
+  -- TODO: Compare these 2
+  -- use 'm4xshen/autoclose.nvim' require("autoclose").setup({}) # breaks enter for some reason
   use 'Raimondi/delimitMate'
+  --use {
+  --  'altermo/ultimate-autopair.nvim',
+  --  event={'InsertEnter','CmdlineEnter'},
+  --  config=function ()
+  --    require('ultimate-autopair').setup({
+  --      --Config goes here
+  --    })
+  --  end,
+  --}
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
