@@ -579,6 +579,8 @@
 
     " Hakell "
         autocmd FileType haskell setlocal nowrap
+        autocmd FileType haskell inoremap <F5> <Esc>:w<Enter>:Make!<Enter>:Copen<Enter>:wincmd p<Enter>a
+        autocmd FileType haskell nnoremap <F5> :w<Enter>:Make!<Enter>:Copen<Enter>:wincmd p<Enter>
 
     " Python "
         " au! BufNewFile,BufFilePre,BufRead *.py set filetype=python "
