@@ -267,7 +267,10 @@ local servers = {
   -- hdl_checker = {},
   -- hhvm = {},
   -- hie = {},
-  hls = {},
+  hls = {
+    -- Probably only works while this is the compiler we're using
+    cmd = {"/home/bloodyfool/.ghcup/bin/haskell-language-server-9.4.4", "--lsp"}
+  },
   -- hoon_ls = {},
   html = {},
   -- idris2_lsp = {},
