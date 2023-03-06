@@ -189,18 +189,9 @@ require('packer').startup(function(use)
     end
   }
 
-  -- TODO: Compare these 2
-  -- use 'm4xshen/autoclose.nvim' require("autoclose").setup({}) # breaks enter for some reason
-  use 'Raimondi/delimitMate'
-  --use {
-  --  'altermo/ultimate-autopair.nvim',
-  --  event={'InsertEnter','CmdlineEnter'},
-  --  config=function ()
-  --    require('ultimate-autopair').setup({
-  --      --Config goes here
-  --    })
-  --  end,
-  --}
+  -- TODO: Revert to delimitMate if autopairs is annoying
+  -- use 'Raimondi/delimitMate'
+  use 'windwp/nvim-autopairs'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
@@ -222,6 +213,16 @@ require('packer').startup(function(use)
   -- Comments
   use 'tpope/vim-commentary'
   -- use 'suy/vim-context-commentstring'
+  -- use { -- TODO unconfirmed working
+  --   'JoosepAlviste/nvim-ts-context-commentstring',
+  --   run = function()
+  --     require'nvim-treesitter.configs'.setup {
+  --       context_commentstring = {
+  --         enable = true
+  --       }
+  --     }
+  --   end
+  -- }
   -- use 'numToStr/Comment.nvim'
 
   -- use 'vitalk/vim-simple-todo'
