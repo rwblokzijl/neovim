@@ -34,20 +34,20 @@ cmp.setup({
       select = true,
     }, { "i", "c" }
     ),
-    ["<c-space>"] = cmp.mapping {
-      i = cmp.mapping.complete(),
-      c = function(
-        _ --[[fallback]]
-      )
-        if cmp.visible() then
-          if not cmp.confirm { select = true } then
-            return
-          end
-        else
-          cmp.complete()
-        end
-      end,
-    },
+    -- ["<c-space>"] = cmp.mapping {
+    --   i = cmp.mapping.complete(),
+    --   c = function(
+    --     _ --[[fallback]]
+    --   )
+    --     if cmp.visible() then
+    --       if not cmp.confirm { select = true } then
+    --         return
+    --       end
+    --     else
+    --       cmp.complete()
+    --     end
+    --   end,
+    -- },
   }),
 
   sources = cmp.config.sources({

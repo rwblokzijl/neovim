@@ -7,6 +7,11 @@ local ls           = require "luasnip"
 
 local M = {}
 
+local function inoremap(binding, command, opts)
+  opts = opts or {}
+  vim.keymap.set('i', binding, command, vim.tbl_extend("force", {noremap = true}, opts))
+end
+
 local function nnoremap(binding, command, opts)
   opts = opts or {}
   vim.keymap.set('n', binding, command, vim.tbl_extend("force", {noremap = true}, opts))
@@ -113,6 +118,8 @@ local function set_keymaps_ctrl()
   vnoremap("g<C-x>", require("dial.map").dec_gvisual())
 
   nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
+
+  inoremap("<c-space>", "<Right>")
 
 end
 
