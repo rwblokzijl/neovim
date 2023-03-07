@@ -1,5 +1,5 @@
 local gitsigns     = require('gitsigns')
-local goto_preview = require('goto-preview')
+-- local goto_preview = require('goto-preview')
 local luasnip      = require('rwb.luasnip').bindings
 local nvimtree     = require('rwb.nvimtree')
 local telescope    = require('telescope.builtin')
@@ -310,8 +310,8 @@ M.set_general_keymaps = function ()
       },
       git_hunks = {
         mode_leader = "h", -- gnh/gph
-        next_callback = function () vim.schedule(function() require('gitsigns').next_hunk() end) end,
-        prev_callback = function () vim.schedule(function() require('gitsigns').prev_hunk() end) end,
+        next_callback = function () vim.schedule(function() gitsigns.next_hunk() end) end,
+        prev_callback = function () vim.schedule(function() gitsigns.prev_hunk() end) end,
       },
       luasnip = {
         mode_leader = "s", -- gns/gps

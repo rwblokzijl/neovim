@@ -33,4 +33,6 @@ require("nvim-surround").setup()
 
 require('rwb.gitsigns').setup()
 
+require("nvim-autopairs").setup {}
+
 require('rwb.keymaps').set_general_keymaps() -- LAST
