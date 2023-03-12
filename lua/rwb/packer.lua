@@ -239,6 +239,10 @@ require('packer').startup(function(use)
 
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+
+  -- Haksell
+  use 'neovimhaskell/haskell-vim'
+
   -- TODO: 2022-08-21 now Delete later if i didn't miss them
 
   -- use 'Chiel92/vim-autoformat'
