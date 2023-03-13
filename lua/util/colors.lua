@@ -89,7 +89,6 @@ local get_combined_colors = function(fg, bg)
     true
   )
   return {fg=fg_color.foreground, bg=bg_color.background}
-
 end
 
 local get_color_components = function(color)

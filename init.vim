@@ -112,7 +112,7 @@
 
     set t_Co=256
     set laststatus=2
-    "hi Normal guibg=NONE ctermbg=NONE
+    "hi Normal guibg=NONE ctermbg=NONE " transparent background
 
     set diffopt+=vertical
 
