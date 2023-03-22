@@ -1,6 +1,15 @@
 local configs = require'nvim-treesitter.configs'
 configs.setup {
   ensure_installed = "all",
+  rainbow = {
+    enable = true,
+    -- list of languages you want to disable the plugin for
+    -- disable = { "jsx", "cpp" },
+    -- Which query to use for finding delimiters
+    -- query = 'rainbow-parens',
+    -- Highlight the entire buffer all at once
+    strategy = require 'ts-rainbow'.strategy.global,
+  },
   highlight = { -- enable highlighting
     enable = true,
   },

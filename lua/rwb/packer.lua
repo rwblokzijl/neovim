@@ -177,7 +177,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-dispatch'
   use 'tpope/vim-projectionist'
   use 'machakann/vim-highlightedyank'
-  use 'kien/rainbow_parentheses.vim'
+  -- use 'kien/rainbow_parentheses.vim'
+  use 'HiPhish/nvim-ts-rainbow2'
+
   -- use 'NvChad/nvim-colorizer.lua'
 
   -- TODO: Compare these

@@ -142,7 +142,9 @@ require("bufferline").setup {
           end
           break
         else
-          name = buf_info.name:basename() or tab.name
+          -- I dont remember why i return basename. Next time add a comment.
+          -- name = buf_info.name:basename() or tab.name
+          name = tab.name
           break
         end
         ::continue::
