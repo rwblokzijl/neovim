@@ -760,6 +760,10 @@
     " XML
         autocmd BufNewFile,BufRead *.rss setfiletype xml " Treat .rss files as XML
 
+    " conky
+        autocmd BufNewFile,BufRead ~/.config/conky/conky.conf set filetype=lua
+
+
     " VIM "
         autocmd FileType vim setlocal foldmethod=indent
         autocmd FileType vim setlocal foldnestmax=2
