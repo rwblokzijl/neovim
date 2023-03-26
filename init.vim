@@ -18,12 +18,6 @@
 " Vimscipt plugin configs
 """"
 
-    " kien/rainbow_parentheses.vim "
-        au VimEnter * RainbowParenthesesToggle
-        au Syntax * RainbowParenthesesLoadRound
-        au Syntax * RainbowParenthesesLoadSquare
-        au Syntax * RainbowParenthesesLoadBraces
-
     " Raimondi/delimitMate "
         let delimitMate_expand_cr = 1
         augroup mydelimitMate
