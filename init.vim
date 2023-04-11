@@ -533,8 +533,8 @@
 
     " Terraform "
         autocmd BufNewFile,BufRead *.tf setfiletype terraform
-        autocmd BufWritePre *.tf lua vim.lsp.buf.formatting_sync()
-        autocmd BufWritePre terraform lua vim.lsp.buf.formatting_sync()
+        autocmd BufWritePre *.tf lua vim.lsp.buf.format()
+        autocmd BufWritePre terraform lua vim.lsp.buf.format()
         " autocmd BufWritePost *.tf :silent exec '! terraform fmt %'
         " autocmd BufWritePost terraform :silent exec '! terraform fmt %'
         autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab

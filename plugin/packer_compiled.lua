@@ -164,11 +164,6 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  delimitMate = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/delimitMate",
-    url = "https://github.com/Raimondi/delimitMate"
-  },
   ["dial.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/dial.nvim",
@@ -208,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/gv.vim",
     url = "https://github.com/junegunn/gv.vim"
+  },
+  ["haskell-vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/haskell-vim",
+    url = "https://github.com/neovimhaskell/haskell-vim"
   },
   ["lsp_lines.nvim"] = {
     loaded = true,
@@ -259,15 +259,15 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
-  },
-  ["nvim-colorizer.lua"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
-    url = "https://github.com/NvChad/nvim-colorizer.lua"
   },
   ["nvim-dap"] = {
     loaded = true,
@@ -309,6 +309,11 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
+  ["nvim-ts-rainbow2"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow2",
+    url = "https://github.com/HiPhish/nvim-ts-rainbow2"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -328,11 +333,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["rainbow_parentheses.vim"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/rainbow_parentheses.vim",
-    url = "https://github.com/kien/rainbow_parentheses.vim"
   },
   ["significant.nvim"] = {
     loaded = true,
@@ -394,11 +394,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
     url = "https://github.com/machakann/vim-highlightedyank"
-  },
-  ["vim-illuminate"] = {
-    loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-illuminate",
-    url = "https://github.com/RRethy/vim-illuminate"
   },
   ["vim-indent-object"] = {
     loaded = true,

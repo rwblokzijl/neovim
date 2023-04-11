@@ -184,12 +184,12 @@ require('packer').startup(function(use)
 
   -- TODO: Compare these
   -- use 'RRethy/vim-illuminate'
-  use   {
-    'tzachar/local-highlight.nvim',
-    config = function()
-      require('local-highlight').setup()
-    end
-  }
+  -- use   {
+  --   'tzachar/local-highlight.nvim',
+  --   config = function()
+  --     require('local-highlight').setup()
+  --   end
+  -- }
 
   -- TODO: Revert to delimitMate if autopairs is annoying
   -- use 'Raimondi/delimitMate'
