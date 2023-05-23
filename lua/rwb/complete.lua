@@ -397,7 +397,14 @@ local servers = {
   -- volar = {},
   vuels = {},
   -- wgsl_analyzer = {},
-  yamlls = {},
+  yamlls = {
+    settings = {
+      yaml = {
+        -- FIX mapKeyOrder warning
+        keyOrdering = false,
+      },
+    }
+  },
   -- zk = {},
   -- zls = {},
 }
