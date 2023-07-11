@@ -529,7 +529,10 @@
         autocmd FileType sbt.scala let l:syntastic_scala_checkers = ['fsc']
 
     " Go "
+        autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
         autocmd FileType go setlocal foldnestmax=1
+        autocmd BufWritePre *.go lua vim.lsp.buf.format()
+        autocmd BufWritePre go lua vim.lsp.buf.format()
 
     " Terraform "
         autocmd BufNewFile,BufRead *.tf setfiletype terraform

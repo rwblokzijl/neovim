@@ -36,3 +36,22 @@ require('rwb.gitsigns').setup()
 require("nvim-autopairs").setup {}
 
 require('rwb.keymaps').set_general_keymaps() -- LAST
+
+local autocmd = vim.api.nvim_create_autocmd
+-- local Json = require("json")
+autocmd({'BufRead', 'BufWritePost'}, {
+  pattern = '',
+  callback = function ()
+    -- log line to file
+    local file = io.open(os.getenv("HOME").."/test.data", "a")
+    file:write(
+      vim.fn.json_encode({
+        time = os.date("!%Y-%m-%dT%T%z"),
+        file = vim.fn.expand('%:p'),
+      }).. "\n"
+    )
+    file:close()
+
+  end
+})
+
