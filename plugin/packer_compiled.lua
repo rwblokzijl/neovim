@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?.lua;/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.1696795921/share/lua/5.1/?/init.lua;/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?.lua;/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.1696795921/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/bloodyfool/.cache/nvim/packer_hererocks/2.1.1696795921/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -174,6 +174,11 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
+  },
   ["foldsigns.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/foldsigns.nvim",
@@ -224,10 +229,10 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
-  ["lualine-lsp-progress"] = {
+  ["lualine-lsp-progress.nvim"] = {
     loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress",
-    url = "https://github.com/arkav/lualine-lsp-progress"
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress.nvim",
+    url = "https://github.com/WhoIsSethDaniel/lualine-lsp-progress.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -479,6 +484,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
     url = "https://github.com/tpope/vim-unimpaired"
+  },
+  ["vim-vue"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-vue",
+    url = "https://github.com/posva/vim-vue"
+  },
+  ["vim-vue-plugin"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/vim-vue-plugin",
+    url = "https://github.com/leafOfTree/vim-vue-plugin"
   },
   ["vuetify-vim"] = {
     loaded = true,

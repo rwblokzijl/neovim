@@ -7,6 +7,20 @@
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+        function! OnChangeVueSyntax(syntax)
+            echom 'Syntax is '.a:syntax
+            if a:syntax == 'html'
+                setlocal commentstring=<!--%s-->
+                setlocal comments=s:<!--,m:\ \ \ \ ,e:-->
+            elseif a:syntax =~ 'css'
+                setlocal comments=s1:/*,mb:*,ex:*/ commentstring&
+            else
+                setlocal commentstring=//%s
+                setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+            endif
+        endfunction
+
+
 """"
 " Lua config
 """"
@@ -33,8 +47,6 @@
 " Keybinds "
 """"
 
-    " Leader "
-        let g:user_emmet_leader_key=','
     " Grepper / replace "
 
 """"
@@ -515,6 +527,11 @@
         au BufRead,BufNewFile */gcp-ansible/**/*.yaml set filetype=yaml.ansible
 
     " HTML "
+        " Leader "
+        let g:user_emmet_mode='i'
+        let g:user_emmet_leader_key=','
+        let g:user_emmet_install_global = 0
+        autocmd FileType html,css,vue EmmetInstall
         au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
         autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab

@@ -214,6 +214,7 @@ require('packer').startup(function(use)
 
   -- Comments
   use 'tpope/vim-commentary'
+  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
   -- use 'suy/vim-context-commentstring'
   -- use { -- TODO unconfirmed working
   --   'JoosepAlviste/nvim-ts-context-commentstring',
@@ -256,8 +257,8 @@ require('packer').startup(function(use)
   -- use 'vim-scripts/loremipsum'
 
   -- Specific programmin language plugins
-  -- use 'posva/vim-vue'
-  -- use 'leafOfTree/vim-vue-plugin'
+  use 'posva/vim-vue'
+  use 'leafOfTree/vim-vue-plugin'
 
   -- use 'thosakwe/vim-flutter'
   -- use 'dart-lang/dart-vim-plugin'
@@ -287,7 +288,7 @@ require('packer').startup(function(use)
   -- use 'tmhedberg/SimpylFold'
 
   -- HTML
-  -- use 'mattn/emmet-vim'
+  use 'mattn/emmet-vim'
 
   -- Java
   -- Plugin 'dansomething/vim-eclim'
