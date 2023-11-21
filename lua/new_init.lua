@@ -48,6 +48,7 @@ autocmd({'BufRead', 'BufWritePost'}, {
       vim.fn.json_encode({
         time = os.date("!%Y-%m-%dT%T%z"),
         file = vim.fn.expand('%:p'),
+        branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
       }).. "\n"
     )
     file:close()

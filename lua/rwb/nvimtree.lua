@@ -4,9 +4,6 @@ local colors = require("util.colors")
 
 local M = {}
 
-local nvim_tree_config = require("nvim-tree.config")
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
 local function on_attach(bufnr)
   local function opts(desc)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -100,7 +97,7 @@ nvimtree.setup {
   },
   git = {
     enable = true,
-    ignore = true,
+    ignore = false,
     timeout = 500,
   },
   view = {
@@ -109,7 +106,6 @@ nvimtree.setup {
     --   quit_on_focus_loss = true
     -- },
     width = 30,
-    hide_root_folder = false,
     side = "left",
     number = false,
     relativenumber = false,

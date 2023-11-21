@@ -117,7 +117,7 @@ local function set_keymaps_ctrl()
   vnoremap("g<C-a>", require("dial.map").inc_gvisual())
   vnoremap("g<C-x>", require("dial.map").dec_gvisual())
 
-  nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
+  -- nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
 
   inoremap("<c-space>", "<Right>")
 

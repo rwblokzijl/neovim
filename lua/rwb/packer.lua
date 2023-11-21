@@ -34,6 +34,8 @@ require('packer').startup(function(use)
   -- Deps
   use 'nvim-lua/plenary.nvim'
 
+  -- Editor stuff
+  use 'brooth/far.vim'     -- Search and replace assistance
 
   -- More actions
   -- use 'tpope/vim-surround'           -- (s)       To surround
@@ -150,13 +152,13 @@ require('packer').startup(function(use)
   --     require("node-type").setup()
   --   end,
   -- }
-  use({
-    'ckolkey/ts-node-action',
-    requires = { 'nvim-treesitter' },
-    config = function()
-      require("ts-node-action").setup({})
-    end
-  })
+  -- use({
+  --   'ckolkey/ts-node-action',
+  --   requires = { 'nvim-treesitter' },
+  --   config = function()
+  --     require("ts-node-action").setup({})
+  --   end
+  -- })
 
 
   -- Telescope
@@ -233,6 +235,12 @@ require('packer').startup(function(use)
   use 'dhruvasagar/vim-table-mode'
 
   -- Other
+
+  use { "johmsalas/text-case.nvim",
+    config = function()
+      require('textcase').setup {}
+    end
+  }
 
   use 'dkarter/bullets.vim'
   -- use 'gaoDean/autolist.nvim' -- TODO: seems better than bullets.nvim IFF it works (didnt last time i tried)

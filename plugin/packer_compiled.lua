@@ -174,6 +174,11 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["far.vim"] = {
+    loaded = true,
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/far.vim",
+    url = "https://github.com/brooth/far.vim"
+  },
   ["foldsigns.nvim"] = {
     loaded = true,
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/foldsigns.nvim",
@@ -224,10 +229,10 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
-  ["lualine-lsp-progress"] = {
+  ["lualine-lsp-progress.nvim"] = {
     loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress",
-    url = "https://github.com/arkav/lualine-lsp-progress"
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/lualine-lsp-progress.nvim",
+    url = "https://github.com/WhoIsSethDaniel/lualine-lsp-progress.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -349,11 +354,11 @@ _G.packer_plugins = {
     path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["ts-node-action"] = {
-    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19ts-node-action\frequire\0" },
+  ["text-case.nvim"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtextcase\frequire\0" },
     loaded = true,
-    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/ts-node-action",
-    url = "https://github.com/ckolkey/ts-node-action"
+    path = "/home/bloodyfool/.local/share/nvim/site/pack/packer/start/text-case.nvim",
+    url = "https://github.com/johmsalas/text-case.nvim"
   },
   ["vim-asterisk"] = {
     loaded = true,
@@ -488,10 +493,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: ts-node-action
-time([[Config for ts-node-action]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19ts-node-action\frequire\0", "config", "ts-node-action")
-time([[Config for ts-node-action]], false)
+-- Config for: text-case.nvim
+time([[Config for text-case.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtextcase\frequire\0", "config", "text-case.nvim")
+time([[Config for text-case.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

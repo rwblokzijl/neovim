@@ -3,6 +3,8 @@ local ls  = require('luasnip')
 local lspkind = require('lspkind')
 local tabnine = require('cmp_tabnine.compare')
 
+vim.lsp.set_log_level("off")
+
 lspkind.init()
 
 cmp.setup({
@@ -267,10 +269,10 @@ local servers = {
   -- hdl_checker = {},
   -- hhvm = {},
   -- hie = {},
-  hls = {
-    -- Probably only works while this is the compiler we're using
-    cmd = {"/home/bloodyfool/.ghcup/bin/haskell-language-server-9.4.4", "--lsp"}
-  },
+  -- hls = {
+  --   -- Probably only works while this is the compiler we're using
+  --   cmd = {"/home/bloodyfool/.ghcup/bin/haskell-language-server-9.4.4", "--lsp"}
+  -- },
   -- hoon_ls = {},
   html = {},
   -- idris2_lsp = {},

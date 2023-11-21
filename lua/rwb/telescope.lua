@@ -18,7 +18,25 @@ require('telescope').setup{
     -- Default configuration for builtin pickers goes here:
     find_files = {
       follow = true,
-      hidden=true
+      hidden=true,
+      no_ignore=true,
+      file_ignore_patterns = {
+        "/.terraform/",
+        "^.terraform/",
+        "/.git/",
+        "^.git/",
+        ".cache$",
+        "%.o$",
+        "%.a$",
+        "%.out$",
+        "%.class$",
+        "%.pdf$",
+        "%.mkv$",
+        "%.mp4$",
+        "%.zip$",
+
+        "MDR-.*.json$",
+      },
     }
     -- picker_name = {
     --   picker_config_key = value,
