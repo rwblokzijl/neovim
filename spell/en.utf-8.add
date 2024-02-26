@@ -161,3 +161,6 @@ setting/!
 data
 HEAD/!
 Define/!
+github_repository_file
+gh/!
+routing_mode

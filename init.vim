@@ -515,7 +515,7 @@
         au BufRead,BufNewFile */gcp-ansible/**/*.yaml set filetype=yaml.ansible
 
     " HTML "
-        au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
+        " au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango # TODO fix maybe?
         autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2 expandtab
@@ -819,3 +819,6 @@ endfunction
 nnoremap <silent> gs :set opfunc=GoStart<CR>g@
 nnoremap <silent> ge :set opfunc=GoEnd<CR>g@
 
+
+let g:leetcode_browser = 'firefox'
+let g:leetcode_solution_filetype = 'python3'

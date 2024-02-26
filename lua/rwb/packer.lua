@@ -91,7 +91,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-cmdline'
-  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  -- use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'uga-rosa/cmp-dictionary'
@@ -181,6 +181,7 @@ require('packer').startup(function(use)
   use 'machakann/vim-highlightedyank'
   -- use 'kien/rainbow_parentheses.vim'
   use 'HiPhish/nvim-ts-rainbow2'
+  use 'Yggdroot/indentLine'
 
   -- use 'NvChad/nvim-colorizer.lua'
 
@@ -235,6 +236,7 @@ require('packer').startup(function(use)
   use 'dhruvasagar/vim-table-mode'
 
   -- Other
+  use 'ianding1/leetcode.vim'
 
   use { "johmsalas/text-case.nvim",
     config = function()
@@ -295,7 +297,7 @@ require('packer').startup(function(use)
   -- use 'tmhedberg/SimpylFold'
 
   -- HTML
-  -- use 'mattn/emmet-vim'
+  use 'mattn/emmet-vim'
 
   -- Java
   -- Plugin 'dansomething/vim-eclim'

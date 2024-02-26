@@ -16,12 +16,19 @@ require('telescope').setup{
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
+    live_grep = {
+      additional_args = function(opts)
+        return {"--hidden"}
+      end
+    },
+
     find_files = {
       follow = true,
       hidden=true,
       no_ignore=true,
       file_ignore_patterns = {
         "/.terraform/",
+        "/.venvs/",
         "^.terraform/",
         "/.git/",
         "^.git/",
