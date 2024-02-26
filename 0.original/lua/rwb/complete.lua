@@ -138,12 +138,14 @@ require("cmp_dictionary").setup({
     },
   },
   -- The following are default values.
-  exact = 2,
+  exact_length = 2,
   first_case_insensitive = false,
-  document = false,
-  document_command = "wn %s -over",
+  document = {
+    enable = false,
+	  command = { "wn", "${label}", "-over" },
+  },
   async = false,
-  capacity = 5,
+  -- capacity = 5,
   debug = false,
 })
 
