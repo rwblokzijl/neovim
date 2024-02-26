@@ -42,43 +42,82 @@ vim.defer_fn(function()
 
       select = {
         enable = true,
-        lookahead = true,
+        lookahead = false,
         keymaps = {
           -- You can use the capture groups defined in the textobjects.scm files
           ["ib"] = "@block.inner",
           ["ab"] = "@block.outer",
+
           ["if"] = "@call.inner",
           ["af"] = "@call.outer",
 
-          -- ['aa'] = '@parameter.outer',
-          -- ['ia'] = '@parameter.inner',
-          -- ['aF'] = '@function.outer',
-          -- ['iF'] = '@function.inner',
-          -- ['ac'] = '@class.outer',
-          -- ['ic'] = '@class.inner',
+          ["i="] = "@assignment.inner",
+          ["a="] = "@assignment.outer",
+          ["l="] = "@assignment.lhs",
+          ["r="] = "@assignment.rhs",
+
+          ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
+          ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter/argument" },
+
+          ["i?"] = "@conditional.inner",
+          ["a?"] = "@conditional.outer",
+          ["c?"] = "@conditional.condition",
+          ["l?"] = "@conditional.lhs",
+          ["r?"] = "@conditional.rhs",
+
+          ["il"] = "@loop.inner",
+          ["al"] = "@loop.outer",
+          ["hl"] = "@loop.control",
+          ["cl"] = "@loop.condition",
+          ["ll"] = "@loop.lhs",
+          ["rl"] = "@loop.rhs",
+
+          ["in"] = "@number.inner",
+
+          ["ir"] = "@return.inner",
+          ["ar"] = "@return.outer",
+
+          ["is"] = "@statement.outer",
+          ["as"] = "@statement.outer",
+
+          ['aF'] = '@function.outer',
+          ['iF'] = '@function.inner',
+
+          ['aC'] = '@class.outer',
+          ['iC'] = '@class.inner',
         },
       },
 
-      -- move = {
-      --   enable = true,
-      --   set_jumps = true, -- whether to set jumps in the jumplist
-      --   goto_next_start = {
-      --     [']m'] = '@function.outer',
-      --     [']]'] = '@class.outer',
-      --   },
-      --   goto_next_end = {
-      --     [']M'] = '@function.outer',
-      --     [']['] = '@class.outer',
-      --   },
-      --   goto_previous_start = {
-      --     ['[m'] = '@function.outer',
-      --     ['[['] = '@class.outer',
-      --   },
-      --   goto_previous_end = {
-      --     ['[M'] = '@function.outer',
-      --     ['[]'] = '@class.outer',
-      --   },
-      -- },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          [']b'] = '@block.outer',
+          [']f'] = '@function.outer',
+          [']]'] = '@class.outer',
+          [']l'] = '@loop.outer',
+          [']?'] = '@conditional.outer',
+        },
+        goto_next_end = {
+          [']B'] = '@block.outer',
+          [']F'] = '@function.outer',
+          [']['] = '@class.outer',
+          [']L'] = '@loop.outer',
+        },
+        goto_previous_start = {
+          ['[b'] = '@block.outer',
+          ['[f'] = '@function.outer',
+          ['[['] = '@class.outer',
+          ['[l'] = '@loop.outer',
+          ['[?'] = '@conditional.outer',
+        },
+        goto_previous_end = {
+          ['[B'] = '@block.outer',
+          ['[F'] = '@function.outer',
+          ['[]'] = '@class.outer',
+          ['[L'] = '@loop.outer',
+        },
+      },
 
       -- swap = {
       --   enable = true,
@@ -91,4 +130,16 @@ vim.defer_fn(function()
       -- },
     },
   }
+  local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+  -- vim way: ; goes to the direction you were moving.
+  vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+  vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+
+  -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+  vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
+  vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
+  vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
+  vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+
 end, 0)
