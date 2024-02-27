@@ -49,6 +49,9 @@ vim.wo.signcolumn = 'yes'
 vim.o.termguicolors = true
 
 ----- Behave -----
+vim.o.splitbelow=true
+vim.o.splitright=true
+
 vim.o.tabstop=4
 vim.o.softtabstop=4
 vim.o.shiftwidth=4
@@ -142,30 +145,79 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- TODO: Setup keymaps for copy pasting
--- nnoremap Y y$
+vim.keymap.set('n', 'Y', 'y$')
 
--- nnoremap <C-y> "+y
--- nnoremap <C-S-y> "+y$
--- nnoremap <C-y><C-y> "+yy
--- vnoremap <C-y> "+y
+vim.keymap.set('n', '<C-y>', '"+y')
+vim.keymap.set('n', '<C-S-y>', '"+y$')
+vim.keymap.set('n', '<C-y><C-y>', '"+yy')
+vim.keymap.set('v', '<C-y>', '"+y')
 
--- nnoremap <C-p> "+p
--- nnoremap <C-S-p> "+P
--- vnoremap <C-p> "+p
--- vnoremap <C-S-p> "+P
+vim.keymap.set('n', '<C-p>', '"+p')
+vim.keymap.set('n', '<C-S-p>', '"+P')
+vim.keymap.set('v', '<C-p>', '"+p')
+vim.keymap.set('v', '<C-S-p>', '"+P')
 
--- nnoremap <C-c> "+c
--- nnoremap <C-S-c> "+C
--- nnoremap <C-c><C-c> "+cc
--- vnoremap <C-c> "+c
+vim.keymap.set('n', '<C-c>', '"+c')
+vim.keymap.set('n', '<C-S-c>', '"+C')
+vim.keymap.set('n', '<C-c><C-c>', '"+cc')
+vim.keymap.set('v', '<C-c>', '"+c')
 
--- nnoremap <C-d> "+d
--- nnoremap <C-S-d> "+D
--- nnoremap <C-d><C-d> "+dd
--- vnoremap <C-d> "+d
+vim.keymap.set('n', '<C-d>', '"+d')
+vim.keymap.set('n', '<C-S-d>', '"+D')
+vim.keymap.set('n', '<C-d><C-d>', '"+dd')
+vim.keymap.set('v', '<C-d>', '"+d')
 
--- vnoremap <C-v> "+p
--- vnoremap <C-S-v> "+P
+vim.keymap.set('v', '<C-v>', '"+p')
+vim.keymap.set('v', '<C-S-v>', '"+P')
+
+vim.keymap.set('i', '<C-v>',   "<esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia")
+vim.keymap.set('i', '<C-S-v>', "<esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a")
+
+vim.keymap.set('n', 'ga', "<Plug>(EasyAlign)")
+vim.keymap.set('x', 'ga', "<Plug>(EasyAlign)")
+
+-- Tabs control
+
+vim.keymap.set('n', "<TAB>", ":tabn<cr>")
+vim.keymap.set('n', "<S-TAB>", ":tabp<cr>")
+vim.keymap.set('n', "<C-S-TAB>", ":-tabmove<cr>")
+vim.keymap.set('n', "<C-TAB>", ":+tabmove<cr>")
+
+vim.keymap.set('n', "gt", ":tabnew<cr>")
+vim.keymap.set('n', "gT", ":-1tabnew<cr>")
+
+vim.keymap.set('n', "1gt", "1gt")
+vim.keymap.set('n', "2gt", "2gt")
+vim.keymap.set('n', "3gt", "3gt")
+vim.keymap.set('n', "4gt", "4gt")
+vim.keymap.set('n', "5gt", "5gt")
+vim.keymap.set('n', "6gt", "6gt")
+vim.keymap.set('n', "7gt", "7gt")
+vim.keymap.set('n', "8gt", "8gt")
+vim.keymap.set('n', "9gt", "9gt")
+vim.keymap.set('n', "10gt", "10gt")
+vim.keymap.set('n', "11gt", "11gt")
+
+vim.cmd("cnoreabbrev qq tabclose")
+
+-- Shortcutting split navigation:
+vim.keymap.set('n', "gh", ":wincmd h<CR>")
+vim.keymap.set('n', "gj", ":wincmd j<CR>")
+vim.keymap.set('n', "gk", ":wincmd k<CR>")
+vim.keymap.set('n', "gl", ":wincmd l<CR>")
+
+--Turn off arrow keys
+vim.keymap.set('n', "<Up>", "<NOP>")
+vim.keymap.set('n', "<Down>", "<NOP>")
+vim.keymap.set('n', "<Left>", "<NOP>")
+vim.keymap.set('n', "<Right>", "<NOP>")
+
+-- make W write one file, not everything (typo is too quick)
+vim.cmd([[:command! -nargs=* W :w "<args>"]])
+vim.cmd([[:command -nargs=* Q :q "<args>"]])
+
+vim.keymap.set('n', "~", ":AV<cr>", { silent = true })
+
 -- " paste with and without formatting
 -- inoremap <C-v>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
 -- inoremap <C-S-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
