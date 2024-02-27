@@ -52,9 +52,9 @@ vim.o.termguicolors = true
 vim.o.splitbelow=true
 vim.o.splitright=true
 
-vim.o.tabstop=4
-vim.o.softtabstop=4
-vim.o.shiftwidth=4
+vim.o.tabstop=2
+vim.o.softtabstop=2
+vim.o.shiftwidth=2
 vim.o.expandtab=true
 vim.o.foldnestmax=1
 vim.o.foldmethod="indent"
@@ -83,33 +83,33 @@ vim.o.timeoutlen = 300
 ----- Keymaps -----
 
 -- Remap fold to `s` leader instead of `z`
-  vim.keymap.set('n', 'za', '<Nop>')
-  vim.keymap.set('n', 'zo', '<Nop>')
-  vim.keymap.set('n', 'zc', '<Nop>')
-  vim.keymap.set('n', 'zO', '<Nop>')
-  vim.keymap.set('n', 'zC', '<Nop>')
-  vim.keymap.set('n', 'zk', '<Nop>')
-  vim.keymap.set('n', 'zj', '<Nop>')
-  vim.keymap.set('n', 'zr', '<Nop>')
-  vim.keymap.set('n', 'zm', '<Nop>')
-  vim.keymap.set('n', 'zl', '<Nop>')
-  vim.keymap.set('n', 'zh', '<Nop>')
+vim.keymap.set('n', 'za', '<Nop>')
+vim.keymap.set('n', 'zo', '<Nop>')
+vim.keymap.set('n', 'zc', '<Nop>')
+vim.keymap.set('n', 'zO', '<Nop>')
+vim.keymap.set('n', 'zC', '<Nop>')
+vim.keymap.set('n', 'zk', '<Nop>')
+vim.keymap.set('n', 'zj', '<Nop>')
+vim.keymap.set('n', 'zr', '<Nop>')
+vim.keymap.set('n', 'zm', '<Nop>')
+vim.keymap.set('n', 'zl', '<Nop>')
+vim.keymap.set('n', 'zh', '<Nop>')
 
-  vim.keymap.set('n', 's',  '<Nop>')
-  vim.keymap.set('n', 'ss', 'za')
+vim.keymap.set('n', 's',  '<Nop>')
+vim.keymap.set('n', 'ss', 'za')
 
-  vim.keymap.set('n', 'sl', 'zo')
-  vim.keymap.set('n', 'sh', 'zc')
-  vim.keymap.set('n', 'sL', 'zO')
-  vim.keymap.set('n', 'sH', 'zC')
+vim.keymap.set('n', 'sl', 'zo')
+vim.keymap.set('n', 'sh', 'zc')
+vim.keymap.set('n', 'sL', 'zO')
+vim.keymap.set('n', 'sH', 'zC')
 
-  vim.keymap.set('n', 'sk', 'zk')
-  vim.keymap.set('n', 'sj', 'zj')
+vim.keymap.set('n', 'sk', 'zk')
+vim.keymap.set('n', 'sj', 'zj')
 
-  vim.keymap.set('n', 'sr', 'zr')
-  vim.keymap.set('n', 'sm', 'zm')
-  vim.keymap.set('n', 'si', 'zm')
-  vim.keymap.set('n', 'so', 'zr')
+vim.keymap.set('n', 'sr', 'zr')
+vim.keymap.set('n', 'sm', 'zm')
+vim.keymap.set('n', 'si', 'zm')
+vim.keymap.set('n', 'so', 'zr')
 
 
 
