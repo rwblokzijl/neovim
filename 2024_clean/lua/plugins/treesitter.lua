@@ -8,25 +8,27 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    config = vim.defer_fn(function()
-      require('nvim-treesitter.configs').setup {
-        -- Add languages to be installed here that you want installed for treesitter
-        ensure_installed = "all",
-        -- ensure_installed = {
-        --   'bash',
-        --   'c',
-        --   'cpp',
-        --   'go',
-        --   'javascript',
-        --   'lua',
-        --   'python',
-        --   'rust',
-        --   'tsx',
-        --   'typescript',
-        --   'terraform',
-        --   'vim',
-        --   'vimdoc',
-        -- },
+    config = function ()
+      vim.defer_fn(function()
+        require('nvim-treesitter.install').update({ with_sync = true }) 
+        require('nvim-treesitter.configs').setup {
+          -- Add languages to be installed here that you want installed for treesitter
+          ensure_installed = "all",
+          -- ensure_installed = {
+          --   'bash',
+          --   'c',
+          --   'cpp',
+          --   'go',
+          --   'javascript',
+          --   'lua',
+          --   'python',
+          --   'rust',
+          --   'tsx',
+          --   'typescript',
+          --   'terraform',
+          --   'vim',
+          --   'vimdoc',
+          -- },
 
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -162,8 +164,9 @@ return {
       vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
       vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
-    end, 0),
-    build = ':TSUpdate',
+      end, 0)
+    end
+    -- build = ':TSUpdate',
   },
 
   {

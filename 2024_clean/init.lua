@@ -22,7 +22,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require('util.string')
 
-require('lazy').setup("plugins")
+require('lazy').setup("plugins", {
+  change_detection = {
+		notify = false,
+	},
+})
 
 ----- look -----
 -- Enable line numbers
