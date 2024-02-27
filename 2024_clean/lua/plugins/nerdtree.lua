@@ -47,7 +47,7 @@ return {
       vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
       vim.keymap.set('n', ']c', api.node.navigate.git.next, opts('Next Git'))
       vim.keymap.set('n', '-', api.tree.change_root_to_parent, opts('Up'))
-      vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
+      -- vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
       vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
       vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
       vim.keymap.set('n', 'q', api.tree.close, opts('Close'))

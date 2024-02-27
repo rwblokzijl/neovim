@@ -24,12 +24,40 @@ require('util.string')
 
 require('lazy').setup("plugins")
 
--- Set highlight on search
-vim.o.hlsearch = false
+----- look -----
+-- Enable line numbers
+vim.o.number = true
+vim.o.relativenumber = true
 
--- Make line numbers default
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.o.wrap = false
+vim.o.colorcolumn=80
+vim.o.cursorline = true
+
+-- Set highlight on search
+vim.o.hlsearch = true
+vim.o.incsearch = true
+vim.keymap.set('n', '<ESC><ESC>', function ()
+  vim.cmd('nohlsearch')
+  vim.cmd('hi clear SpellBad')
+  require('luasnip').unlink_current()
+end, { noremap = true, silent = true })
+
+-- Keep signcolumn on by default
+vim.wo.signcolumn = 'yes'
+
+-- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true
+
+----- Behave -----
+vim.o.tabstop=4
+vim.o.softtabstop=4
+vim.o.shiftwidth=4
+vim.o.expandtab=true
+vim.o.foldnestmax=1
+vim.o.foldmethod="indent"
+
+vim.o.copyindent=true
+vim.o.preserveindent=true
 
 -- Disable mouse mode
 -- vim.o.mouse = 'a'
@@ -45,19 +73,42 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
 -- Decrease update time, default is 4000
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
--- set completeopt=menu,menuone,noinsert,noselect,preview
-vim.o.completeopt = 'menuone,noselect'
+----- Keymaps -----
 
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+-- Remap fold to `s` leader instead of `z`
+  vim.keymap.set('n', 'za', '<Nop>')
+  vim.keymap.set('n', 'zo', '<Nop>')
+  vim.keymap.set('n', 'zc', '<Nop>')
+  vim.keymap.set('n', 'zO', '<Nop>')
+  vim.keymap.set('n', 'zC', '<Nop>')
+  vim.keymap.set('n', 'zk', '<Nop>')
+  vim.keymap.set('n', 'zj', '<Nop>')
+  vim.keymap.set('n', 'zr', '<Nop>')
+  vim.keymap.set('n', 'zm', '<Nop>')
+  vim.keymap.set('n', 'zl', '<Nop>')
+  vim.keymap.set('n', 'zh', '<Nop>')
+
+  vim.keymap.set('n', 's',  '<Nop>')
+  vim.keymap.set('n', 'ss', 'za')
+
+  vim.keymap.set('n', 'sl', 'zo')
+  vim.keymap.set('n', 'sh', 'zc')
+  vim.keymap.set('n', 'sL', 'zO')
+  vim.keymap.set('n', 'sH', 'zC')
+
+  vim.keymap.set('n', 'sk', 'zk')
+  vim.keymap.set('n', 'sj', 'zj')
+
+  vim.keymap.set('n', 'sr', 'zr')
+  vim.keymap.set('n', 'sm', 'zm')
+  vim.keymap.set('n', 'si', 'zm')
+  vim.keymap.set('n', 'so', 'zr')
+
+
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -123,3 +174,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- " nnoremap <C-x> "+d
 -- " nnoremap <C-S-x> "+D
 -- " nnoremap <C-x><C-x> "+dd
+
+local autocmd = vim.api.nvim_create_autocmd
+-- local Json = require("json")
+autocmd({'BufRead', 'BufWritePost'}, {
+  pattern = '',
+  callback = function ()
+    -- log line to file
+    local file = io.open(os.getenv("HOME").."/test.data", "a")
+    file:write(
+      vim.fn.json_encode({
+        time = os.date("!%Y-%m-%dT%T%z"),
+        file = vim.fn.expand('%:p'),
+        branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
+      }).. "\n"
+    )
+    file:close()
+  end
+})
+

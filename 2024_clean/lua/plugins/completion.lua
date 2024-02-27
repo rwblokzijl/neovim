@@ -11,9 +11,14 @@ return {
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
+      'ray-x/lsp_signature.nvim',
       'folke/neodev.nvim',
     },
     config = function ()
+      -- Set completeopt to have a better completion experience
+      -- set completeopt=menu,menuone,noinsert,noselect,preview
+      vim.o.completeopt = 'menuone,noselect'
+
       -- [[ Configure LSP ]]
       --  This function gets run when an LSP connects to a particular buffer.
       local on_attach = function(_, bufnr)
@@ -96,6 +101,8 @@ return {
 
       -- Setup neovim lua configuration
       require('neodev').setup()
+
+      -- require('lsp_signature').setup()
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -200,7 +207,6 @@ return {
           { name = 'path' },
         },
       }
-
     end
   }
 }
