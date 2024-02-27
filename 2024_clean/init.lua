@@ -20,212 +20,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+require('util.string')
 
-  -- colorscheme
-  {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    config = function()
-      vim.o.background = "dark"
-      vim.cmd('colorscheme gruvbox')
-    end
-  },
-
-  -- LSP Configuration & Plugins
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
-    },
-  },
-
-  -- Autocompletion interface
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        'L3MON4D3/LuaSnip',
-        build = (function()
-          -- Build Step is needed for regex support in snippets
-          -- This step is not supported in many windows environments
-          -- Remove the below condition to re-enable on windows
-          if vim.fn.has 'win32' == 1 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-      },
-      'saadparwaiz1/cmp_luasnip',
-
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-    },
-  },
-
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-
-  {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-      on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
-
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
-        -- Navigation
-        map({ 'n', 'v' }, ']c', function()
-          if vim.wo.diff then
-            return ']c'
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Jump to next hunk' })
-
-        map({ 'n', 'v' }, '[c', function()
-          if vim.wo.diff then
-            return '[c'
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return '<Ignore>'
-        end, { expr = true, desc = 'Jump to previous hunk' })
-
-        -- Actions
-        -- visual mode
-        map('v', '<leader>hs', function()
-          gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'stage git hunk' })
-        map('v', '<leader>hr', function()
-          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'reset git hunk' })
-        -- normal mode
-        map('n', '<leader>hs', gs.stage_hunk, { desc = 'git stage hunk' })
-        map('n', '<leader>hr', gs.reset_hunk, { desc = 'git reset hunk' })
-        map('n', '<leader>hS', gs.stage_buffer, { desc = 'git Stage buffer' })
-        map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'undo stage hunk' })
-        map('n', '<leader>hR', gs.reset_buffer, { desc = 'git Reset buffer' })
-        map('n', '<leader>hp', gs.preview_hunk, { desc = 'preview git hunk' })
-        map('n', '<leader>hb', function()
-          gs.blame_line { full = false }
-        end, { desc = 'git blame line' })
-        map('n', '<leader>hd', gs.diffthis, { desc = 'git diff against index' })
-        map('n', '<leader>hD', function()
-          gs.diffthis '~'
-        end, { desc = 'git diff against last commit' })
-
-        -- Toggles
-        map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-        map('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
-
-        -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
-      end,
-    },
-  },
-
-  -- Set lualine as statusline
-  {
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'auto',
-        component_separators = '|',
-        section_separators = '',
-      },
-    },
-  },
-
-  -- Add indentation guides even on blank lines
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {},
-  },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
-  -- Fuzzy Finder (files, lsp, etc)
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-      -- Only load if `make` is available. Make sure you have the system
-      -- requirements installed.
-      {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        -- NOTE: If you are having trouble with this installation,
-        --       refer to the README for telescope-fzf-native for more instructions.
-        build = 'make',
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-    },
-  },
-
-  -- Highlight, edit, and navigate code
-  {
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
-  },
-
-  {
-    -- uses nvim-treesitter-textobjects
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  },
-
-
-
-}, {})
+require('lazy').setup("plugins")
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -262,10 +59,6 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-
-require('plugins.treesitter')
-
-
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -275,10 +68,16 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+local gs = require('gitsigns')
+local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat)
+vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat)
+local next_diag_repeat, prev_diag_repeat = ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+vim.keymap.set({ "n", "x", "o" }, "]d", next_diag_repeat, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set({ "n", "x", "o" }, "[d", prev_diag_repeat, { desc = 'Go to next diagnostic message' })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -291,12 +90,36 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- TODO: Setup keymaps for copy pasting
+-- nnoremap Y y$
 
-require('plugins.telescope')
+-- nnoremap <C-y> "+y
+-- nnoremap <C-S-y> "+y$
+-- nnoremap <C-y><C-y> "+yy
+-- vnoremap <C-y> "+y
 
+-- nnoremap <C-p> "+p
+-- nnoremap <C-S-p> "+P
+-- vnoremap <C-p> "+p
+-- vnoremap <C-S-p> "+P
 
-require('plugins.completion')
+-- nnoremap <C-c> "+c
+-- nnoremap <C-S-c> "+C
+-- nnoremap <C-c><C-c> "+cc
+-- vnoremap <C-c> "+c
 
+-- nnoremap <C-d> "+d
+-- nnoremap <C-S-d> "+D
+-- nnoremap <C-d><C-d> "+dd
+-- vnoremap <C-d> "+d
 
-require('keymaps').set_general_keymaps() -- LAST
----- DONE ----
+-- vnoremap <C-v> "+p
+-- vnoremap <C-S-v> "+P
+-- " paste with and without formatting
+-- inoremap <C-v>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
+-- inoremap <C-S-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+-- " inoremap <C-b>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+
+-- " nnoremap <C-x> "+d
+-- " nnoremap <C-S-x> "+D
+-- " nnoremap <C-x><C-x> "+dd
