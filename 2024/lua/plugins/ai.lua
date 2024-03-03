@@ -8,23 +8,9 @@ return {
     config = function()
       require("chatgpt").setup({
         api_key_cmd = "cat ".. vim.fn.expand("$HOME") .."/.ssh/openai",
-        openai_params = {
-          -- model = "gpt-4-turbo",
-        },
-        openai_edit_params = {
-          -- model = "gpt-4-turbo",
-        },
         popup_window = {
           win_options = {
-          --   foldlevel=0,
-          --   wrap = true,
-          --   linebreak = true,
-          --   foldcolumn = "1",
-          --   winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
             foldenable=false
-          },
-          buf_options = {
-            -- filetype = "TelescopeResults",
           },
         },
       })
