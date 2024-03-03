@@ -4,9 +4,6 @@ local colors = require("util.colors")
 
 local M = {}
 
-local nvim_tree_config = require("nvim-tree")
-local tree_cb = nvim_tree_config.nvim_tree_callback
-
 local function on_attach(bufnr)
   local function opts(desc)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
@@ -43,7 +40,7 @@ local function on_attach(bufnr)
   vim.keymap.set('n', ']e', api.node.navigate.diagnostics.next, opts('Next Diagnostic'))
   vim.keymap.set('n', ']c', api.node.navigate.git.next, opts('Next Git'))
   vim.keymap.set('n', '-', api.tree.change_root_to_parent, opts('Up'))
-  vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
+  -- vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
   vim.keymap.set('n', 'f', api.live_filter.start, opts('Filter'))
   vim.keymap.set('n', 'F', api.live_filter.clear, opts('Clean Filter'))
   vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
@@ -100,7 +97,7 @@ nvimtree.setup {
   },
   git = {
     enable = true,
-    ignore = true,
+    ignore = false,
     timeout = 500,
   },
   view = {
@@ -109,7 +106,6 @@ nvimtree.setup {
     --   quit_on_focus_loss = true
     -- },
     width = 30,
-    -- hide_root_folder = false,
     side = "left",
     number = false,
     relativenumber = false,

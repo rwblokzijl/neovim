@@ -11,6 +11,16 @@ require("dial.config").augends:register_group{
     augend.date.alias["%H:%M"],
     augend.constant.alias.bool,
     augend.constant.new{ elements = {"True", "False"} },
+    augend.constant.new{ elements = {"pull", "triage", "push", "maintain", "admin"} },
+    augend.constant.new{ elements = {
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun",
+    }},
     augend.constant.new{ elements = {
       "Monday",
       "Tuesday",

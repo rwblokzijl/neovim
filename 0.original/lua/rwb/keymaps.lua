@@ -43,6 +43,7 @@ M.set_lsp_keymaps = function (_, bufnr)
   vim.keymap.set('n', 'K',     vim.lsp.buf.hover,                           bufopts)
   vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation,                  bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,                  bufopts)
+  vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
 
   -- vim.keymap.set('n', 'gsd', goto_preview.goto_preview_definition,      bufopts)
   -- vim.keymap.set('n', 'gst', goto_preview.goto_preview_type_definition, bufopts)
@@ -57,7 +58,8 @@ M.set_lsp_keymaps = function (_, bufnr)
   -- end, bufopts)
   -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts) vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts) vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  -- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
 local function set_keymaps_s_fold(leader)
@@ -122,7 +124,7 @@ local function set_keymaps_ctrl()
   vnoremap("g<C-a>", require("dial.map").inc_gvisual())
   vnoremap("g<C-x>", require("dial.map").dec_gvisual())
 
-  nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
+  -- nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
 
   inoremap("<c-space>", "<Right>")
 
@@ -308,7 +310,7 @@ M.set_general_keymaps = function ()
         prev_callback = vim.diagnostic.goto_prev,
       },
       lsp_references = {
-        mode_leader = "r", -- gnh/gph
+        mode_leader = "r", -- gnr/gpr
         pass_history = true,
         next_callback = function(history) return lsp_references_jump(history, function (index) return index + 1 end) end,
         prev_callback = function(history) return lsp_references_jump(history, function (index) return index - 1 end) end,

@@ -1,7 +1,9 @@
 local cmp = require'cmp'
 local ls  = require('luasnip')
 local lspkind = require('lspkind')
-local tabnine = require('cmp_tabnine.compare')
+-- local tabnine = require('cmp_tabnine.compare')
+
+vim.lsp.set_log_level("off")
 
 lspkind.init()
 
@@ -16,7 +18,7 @@ cmp.setup({
   duplicates = {
     nvim_lsp = 1,
     luasnip = 1,
-    cmp_tabnine = 1,
+    -- cmp_tabnine = 1,
     buffer = 1,
     path = 1,
   },
@@ -71,7 +73,7 @@ cmp.setup({
     { name = "dictionary",  priority=5,  max_item_count=4, keyword_length = 2 },
     { name = 'spell',       priority=5,  max_item_count=2, keyword_length = 2, option = { keep_all_entries = true, }, },
     { name = 'calc',        priority=5,  },
-    { name = 'cmp_tabnine', priority=1,  },
+    -- { name = 'cmp_tabnine', priority=1,  },
   }),
 
   sorting = {
@@ -101,7 +103,7 @@ cmp.setup({
         nvim_lua    = "[api]",
         path        = "[path]",
         luasnip     = "[snip]",
-        cmp_tabnine = "[TN]",
+        -- cmp_tabnine = "[TN]",
         git         = "[git]",
         dictionary  = "[dict]",
         calc        = "[calc]",
@@ -136,12 +138,14 @@ require("cmp_dictionary").setup({
     },
   },
   -- The following are default values.
-  exact = 2,
+  exact_length = 2,
   first_case_insensitive = false,
-  document = false,
-  document_command = "wn %s -over",
+  document = {
+    enable = false,
+	  command = { "wn", "${label}", "-over" },
+  },
   async = false,
-  capacity = 5,
+  -- capacity = 5,
   debug = false,
 })
 
@@ -188,19 +192,19 @@ require('cmp_commit').setup({
   }
 })
 
-local tn_config = require('cmp_tabnine.config')
-tn_config:setup({
-  max_lines = 1000;
-  max_num_results = 20;
-  sort = true;
-  run_on_every_keystroke = true;
-  snippet_placeholder = '..';
-  ignored_file_types = { -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-  };
-  show_prediction_strength = true;
-})
+-- local tn_config = require('cmp_tabnine.config')
+-- tn_config:setup({
+--   max_lines = 1000;
+--   max_num_results = 20;
+--   sort = true;
+--   run_on_every_keystroke = true;
+--   snippet_placeholder = '..';
+--   ignored_file_types = { -- default is not to ignore
+--     -- uncomment to ignore in lua:
+--     -- lua = true
+--   };
+--   show_prediction_strength = true;
+-- })
 
 -- Setup lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -258,7 +262,7 @@ local servers = {
   -- ghdl_ls = {},
   -- glint = {},
   -- golangci_lint_ls = {},
-  -- gopls = {},
+  gopls = {},
   -- gradle_ls = {},
   -- grammarly = {},
   graphql = {},
@@ -267,10 +271,10 @@ local servers = {
   -- hdl_checker = {},
   -- hhvm = {},
   -- hie = {},
-  hls = {
-    -- Probably only works while this is the compiler we're using
-    cmd = {"/home/bloodyfool/.ghcup/bin/haskell-language-server-9.4.4", "--lsp"}
-  },
+  -- hls = {
+  --   -- Probably only works while this is the compiler we're using
+  --   cmd = {"/home/bloodyfool/.ghcup/bin/haskell-language-server-9.4.4", "--lsp"}
+  -- },
   -- hoon_ls = {},
   html = {},
   htmx = {},
@@ -327,7 +331,14 @@ local servers = {
   -- rnix = {},
   -- robotframework_ls = {},
   -- rome = {},
-  rust_analyzer = {},
+  -- rust_analyzer = {
+  --   root_dir=util.root_pattern("Cargo.toml"),
+  --   settings = {
+  --     cargo={
+  --       allFeatures = true,
+  --     }
+  --   }
+  -- },
   -- salt_ls = {},
   -- scry = {},
   -- serve_d = {},
@@ -360,7 +371,7 @@ local servers = {
   -- svelte = {},
   -- svlangserver = {},
   -- svls = {},
-  -- tailwindcss = {},
+  tailwindcss = {},
   -- taplo = {},
   -- teal_ls = {},
 

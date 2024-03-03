@@ -34,6 +34,8 @@ require('packer').startup(function(use)
   -- Deps
   use 'nvim-lua/plenary.nvim'
 
+  -- Editor stuff
+  use 'brooth/far.vim'     -- Search and replace assistance
 
   -- More actions
   -- use 'tpope/vim-surround'           -- (s)       To surround
@@ -89,7 +91,7 @@ require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-nvim-lua'
   use 'hrsh7th/cmp-cmdline'
-  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  -- use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'uga-rosa/cmp-dictionary'
@@ -150,13 +152,13 @@ require('packer').startup(function(use)
   --     require("node-type").setup()
   --   end,
   -- }
-  use({
-    'ckolkey/ts-node-action',
-    requires = { 'nvim-treesitter' },
-    config = function()
-      require("ts-node-action").setup({})
-    end
-  })
+  -- use({
+  --   'ckolkey/ts-node-action',
+  --   requires = { 'nvim-treesitter' },
+  --   config = function()
+  --     require("ts-node-action").setup({})
+  --   end
+  -- })
 
 
   -- Telescope
@@ -179,6 +181,7 @@ require('packer').startup(function(use)
   use 'machakann/vim-highlightedyank'
   -- use 'kien/rainbow_parentheses.vim'
   use 'HiPhish/nvim-ts-rainbow2'
+  use 'Yggdroot/indentLine'
 
   -- use 'NvChad/nvim-colorizer.lua'
 
@@ -234,6 +237,13 @@ require('packer').startup(function(use)
   use 'dhruvasagar/vim-table-mode'
 
   -- Other
+  use 'ianding1/leetcode.vim'
+
+  use { "johmsalas/text-case.nvim",
+    config = function()
+      require('textcase').setup {}
+    end
+  }
 
   use 'dkarter/bullets.vim'
   -- use 'gaoDean/autolist.nvim' -- TODO: seems better than bullets.nvim IFF it works (didnt last time i tried)

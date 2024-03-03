@@ -537,6 +537,7 @@
         let g:user_emmet_install_global = 0
         autocmd FileType html,css,vue,htmldjango EmmetInstall
         au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
+        " au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango # TODO fix maybe?
         autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2 expandtab
@@ -550,7 +551,10 @@
         autocmd FileType sbt.scala let l:syntastic_scala_checkers = ['fsc']
 
     " Go "
+        autocmd FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
         autocmd FileType go setlocal foldnestmax=1
+        autocmd BufWritePre *.go lua vim.lsp.buf.format()
+        autocmd BufWritePre go lua vim.lsp.buf.format()
 
     " Terraform "
         autocmd BufNewFile,BufRead *.tf setfiletype terraform
@@ -837,3 +841,6 @@ endfunction
 nnoremap <silent> gs :set opfunc=GoStart<CR>g@
 nnoremap <silent> ge :set opfunc=GoEnd<CR>g@
 
+
+let g:leetcode_browser = 'firefox'
+let g:leetcode_solution_filetype = 'python3'

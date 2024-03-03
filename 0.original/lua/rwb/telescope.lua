@@ -16,9 +16,34 @@ require('telescope').setup{
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
+    live_grep = {
+      additional_args = function(opts)
+        return {"--hidden"}
+      end
+    },
+
     find_files = {
       follow = true,
-      hidden=true
+      hidden=true,
+      no_ignore=true,
+      file_ignore_patterns = {
+        "/.terraform/",
+        "/.venvs/",
+        "^.terraform/",
+        "/.git/",
+        "^.git/",
+        ".cache$",
+        "%.o$",
+        "%.a$",
+        "%.out$",
+        "%.class$",
+        "%.pdf$",
+        "%.mkv$",
+        "%.mp4$",
+        "%.zip$",
+
+        "MDR-.*.json$",
+      },
     }
     -- picker_name = {
     --   picker_config_key = value,
