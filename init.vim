@@ -502,6 +502,10 @@
         autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType javascript setlocal foldnestmax=1
 
+    " TypeScript "
+        autocmd FileType typescript setlocal ts=2 sts=2 sw=2 expandtab
+        autocmd FileType typescript setlocal foldnestmax=1
+
     " dart "
         autocmd FileType dart setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType dart inoremap <F4> <esc>:FlutterSplit<Enter>a
@@ -531,7 +535,7 @@
         let g:user_emmet_mode='i'
         let g:user_emmet_leader_key=','
         let g:user_emmet_install_global = 0
-        autocmd FileType html,css,vue EmmetInstall
+        autocmd FileType html,css,vue,htmldjango EmmetInstall
         au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=htmldjango
         autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
         autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab

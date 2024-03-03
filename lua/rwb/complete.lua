@@ -273,6 +273,7 @@ local servers = {
   },
   -- hoon_ls = {},
   html = {},
+  htmx = {},
   -- idris2_lsp = {},
   -- intelephense = {},
   -- java_language_server = {},
