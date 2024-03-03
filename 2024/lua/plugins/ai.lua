@@ -14,6 +14,8 @@ return {
           },
         },
       })
+      -- vim.keymap.set('i', '<C-]>', '<Plug>(copilot-next)')
+      -- vim.keymap.set('i', '<C-[>', '<Plug>(copilot-previous)')
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
