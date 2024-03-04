@@ -1,4 +1,4 @@
-vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.format()]]
+-- vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.format()]]
 
 -- vim.opt_local.projectionist_heuristics = {
 --     ["*main.tf"] = {
@@ -11,6 +11,11 @@ vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.format()]]
 --         alternate= "{}main.tf"
 --     },
 -- }
+
+-- vim.api.nvim_create_autocmd("BufRead,BufNewFile", {
+--   pattern = "*.tf",
+--   command = "set filetype=terraform",
+-- })
 
 vim.opt_local.tabstop=2
 vim.opt_local.softtabstop=2

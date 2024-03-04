@@ -88,14 +88,29 @@ return {
         -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
         lua_ls = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
-          },
+          settings = {
+            Lua = {
+              workspace = { checkThirdParty = false },
+              telemetry = { enable = false },
+              -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- diagnostics = { disable = { 'missing-fields' } },
+            },
+          }
         },
-        terraformls = {},
+        terraformls = {
+          -- on_attach = function ()
+          --   vim.api.nvim_create_autocmd({"BufWritePre"}, {
+          --     pattern = {"*.tf", "*.tfvars"},
+          --     callback = vim.lsp.buf.formatting_sync(),
+          --   })
+          -- end
+          --
+          init_options = {
+            indexing = {
+              ignorePaths = {".terraform", "examples"} 
+            }
+          }
+        },
         tflint = {},
       }
 
@@ -119,13 +134,23 @@ return {
         function(server_name)
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
+            on_attach = function ()
+              on_attach()
+              local local_on_attach = (servers[server_name] or {})[on_attach] 
+              if local_on_attach ~= nil then
+                local_on_attach()
+              end
+            end,
+            settings = (servers[server_name] or {}).settings or {},
             filetypes = (servers[server_name] or {}).filetypes,
+            init_options = (servers[server_name] or {}).init_options or {},
           }
         end,
       }
-
+      -- vim.api.nvim_create_autocmd({"BufWritePre"}, {
+      --   pattern = {"*.tf", "*.tfvars"},
+      --   callback = vim.lsp.buf.format(),
+      -- })
     end
   },
 
