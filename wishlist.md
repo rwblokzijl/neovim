@@ -16,7 +16,7 @@
             - [ ] 'tpope/vim-rhubarb'
             - [ ] kdheepak/lazygit.nvim
             - [ ] gitsigns
-    - [ ] Text objects
+        - [ ] Text objects
         - [ ] comments working well
             - [ ] Try the current plugin, for a bit
         - [x] Treesitter Text objects working well
@@ -26,8 +26,7 @@
     - [ ] Treesitter context
 
     small stuff:
-    2. Auto numberting list
-    3. q als alias for nearest ' or " or `
-    4. LSP add other source (document symbols etc)
-    5. Colorcolumn
-    7. < should maintain selection
+    1. q als alias for nearest ' or " or `
+    2. LSP add other source (document symbols etc)
+    3. Colorcolumn
+

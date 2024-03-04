@@ -235,14 +235,36 @@ vim.cmd([[:command -nargs=* Q :q "<args>"]])
 
 vim.keymap.set('n', "~", ":AV<cr>", { silent = true })
 
--- " paste with and without formatting
--- inoremap <C-v>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia
--- inoremap <C-S-v> <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
--- " inoremap <C-b>   <esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a
+-- Normal mode mappings
+vim.keymap.set('n', '*', [[/\<<C-R>=expand('<cword>')<CR>\><CR>zzzv]], {})
+vim.keymap.set('n', '#', [[?\<<C-R>=expand('<cword>')<CR>\><CR>zzzv]], {})
+vim.keymap.set('n', 'n', 'nzzzv', {silent = true})
+vim.keymap.set('n', 'N', 'Nzzzv', {silent = true})
+-- vim.keymap.set('n', 'J', 'mzJ`z', {silent = true}) -- more annoying than useful
+-- vim.keymap.set('n', '<C-j>', ':cnext<CR>zzzv', {silent = true})
 
--- " nnoremap <C-x> "+d
--- " nnoremap <C-S-x> "+D
--- " nnoremap <C-x><C-x> "+dd
+-- Visual mode mappings
+vim.keymap.set('v', '<', '<gv', {silent = true, noremap=true})
+vim.keymap.set('v', '>', '>gv', {silent = true, noremap=true})
+
+-- Visual block mode mappings
+vim.keymap.set('x', '<C-j>', ":m '>+1<CR>gv=gv", {silent = true})
+vim.keymap.set('x', '<C-k>', ":m '<-2<CR>gv=gv", {silent = true})
+vim.keymap.set('x', '<C-s-j>', ":m '>+1<CR>gv", {silent = true})
+vim.keymap.set('x', '<C-s-k>', ":m '<-2<CR>gv", {silent = true})
+vim.keymap.set('x', '<C-h>', '<gv', {silent = true})
+vim.keymap.set('x', '<C-l>', '>gv', {silent = true})
+vim.keymap.set('x', '<C-s-h>', '<gv', {silent = true})
+vim.keymap.set('x', '<C-s-l>', '>gv', {silent = true})
+
+-- Insert mode mappings
+vim.keymap.set('i', ',', ',<c-g>u', {silent = true})
+vim.keymap.set('i', '.', '.<c-g>u', {silent = true})
+vim.keymap.set('i', '!', '!<c-g>u', {silent = true})
+vim.keymap.set('i', '?', '?<c-g>u', {silent = true})
+
+-- Map mode mappings
+vim.keymap.set('', '-', '$', {silent = true})
 
 local autocmd = vim.api.nvim_create_autocmd
 -- local Json = require("json")
