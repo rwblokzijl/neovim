@@ -4,10 +4,10 @@
         - [x] Boostrappable plugin installer
         - [x] Boostrappable lsp installer
     - [ ] State of the art autocompletion for everything
-        - [ ] Lsp
+        - [x] Lsp
         - [ ] Good set of snippets
             - [ ] Terraform snippets
-        - [ ] The old autocompletion sources
+        - [x] The old autocompletion sources
     - [ ] Git usage
         - [ ] All from within NVIM
         - [ ] scriptable if possible
@@ -17,17 +17,9 @@
             - [ ] 'tpope/vim-rhubarb'
             - [ ] kdheepak/lazygit.nvim
             - [ ] gitsigns
-        - [ ] Text objects
-            - [ ] Make indent work with newlines in between
-        - [ ] comments working well
-            - [ ] Try the current plugin, for a bit
-        - [x] Treesitter Text objects working well
-        - [x] jump to next/prev
         - [ ] select jump to next/prev (on its own button)
-            - [ ] Evaluate mini surround
+        - [ ] Evaluate mini surround
     - [ ] Treesitter context
-
-    small stuff:
-    1. LSP add other source (document symbols etc)
-    2. Colorcolumn
+    - [ ] small stuff:
+        - [ ] Colorcolumn
 
