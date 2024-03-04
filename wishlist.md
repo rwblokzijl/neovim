@@ -18,17 +18,16 @@
             - [ ] gitsigns
     - [ ] Text objects
         - [ ] comments working well
-            - [ ]
+            - [ ] Try the current plugin, for a bit
         - [x] Treesitter Text objects working well
         - [x] jump to next/prev
         - [ ] select jump to next/prev (on its own button)
+            - [ ] Evaluate mini surround
     - [ ] Treesitter context
 
     small stuff:
-    1. Auto closing brackets
     2. Auto numberting list
     3. q als alias for nearest ' or " or `
     4. LSP add other source (document symbols etc)
     5. Colorcolumn
-    6. Make terraform LSP faster (ignore .terraform)
     7. < should maintain selection
