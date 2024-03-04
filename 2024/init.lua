@@ -28,6 +28,8 @@ require('lazy').setup("plugins", {
 	},
 })
 
+
+
 ----- look -----
 -- Enable line numbers
 vim.o.number = true
@@ -52,7 +54,17 @@ vim.wo.signcolumn = 'yes'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.opt.listchars="nbsp:☠,tab:▸\\ ,trail:•,precedes:←,extends:→"
+vim.opt.list = true
+vim.api.nvim_set_hl(0, "ExtraWhitespace", {link = "GruvboxRed"})
+vim.fn.matchadd('ExtraWhitespace', '\\s\\+$')
+
+
+
+
 ----- Behave -----
+vim.cmd("autocmd BufWritePre * :%s/\\s\\+$//e")
+
 vim.o.splitbelow=true
 vim.o.splitright=true
 
@@ -60,6 +72,7 @@ vim.o.tabstop=2
 vim.o.softtabstop=2
 vim.o.shiftwidth=2
 vim.o.expandtab=true
+vim.o.foldlevel=0
 vim.o.foldnestmax=1
 vim.o.foldmethod="indent"
 

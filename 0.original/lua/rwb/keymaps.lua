@@ -17,6 +17,11 @@ local function nnoremap(binding, command, opts)
   vim.keymap.set('n', binding, command, vim.tbl_extend("force", {noremap = true}, opts))
 end
 
+local function xnoremap(binding, command, opts)
+  opts = opts or {}
+  vim.keymap.set('x', binding, command, {noremap = true})
+end
+
 local function onoremap(binding, command)
   vim.keymap.set('o', binding, command, {noremap = true})
 end
@@ -132,7 +137,7 @@ local function set_keymaps_leader(leader)
 end
 
 local function set_keymaps_g_text_objects()
-    nmap("gcac", "gcic")
+    -- nmap("gcac", "gcic")
 
     vnoremap("aL", "<Plug>(textobj-line-a)")
     vnoremap("iL", "<Plug>(textobj-line-i)")
@@ -330,6 +335,12 @@ M.set_general_keymaps = function ()
       }
     }
   })
+  -- vim.keymap.set(
+  --   'n',
+  --   'gc',
+  --   '<Plug>ContextCommentaryLine', -- Previously '<Plug>CommentaryLine'
+  --   { silent = true, desc = 'Comment line' }
+  -- )
 end
 
 

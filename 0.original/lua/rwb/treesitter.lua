@@ -26,6 +26,16 @@ configs.setup {
       -- node_decremental = "<c-o>",
     },
   },
+  context_commentstring = {
+    enable = true,
+  },
+  --   commentary_integration = {
+  --     -- change default mapping
+  --     Commentary = 'gc',
+  --     -- disable default mapping
+  --     CommentaryLine = false,
+  --   },
+  -- },
   textobjects = {
     select = {
       enable = true,
@@ -40,7 +50,8 @@ configs.setup {
         ["iC"] = "@class.inner",
         ["aC"] = "@class.outer",
         -- ["i?"] = "@comment.inner", -- doesn't exist currently i implement using 'glts/vim-textobj-comment'. Later a custom treesitter query might be userful
-        ["ac"] = "@comment.outer",
+        -- ["ic"] = "@comment.inner",
+        -- ["ac"] = "@comment.outer",
         -- ["i?"] = "@conditional.inner",
         -- ["a?"] = "@conditional.outer",
         -- ["i?"] = "@frame.inner",
@@ -67,7 +78,8 @@ configs.setup {
         -- ["@call.outer"]        = 'v',
         -- ["@class.inner"]       = 'v',
         ["@class.outer"]       = 'V',
-        -- ["@comment.outer"]     = 'V',
+        -- ["@comment.inner"]     = '<c-v>',
+        -- ["@comment.outer"]     = '<c-v>',
         -- ["@conditional.inner"] = 'v',
         -- ["@conditional.outer"] = 'v',
         -- ["@frame.inner"]       = 'v',
