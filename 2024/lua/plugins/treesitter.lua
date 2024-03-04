@@ -1,7 +1,4 @@
 return {
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
   -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
@@ -10,7 +7,7 @@ return {
     },
     config = function ()
       vim.defer_fn(function()
-        require('nvim-treesitter.install').update({ with_sync = true }) 
+        require('nvim-treesitter.install').update({ with_sync = true })
         require('nvim-treesitter.configs').setup {
           -- Add languages to be installed here that you want installed for treesitter
           ensure_installed = "all",

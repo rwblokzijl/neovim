@@ -20,13 +20,11 @@
 -- url                  |  L        | all         | link beginning with "http"                                                        | -
 -- shellPipe            |  iP/aP    | *sh         | command stdout is piped to                                                        | outer includes the front pipe character
 
--- use 'vim-scripts/argtextobj.vim'          -- (a)       Argument -- Replaced by treesitter-text-objects
---
--- TODO
--- Consider:
---   https://github.com/wellle/targets.vim -- A collection of text object with look ahead/behind
-
 return {
+  {
+    -- -- A collection of text object with look ahead/behind
+    'wellle/targets.vim'
+  },
   {
     -- (c) Comments
     'glts/vim-textobj-comment',
@@ -44,8 +42,8 @@ return {
   },
   {
     -- (i) Intent blocks
-    'kana/vim-textobj-indent',
-    dependencies = 'kana/vim-textobj-user'
-    -- 'michaeljsmith/vim-indent-object'     -- (i)       Indent blocks
+    -- 'kana/vim-textobj-indent',
+    -- dependencies = 'kana/vim-textobj-user'
+    'michaeljsmith/vim-indent-object'     -- (i)       Indent blocks
   }
 }

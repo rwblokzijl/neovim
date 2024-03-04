@@ -1,9 +1,10 @@
 - [x] Config swapper?
 - [ ] New config, built from the ground up
-    - [ ] Installable with 1 command from external VCS? (non-auth)
+    - [x] Installable with 1 command from external VCS? (non-auth)
         - [x] Boostrappable plugin installer
-        - [ ] Boostrappable lsp installer
-    - [ ] State of the art LSP for everything
+        - [x] Boostrappable lsp installer
+    - [ ] State of the art autocompletion for everything
+        - [ ] Lsp
         - [ ] Good set of snippets
             - [ ] Terraform snippets
         - [ ] The old autocompletion sources
@@ -17,6 +18,7 @@
             - [ ] kdheepak/lazygit.nvim
             - [ ] gitsigns
         - [ ] Text objects
+            - [ ] Make indent work with newlines in between
         - [ ] comments working well
             - [ ] Try the current plugin, for a bit
         - [x] Treesitter Text objects working well
@@ -26,7 +28,6 @@
     - [ ] Treesitter context
 
     small stuff:
-    1. q als alias for nearest ' or " or `
-    2. LSP add other source (document symbols etc)
-    3. Colorcolumn
+    1. LSP add other source (document symbols etc)
+    2. Colorcolumn
 

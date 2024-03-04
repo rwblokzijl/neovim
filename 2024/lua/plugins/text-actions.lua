@@ -1,4 +1,8 @@
 return {
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} }, -- Also comments blank lines
+ -- { 'tpope/vim-commentary', }, -- Does not comment blank lines
+
   {
     "christoomey/vim-sort-motion",
     config = function ()
