@@ -1,5 +1,3 @@
--- vim.cmd [[autocmd BufWritePre *.tf lua vim.lsp.buf.format()]]
-
 -- vim.opt_local.projectionist_heuristics = {
 --     ["*main.tf"] = {
 --         alternate= "{}variables.tf"

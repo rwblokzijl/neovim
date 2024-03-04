@@ -107,7 +107,7 @@ return {
           --
           init_options = {
             indexing = {
-              ignorePaths = {".terraform", "examples"} 
+              ignorePaths = {".terraform", "examples"}
             }
           }
         },
@@ -136,7 +136,7 @@ return {
             capabilities = capabilities,
             on_attach = function ()
               on_attach()
-              local local_on_attach = (servers[server_name] or {})[on_attach] 
+              local local_on_attach = (servers[server_name] or {})[on_attach]
               if local_on_attach ~= nil then
                 local_on_attach()
               end
@@ -233,5 +233,17 @@ return {
         },
       }
     end
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
+        terraform = {'terraform_fmt'}
+      }
+    },
   }
 }

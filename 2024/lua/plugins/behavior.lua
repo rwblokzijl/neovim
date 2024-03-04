@@ -66,5 +66,5 @@ return {
     end,
     config = function ()
     end
-  }
+  },
 }
