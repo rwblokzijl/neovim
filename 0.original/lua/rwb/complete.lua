@@ -1,5 +1,5 @@
-local cmp = require'cmp'
-local ls  = require('luasnip')
+local cmp     = require 'cmp'
+local ls      = require('luasnip')
 local lspkind = require('lspkind')
 -- local tabnine = require('cmp_tabnine.compare')
 
@@ -31,10 +31,10 @@ cmp.setup({
     -- ['<CR>'] = cmp.mapping(
     ["<C-i>"] = cmp.mapping(
     -- ["<C-y>"] = cmp.mapping(
-    cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    }, { "i", "c" }
+      cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      }, { "i", "c" }
     ),
     -- ["<c-space>"] = cmp.mapping {
     --   i = cmp.mapping.complete(),
@@ -62,17 +62,27 @@ cmp.setup({
 
     -- NOTE: If this sorting is not enough, look into source_groups.
     -- High quality / low volume
-    { name = "nvim_lsp",    priority=100, },
-    { name = "luasnip",     priority=50,  max_item_count=5, entry_filter=function () return true end},
-    { name = "buffer",      priority=50,  max_item_count=4, option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end, }, },
-    { name = "nvim_lua",    priority=10  },
-    { name = "path",        priority=10,  },
-    { name = "git",         priority=10,  },
+    { name = "nvim_lsp", priority = 100, },
+    { name = "luasnip",  priority = 50,  max_item_count = 5, entry_filter = function() return true end },
+    {
+      name = "buffer",
+      priority = 50,
+      max_item_count = 4,
+      option = {
+        get_bufnrs = function()
+          return vim.api
+              .nvim_list_bufs()
+        end,
+      },
+    },
+    { name = "nvim_lua",   priority = 10 },
+    { name = "path",       priority = 10, },
+    { name = "git",        priority = 10, },
 
     -- Supplementary
-    { name = "dictionary",  priority=5,  max_item_count=4, keyword_length = 2 },
-    { name = 'spell',       priority=5,  max_item_count=2, keyword_length = 2, option = { keep_all_entries = true, }, },
-    { name = 'calc',        priority=5,  },
+    { name = "dictionary", priority = 5,  max_item_count = 4, keyword_length = 2 },
+    { name = 'spell',      priority = 5,  max_item_count = 2, keyword_length = 2, option = { keep_all_entries = true, }, },
+    { name = 'calc',       priority = 5, },
     -- { name = 'cmp_tabnine', priority=1,  },
   }),
 
@@ -94,20 +104,20 @@ cmp.setup({
   },
 
   formatting = {
-    format = lspkind.cmp_format ({
+    format = lspkind.cmp_format({
       with_text = true,
       mode = 'symbol_text',
       menu = {
-        buffer      = "[buf]",
-        nvim_lsp    = "[LSP]",
-        nvim_lua    = "[api]",
-        path        = "[path]",
-        luasnip     = "[snip]",
+        buffer     = "[buf]",
+        nvim_lsp   = "[LSP]",
+        nvim_lua   = "[api]",
+        path       = "[path]",
+        luasnip    = "[snip]",
         -- cmp_tabnine = "[TN]",
-        git         = "[git]",
-        dictionary  = "[dict]",
-        calc        = "[calc]",
-        spell       = "[spell]",
+        git        = "[git]",
+        dictionary = "[dict]",
+        calc       = "[calc]",
+        spell      = "[spell]",
       },
     }),
   },
@@ -142,7 +152,7 @@ require("cmp_dictionary").setup({
   first_case_insensitive = false,
   document = {
     enable = false,
-	  command = { "wn", "${label}", "-over" },
+    command = { "wn", "${label}", "-over" },
   },
   async = false,
   -- capacity = 5,
@@ -161,7 +171,7 @@ cmp.setup.filetype('gitcommit', {
     { name = 'conventionalcommits' },
     { name = 'buffer' },
     { name = 'commit' },
-    })
+  })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -178,7 +188,7 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' },
     { name = 'cmdline' },
-    })
+  })
 })
 
 require('cmp_commit').setup({
@@ -187,7 +197,7 @@ require('cmp_commit').setup({
   length = 9,
   block = { "__pycache__", "CMakeFiles", "node_modules", "target" },
   -- word_list = "~/cmpcommit.json",
-  repo_list =  {
+  repo_list = {
     -- { "Name of repo", "PATH/TO/FILE.json" }
   }
 })
@@ -209,7 +219,7 @@ require('cmp_commit').setup({
 -- Setup lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspconfig = require'lspconfig'
+local lspconfig = require 'lspconfig'
 
 local servers = {
   -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -422,20 +432,20 @@ local servers = {
 }
 
 require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-        }
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
     }
+  }
 })
 
 require("mason-lspconfig").setup({
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
   -- This setting has no relation with the `automatic_installation` setting.
 
-  ensure_installed = { }, -- installation is done automagically
+  ensure_installed = {}, -- installation is done automagically
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
@@ -475,7 +485,7 @@ require('foldsigns').setup()
 
 
 require('goto-preview').setup {
-  default_mappings = true; -- Bind default mappings
+  default_mappings = true, -- Bind default mappings
 }
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
@@ -516,4 +526,3 @@ cmp.event:on(
     }
   })
 )
-

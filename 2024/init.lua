@@ -24,8 +24,8 @@ require('util.string')
 
 require('lazy').setup("plugins", {
   change_detection = {
-		notify = false,
-	},
+    notify = false,
+  },
 })
 
 
@@ -36,17 +36,20 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 vim.o.wrap = false
-vim.o.colorcolumn=80
+vim.o.colorcolumn = 80
 vim.o.cursorline = true
 
 -- Set highlight on search
 vim.o.hlsearch = true
 vim.o.incsearch = true
-vim.keymap.set('n', '<ESC><ESC>', function ()
+vim.keymap.set('n', '<ESC><ESC>', function()
   vim.cmd('nohlsearch')
   vim.cmd('hi clear SpellBad')
   require('luasnip').unlink_current()
 end, { noremap = true, silent = true })
+
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -54,9 +57,9 @@ vim.wo.signcolumn = 'yes'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
-vim.opt.listchars="nbsp:☠,tab:▸\\ ,trail:•,precedes:←,extends:→"
+vim.opt.listchars = "nbsp:☠,tab:▸\\ ,trail:•,precedes:←,extends:→"
 vim.opt.list = true
-vim.api.nvim_set_hl(0, "ExtraWhitespace", {link = "GruvboxRed"})
+vim.api.nvim_set_hl(0, "ExtraWhitespace", { link = "GruvboxRed" })
 vim.fn.matchadd('ExtraWhitespace', '\\s\\+$')
 
 
@@ -65,19 +68,19 @@ vim.fn.matchadd('ExtraWhitespace', '\\s\\+$')
 ----- Behave -----
 vim.cmd("autocmd BufWritePre * :%s/\\s\\+$//e")
 
-vim.o.splitbelow=true
-vim.o.splitright=true
+vim.o.splitbelow = true
+vim.o.splitright = true
 
-vim.o.tabstop=2
-vim.o.softtabstop=2
-vim.o.shiftwidth=2
-vim.o.expandtab=true
-vim.o.foldlevel=0
-vim.o.foldnestmax=1
-vim.o.foldmethod="indent"
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.foldlevel = 0
+vim.o.foldnestmax = 1
+vim.o.foldmethod = "indent"
 
-vim.o.copyindent=true
-vim.o.preserveindent=true
+vim.o.copyindent = true
+vim.o.preserveindent = true
 
 -- Disable mouse mode
 -- vim.o.mouse = 'a'
@@ -112,7 +115,7 @@ vim.keymap.set('n', 'zm', '<Nop>')
 vim.keymap.set('n', 'zl', '<Nop>')
 vim.keymap.set('n', 'zh', '<Nop>')
 
-vim.keymap.set('n', 's',  '<Nop>')
+vim.keymap.set('n', 's', '<Nop>')
 vim.keymap.set('n', 'ss', 'za')
 
 vim.keymap.set('n', 'sl', 'zo')
@@ -144,7 +147,8 @@ local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
 vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat)
 vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat)
-local next_diag_repeat, prev_diag_repeat = ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+local next_diag_repeat, prev_diag_repeat = ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next,
+  vim.diagnostic.goto_prev)
 vim.keymap.set({ "n", "x", "o" }, "]d", next_diag_repeat, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set({ "n", "x", "o" }, "[d", prev_diag_repeat, { desc = 'Go to next diagnostic message' })
 -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
@@ -187,7 +191,7 @@ vim.keymap.set('v', '<C-d>', '"+d')
 vim.keymap.set('v', '<C-v>', '"+p')
 vim.keymap.set('v', '<C-S-v>', '"+P')
 
-vim.keymap.set('i', '<C-v>',   "<esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia")
+vim.keymap.set('i', '<C-v>', "<esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>mi`[=`]`ia")
 vim.keymap.set('i', '<C-S-v>', "<esc>:set paste<cr>a<c-r>=getreg('+')<cr><esc>:set nopaste<cr>a")
 
 vim.keymap.set('n', 'ga', "<Plug>(EasyAlign)")
@@ -238,49 +242,48 @@ vim.keymap.set('n', "~", ":AV<cr>", { silent = true })
 -- Normal mode mappings
 vim.keymap.set('n', '*', [[/\<<C-R>=expand('<cword>')<CR>\><CR>zzzv]], {})
 vim.keymap.set('n', '#', [[?\<<C-R>=expand('<cword>')<CR>\><CR>zzzv]], {})
-vim.keymap.set('n', 'n', 'nzzzv', {silent = true})
-vim.keymap.set('n', 'N', 'Nzzzv', {silent = true})
+vim.keymap.set('n', 'n', 'nzzzv', { silent = true })
+vim.keymap.set('n', 'N', 'Nzzzv', { silent = true })
 -- vim.keymap.set('n', 'J', 'mzJ`z', {silent = true}) -- more annoying than useful
 -- vim.keymap.set('n', '<C-j>', ':cnext<CR>zzzv', {silent = true})
 
 -- Visual mode mappings
-vim.keymap.set('v', '<', '<gv', {silent = true, noremap=true})
-vim.keymap.set('v', '>', '>gv', {silent = true, noremap=true})
+vim.keymap.set('v', '<', '<gv', { silent = true, noremap = true })
+vim.keymap.set('v', '>', '>gv', { silent = true, noremap = true })
 
 -- Visual block mode mappings
-vim.keymap.set('x', '<C-j>', ":m '>+1<CR>gv=gv", {silent = true})
-vim.keymap.set('x', '<C-k>', ":m '<-2<CR>gv=gv", {silent = true})
-vim.keymap.set('x', '<C-s-j>', ":m '>+1<CR>gv", {silent = true})
-vim.keymap.set('x', '<C-s-k>', ":m '<-2<CR>gv", {silent = true})
-vim.keymap.set('x', '<C-h>', '<gv', {silent = true})
-vim.keymap.set('x', '<C-l>', '>gv', {silent = true})
-vim.keymap.set('x', '<C-s-h>', '<gv', {silent = true})
-vim.keymap.set('x', '<C-s-l>', '>gv', {silent = true})
+vim.keymap.set('x', '<C-j>', ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set('x', '<C-k>', ":m '<-2<CR>gv=gv", { silent = true })
+vim.keymap.set('x', '<C-s-j>', ":m '>+1<CR>gv", { silent = true })
+vim.keymap.set('x', '<C-s-k>', ":m '<-2<CR>gv", { silent = true })
+vim.keymap.set('x', '<C-h>', '<gv', { silent = true })
+vim.keymap.set('x', '<C-l>', '>gv', { silent = true })
+vim.keymap.set('x', '<C-s-h>', '<gv', { silent = true })
+vim.keymap.set('x', '<C-s-l>', '>gv', { silent = true })
 
 -- Insert mode mappings
-vim.keymap.set('i', ',', ',<c-g>u', {silent = true})
-vim.keymap.set('i', '.', '.<c-g>u', {silent = true})
-vim.keymap.set('i', '!', '!<c-g>u', {silent = true})
-vim.keymap.set('i', '?', '?<c-g>u', {silent = true})
+vim.keymap.set('i', ',', ',<c-g>u', { silent = true })
+vim.keymap.set('i', '.', '.<c-g>u', { silent = true })
+vim.keymap.set('i', '!', '!<c-g>u', { silent = true })
+vim.keymap.set('i', '?', '?<c-g>u', { silent = true })
 
 -- Map mode mappings
-vim.keymap.set('', '-', '$', {silent = true})
+vim.keymap.set('', '-', '$', { silent = true })
 
 local autocmd = vim.api.nvim_create_autocmd
 -- local Json = require("json")
-autocmd({'BufRead', 'BufWritePost'}, {
+autocmd({ 'BufRead', 'BufWritePost' }, {
   pattern = '',
-  callback = function ()
+  callback = function()
     -- log line to file
-    local file = io.open(os.getenv("HOME").."/test.data", "a")
+    local file = io.open(os.getenv("HOME") .. "/test.data", "a")
     file:write(
       vim.fn.json_encode({
         time = os.date("!%Y-%m-%dT%T%z"),
         file = vim.fn.expand('%:p'),
         branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
-      }).. "\n"
+      }) .. "\n"
     )
     file:close()
   end
 })
-

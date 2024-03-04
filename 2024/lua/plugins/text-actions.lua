@@ -1,11 +1,11 @@
 return {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} }, -- Also comments blank lines
- -- { 'tpope/vim-commentary', }, -- Does not comment blank lines
+  -- { 'tpope/vim-commentary', }, -- Does not comment blank lines
 
   {
     "christoomey/vim-sort-motion",
-    config = function ()
+    config = function()
       -- vim.g.sort_motion_flags = "ui"
     end
   },
@@ -17,23 +17,23 @@ return {
   },
   {
     "monaqa/dial.nvim",
-    config = function ()
+    config = function()
       local augend = require("dial.augend")
       local map = require("dial.map")
-      require("dial.config").augends:register_group{
+      require("dial.config").augends:register_group {
         -- default augends used when no group name is specified
         default = {
-          augend.integer.alias.decimal,   -- nonnegative decimal number (0, 1, 2, 3, ...)
-          augend.integer.alias.hex,       -- nonnegative hex number  (0x01, 0x1a1f, etc.)
+          augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
+          augend.integer.alias.hex,     -- nonnegative hex number  (0x01, 0x1a1f, etc.)
           augend.date.alias["%Y/%m/%d"],
           augend.date.alias["%Y-%m-%d"],
           -- augend.date.alias["%d-%m-%Y"],
           augend.date.alias["%m/%d"],
           augend.date.alias["%H:%M"],
           augend.constant.alias.bool,
-          augend.constant.new{ elements = {"True", "False"} },
-          augend.constant.new{ elements = {"pull", "triage", "push", "maintain", "admin"} },
-          augend.constant.new{ elements = {
+          augend.constant.new { elements = { "True", "False" } },
+          augend.constant.new { elements = { "pull", "triage", "push", "maintain", "admin" } },
+          augend.constant.new { elements = {
             "Mon",
             "Tue",
             "Wed",
@@ -41,8 +41,8 @@ return {
             "Fri",
             "Sat",
             "Sun",
-          }},
-          augend.constant.new{ elements = {
+          } },
+          augend.constant.new { elements = {
             "Monday",
             "Tuesday",
             "Wednesday",
@@ -50,8 +50,8 @@ return {
             "Friday",
             "Saturday",
             "Sunday",
-          }},
-          augend.constant.new{ elements = {
+          } },
+          augend.constant.new { elements = {
             "Zondag",
             "Maandag",
             "Dinsdag",
@@ -59,7 +59,7 @@ return {
             "Donderdag",
             "Vrijdag",
             "Zaterdag"
-          }},
+          } },
         },
         --   -- augends used when group with name `mygroup` is specified
         --   mygroup = {

@@ -1,6 +1,6 @@
 local actions = require("telescope.actions")
 
-require('telescope').setup{
+require('telescope').setup {
   defaults = {
     -- -- Default configuration for telescope goes here:
     -- -- config_key = value,
@@ -18,14 +18,14 @@ require('telescope').setup{
     -- Default configuration for builtin pickers goes here:
     live_grep = {
       additional_args = function(opts)
-        return {"--hidden"}
+        return { "--hidden" }
       end
     },
 
     find_files = {
       follow = true,
-      hidden=true,
-      no_ignore=true,
+      hidden = true,
+      no_ignore = true,
       file_ignore_patterns = {
         "/.terraform/",
         "/.venvs/",

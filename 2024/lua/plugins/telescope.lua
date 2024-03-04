@@ -1,4 +1,3 @@
-
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
@@ -17,15 +16,17 @@ return {
       end
     }
   },
-  config = function ()
+  config = function()
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`
+    local actions = require("telescope.actions")
     require('telescope').setup {
       defaults = {
         mappings = {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
+            ["<esc><esc>"] = actions.close, -- makes closing a lot faster
           },
         },
       },
@@ -42,12 +43,12 @@ return {
         previewer = false,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
-    vim.keymap.set('n', '<c-f>', function () -- live_grep_under_cursor
-      -- advantage over grep_string: word can be edited.
-      -- If you want to search again over the set, send to quickfix <c-q> and
-      -- telescope from quicklist again <c-q>
-      require('telescope.builtin').live_grep({default_text=vim.fn.expand("<cword>")})
-    end,
+    vim.keymap.set('n', '<c-f>', function() -- live_grep_under_cursor
+        -- advantage over grep_string: word can be edited.
+        -- If you want to search again over the set, send to quickfix <c-q> and
+        -- telescope from quicklist again <c-q>
+        require('telescope.builtin').live_grep({ default_text = vim.fn.expand("<cword>") })
+      end,
       { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<c-q>', require('telescope.builtin').find_files, { desc = '[Q]uickfix' })
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })

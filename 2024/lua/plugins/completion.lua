@@ -8,13 +8,13 @@ return {
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'ray-x/lsp_signature.nvim',
       'folke/neodev.nvim',
     },
-    config = function ()
+    config = function()
       -- Set completeopt to have a better completion experience
       -- set completeopt=menu,menuone,noinsert,noselect,preview
       vim.o.completeopt = 'menuone,noselect'
@@ -107,7 +107,7 @@ return {
           --
           init_options = {
             indexing = {
-              ignorePaths = {".terraform", "examples"}
+              ignorePaths = { ".terraform", "examples" }
             }
           }
         },
@@ -134,7 +134,7 @@ return {
         function(server_name)
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
-            on_attach = function ()
+            on_attach = function()
               on_attach()
               local local_on_attach = (servers[server_name] or {})[on_attach]
               if local_on_attach ~= nil then
@@ -176,15 +176,27 @@ return {
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'petertriho/cmp-git',
+      'davidsierradz/cmp-conventionalcommits',
+      'Dosx001/cmp-commit',
+      'f3fora/cmp-spell',
+      'hrsh7th/cmp-calc',
+      'uga-rosa/cmp-dictionary',
+      -- 'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-cmdline',
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      'onsails/lspkind-nvim',
     },
-    config = function ()
+    config = function()
       -- [[ Configure nvim-cmp ]]
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require('lspkind')
       require('luasnip.loaders.from_vscode').lazy_load()
       luasnip.config.setup {}
 
@@ -203,36 +215,128 @@ return {
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete {},
-          ['<CR>'] = cmp.mapping.confirm {
+          ['<C-y>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           },
-          -- ['<Tab>'] = cmp.mapping(function(fallback)
-          --   if cmp.visible() then
-          --     cmp.select_next_item()
-          --   elseif luasnip.expand_or_locally_jumpable() then
-          --     luasnip.expand_or_jump()
-          --   else
-          --     fallback()
-          --   end
-          -- end, { 'i', 's' }),
-          -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-          --   if cmp.visible() then
-          --     cmp.select_prev_item()
-          --   elseif luasnip.locally_jumpable(-1) then
-          --     luasnip.jump(-1)
-          --   else
-          --     fallback()
-          --   end
-          -- end, { 'i', 's' }),
         },
         sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
+          { name = "nvim_lsp", priority = 100, },
+          { name = "luasnip",  priority = 50,  max_item_count = 5, entry_filter = function() return true end },
+          {
+            name = "buffer",
+            priority = 50,
+            max_item_count = 4,
+            option = {
+              get_bufnrs = function()
+                return vim.api
+                    .nvim_list_bufs()
+              end,
+            },
+          },
+          -- { name = "nvim_lua",   priority = 10 },
+          { name = "path",       priority = 10, },
+          { name = "git",        priority = 10, },
+          -- Supplementary
+          { name = "dictionary", priority = 5,  max_item_count = 4, keyword_length = 2 },
+          { name = 'spell',      priority = 5,  max_item_count = 2, keyword_length = 2, option = { keep_all_entries = true, }, },
+          { name = 'calc',       priority = 5, },
         },
+        sorting = {
+          priority_weight = 1,
+          comparators = {
+            -- NOTE: Not using score makes all priority irrelevant
+            cmp.config.compare.score, -- final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight) (priority_weight = sources[n].priority
+          }
+        },
+        formatting = {
+          format = lspkind.cmp_format({
+            with_text = true,
+            mode = 'symbol_text',
+            menu = {
+              buffer     = "[buf]",
+              nvim_lsp   = "[LSP]",
+              -- nvim_lua   = "[api]",
+              path       = "[path]",
+              luasnip    = "[snip]",
+              -- cmp_tabnine = "[TN]",
+              git        = "[git]",
+              dictionary = "[dict]",
+              calc       = "[calc]",
+              spell      = "[spell]",
+            }
+          })
+        }
       }
+
+      require("cmp_dictionary").setup({
+        dic = {
+          ["*"] = { "/usr/share/dict/words" },
+          ["lua"] = "path/to/lua.dic",
+          ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+          filename = {
+            ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+          },
+          filepath = {
+            ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+          },
+          spelllang = {
+            en = "path/to/english.dic",
+          },
+        },
+        -- The following are default values.
+        exact_length = 2,
+        first_case_insensitive = false,
+        document = {
+          enable = false,
+          command = { "wn", "${label}", "-over" },
+        },
+        async = false,
+        -- capacity = 5,
+        debug = false,
+      })
+
+      require("cmp_git").setup({
+        filetypes = { "*" },
+      })
+
+      cmp.setup.filetype('gitcommit', {
+        sources = cmp.config.sources({
+          { name = 'git' },
+          { name = 'conventionalcommits' },
+          { name = 'buffer' },
+          { name = 'commit' },
+        })
+      })
+
+      cmp.setup.cmdline('/', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+          { name = 'cmdline' },
+        })
+      })
+
+      require('cmp_commit').setup({
+        -- set = true,
+        -- format = { "<<= ", " =>>" },
+        length = 9,
+        block = { "__pycache__", "CMakeFiles", "node_modules", "target" },
+        -- word_list = "~/cmpcommit.json",
+        repo_list = {
+          -- { "Name of repo", "PATH/TO/FILE.json" }
+        }
+      })
     end
+  },
+  {
+    "juliosueiras/vim-terraform-completion",
   },
   {
     'stevearc/conform.nvim',
@@ -242,7 +346,7 @@ return {
         lsp_fallback = true,
       },
       formatters_by_ft = {
-        terraform = {'terraform_fmt'}
+        terraform = { 'terraform_fmt' }
       }
     },
   }
