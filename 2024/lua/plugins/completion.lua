@@ -190,6 +190,8 @@ return {
       'rafamadriz/friendly-snippets',
 
       'onsails/lspkind-nvim',
+
+      'windwp/nvim-autopairs'
     },
     config = function()
       -- [[ Configure nvim-cmp ]]
@@ -268,6 +270,27 @@ return {
           })
         }
       }
+
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local handlers = require('nvim-autopairs.completion.handlers')
+
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done({
+          filetypes = {
+            -- "*" is a alias to all filetypes
+            ["*"] = {
+              ["("] = {
+                kind = {
+                  cmp.lsp.CompletionItemKind.Function,
+                  cmp.lsp.CompletionItemKind.Method,
+                },
+                handler = handlers["*"]
+              }
+            },
+          }
+        })
+      )
 
       require("cmp_dictionary").setup({
         dic = {

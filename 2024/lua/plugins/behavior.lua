@@ -3,7 +3,7 @@ return {
   {
     'folke/which-key.nvim',
     opts = {},
-    config = function ()
+    config = function()
       -- document existing key chains
       require('which-key').register {
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
@@ -21,7 +21,6 @@ return {
         ['<leader>'] = { name = 'VISUAL <leader>' },
         ['<leader>h'] = { 'Git [H]unk' },
       }, { mode = 'v' })
-
     end
   },
 
@@ -45,26 +44,26 @@ return {
     init = function()
       vim.g.bullets_set_mappings = 0
       vim.g.bullets_custom_mappings = {
-        {'imap',     '<cr>',      '<Plug>(bullets-newline)'},
-        {'inoremap', '<C-cr>',    '<cr>'},
-        {'imap',     '<C-t>',     '<Plug>(bullets-demote)'},
-        {'imap',     '<C-d>',     '<Plug>(bullets-promote)'},
+        { 'imap',     '<cr>',      '<Plug>(bullets-newline)' },
+        { 'inoremap', '<C-cr>',    '<cr>' },
+        { 'imap',     '<C-t>',     '<Plug>(bullets-demote)' },
+        { 'imap',     '<C-d>',     '<Plug>(bullets-promote)' },
 
-        {'nmap',     'o',         '<Plug>(bullets-newline)'},
-        {'nmap',     '<leader>x', '<Plug>(bullets-toggle-checkbox)'},
-        {'nmap',     '>>',        '<Plug>(bullets-demote)'},
-        {'nmap',     '<<',        '<Plug>(bullets-promote)'},
+        { 'nmap',     'o',         '<Plug>(bullets-newline)' },
+        { 'nmap',     '<leader>x', '<Plug>(bullets-toggle-checkbox)' },
+        { 'nmap',     '>>',        '<Plug>(bullets-demote)' },
+        { 'nmap',     '<<',        '<Plug>(bullets-promote)' },
 
-        {'nmap',     'gN',        '<Plug>(bullets-renumber)'},
-        {'vmap',     'gN',        '<Plug>(bullets-renumber)'},
+        { 'nmap',     'gN',        '<Plug>(bullets-renumber)' },
+        { 'vmap',     'gN',        '<Plug>(bullets-renumber)' },
 
-        {'vmap',     '>',         '<Plug>(bullets-demote)gv'}, -- changed to maintain selection after
-        {'vmap',     '<',         '<Plug>(bullets-promote)gv'}, -- changed to maintain selection after
+        { 'vmap',     '>',         '<Plug>(bullets-demote)gv' },  -- changed to maintain selection after
+        { 'vmap',     '<',         '<Plug>(bullets-promote)gv' }, -- changed to maintain selection after
       }
       vim.g.bullets_checkbox_markers = '    x'
       vim.g.bullets_checkbox_partials_toggle = 0
     end,
-    config = function ()
+    config = function()
     end
   },
 }
