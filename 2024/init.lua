@@ -141,12 +141,19 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Diagnostic keymaps
-local gs = require('gitsigns')
+-- Jump mappings
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+local tc = require("todo-comments")
+local next_todo_repeat, prev_todo_repeat = ts_repeat_move.make_repeatable_move_pair(tc.jump_next, tc.jump_prev)
+vim.keymap.set({ "n", "x", "o" }, "]t", next_todo_repeat)
+vim.keymap.set({ "n", "x", "o" }, "[t", prev_todo_repeat)
+
+local gs = require('gitsigns')
 local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
 vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat)
 vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat)
+
 local next_diag_repeat, prev_diag_repeat = ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next,
   vim.diagnostic.goto_prev)
 vim.keymap.set({ "n", "x", "o" }, "]d", next_diag_repeat, { desc = 'Go to previous diagnostic message' })
