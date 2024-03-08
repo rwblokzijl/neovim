@@ -30,20 +30,20 @@ return {
     'glts/vim-textobj-comment',
     dependencies = 'kana/vim-textobj-user'
   },
-  {
-    -- (l) Line
-    'kana/vim-textobj-line',
-    dependencies = 'kana/vim-textobj-user'
-  },
+  -- {
+  --   -- (l) Line
+  --   'kana/vim-textobj-line',
+  --   dependencies = 'kana/vim-textobj-user'
+  -- },
   {
     -- (e) Entire file
     'kana/vim-textobj-entire',
     dependencies = 'kana/vim-textobj-user'
   },
   {
-    -- (i) Intent blocks
+    -- (i) Indent blocks
     -- 'kana/vim-textobj-indent',
     -- dependencies = 'kana/vim-textobj-user'
-    'michaeljsmith/vim-indent-object'     -- (i)       Indent blocks
+    'michaeljsmith/vim-indent-object' -- (i)       Indent blocks
   }
 }
