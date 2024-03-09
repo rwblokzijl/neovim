@@ -1,16 +1,16 @@
 return {
-  {
-    "github/copilot.vim"
-  },
+  -- {
+  --   "github/copilot.vim"
+  -- },
   {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     config = function()
       require("chatgpt").setup({
-        api_key_cmd = "cat ".. vim.fn.expand("$HOME") .."/.ssh/openai",
+        api_key_cmd = "cat " .. vim.fn.expand("$HOME") .. "/.ssh/openai",
         popup_window = {
           win_options = {
-            foldenable=false
+            foldenable = false
           },
         },
       })

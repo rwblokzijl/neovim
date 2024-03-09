@@ -185,7 +185,8 @@ return {
       'uga-rosa/cmp-dictionary',
       -- 'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-cmdline',
-
+      "zbirenbaum/copilot.lua",
+      "zbirenbaum/copilot-cmp",
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
 
@@ -223,6 +224,7 @@ return {
           },
         },
         sources = {
+          { name = "copilot",  priority = 200, },
           { name = "nvim_lsp", priority = 100, },
           { name = "luasnip",  priority = 50,  max_item_count = 5, entry_filter = function() return true end },
           {
@@ -256,6 +258,7 @@ return {
             with_text = true,
             mode = 'symbol_text',
             menu = {
+              copilot    = "[copilot]",
               buffer     = "[buf]",
               nvim_lsp   = "[LSP]",
               -- nvim_lua   = "[api]",
@@ -356,6 +359,10 @@ return {
           -- { "Name of repo", "PATH/TO/FILE.json" }
         }
       })
+
+      require('copilot').setup()
+
+      require("copilot_cmp").setup()
     end
   },
   {
