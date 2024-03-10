@@ -33,6 +33,7 @@ return {
           vim.keymap.set(mode, l, r, opts)
         end
 
+
         -- -- Navigation
         -- map({ 'n', 'v' }, ']c', function()
         --   if vim.wo.diff then
