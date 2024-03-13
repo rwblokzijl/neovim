@@ -98,7 +98,7 @@ return {
           }
         },
         terraformls = {
-          -- on_attach = function ()
+          -- on_attach = function (_, bufnr)
           --   vim.api.nvim_create_autocmd({"BufWritePre"}, {
           --     pattern = {"*.tf", "*.tfvars"},
           --     callback = vim.lsp.buf.formatting_sync(),
@@ -134,11 +134,11 @@ return {
         function(server_name)
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
-            on_attach = function()
-              on_attach()
+            on_attach = function(client, bufnr)
+              on_attach(client, bufnr)
               local local_on_attach = (servers[server_name] or {})[on_attach]
               if local_on_attach ~= nil then
-                local_on_attach()
+                local_on_attach(client, bufnr)
               end
             end,
             settings = (servers[server_name] or {}).settings or {},

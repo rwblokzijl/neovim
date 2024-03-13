@@ -36,7 +36,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 vim.o.wrap = false
-vim.o.colorcolumn = 80
+vim.o.colorcolumn = "80"
 vim.o.cursorline = true
 
 -- Set highlight on search
