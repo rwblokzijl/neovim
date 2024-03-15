@@ -89,5 +89,45 @@ return {
   },
   {
     "tpope/vim-fugitive",
+    dependencies = {
+      "tpope/vim-rhubarb",
+      config = function()
+        vim.api.nvim_create_user_command(
+          'Browse',
+          function(opts)
+            vim.fn.system { 'xdg-open', opts.fargs[1] }
+          end,
+          { nargs = 1 }
+        )
+      end
+    }
+  },
+  {
+    "ldelossa/gh.nvim",
+    dependencies = {
+      {
+        "ldelossa/litee.nvim",
+        config = function()
+          require("litee.lib").setup()
+        end,
+      },
+    },
+    config = function()
+      require("litee.gh").setup()
+    end,
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   }
 }
