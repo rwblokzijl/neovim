@@ -39,4 +39,6 @@ https://github.com/folke/trouble.nvim
 
 - [ ] Treesitter context line
 - [ ] Colorcolumn
+- [ ] Get gqq to work
+- [ ] Make telescope search work on hidden and non-git files
 
