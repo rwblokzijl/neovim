@@ -83,6 +83,14 @@ return {
         -- clangd = {},
         -- gopls = {},
         pyright = {},
+
+        gopls = {
+          filetypes = { 'go', 'templ' },
+        },
+        templ = {},
+        html = {},
+        -- templ = {},
+        -- pyright = {},
         -- rust_analyzer = {},
         -- tsserver = {},
         -- html = { filetypes = { 'html', 'twig', 'hbs'} },
@@ -141,9 +149,9 @@ return {
                 local_on_attach(client, bufnr)
               end
             end,
-            settings = (servers[server_name] or {}).settings or {},
+            settings = (servers[server_name] or {}).settings,
             filetypes = (servers[server_name] or {}).filetypes,
-            init_options = (servers[server_name] or {}).init_options or {},
+            init_options = (servers[server_name] or {}).init_options,
           }
         end,
       }
@@ -376,8 +384,10 @@ return {
         timeout_ms = 500,
         lsp_fallback = true,
       },
+      -- When having multiple attached lsps for a single filetype, the formatter to use can be speficied. See https://github.com/stevearc/conform.nvim#formatters
       formatters_by_ft = {
-        terraform = { 'terraform_fmt' }
+        terraform = { 'terraform_fmt' },
+        templ = { 'templ' }
       }
     },
   }
