@@ -66,4 +66,7 @@ return {
     config = function()
     end
   },
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+  }
 }

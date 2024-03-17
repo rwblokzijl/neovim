@@ -1,3 +1,12 @@
+function indexOf(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil
+end
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -206,31 +215,162 @@ return {
       -- [[ Configure nvim-cmp ]]
       -- See `:help cmp`
       local cmp = require 'cmp'
+      local copilot = require("copilot.suggestion")
       local luasnip = require 'luasnip'
       local lspkind = require('lspkind')
       require('luasnip.loaders.from_vscode').lazy_load()
       luasnip.config.setup {}
 
       cmp.setup {
+        preselect = cmp.PreselectMode.None,
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
+
         completion = {
           completeopt = 'menu,menuone,noinsert',
         },
+
         mapping = cmp.mapping.preset.insert {
-          ['<C-n>'] = cmp.mapping.select_next_item(),
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete {},
-          ['<C-y>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-          },
+          ['<C-j>']       = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_next_item()
+            else
+              copilot.next()
+            end
+          end),
+          ['<C-k>']       = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              copilot.prev()
+            end
+          end),
+          -- jump to top
+          ['<C-S-k>']     = cmp.mapping(function()
+            cmp.select_prev_item({
+              count = indexOf(cmp.get_entries(), cmp.get_selected_entry()) - 1
+            })
+          end),
+          -- jump to bottom
+          ['<C-S-j>']     = cmp.mapping(function()
+            cmp.select_next_item({
+              count = (
+              --length of get_entries - index of selected entry
+                #cmp.get_entries() -
+                indexOf(cmp.get_entries(), cmp.get_selected_entry())
+              )
+            })
+          end),
+          ['<C-b>']       = cmp.mapping.scroll_docs(-4),
+          ['<C-f>']       = cmp.mapping.scroll_docs(4),
+          ['<C-Space>']   = cmp.mapping(function() -- Open nvim-cmp
+            -- NOTE: Might be commented out to refrain from "toggles", which
+            -- require the brain to remember the state of the completion menu
+            -- Experimenting for now
+
+            if cmp.visible() then
+              cmp.abort()
+              copilot.dismiss()
+            else
+              copilot.dismiss()
+              cmp.complete()
+            end
+          end),
+          ['<C-l>']       = cmp.mapping(function() -- Accept copilot word (or open copilot)
+            if cmp.visible() then
+              -- NOTE: Commented out to refrain from "toggles", which require
+              -- the brain to remember the state of the completion menu
+
+              -- if cmp.get_selected_entry().source.name == "copilot" then
+              cmp.abort()
+              copilot.next()
+              -- else
+              --   cmp.confirm({
+              --     behavior = cmp.ConfirmBehavior.Insert,
+              --     select = true,
+              --   })
+              -- end
+            elseif copilot.is_visible() then
+              copilot.accept_word()
+              -- Add undo-break, then leave and enter insert mode to prevent nvim-cmp from opening
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-g>u<esc>a', true, false, true), 'n', true)
+
+              -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'n', true)
+              -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('a', true, false, true), 'n', true)
+
+              -- copilot.next()
+              --on next tick open copolit again
+              vim.defer_fn(function()
+                copilot.next()
+              end, 0)
+            else
+              copilot.next()
+            end
+          end),
+          ['<C-S-l>']     = cmp.mapping(function() -- Accept copilot line (or open copilot)
+            if cmp.visible() then
+              cmp.abort()
+              copilot.next()
+              -- Commented out to have evething doing 1 thing
+
+              -- cmp.confirm({
+              --   behavior = cmp.ConfirmBehavior.Insert,
+              --   select = true,
+              -- })
+            elseif copilot.is_visible() then
+              copilot.accept_line()
+            else
+              copilot.next()
+            end
+          end),
+          ['<C-y>']       = cmp.mapping(function() -- Accept whole copilot suggestion or nvim-cmp
+            if cmp.visible() then
+              cmp.confirm({
+                behavior = cmp.ConfirmBehavior.Insert,
+                select = true,
+              })
+              -- Add undo-break
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-g>u', true, false, true), 'n', true)
+            else
+              copilot.accept()
+              -- Add undo-break
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-g>u', true, false, true), 'n', true)
+            end
+          end),
+          ['<c-s-space>'] = cmp.mapping(function() -- Close all completion
+            copilot.dismiss()
+            cmp.abort()
+          end),
+          -- Commented out to have 1 way for doing everything
+          -- ['<C-n>']     = cmp.mapping(function()
+          --   if cmp.visible() then
+          --     cmp.select_next_item()
+          --   else
+          --     copilot.next()
+          --   end
+          -- end),
+          -- ['<C-p>']     = cmp.mapping(function()
+          --   if cmp.visible() then
+          --     cmp.select_prev_item()
+          --   else
+          --     copilot.prev()
+          --   end
+          -- end),
+          -- ['<C-h>']     = cmp.mapping(function() -- Toggle between completion and copilot (or open nvim-cmp)
+          --   if cmp.visible() then
+          --     cmp.abort()
+          --     copilot.next()
+          --     -- elseif copilot.is_visible() then
+          --   else
+          --     copilot.dismiss()
+          --     cmp.complete()
+          --   end
+          -- end),
         },
+
         sources = {
           { name = "copilot",  priority = 200, },
           { name = "nvim_lsp", priority = 100, },
@@ -254,6 +394,7 @@ return {
           { name = 'spell',      priority = 5,  max_item_count = 2, keyword_length = 2, option = { keep_all_entries = true, }, },
           { name = 'calc',       priority = 5, },
         },
+
         sorting = {
           priority_weight = 1,
           comparators = {
@@ -261,22 +402,23 @@ return {
             cmp.config.compare.score, -- final_score = orig_score + ((#sources - (source_index - 1)) * sorting.priority_weight) (priority_weight = sources[n].priority
           }
         },
+
         formatting = {
           format = lspkind.cmp_format({
             with_text = true,
             mode = 'symbol_text',
             menu = {
-              copilot    = "[copilot]",
-              buffer     = "[buf]",
-              nvim_lsp   = "[LSP]",
-              -- nvim_lua   = "[api]",
-              path       = "[path]",
-              luasnip    = "[snip]",
-              -- cmp_tabnine = "[TN]",
-              git        = "[git]",
-              dictionary = "[dict]",
-              calc       = "[calc]",
-              spell      = "[spell]",
+              copilot    = " ",
+              buffer     = "buf",
+              nvim_lsp   = "LSP",
+              -- nvim_lua   = "api",
+              path       = "path",
+              luasnip    = "snip",
+              -- cmp_tabnine = "TN",
+              git        = "git",
+              dictionary = "dict",
+              calc       = "calc",
+              spell      = "spell",
             }
           })
         }
