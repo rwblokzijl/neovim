@@ -199,7 +199,12 @@ return {
       'Dosx001/cmp-commit',
       'f3fora/cmp-spell',
       'hrsh7th/cmp-calc',
-      'uga-rosa/cmp-dictionary',
+      {
+        'uga-rosa/cmp-dictionary',
+        dependencies = {
+          'nvim-lua/plenary.nvim'
+        }
+      },
       -- 'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-cmdline',
       "zbirenbaum/copilot.lua",
@@ -446,30 +451,14 @@ return {
       )
 
       require("cmp_dictionary").setup({
-        dic = {
-          ["*"] = { "/usr/share/dict/words" },
-          ["lua"] = "path/to/lua.dic",
-          ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
-          filename = {
-            ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
-          },
-          filepath = {
-            ["%.tmux.*%.conf"] = "path/to/tmux.dic"
-          },
-          spelllang = {
-            en = "path/to/english.dic",
-          },
-        },
-        -- The following are default values.
+        paths = { "/usr/share/dict/words" },
         exact_length = 2,
-        first_case_insensitive = false,
+        first_case_insensitive = true,
         document = {
           enable = false,
           command = { "wn", "${label}", "-over" },
         },
-        async = false,
-        -- capacity = 5,
-        debug = false,
+        async = true,
       })
 
       require("cmp_git").setup({
