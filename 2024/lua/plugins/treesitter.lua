@@ -6,6 +6,7 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'nvim-treesitter/nvim-treesitter-context',
     },
+    tag = "v0.9.2",
     config = function()
       vim.defer_fn(function()
         require('nvim-treesitter.install').update({ with_sync = true })
@@ -47,7 +48,7 @@ return {
 
                 ["i="] = "@assignment.inner",
                 ["a="] = "@assignment.outer",
-                ["l="] = "@assignment.lhs",
+                -- ["l="] = "@assignment.lhs", # Breaks `c5l` (change next 5 chars)
                 ["r="] = "@assignment.rhs",
 
                 ["aa"] = { query = "@parameter.outer", desc = "Select outer part of a parameter/argument" },
@@ -55,16 +56,9 @@ return {
 
                 ["i?"] = "@conditional.inner",
                 ["a?"] = "@conditional.outer",
-                ["??"] = "@conditional.condition",
-                ["l?"] = "@conditional.lhs",
-                ["r?"] = "@conditional.rhs",
 
                 ["il"] = "@loop.inner",
                 ["al"] = "@loop.outer",
-                ["hl"] = "@loop.control",
-                ["?l"] = "@loop.condition",
-                ["ll"] = "@loop.lhs",
-                ["rl"] = "@loop.rhs",
 
                 ["in"] = "@number.inner",
 
@@ -80,8 +74,32 @@ return {
                 ['aC'] = '@class.outer',
                 ['iC'] = '@class.inner',
               },
-            },
+              selection_modes = {
+                -- charwise is default
+                -- ['@parameter.outer'] = 'v', -- charwise
+                -- ['@function.outer'] = 'V', -- linewise
+                -- ['@class.outer'] = '<c-v>', -- blockwise
 
+                ['@block.outer'] = 'V', -- linewise
+                -- ['@block.inner'] = 'V', -- linewise
+
+                ['@class.outer'] = 'V', -- blockwise
+                -- ['@function.outer'] = 'V', -- blockwise # For top level
+                -- functions 'V' is best, but for inline functions 'v' is the
+                -- only working option.
+              },
+              include_surrounding_whitespace = function(options)
+                local query_string = options.query_string
+                local selection_mode = options.selection_mode
+                if selection_mode == "V" then
+                  return true
+                end
+                -- if query_string == "@block.outer" then
+                --   return true
+                -- end
+                return false
+              end
+            },
             move = {
               enable = true,
               set_jumps = true, -- whether to set jumps in the jumplist
@@ -140,11 +158,13 @@ return {
         end)
 
 
-        -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-        vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-        vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-        vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-        vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+        -- Sadly the following lines break . for f, F, t and T. eg. `cf=` is
+        -- broken in the repeat (the = is forgotten)
+        -- -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+        -- vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
+        -- vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
+        -- vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
+        -- vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
       end, 0)
     end
     -- build = ':TSUpdate',

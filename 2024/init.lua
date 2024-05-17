@@ -34,6 +34,8 @@ require('lazy').setup("plugins", {
 -- Enable line numbers
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.scrolloff = 8
+vim.o.sidescrolloff = 16
 
 vim.o.wrap = false
 vim.o.colorcolumn = "80"
@@ -72,13 +74,34 @@ vim.cmd("autocmd BufWritePre * :%s/\\s\\+$//e")
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+vim.o.backspace = "indent,eol,start"
+vim.o.copyindent = true
+vim.o.preserveindent = true
+
+vim.opt.path:append('**')
+vim.o.hidden = true
+vim.o.confirm = true
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.wrap = false
+
+-- set hidden
+-- set confirm
+-- set nobackup
+-- set nowritebackup
+-- set nowrap
+
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
-vim.o.foldlevel = 0
+vim.o.foldlevel = 1
 vim.o.foldnestmax = 1
 vim.o.foldmethod = "indent"
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*", -- Adjust the pattern to target specific file types if needed.
+  command = "normal! zx",
+})
 
 vim.o.copyindent = true
 vim.o.preserveindent = true
@@ -234,6 +257,35 @@ vim.keymap.set('n', "gh", ":wincmd h<CR>")
 vim.keymap.set('n', "gj", ":wincmd j<CR>")
 vim.keymap.set('n', "gk", ":wincmd k<CR>")
 vim.keymap.set('n', "gl", ":wincmd l<CR>")
+-- Table to keep track of each tab's fullscreen state and previous layout
+local tab_states = {}
+
+local toggle_fullscreen_dynamic = function()
+  local windows = vim.api.nvim_tabpage_list_wins(0) -- List of windows in the current tab page
+  local is_fullscreen = false                       -- Assume fullscreen by default
+
+  for _, win_id in ipairs(windows) do
+    if vim.api.nvim_win_get_width(win_id) <= 3 or vim.api.nvim_win_get_height(win_id) <= 3 then
+      is_fullscreen = true
+      break
+    end
+  end
+
+  if is_fullscreen then
+    -- If fullscreen, equalize window sizes
+    vim.cmd("wincmd =")
+    local width = require("plugins.nvimtree").export.width
+    vim.cmd(":NvimTreeResize " .. width)
+  else
+    -- Maximize current window
+    vim.cmd("wincmd |")
+    vim.cmd("wincmd _")
+  end
+end
+
+-- Set a keymap to toggle fullscreen for the current tab
+vim.keymap.set('n', '<c-f>', toggle_fullscreen_dynamic, { noremap = true, silent = true })
+
 
 --Turn off arrow keys
 vim.keymap.set('n', "<Up>", "<NOP>")
@@ -269,6 +321,8 @@ vim.keymap.set('x', '<C-l>', '>gv', { silent = true })
 vim.keymap.set('x', '<C-s-h>', '<gv', { silent = true })
 vim.keymap.set('x', '<C-s-l>', '>gv', { silent = true })
 
+vim.keymap.set('x', '.', ":normal .<CR>", { noremap = true, silent = true })
+
 -- Insert mode mappings
 vim.keymap.set('i', ',', ',<c-g>u', { silent = true })
 vim.keymap.set('i', '.', '.<c-g>u', { silent = true })
@@ -301,3 +355,31 @@ vim.filetype.add({
     templ = "templ",
   },
 })
+
+-- Experiment: Custom fold text
+
+function CustomFoldText()
+  -- This one leaves the folded header in the exact place it was
+  -- it also rightaligns the line count on the textwidth
+  local lineCount = vim.v.foldend - vim.v.foldstart + 1
+  local lineText = vim.fn.getline(vim.v.foldstart)
+
+  local elipsis = "..."
+  local fill_char = " "
+  -- local head = "+" .. vim.v.folddashes .. " "
+  local head = ""
+  -- local tail = "  " .. lineCount .. " lines"
+  local tail = " " .. lineCount .. " lines " .. vim.v.folddashes .. "+"
+
+  local desiredWidth = vim.api.nvim_get_option_value("textwidth", { buf = 0 }) - #head - #tail
+
+  if desiredWidth > 0 and #lineText > desiredWidth then
+    -- local elipsis = ""
+    lineText = lineText:sub(1, desiredWidth - #elipsis) .. elipsis
+  end
+
+  return head .. lineText .. fill_char:rep(desiredWidth - #lineText) .. tail
+end
+
+vim.opt.foldtext = 'v:lua.CustomFoldText()'
+vim.opt.fillchars = { fold = ' ' }

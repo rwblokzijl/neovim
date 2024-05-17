@@ -128,7 +128,7 @@ return {
             }
           }
         },
-        tflint = {},
+        -- tflint = {},
       }
 
       -- Setup neovim lua configuration
@@ -334,7 +334,7 @@ return {
           ['<C-y>']       = cmp.mapping(function() -- Accept whole copilot suggestion or nvim-cmp
             if cmp.visible() then
               cmp.confirm({
-                behavior = cmp.ConfirmBehavior.Insert,
+                -- behavior = cmp.ConfirmBehavior.Insert,
                 select = true,
               })
               -- Add undo-break

@@ -35,10 +35,15 @@ title: NVIM wishlist
 
 https://github.com/folke/trouble.nvim
 
-# Small todo:
+# Other TODO
 
-- [ ] Treesitter context line
+- [ ] Treesitter context line make it side scroll with the buffer
 - [ ] Colorcolumn
 - [ ] Get gqq to work
 - [ ] Make telescope search work on hidden and non-git files
+
+- [ ] Get used to jump forward to next textobject eg: ci) or ci" and targets.vim
+- [ ] Find or create plugin for coloring parens and quotes depending on their
+      distance from the cursor eg: 1st ([{}]) are red, second, blue, teal,
+      purple yellow orange green pink grey lightblue darkgreen brown (wc3 colors)
 

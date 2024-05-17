@@ -22,6 +22,22 @@ return {
     local actions = require("telescope.actions")
     require('telescope').setup {
       defaults = {
+        file_ignore_patterns = {
+          --dirs
+          "^node_modules/",
+          "/node_modules/",
+          "^build/",
+          "/build/",
+          "^dist/",
+          "/dist/",
+          "^.git/",
+          "/.git/",
+          "^.terraform/",
+          "/.terraform/",
+          --files
+          "/yarn.lock",
+        },
+
         mappings = {
           i = {
             ['<C-u>'] = false,
@@ -35,7 +51,14 @@ return {
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
 
-    vim.keymap.set('n', '<c-]>', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+    vim.keymap.set('n', '<c-]>', function()
+        require('telescope.builtin').find_files({
+          hidden = true,
+          no_ignore = true
+        })
+      end,
+      { desc = '[S]earch [F]iles', }
+    )
     vim.keymap.set('n', '<leader>/', function()
       -- You can pass additional configuration to telescope to change theme, layout, etc.
       require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -43,11 +66,14 @@ return {
         previewer = false,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
-    vim.keymap.set('n', '<c-f>', function() -- live_grep_under_cursor
+    vim.keymap.set('n', '<c-s-f>', function() -- live_grep_under_cursor
         -- advantage over grep_string: word can be edited.
         -- If you want to search again over the set, send to quickfix <c-q> and
         -- telescope from quicklist again <c-q>
-        require('telescope.builtin').live_grep({ default_text = vim.fn.expand("<cword>") })
+        require('telescope.builtin').live_grep({
+          default_text = vim.fn.expand("<cword>"),
+          additional_args = function(opts) return { "--hidden" } end
+        })
       end,
       { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<c-q>', require('telescope.builtin').find_files, { desc = '[Q]uickfix' })
