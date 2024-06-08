@@ -22,7 +22,7 @@ return {
           ignore_install = {},
           -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
           modules = {},
-          highlight = { enable = true },
+          highlight = { enable = false },
           indent = { enable = true },
           incremental_selection = {
             enable = true,
@@ -34,7 +34,6 @@ return {
             },
           },
           textobjects = {
-
             select = {
               enable = true,
               lookahead = false,
