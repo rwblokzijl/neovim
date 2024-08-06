@@ -54,7 +54,12 @@ return {
     vim.keymap.set('n', '<c-]>', function()
         require('telescope.builtin').find_files({
           hidden = true,
-          no_ignore = true
+          no_ignore = true,
+          find_command = {
+            "rg", "--files", "--hidden",
+            "--glob", "!**/.git/*",       -- Also added here to increase performance
+            "--glob", "!**/.terraform/*", -- Also added here to increase performance
+          },
         })
       end,
       { desc = '[S]earch [F]iles', }

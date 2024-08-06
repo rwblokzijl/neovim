@@ -33,5 +33,12 @@ return {
       --   require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } })
       -- end, { desc = "Next error/warning todo comment" })
     end
-  }
+  },
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end
+  },
+
 }

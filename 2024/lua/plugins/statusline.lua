@@ -89,7 +89,7 @@ return {
           mode = "tabs",
           numbers = "ordinal",
           diagnostics = "nvim_lsp",
-          diagnostics_update_in_insert = true,
+          -- diagnostics_update_in_insert = true,
           -- -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
           diagnostics_indicator = function(count, level)
             local icons = {

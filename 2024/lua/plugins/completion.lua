@@ -9,6 +9,17 @@ end
 
 return {
   {
+    'mattn/emmet-vim',
+    init = function()
+      vim.g.user_emmet_mode = 'i'
+      vim.g.user_emmet_leader_key = ','
+      vim.g.user_emmet_install_global = 0
+    end
+    -- 2024/lua/plugins/completion.lua|101 col 9| emmet_ls = {},
+    -- 0.original/init.vim|540 col 50| autocmd FileType html,css,vue,htmldjango EmmetInstall
+    -- 0.original/lua/rwb/complete.lua|260 col 6| -- emmet_ls = {},
+  },
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
@@ -98,6 +109,7 @@ return {
         },
         templ = {},
         html = {},
+        emmet_ls = {},
         -- templ = {},
         -- pyright = {},
         -- rust_analyzer = {},
@@ -377,7 +389,8 @@ return {
         },
 
         sources = {
-          { name = "copilot",  priority = 200, },
+          -- { name = "copilot",  priority = 200, }, -- Not a fan of having this
+          -- in cmp
           { name = "nvim_lsp", priority = 100, },
           { name = "luasnip",  priority = 50,  max_item_count = 5, entry_filter = function() return true end },
           {
@@ -503,6 +516,12 @@ return {
 
       require("copilot_cmp").setup()
     end
+  },
+  {
+    'kosayoda/nvim-lightbulb',
+    opts = {
+      autocmd = { enabled = true }
+    }
   },
   {
     "juliosueiras/vim-terraform-completion",
