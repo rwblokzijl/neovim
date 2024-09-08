@@ -51,17 +51,21 @@ return {
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
 
-    vim.keymap.set('n', '<c-]>', function()
-        require('telescope.builtin').find_files({
-          hidden = true,
-          no_ignore = true,
-          find_command = {
-            "rg", "--files", "--hidden",
-            "--glob", "!**/.git/*",       -- Also added here to increase performance
-            "--glob", "!**/.terraform/*", -- Also added here to increase performance
-          },
-        })
-      end,
+    find_files = function()
+      require('telescope.builtin').find_files({
+        hidden = true,
+        no_ignore = true,
+        find_command = {
+          "rg", "--files", "--hidden",
+          "--glob", "!**/.git/*",       -- Also added here to increase performance
+          "--glob", "!**/.terraform/*", -- Also added here to increase performance
+        },
+      })
+    end
+    vim.keymap.set('n', '<c-\'>', find_files,
+      { desc = '[S]earch [F]iles', }
+    )
+    vim.keymap.set('n', '<c-]>', find_files,
       { desc = '[S]earch [F]iles', }
     )
     vim.keymap.set('n', '<leader>/', function()

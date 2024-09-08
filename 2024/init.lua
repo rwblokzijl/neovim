@@ -38,7 +38,7 @@ vim.o.sidescrolloff = 16
 
 vim.o.wrap = false
 vim.o.colorcolumn = "80"
-vim.o.tw = 80
+-- vim.o.tw = 80
 vim.o.cursorline = true
 
 -- Set highlight on search
