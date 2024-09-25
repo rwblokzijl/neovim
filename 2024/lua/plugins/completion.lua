@@ -530,14 +530,24 @@ return {
     'stevearc/conform.nvim',
     opts = {
       notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
+      format_after_save = function(bufnr)
+        -- Notify that we're formatting
+        vim.notify('Formatting buffer')
+        -- if vim.bo[bufnr].filetype == "html" then
+        --   return
+        -- end
+        return {
+          timeout_ms = 500,
+          lsp_fallback = true,
+          async = true, -- If true the method won't block. Defaults to false. If the buffer is modified before the formatter completes, the formatting will be discarded.
+        }
+      end,
       -- When having multiple attached lsps for a single filetype, the formatter to use can be speficied. See https://github.com/stevearc/conform.nvim#formatters
       formatters_by_ft = {
         terraform = { 'terraform_fmt' },
-        templ = { 'templ' }
+        templ = { 'templ' },
+        htmldjango = { 'djlint' },
+        html = { 'djlint' },
       }
     },
   }
