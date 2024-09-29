@@ -526,7 +526,6 @@ return {
   {
     "juliosueiras/vim-terraform-completion",
   },
-<<<<<<< Updated upstream
   {
     'stevearc/conform.nvim',
     opts = {
@@ -552,21 +551,4 @@ return {
       }
     },
   }
-=======
-  -- {
-  --   'stevearc/conform.nvim',
-  --   opts = {
-  --     notify_on_error = false,
-  --     format_on_save = {
-  --       timeout_ms = 500,
-  --       lsp_fallback = true,
-  --     },
-  --     -- When having multiple attached lsps for a single filetype, the formatter to use can be speficied. See https://github.com/stevearc/conform.nvim#formatters
-  --     formatters_by_ft = {
-  --       terraform = { 'terraform_fmt' },
-  --       templ = { 'templ' }
-  --     }
-  --   },
-  -- }
->>>>>>> Stashed changes
 }
