@@ -296,8 +296,6 @@ vim.keymap.set('n', "<Right>", "<NOP>")
 vim.cmd([[:command! -nargs=* W :w "<args>"]])
 vim.cmd([[:command -nargs=* Q :q "<args>"]])
 
-vim.keymap.set('n', "~", ":AV<cr>", { silent = true })
-
 -- Normal mode mappings
 vim.keymap.set('n', '*', [[/\<<C-R>=expand('<cword>')<CR>\><CR>zzzv]], {})
 vim.keymap.set('n', '#', [[?\<<C-R>=expand('<cword>')<CR>\><CR>zzzv]], {})
