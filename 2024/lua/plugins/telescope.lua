@@ -36,6 +36,8 @@ return {
           "/.terraform/",
           --files
           "/yarn.lock",
+          ".pdf$",
+          ".ttf$",
         },
 
         mappings = {
