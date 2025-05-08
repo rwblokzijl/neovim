@@ -350,6 +350,7 @@ autocmd({ 'BufRead', 'BufWritePost' }, {
 vim.filetype.add({
   extension = {
     templ = "templ",
+    tql = "tql",
   },
 })
 

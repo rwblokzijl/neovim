@@ -1,4 +1,4 @@
-local treesitter_width = 30
+local treesitter_width = 39
 return {
   "nvim-tree/nvim-tree.lua",
   version = "*",

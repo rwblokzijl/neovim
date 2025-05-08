@@ -1,48 +1,49 @@
-local gitsigns     = require('gitsigns')
+local gitsigns  = require('gitsigns')
 -- local goto_preview = require('goto-preview')
-local luasnip      = require('rwb.luasnip').bindings
-local nvimtree     = require('rwb.nvimtree')
-local telescope    = require('telescope.builtin')
-local ls           = require "luasnip"
+local luasnip   = require('rwb.luasnip').bindings
+local nvimtree  = require('rwb.nvimtree')
+local telescope = require('telescope.builtin')
+local ls        = require "luasnip"
 
-local M = {}
+local M         = {}
 
 local function inoremap(binding, command, opts)
   opts = opts or {}
-  vim.keymap.set('i', binding, command, vim.tbl_extend("force", {noremap = true}, opts))
+  vim.keymap.set('i', binding, command, vim.tbl_extend("force", { noremap = true }, opts))
 end
 
 local function nnoremap(binding, command, opts)
   opts = opts or {}
-  vim.keymap.set('n', binding, command, vim.tbl_extend("force", {noremap = true}, opts))
+  vim.keymap.set('n', binding, command, vim.tbl_extend("force", { noremap = true }, opts))
 end
 
 local function xnoremap(binding, command, opts)
   opts = opts or {}
-  vim.keymap.set('x', binding, command, {noremap = true})
+  vim.keymap.set('x', binding, command, { noremap = true })
 end
 
 local function onoremap(binding, command)
-  vim.keymap.set('o', binding, command, {noremap = true})
+  vim.keymap.set('o', binding, command, { noremap = true })
 end
 
 local function vnoremap(binding, command)
-  vim.keymap.set('v', binding, command, {noremap = true}) end
+  vim.keymap.set('v', binding, command, { noremap = true })
+end
 
 local function nmap(binding, command)
   vim.keymap.set('n', binding, command)
 end
 
-M.set_lsp_keymaps = function (_, bufnr)
+M.set_lsp_keymaps = function(_, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD',    vim.lsp.buf.declaration,                     bufopts)
-  vim.keymap.set('n', 'gd',    vim.lsp.buf.definition,                      bufopts)
-  vim.keymap.set('n', 'gr',    telescope.lsp_references, bufopts)
-  vim.keymap.set('n', 'K',     vim.lsp.buf.hover,                           bufopts)
-  vim.keymap.set('n', 'gi',    vim.lsp.buf.implementation,                  bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help,                  bufopts)
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gr', telescope.lsp_references, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
 
   -- vim.keymap.set('n', 'gsd', goto_preview.goto_preview_definition,      bufopts)
@@ -63,7 +64,6 @@ M.set_lsp_keymaps = function (_, bufnr)
 end
 
 local function set_keymaps_s_fold(leader)
-
   nnoremap('za', '<Nop>')
   nnoremap('zo', '<Nop>')
   nnoremap('zc', '<Nop>')
@@ -76,23 +76,22 @@ local function set_keymaps_s_fold(leader)
   nnoremap('zl', '<Nop>')
   nnoremap('zh', '<Nop>')
 
-  nnoremap(leader..'',  '<Nop>')
-  nnoremap(leader..'s', 'za')
+  nnoremap(leader .. '', '<Nop>')
+  nnoremap(leader .. 's', 'za')
 
-  nnoremap(leader..'l', 'zo')
-  nnoremap(leader..'h', 'zc')
-  nnoremap(leader..'L', 'zO')
-  nnoremap(leader..'H', 'zC')
+  nnoremap(leader .. 'l', 'zo')
+  nnoremap(leader .. 'h', 'zc')
+  nnoremap(leader .. 'L', 'zO')
+  nnoremap(leader .. 'H', 'zC')
 
-  nnoremap(leader..'k', 'zk')
-  nnoremap(leader..'j', 'zj')
+  nnoremap(leader .. 'k', 'zk')
+  nnoremap(leader .. 'j', 'zj')
 
-  nnoremap(leader..'r', 'zr')
-  nnoremap(leader..'m', 'zm')
-  nnoremap(leader..'i', 'zm')
-  nnoremap(leader..'o', 'zr')
+  nnoremap(leader .. 'r', 'zr')
+  nnoremap(leader .. 'm', 'zm')
+  nnoremap(leader .. 'i', 'zm')
+  nnoremap(leader .. 'o', 'zr')
 end
-
 
 local function set_keymaps_g_goto(leader)
   -- g will mean 'goto'. It is the mode_leader for all jumping through code
@@ -100,17 +99,20 @@ local function set_keymaps_g_goto(leader)
 
   -- tabs
   --
-  nnoremap(leader.."f", function () print("FT: " .. vim.bo.filetype) end)
+  nnoremap(leader .. "f", function() print("FT: " .. vim.bo.filetype) end) -- goto file
+  -- nnoremap(leader .. "h", "0")
+  -- nnoremap(leader .. "l", "$")
+
   -- nnoremap(leader.."t", ":tabnew<cr>:BufferLineSortByTabs<cr>")
   -- nnoremap(leader.."T", ":-1tabnew<cr>:BufferLineSortByTabs<cr>")
 end
 
 local function set_keymaps_ctrl()
-  nnoremap("<c-f>", function () -- live_grep_under_cursor
+  nnoremap("<c-f>", function() -- live_grep_under_cursor
     -- advantage over grep_string: word can be edited.
     -- If you want to search again over the set, send to quickfix <c-q> and
     -- telescope from quicklist again <c-q>
-    telescope.live_grep({default_text=vim.fn.expand("<cword>")})
+    telescope.live_grep({ default_text = vim.fn.expand("<cword>") })
   end)
   -- nnoremap("<c-f>", telescope.grep_string)
   nnoremap("<c-q>", telescope.quickfix)
@@ -127,22 +129,20 @@ local function set_keymaps_ctrl()
   -- nnoremap("<C-b>", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
 
   inoremap("<c-space>", "<Right>")
-
 end
 
 local function set_keymaps_leader(leader)
-  nnoremap(leader.."e", nvimtree.toggle)
+  nnoremap(leader .. "e", nvimtree.toggle)
   -- nnoremap(leader.."a", require("ts-node-action").node_action, { desc = "Trigger Node Action" })
-
 end
 
 local function set_keymaps_g_text_objects()
-    -- nmap("gcac", "gcic")
+  -- nmap("gcac", "gcic")
 
-    vnoremap("aL", "<Plug>(textobj-line-a)")
-    vnoremap("iL", "<Plug>(textobj-line-i)")
-    onoremap("aL", "<Plug>(textobj-line-a)")
-    onoremap("iL", "<Plug>(textobj-line-i)")
+  vnoremap("aL", "<Plug>(textobj-line-a)")
+  vnoremap("iL", "<Plug>(textobj-line-i)")
+  onoremap("aL", "<Plug>(textobj-line-a)")
+  onoremap("iL", "<Plug>(textobj-line-i)")
 end
 
 -- local function get_visual_selection()
@@ -161,9 +161,10 @@ local function set_keymaps_ft_quickfix()
     group = vim.api.nvim_create_augroup('QUICKFIX_KEYBINDS', {}),
     pattern = "qf",
     callback = function()
-      nnoremap("<leader>r", function ()
+      nnoremap("<leader>r", function()
         local s = vim.fn.expand("<cword>")
-        vim.api.nvim_input(":cfdo %s/".. s .."//g | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>")
+        vim.api.nvim_input(":cfdo %s/" ..
+          s .. "//g | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>")
       end)
       -- vnoremap("<leader>r", function ()
       --   -- vim.cmd("let @s=getline(\"'<\")[getpos(\"'<\")[2]-1:getpos(\"'>\")[2]-1]")
@@ -177,14 +178,14 @@ local function set_keymaps_ft_quickfix()
       --     )
       --   end)
       -- end)
-        -- vim.api.nvim_input(":cfdo %s/".. s .."//g | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>")-- , true, false, true)
-        -- vnoremap <Leader>R
+      -- vim.api.nvim_input(":cfdo %s/".. s .."//g | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>")-- , true, false, true)
+      -- vnoremap <Leader>R
     end
   })
 end
 
-M.set_general_keymaps = function ()
-  vim.keymap.set('n', '<SPACE>', '<Nop>', {noremap = true})
+M.set_general_keymaps = function()
+  vim.keymap.set('n', '<SPACE>', '<Nop>', { noremap = true })
   vim.g.mapleader = " "
 
   set_keymaps_g_text_objects()
@@ -194,12 +195,14 @@ M.set_general_keymaps = function ()
   set_keymaps_ctrl()
   set_keymaps_ft_quickfix()
 
+  nnoremap("U", "<c-r>")
+
   -- vim.keymap.set({ "i" ,"s", "n"}, "<c-n>", luasnip.next_field, {silent = true})
   -- vim.keymap.set({ "i" ,"s", "n"}, "<c-p>", luasnip.prev_field, {silent = true})
-  vim.keymap.set({ "i" --[[,"s"]] --[[,"n"]]}, "<c-l>", luasnip.next_option)
-  vim.keymap.set({ "i" --[[,"s"]] --[[,"n"]]}, "<c-h>", luasnip.prev_option)
-  vim.keymap.set("i",                          "<c-u>", luasnip.select_choice)
-  vim.keymap.set("n",                          "<c-s>", luasnip.reload_snippets)
+  vim.keymap.set({ "i" --[[,"s"]] --[[,"n"]] }, "<c-l>", luasnip.next_option)
+  vim.keymap.set({ "i" --[[,"s"]] --[[,"n"]] }, "<c-h>", luasnip.prev_option)
+  vim.keymap.set("i", "<c-u>", luasnip.select_choice)
+  vim.keymap.set("n", "<c-s>", luasnip.reload_snippets)
 
   local function jump_to_index(hist, offset_encoding)
     local item = hist.matches[hist.index]
@@ -243,10 +246,10 @@ M.set_general_keymaps = function ()
       local handle_references = function(_, result, context, _)
         new_history.matches = result
         local current_pos = context.params.position
-        local current_index = tbl_find(new_history.matches, function (item)
+        local current_index = tbl_find(new_history.matches, function(item)
           return position_in_range(current_pos, item.range)
         end)
-        new_history.index = mod_plus_1(current_index+1, vim.tbl_count(new_history.matches))
+        new_history.index = mod_plus_1(current_index + 1, vim.tbl_count(new_history.matches))
         new_history.client_id = context.client_id
         jump_to_index(new_history, vim.lsp.get_client_by_id(new_history.client_id))
       end
@@ -312,22 +315,22 @@ M.set_general_keymaps = function ()
       lsp_references = {
         mode_leader = "r", -- gnr/gpr
         pass_history = true,
-        next_callback = function(history) return lsp_references_jump(history, function (index) return index + 1 end) end,
-        prev_callback = function(history) return lsp_references_jump(history, function (index) return index - 1 end) end,
+        next_callback = function(history) return lsp_references_jump(history, function(index) return index + 1 end) end,
+        prev_callback = function(history) return lsp_references_jump(history, function(index) return index - 1 end) end,
       },
       git_hunks = {
         mode_leader = "h", -- gnh/gph
-        next_callback = function () vim.schedule(function() gitsigns.next_hunk() end) end,
-        prev_callback = function () vim.schedule(function() gitsigns.prev_hunk() end) end,
+        next_callback = function() vim.schedule(function() gitsigns.next_hunk() end) end,
+        prev_callback = function() vim.schedule(function() gitsigns.prev_hunk() end) end,
       },
       luasnip = {
         mode_leader = "s", -- gns/gps
         mappings = {
           next = {
-            { modes = {'n', 'i', 's'}, key = "<c-j>" }, -- specify mode specific mappings
+            { modes = { 'n', 'i', 's' }, key = "<c-j>" }, -- specify mode specific mappings
           },
           prev = {
-            { modes = {'n', 'i', 's'}, key = "<c-k>" },
+            { modes = { 'n', 'i', 's' }, key = "<c-k>" },
           },
         },
         next_callback = function() if ls.expand_or_jumpable() then ls.expand_or_jump() end end,

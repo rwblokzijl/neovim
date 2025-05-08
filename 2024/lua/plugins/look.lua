@@ -34,11 +34,11 @@ return {
       -- end, { desc = "Next error/warning todo comment" })
     end
   },
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      vim.notify = require("notify")
-    end
-  },
+  -- {
+  --   "rcarriga/nvim-notify",
+  --   config = function()
+  --     vim.notify = require("notify")
+  --   end
+  -- },
 
 }

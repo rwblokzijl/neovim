@@ -113,7 +113,7 @@ return {
         -- templ = {},
         -- pyright = {},
         -- rust_analyzer = {},
-        tsserver = {},
+        -- tsserver = {},
         -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
         lua_ls = {
@@ -512,7 +512,9 @@ return {
         }
       })
 
-      require('copilot').setup()
+      require('copilot').setup({
+        copilot_model = "o4-mini-high"
+      })
 
       require("copilot_cmp").setup()
     end
@@ -527,12 +529,12 @@ return {
     "juliosueiras/vim-terraform-completion",
   },
   {
-    'stevearc/conform.nvim',
+    'stevearc/conform.nvim', -- formatting
     opts = {
       notify_on_error = false,
       format_after_save = function(bufnr)
         -- Notify that we're formatting
-        vim.notify('Formatting buffer')
+        -- vim.notify('Formatting buffer')
         -- if vim.bo[bufnr].filetype == "html" then
         --   return
         -- end
@@ -545,10 +547,79 @@ return {
       -- When having multiple attached lsps for a single filetype, the formatter to use can be speficied. See https://github.com/stevearc/conform.nvim#formatters
       formatters_by_ft = {
         terraform = { 'terraform_fmt' },
+        hcl = { 'terraform_fmt' },
         templ = { 'templ' },
         htmldjango = { 'djlint' },
         html = { 'djlint' },
       }
     },
-  }
+  },
+  {
+    "yetone/avante.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons", -- optional, for nice icons
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    build = "make", -- pulls native binary
+    -- load lazily, but ensure on startup so switcher works
+    event = "VeryLazy",
+    config = function()
+      require("avante").setup({
+        -- start with Copilot by default
+        provider = "copilot",
+
+        -- Copilot provider piggy-backs on your copilot.lua setup
+        copilot = {},
+
+        -- Gemini config (requires GEMINI_API_KEY env var)
+        gemini = {
+          api_key     = os.getenv("GEMINI_API_KEY"),
+          model       = "gemini-1.5-flash",
+          temperature = 0,
+          max_tokens  = 4096,
+        },
+
+        -- mappings = {
+        --   submit = {
+        --     insert =
+        --   }
+        -- }
+
+        -- (you can also add openai/claude/azure/cohere here if desired)
+      })
+
+      -- Automatically switch to your preferred provider on startup
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          if vim.fn.exists(":AvanteSwitchProvider") == 2 then
+            -- change to ENV-driven default, or stick with copilot
+            local p = os.getenv("AVANTE_PROVIDER") or "copilot"
+            vim.cmd("AvanteSwitchProvider " .. p)
+          end
+        end,
+      })
+
+      -- Keymaps for switching providers
+      vim.keymap.set("n", "<leader>ap", "<cmd>AvanteSwitchProvider copilot<CR>", {
+        desc = "Avante → Copilot",
+      })
+      vim.keymap.set("n", "<leader>ag", "<cmd>AvanteSwitchProvider gemini<CR>", {
+        desc = "Avante → Gemini",
+      })
+
+      -- Keymaps for chat & edit
+      vim.keymap.set("n", "<leader>aa", "<cmd>AvanteAsk<CR>", {
+        desc = "Avante: Chat at cursor",
+      })
+      vim.keymap.set("n", "<leader>ac", "<cmd>AvanteChat<CR>", {
+        desc = "Avante: Chat at cursor",
+      })
+      vim.keymap.set("n", "<leader>ae", "<cmd>AvanteEdit<CR>", {
+        desc = "Avante: Edit selection",
+      })
+    end,
+  },
+
 }

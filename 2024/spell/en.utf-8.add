@@ -173,3 +173,11 @@ x8currency
 
 Terraform
 resource
+resource
+admin_email_recipients
+local/!
+role
+grants/!
+org_roles
+observability
+if/!
