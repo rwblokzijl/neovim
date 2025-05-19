@@ -88,8 +88,8 @@ return {
 
       -- mason-lspconfig requires that these setup functions are called in this order
       -- before setting up the servers.
-      require('mason').setup()
-      require('mason-lspconfig').setup()
+      -- require('mason').setup()
+      -- require('mason-lspconfig').setup()
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -152,34 +152,27 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-      -- Ensure the servers above are installed
-      local mason_lspconfig = require 'mason-lspconfig'
-
-      mason_lspconfig.setup {
+      require("mason").setup()
+      require("mason-lspconfig").setup {
         ensure_installed = vim.tbl_keys(servers),
+        automatic_enable = false,
       }
 
-      mason_lspconfig.setup_handlers {
-        function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = function(client, bufnr)
-              on_attach(client, bufnr)
-              local local_on_attach = (servers[server_name] or {})[on_attach]
-              if local_on_attach ~= nil then
-                local_on_attach(client, bufnr)
-              end
-            end,
-            settings = (servers[server_name] or {}).settings,
-            filetypes = (servers[server_name] or {}).filetypes,
-            init_options = (servers[server_name] or {}).init_options,
-          }
-        end,
-      }
-      -- vim.api.nvim_create_autocmd({"BufWritePre"}, {
-      --   pattern = {"*.tf", "*.tfvars"},
-      --   callback = vim.lsp.buf.format(),
-      -- })
+      -- now the new API exists:
+      for name, cfg in pairs(servers) do
+        vim.lsp.config(name, {
+          capabilities = capabilities,
+          on_attach    = function(client, bufnr)
+            on_attach(client, bufnr)
+            if cfg.on_attach then cfg.on_attach(client, bufnr) end
+          end,
+          settings     = cfg.settings,
+          filetypes    = cfg.filetypes,
+          init_options = cfg.init_options,
+        })
+      end
+
+      vim.lsp.enable(vim.tbl_keys(servers))
     end
   },
 

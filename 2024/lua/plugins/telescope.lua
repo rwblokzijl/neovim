@@ -44,7 +44,7 @@ return {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
-            ["<esc><esc>"] = actions.close, -- makes closing a lot faster
+            -- ["<esc><esc>"] = actions.close, -- makes closing a lot faster
           },
         },
       },
