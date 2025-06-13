@@ -169,6 +169,9 @@ return {
           settings     = cfg.settings,
           filetypes    = cfg.filetypes,
           init_options = cfg.init_options,
+          flags        = {
+            allow_incremental_sync = false,
+          },
         })
       end
 
@@ -563,16 +566,18 @@ return {
         -- start with Copilot by default
         provider = "copilot",
 
-        -- Copilot provider piggy-backs on your copilot.lua setup
-        copilot = {},
+        providers = {
+          -- Copilot provider piggy-backs on your copilot.lua setup
+          copilot = {},
 
-        -- Gemini config (requires GEMINI_API_KEY env var)
-        gemini = {
-          api_key     = os.getenv("GEMINI_API_KEY"),
-          model       = "gemini-1.5-flash",
-          temperature = 0,
-          max_tokens  = 4096,
-        },
+          -- Gemini config (requires GEMINI_API_KEY env var)
+          gemini = {
+            api_key     = os.getenv("GEMINI_API_KEY"),
+            model       = "gemini-1.5-flash",
+            temperature = 0,
+            max_tokens  = 4096,
+          },
+        }
 
         -- mappings = {
         --   submit = {

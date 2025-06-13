@@ -27,8 +27,6 @@ require('lazy').setup("plugins", {
   },
 })
 
-
-
 ----- look -----
 -- Enable line numbers
 vim.o.number = true

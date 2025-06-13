@@ -1,4 +1,4 @@
-local configs = require'nvim-treesitter.configs'
+local configs = require 'nvim-treesitter.configs'
 configs.setup {
   ensure_installed = "all",
   -- rainbow = {
@@ -15,7 +15,7 @@ configs.setup {
   -- },
   indent = {
     enable = true, -- default is disabled anyways
-    disable = {"python", },
+    disable = { "python", },
   },
   incremental_selection = {
     enable = true,
@@ -73,11 +73,11 @@ configs.setup {
         -- ["@attribute.inner"]   = 'v',
         -- ["@attribute.outer"]   = 'v',
         -- ["@block.inner"]       = 'v',
-        ["@block.outer"]       = 'V',
+        ["@block.outer"]     = 'V',
         -- ["@call.inner"]        = 'v',
         -- ["@call.outer"]        = 'v',
         -- ["@class.inner"]       = 'v',
-        ["@class.outer"]       = 'V',
+        ["@class.outer"]     = 'V',
         -- ["@comment.inner"]     = '<c-v>',
         -- ["@comment.outer"]     = '<c-v>',
         -- ["@conditional.inner"] = 'v',
@@ -85,13 +85,13 @@ configs.setup {
         -- ["@frame.inner"]       = 'v',
         -- ["@frame.outer"]       = 'V',
         -- ["@function.inner"]    = 'v',
-        ["@function.outer"]    = 'V', -- disabled because of inline functions
+        ["@function.outer"]  = 'V',   -- disabled because of inline functions
         -- ["@loop.inner"]        = 'v',
-        ["@loop.outer"]        = 'V',
+        ["@loop.outer"]      = 'V',
         -- ["@parameter.inner"]   = 'v',
         -- ["@parameter.outer"]   = 'v',
         -- ["@scopename.inner"]   = 'v',
-        ["@statement.outer"]   = 'V',
+        ["@statement.outer"] = 'V',
         -- Your custom capture.
         -- ["aF"] = "@custom-capture",
       }
@@ -99,14 +99,14 @@ configs.setup {
   },
 }
 
-require'treesitter-context'.setup{
-  enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-  max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+require 'treesitter-context'.setup {
+  enable = true,        -- Enable this plugin (Can be enabled/disabled later via commands)
+  max_lines = 0,        -- How many lines the window should span. Values <= 0 mean no limit.
   trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
 
-  zindex = 20, -- The Z-index of the context window
-  mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
-  separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
+  zindex = 20,          -- The Z-index of the context window
+  mode = 'cursor',      -- Line used to calculate context. Choices: 'cursor', 'topline'
+  separator = nil,      -- Separator between context and content. Should be a single character string, like '-'.
 }
 
 -- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
@@ -117,6 +117,5 @@ require'treesitter-context'.setup{
 --   end
 -- })
 
-vim.opt.foldmethod     = 'indent'
+vim.opt.foldmethod = 'indent'
 -- vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
-

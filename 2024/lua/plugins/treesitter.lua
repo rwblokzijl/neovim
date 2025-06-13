@@ -4,7 +4,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-treesitter/nvim-treesitter-context',
     },
     tag = "v0.9.2",
     config = function()
@@ -156,7 +155,6 @@ return {
           ts_repeat_move.repeat_last_move({ forward = true, start = false })
         end)
 
-
         -- Sadly the following lines break . for f, F, t and T. eg. `cf=` is
         -- broken in the repeat (the = is forgotten)
         -- -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
@@ -180,4 +178,15 @@ return {
       })
     end
   },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = "BufReadPost",
+    opts = {
+      enable = true,        -- Enable this plugin
+      max_lines = 3,        -- How many lines the context window can span
+      trim_scope = "outer", -- Remove outer context if max_lines is exceeded
+      mode = "cursor",      -- Use "cursor" or "topline"
+    }
+  }
 }
