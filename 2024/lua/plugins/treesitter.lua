@@ -21,7 +21,7 @@ return {
           ignore_install = { "wing" },
           -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
           modules = {},
-          highlight = { enable = true, disable = { "tex", "html", "htmldjango" } },
+          highlight = { enable = false, disable = { "tex", "html", "htmldjango" } },
           indent = { enable = true, disable = { "html", "htmldjango" } },
           incremental_selection = {
             enable = true,
@@ -178,15 +178,15 @@ return {
       })
     end
   },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "BufReadPost",
-    opts = {
-      enable = true,        -- Enable this plugin
-      max_lines = 3,        -- How many lines the context window can span
-      trim_scope = "outer", -- Remove outer context if max_lines is exceeded
-      mode = "cursor",      -- Use "cursor" or "topline"
-    }
-  }
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-context",
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  --   event = "BufReadPost",
+  --   opts = {
+  --     enable = true,        -- Enable this plugin
+  --     max_lines = 3,        -- How many lines the context window can span
+  --     trim_scope = "outer", -- Remove outer context if max_lines is exceeded
+  --     mode = "cursor",      -- Use "cursor" or "topline"
+  --   }
+  -- }
 }
