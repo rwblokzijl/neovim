@@ -580,6 +580,7 @@ return {
             extra_request_body = {
               max_tokens = 1000000,
             },
+          },
 
           claude = {
             api_key_name = "cmd:cat ~/.ssh/claude.api", -- the shell command must prefixed with `^cmd:(.*)`
