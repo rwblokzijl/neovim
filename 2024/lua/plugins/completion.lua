@@ -574,16 +574,23 @@ return {
 
         providers = {
           -- Copilot provider piggy-backs on your copilot.lua setup
-          copilot = {},
-
-          -- Gemini config (requires GEMINI_API_KEY env var)
-          gemini = {
-            api_key     = os.getenv("GEMINI_API_KEY"),
-            model       = "gemini-1.5-flash",
-            temperature = 0,
-            max_tokens  = 4096,
+          copilot = {
+            model = "gemini-2.5-pro",
+            extra_request_body = {
+              max_tokens = 1000000,
+            },
           },
-        }
+        },
+
+        --   -- Gemini config (requires GEMINI_API_KEY env var)
+        --   gemini = {
+        --     api_key     = os.getenv("GEMINI_API_KEY"),
+        --     model       = "gemini-1.5-flash",
+        --     temperature = 0,
+        --     max_tokens  = 4096,
+        --   },
+        -- },
+
 
         -- mappings = {
         --   submit = {
