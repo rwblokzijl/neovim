@@ -1,3 +1,4 @@
+-- Note avante lives in completion.lua
 return {
   -- {
   --   "github/copilot.vim"
