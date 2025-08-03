@@ -570,18 +570,127 @@ return {
     config = function()
       require("avante").setup({
         -- start with Copilot by default
-        provider = "copilot",
+        provider = "gemini",
 
         providers = {
           -- Copilot provider piggy-backs on your copilot.lua setup
           copilot = {},
 
-          -- Gemini config (requires GEMINI_API_KEY env var)
+          claude = {
+            api_key_name = "cmd:cat ~/.ssh/claude.api", -- the shell command must prefixed with `^cmd:(.*)`
+            -- api_key_name = {"bw","get","notes","anthropic-api-key"}, -- if it is a table of string, then default to command.
+          },
+
           gemini = {
-            api_key     = os.getenv("GEMINI_API_KEY"),
-            model       = "gemini-1.5-flash",
-            temperature = 0,
-            max_tokens  = 4096,
+            api_key_name = "cmd:cat ~/.ssh/gemini.api", -- the shell command must prefixed with `^cmd:(.*)`
+            model        = "gemini-2.5-pro",            -- $1.25 - $2.50 per Million tokens
+            model        = "gemini-2.5-flash",          -- $0.30 per Million tokens
+            temperature  = 0,
+            max_tokens   = 4096,
+          },
+
+
+          grok = {
+            endpoint = "https://api.x.ai/v1/chat/completions", -- xAI API endpoint
+            model = "grok-4-0709",                             -- Adjust to grok-3-latest if not available
+            api_key_name = "cmd:cat ~/.ssh/xai_grok.api",      -- Read API key from file
+            is_disable_stream = function() return false end,   -- Enable streaming
+            parse_messages = function(code_opts)
+              local messages = {
+                { role = "system", content = code_opts.system_prompt or "You are a helpful coding assistant." },
+              }
+              vim.iter(code_opts.messages or
+                { { role = "user", content = code_opts.question or "Please provide a response." } })
+                  :each(function(msg)
+                    table.insert(messages,
+                      { role = msg.role or "user", content = msg.content or "Please provide a response." })
+                  end)
+              return messages
+            end,
+            parse_curl_args = function(opts, code_opts)
+              local api_key = vim.fn.system("cat ~/.ssh/xai_grok.api"):gsub("\n", ""):gsub("\r", "")
+              -- Debug: Log the API key (partially masked for safety)
+              vim.api.nvim_out_write("API key sent: " .. api_key:sub(1, 3) .. "***" .. api_key:sub(-4) .. "\n")
+              if api_key == "" or api_key:match("^%s*$") then
+                vim.api.nvim_err_writeln("Error: API key is empty or not read from ~/.ssh/xai_grok.api")
+              end
+              return {
+                url = opts.endpoint,
+                headers = {
+                  ["Authorization"] = "Bearer " .. api_key,
+                  ["Content-Type"] = "application/json",
+                },
+                body = {
+                  model = opts.model,
+                  messages = opts.parse_messages(code_opts),
+                  max_tokens = 4096,                     -- Adjust based on API limits
+                  temperature = 0.7,                     -- Adjust for response creativity
+                  stream = not opts.is_disable_stream(), -- Enable streaming
+                },
+              }
+            end,
+            parse_response = function(data_stream, event_state, opts)
+              if event_state == "done" then
+                opts.on_complete()
+                return
+              end
+              if data_stream == nil then
+                return
+              end
+              -- Handle data_stream as a table (SSE events)
+              if type(data_stream) == "table" then
+                for _, line in ipairs(data_stream) do
+                  if type(line) == "string" then
+                    -- Debug: Log each line
+                    vim.api.nvim_out_write("Raw response line: " .. line .. "\n")
+                    if line:match("^data:") then
+                      local json_str = line:gsub("^data:%s*", "")
+                      if json_str == "[DONE]" then
+                        opts.on_complete()
+                        return
+                      end
+                      local success, json = pcall(vim.json.decode, json_str)
+                      if not success then
+                        vim.api.nvim_err_writeln("Failed to decode JSON: " .. json_str)
+                        return
+                      end
+                      local delta = json.choices and json.choices[1] and json.choices[1].delta and
+                          json.choices[1].delta.content
+                          or json.deltaText
+                      local stopReason = json.stopReason
+                      if stopReason == "end_turn" then
+                        return
+                      end
+                      if delta then
+                        opts.on_chunk(delta)
+                      else
+                        vim.api.nvim_err_writeln("No delta content in response: " .. vim.inspect(json))
+                      end
+                    end
+                  end
+                end
+              else
+                -- Fallback for non-table data_stream (unlikely)
+                vim.api.nvim_out_write("Raw response (non-table): " .. tostring(data_stream) .. "\n")
+                local success, json = pcall(vim.json.decode, data_stream)
+                if not success then
+                  vim.api.nvim_err_writeln("Failed to decode JSON: " .. tostring(data_stream))
+                  return
+                end
+                local delta = json.choices and json.choices[1] and json.choices[1].delta and
+                    json.choices[1].delta.content
+                    or json.deltaText
+                local stopReason = json.stopReason
+                if stopReason == "end_turn" then
+                  return
+                end
+                if delta then
+                  opts.on_chunk(delta)
+                else
+                  vim.api.nvim_err_writeln("No delta content in response: " .. vim.inspect(json))
+                end
+              end
+            end,
           },
         }
 
