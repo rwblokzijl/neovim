@@ -58,16 +58,26 @@ return {
       vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
       vim.keymap.set('n', 'W', api.tree.collapse_all, opts('Collapse'))
       vim.keymap.set('n', 'E', api.tree.expand_all, opts('Expand All'))
-      vim.keymap.set('n', 'S', api.tree.search_node, opts('Search'))
+      -- vim.keymap.set('n', 'S', api.tree.search_node, opts('Search'))
       vim.keymap.set('n', '.', api.node.run.cmd, opts('Run Command'))
       vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
       vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
       vim.keymap.set('n', 'bmv', api.marks.bulk.move, opts('Move Bookmarked'))
       vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
-      vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
+      -- vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
       vim.keymap.set('n', 'v', api.node.open.vertical, opts('Open: Vertical Split'))
+
+      vim.keymap.set('n', 's', function()
+        local tree_ext = require("avante.extensions.nvim_tree")
+        tree_ext.add_file()
+      end, opts('Select file in NvimTree'))
+
+      vim.keymap.set('n', 'S', function()
+        local tree_ext = require("avante.extensions.nvim_tree")
+        tree_ext.remove_file()
+      end, opts('Deselect file in NvimTree'))
       -- auto_resize = true,
       -- { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
       -- { key = { "<C-]>", "<2-RightMouse>" },    action = "cd" },
